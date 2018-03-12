@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * ECTouch - E-Commerce Platform for PHP.
+ *
+ * @package  ECTouch
+ * @homepage https://www.ectouch.cn
+ */
+
 namespace think;
 
 // 加载基础文件
