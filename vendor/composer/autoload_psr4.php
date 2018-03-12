@@ -6,7 +6,6 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'ecmoban\\' => array($vendorDir . '/ecmoban'),
-    'Payment\\' => array($vendorDir . '/riverslei/payment/src'),
-    'OSS\\' => array($vendorDir . '/aliyuncs/oss-sdk-php/src/OSS'),
+    'think\\composer\\' => array($vendorDir . '/topthink/think-installer/src'),
+    'app\\' => array($baseDir . '/app'),
 );

@@ -4,65 +4,44 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit97400414cd340293c52e947010a46e12
+class ComposerStaticInit77607ebfaad2cf608bb90e025c0130e4
 {
-    public static $files = array (
-        '9f250a41a7dd6e0ec0b435f358c544bf' => __DIR__ . '/..' . '/ecmoban/ecmoban.php',
-    );
-
     public static $prefixLengthsPsr4 = array (
-        'e' => 
+        't' => 
         array (
-            'ecmoban\\' => 8,
+            'think\\composer\\' => 15,
         ),
-        'P' => 
+        'a' => 
         array (
-            'Payment\\' => 8,
-        ),
-        'O' => 
-        array (
-            'OSS\\' => 4,
+            'app\\' => 4,
         ),
     );
 
     public static $prefixDirsPsr4 = array (
-        'ecmoban\\' => 
+        'think\\composer\\' => 
         array (
-            0 => __DIR__ . '/..' . '/ecmoban',
+            0 => __DIR__ . '/..' . '/topthink/think-installer/src',
         ),
-        'Payment\\' => 
+        'app\\' => 
         array (
-            0 => __DIR__ . '/..' . '/riverslei/payment/src',
-        ),
-        'OSS\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/aliyuncs/oss-sdk-php/src/OSS',
-        ),
-    );
-
-    public static $prefixesPsr0 = array (
-        'W' => 
-        array (
-            'Whoops' => 
-            array (
-                0 => __DIR__ . '/..' . '/filp/whoops/src',
-            ),
+            0 => __DIR__ . '/../..' . '/app',
         ),
     );
 
     public static $classMap = array (
-        'Whoops\\Module' => __DIR__ . '/..' . '/filp/whoops/src/deprecated/Zend/Module.php',
-        'Whoops\\Provider\\Zend\\ExceptionStrategy' => __DIR__ . '/..' . '/filp/whoops/src/deprecated/Zend/ExceptionStrategy.php',
-        'Whoops\\Provider\\Zend\\RouteNotFoundStrategy' => __DIR__ . '/..' . '/filp/whoops/src/deprecated/Zend/RouteNotFoundStrategy.php',
+        'app\\shop\\controller\\Index' => __DIR__ . '/../..' . '/app/shop/controller/Index.php',
+        'think\\composer\\Plugin' => __DIR__ . '/..' . '/topthink/think-installer/src/Plugin.php',
+        'think\\composer\\ThinkExtend' => __DIR__ . '/..' . '/topthink/think-installer/src/ThinkExtend.php',
+        'think\\composer\\ThinkFramework' => __DIR__ . '/..' . '/topthink/think-installer/src/ThinkFramework.php',
+        'think\\composer\\ThinkTesting' => __DIR__ . '/..' . '/topthink/think-installer/src/ThinkTesting.php',
     );
 
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit97400414cd340293c52e947010a46e12::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit97400414cd340293c52e947010a46e12::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInit97400414cd340293c52e947010a46e12::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInit97400414cd340293c52e947010a46e12::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit77607ebfaad2cf608bb90e025c0130e4::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit77607ebfaad2cf608bb90e025c0130e4::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInit77607ebfaad2cf608bb90e025c0130e4::$classMap;
 
         }, null, ClassLoader::class);
     }
