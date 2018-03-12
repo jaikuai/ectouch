@@ -1,7 +1,7 @@
 ECTouch v3
 ============================
 
-<p align="center"><img src="https://www.ectouch.cn/images/common/logo.png"></p>
+<p align="center"><img src="https://www.ectouch.cn/assets/images/common/logo.png"></p>
 
 ## 概况
 
