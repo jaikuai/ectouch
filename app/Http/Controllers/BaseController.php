@@ -63,11 +63,11 @@ class BaseController extends Controller
                 }
 
                 session(null);
-                session(['user_id' =>  0]);
-                session(['user_name' =>  '']);
-                session(['email' =>  '']);
-                session(['user_rank' =>  0]);
-                session(['discount' =>  1.00]);
+                session(['user_id' => 0]);
+                session(['user_name' => '']);
+                session(['email' => '']);
+                session(['user_rank' => 0]);
+                session(['discount' => 1.00]);
             }
 
             define('SESS_ID', substr(session()->getId(), 0, 32));
@@ -116,8 +116,8 @@ class BaseController extends Controller
                 $site_name = isset($_GET['from']) ? htmlspecialchars($_GET['from']) : addslashes($GLOBALS['_LANG']['self_site']);
                 $from_ad = !empty($_GET['ad_id']) ? intval($_GET['ad_id']) : 0;
 
-                session(['from_ad' =>  $from_ad]); // 用户点击的广告ID
-                session(['referer' =>  stripslashes($site_name)]); // 用户来源
+                session(['from_ad' => $from_ad]); // 用户点击的广告ID
+                session(['referer' => stripslashes($site_name)]); // 用户来源
 
                 unset($site_name);
 
@@ -133,13 +133,13 @@ class BaseController extends Controller
                         update_user_info();
                     }
                 } else {
-                    session(['user_id' =>  0]);
-                    session(['user_name' =>  '']);
-                    session(['email' =>  '']);
-                    session(['user_rank' =>  0]);
-                    session(['discount' =>  1.00]);
+                    session(['user_id' => 0]);
+                    session(['user_name' => '']);
+                    session(['email' => '']);
+                    session(['user_rank' => 0]);
+                    session(['discount' => 1.00]);
                     if (!session()->has('login_fail')) {
-                        session(['login_fail' =>  0]);
+                        session(['login_fail' => 0]);
                     }
                 }
             }

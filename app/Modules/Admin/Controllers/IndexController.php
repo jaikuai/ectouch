@@ -114,7 +114,7 @@ class IndexController extends BaseController
         if ($_REQUEST['act'] == 'main') {
             //寮€搴楀悜瀵肩?涓€姝
             if (session()->has('shop_guide') && session('shop_guide') === true) {
-                session(['shop_guide' =>  null]);
+                session(['shop_guide' => null]);
                 return $this->redirect("index.php?act=first");
             }
 
@@ -817,7 +817,7 @@ class IndexController extends BaseController
          */
         if ($_REQUEST['act'] == 'check_order') {
             if (empty(session('last_check'))) {
-                session(['last_check' =>  gmtime()]);
+                session(['last_check' => gmtime()]);
 
                 return make_json_result('', '', ['new_orders' => 0, 'new_paid' => 0]);
             }
@@ -832,7 +832,7 @@ class IndexController extends BaseController
                 ' WHERE pay_time >= ' . session('last_check');
             $arr['new_paid'] = $this->db->getOne($sql);
 
-            session(['last_check' =>  gmtime()]);
+            session(['last_check' => gmtime()]);
 
             if (!(is_numeric($arr['new_orders']) && is_numeric($arr['new_paid']))) {
                 return make_json_error($this->db->error());

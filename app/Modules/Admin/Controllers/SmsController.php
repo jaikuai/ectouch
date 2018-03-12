@@ -32,8 +32,8 @@ class SmsController extends BaseController
 //
 //        $result = $sms->register($email, $password, $domain, $phone);
 //
-//        $link[] = array('text'  =>  $GLOBALS['_LANG']['back'],
-//                        'href'  =>  'sms.php?act=display_my_info');
+//        $link[] = array('text'  => $GLOBALS['_LANG']['back'],
+//                        'href'  => 'sms.php?act=display_my_info');
 //
 //        if ($result === true)//注册成功
 //        {
@@ -58,8 +58,8 @@ class SmsController extends BaseController
 //
 //        $result = $sms->restore($username, $password);
 //
-//        $link[] = array('text'  =>  $GLOBALS['_LANG']['back'],
-//                        'href'  =>  'sms.php?act=display_my_info');
+//        $link[] = array('text'  => $GLOBALS['_LANG']['back'],
+//                        'href'  => 'sms.php?act=display_my_info');
 //
 //        if ($result === true)//启用成功
 //        {
@@ -78,8 +78,8 @@ class SmsController extends BaseController
 //    case 'disable' :
 //        $result = $sms->clear_my_info();
 //
-//        $link[] = array('text'  =>  $GLOBALS['_LANG']['back'],
-//                        'href'  =>  'sms.php?act=display_my_info');
+//        $link[] = array('text'  => $GLOBALS['_LANG']['back'],
+//                        'href'  => 'sms.php?act=display_my_info');
 //
 //        if ($result === true)//注销成功
 //        {
@@ -452,8 +452,8 @@ class SmsController extends BaseController
 //            }
 //            else
 //            {
-//                $link[] = array('text'  =>  $GLOBALS['_LANG']['back_send_history'],
-//                                'href'  =>  'sms.php?act=display_send_history_ui');
+//                $link[] = array('text'  => $GLOBALS['_LANG']['back_send_history'],
+//                                'href'  => 'sms.php?act=display_send_history_ui');
 //
 //                @$error_detail = $GLOBALS['_LANG']['server_errors'][$sms->errors['server_errors']['error_no']]
 //                              . $GLOBALS['_LANG']['api_errors']['get_history'][$sms->errors['api_errors']['error_no']];
@@ -547,8 +547,8 @@ class SmsController extends BaseController
 //            }
 //            else
 //            {
-//                $link[] = array('text'  =>  $GLOBALS['_LANG']['back_charge_history'],
-//                                'href'  =>  'sms.php?act=display_charge_history_ui');
+//                $link[] = array('text'  => $GLOBALS['_LANG']['back_charge_history'],
+//                                'href'  => 'sms.php?act=display_charge_history_ui');
 //
 //                @$error_detail = $GLOBALS['_LANG']['server_errors'][$sms->errors['server_errors']['error_no']]
 //                              . $GLOBALS['_LANG']['api_errors']['get_history'][$sms->errors['api_errors']['error_no']];
@@ -566,7 +566,7 @@ class SmsController extends BaseController
 //        $sms_my_info = $sms->get_my_info();
 //        if (!$sms_my_info)
 //        {
-//            $link[] = array('text'  =>  $GLOBALS['_LANG']['back'], 'href'  =>  './');
+//            $link[] = array('text'  => $GLOBALS['_LANG']['back'], 'href'  => './');
 //            return sys_msg($GLOBALS['_LANG']['empty_info'], 1, $link);
 //        }
 //

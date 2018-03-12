@@ -258,7 +258,7 @@ class WholesaleController extends BaseController
         if ($_REQUEST['act'] == 'drop_goods') {
             $key = intval($_REQUEST['key']);
             if (session()->has('wholesale_goods.' . $key)) {
-                session(['wholesale_goods.' . $key =>  null]);
+                session(['wholesale_goods.' . $key => null]);
             }
 
             // 刷新页面
@@ -359,7 +359,7 @@ class WholesaleController extends BaseController
             }
 
             // 清空购物车
-            session(['wholesale_goods' =>  null]);
+            session(['wholesale_goods' => null]);
 
             // 提示
             return show_message(sprintf($GLOBALS['_LANG']['ws_order_submitted'], $order['order_sn']), $GLOBALS['_LANG']['ws_return_home'], 'index.php');
