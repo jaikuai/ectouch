@@ -62,6 +62,20 @@ http://www.ectouch.cn/download
 
 > composer create-project --prefer-dist ectouch/ectouch ectouch
 
+## 目录结构
+
+```
+      app/                应用核心目录
+      bootstrap/          包含启动文件
+      config/             包含配置文件
+      database/           包含数据迁移
+      public/             包含入口脚本和Web资源
+      resources/          包含资源文件
+      routes/             包含路由配置
+      storage/            包含缓存存储
+      tests/              包含各种类型的测试程序
+      vendor/             包含第三方依赖包
+```
 
 ## 配置
 
@@ -127,4 +141,4 @@ location / {
 
 ## License
 
-[GPL license](https://opensource.org/licenses/GPL-3.0).
+ECTouch 遵循 [GPL license](https://opensource.org/licenses/GPL-3.0) 开源协议。
