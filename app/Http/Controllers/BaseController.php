@@ -76,7 +76,7 @@ class BaseController extends Controller
                 $_SERVER['PHP_SELF'] = htmlspecialchars($_SERVER['PHP_SELF']);
             }
 
-            $app_mode = config('app.mode');
+            $app_mode = config('shop.mode');
             if (($app_mode == 0 && is_mobile_device()) || $app_mode == 2) {
                 $GLOBALS['_CFG']['template'] .= '/mobile';
             }
