@@ -22,6 +22,7 @@
         "binaryoung/ucenter": "^1.0",
         "endroid/qr-code": "^3.2",
         "fideloper/proxy": "^4.0",
+        "igaster/laravel-theme": "^2.0",
         "jacobcyl/ali-oss-storage": "^2.0",
         "jellybool/translug": "^2.0",
         "jenssegers/agent": "^2.6",
