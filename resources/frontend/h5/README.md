@@ -1,4 +1,4 @@
-# vx
+# ECTouch
 
 > A Vue.js project
 

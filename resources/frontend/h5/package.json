@@ -1,6 +1,6 @@
 {
-  "name": "vx",
-  "version": "1.0.0",
+  "name": "ectouch",
+  "version": "3.0.0",
   "description": "A Vue.js project",
   "author": "carson <wanganlin@ecmoban.com>",
   "private": true,
