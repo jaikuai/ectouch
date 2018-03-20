@@ -12,9 +12,9 @@
         "source": "https://github.com/ectouch/ectouch"
     },
     "require": {
-        "php": ">=7.2.0",
+        "php": ">=5.6.0",
+        "topthink/framework": "5.1.*",
         "endroid/qr-code": "^3.2",
-        "illuminate/database": "^5.6",
         "jellybool/translug": "^2.0",
         "jenssegers/agent": "^2.6",
         "overtrue/easy-sms": "^1.0",
@@ -28,12 +28,15 @@
     },
     "autoload": {
         "psr-4": {
-            "App\\": "app/"
+            "app\\": "application/"
         },
         "files": [
             "config/constant.php",
-            "app/Support/helpers.php"
+            "application/support/helpers.php"
         ]
+    },
+    "extra": {
+        "think-path": "application/kernel"
     },
     "config": {
         "preferred-install": "dist",
