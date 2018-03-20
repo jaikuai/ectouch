@@ -1,55 +1,173 @@
 <?php
 
+/**
+ * ECTouch - E-Commerce Platform for PHP.
+ *
+ * @package  ECTouch
+ * @homepage https://www.ectouch.cn
+ */
+
+/*
+|--------------------------------------------------------------------------
+| 运行环境
+|--------------------------------------------------------------------------
+*/
+
+define('IN_ECTOUCH', true);
+
+/*
+|--------------------------------------------------------------------------
+| 应用名称
+|--------------------------------------------------------------------------
+*/
+
+define('APPNAME', 'ECTouch');
+
+/*
+|--------------------------------------------------------------------------
+| 应用版本
+|--------------------------------------------------------------------------
+*/
+
+define('VERSION', 'v3.0.0');
+
+/*
+|--------------------------------------------------------------------------
+| 编码格式
+|--------------------------------------------------------------------------
+*/
+
+define('CHARSET', 'utf-8');
+
+/*
+|--------------------------------------------------------------------------
+| 项目根目录
+|--------------------------------------------------------------------------
+*/
+
+define('ROOT_PATH', str_replace('\\', '/', dirname(__DIR__)) . '/');
+
+/*
+|--------------------------------------------------------------------------
+| 项目核心目录
+|--------------------------------------------------------------------------
+*/
+
+define('APP_PATH', ROOT_PATH . 'app/');
+
+/*
+|--------------------------------------------------------------------------
+| 二次开发目录
+|--------------------------------------------------------------------------
+*/
+
+define('PLAYGROUND_PATH', APP_PATH . 'Custom/');
+
+/*
+|--------------------------------------------------------------------------
+| 插件目录
+|--------------------------------------------------------------------------
+*/
+
+define('ADDONS_PATH', APP_PATH . 'Plugins/');
+
+/*
+|--------------------------------------------------------------------------
+| 项目配置目录
+|--------------------------------------------------------------------------
+*/
+
+define('CONF_PATH', ROOT_PATH . 'config/');
+
+/*
+|--------------------------------------------------------------------------
+| 语言包目录
+|--------------------------------------------------------------------------
+*/
+
+define('LANG_PATH', ROOT_PATH . 'resources/lang/');
+
+/*
+|--------------------------------------------------------------------------
+| 缓存目录
+|--------------------------------------------------------------------------
+*/
+
+define('RUNTIME_PATH', ROOT_PATH . 'storage/framework/');
+
+/*
+|--------------------------------------------------------------------------
+| 静态缓存目录
+|--------------------------------------------------------------------------
+*/
+
+define('HTML_PATH', RUNTIME_PATH . 'views/');
+
+/*
+|--------------------------------------------------------------------------
+| 日志目录
+|--------------------------------------------------------------------------
+*/
+
+define('LOG_PATH', ROOT_PATH . 'storage/logs/');
+
+/*
+|--------------------------------------------------------------------------
+| 模板文件目录
+|--------------------------------------------------------------------------
+*/
+
+define('TMPL_PATH', ROOT_PATH . 'resources/views/');
+
+/*
+|--------------------------------------------------------------------------
+| 目录安全文件
+|--------------------------------------------------------------------------
+*/
+
+define('BUILD_DIR_SECURE', false);
+
+/*
+|--------------------------------------------------------------------------
+| 加载 Eloquent
+|--------------------------------------------------------------------------
+*/
+
+use Illuminate\Database\Capsule\Manager as Capsule;
+
+$dbconf = require CONF_PATH . 'database.php';
+
+$capsule = new Capsule;
+
+$capsule->addConnection(array(
+    'driver' => $dbconf['db_type'],
+    'host' => $dbconf['db_host'],
+    'port' => $dbconf['db_port'],
+    'database' => $dbconf['db_name'],
+    'username' => $dbconf['db_user'],
+    'password' => $dbconf['db_pwd'],
+    'charset' => $dbconf['db_charset'],
+    'collation' => 'utf8_general_ci',
+    'prefix' => $dbconf['db_prefix'],
+    'strict' => false,
+));
+
+try {
+    $capsule->setAsGlobal();
+    $capsule->bootEloquent();
+} catch (Exception $e) {
+    exit($e->getMessage());
+}
+
 /*
 |--------------------------------------------------------------------------
 | Create The Application
 |--------------------------------------------------------------------------
 |
-| The first thing we will do is create a new Laravel application instance
-| which serves as the "glue" for all the components of Laravel, and is
+| The first thing we will do is create a new ECTouch application instance
+| which serves as the "glue" for all the components of ECTouch, and is
 | the IoC container for the system binding all of the various parts.
 |
 */
 
-$app = new Illuminate\Foundation\Application(
-    realpath(__DIR__.'/../')
-);
-
-/*
-|--------------------------------------------------------------------------
-| Bind Important Interfaces
-|--------------------------------------------------------------------------
-|
-| Next, we need to bind some important interfaces into the container so
-| we will be able to resolve them when needed. The kernels serve the
-| incoming requests to this application from both the web and CLI.
-|
-*/
-
-$app->singleton(
-    Illuminate\Contracts\Http\Kernel::class,
-    App\Http\Kernel::class
-);
-
-$app->singleton(
-    Illuminate\Contracts\Console\Kernel::class,
-    App\Console\Kernel::class
-);
-
-$app->singleton(
-    Illuminate\Contracts\Debug\ExceptionHandler::class,
-    App\Exceptions\Handler::class
-);
-
-/*
-|--------------------------------------------------------------------------
-| Return The Application
-|--------------------------------------------------------------------------
-|
-| This script returns the application instance. The instance is given to
-| the calling script so we can separate the building of the instances
-| from the actual running of the application and sending responses.
-|
-*/
-
-return $app;
+require APP_PATH . 'Kernel/Kernel.php';
