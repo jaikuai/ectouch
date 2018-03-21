@@ -7,7 +7,7 @@ use App\Libraries\Error;
 use App\Libraries\Mysql;
 use App\Libraries\Session;
 use App\Libraries\Template;
-use Think\Controller;
+use think\Controller;
 
 class InitController extends Controller
 {
@@ -23,8 +23,8 @@ class InitController extends Controller
     {
         define('PHP_SELF', basename(substr(basename($_SERVER['REQUEST_URI']), 0, stripos(basename($_SERVER['REQUEST_URI']), '?')), '.php'));
 
-        $_GET = I('get.');
-        $_POST = I('post.');
+        $_GET = input('get.');
+        $_POST = input('post.');
         $_REQUEST = $_GET + $_POST;
         $_REQUEST['act'] = isset($_REQUEST['act']) ? $_REQUEST['act'] : '';
 
