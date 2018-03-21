@@ -13,30 +13,18 @@
     },
     "require": {
         "php": ">=5.6.0",
-        "topthink/framework": "5.1.*",
-        "endroid/qr-code": "^3.2",
-        "jellybool/translug": "^2.0",
-        "jenssegers/agent": "^2.6",
-        "overtrue/easy-sms": "^1.0",
-        "overtrue/pinyin": "^3.0",
-        "overtrue/socialite": "^2.0",
-        "overtrue/wechat": "^4.0",
-        "phpoffice/phpspreadsheet": "^1.1",
-        "riverslei/payment": "^4.1",
-        "sentry/sentry": "^0.8.0",
-        "workerman/phpsocket.io": "^1.1"
+        "topthink/framework": "5.1.*"
     },
     "autoload": {
         "psr-4": {
-            "app\\": "application/"
+            "app\\": "app/"
         },
         "files": [
-            "config/constant.php",
-            "application/support/helpers.php"
+            "app/support/helpers.php"
         ]
     },
     "extra": {
-        "think-path": "application/kernel"
+        "think-path": "app/kernel"
     },
     "config": {
         "preferred-install": "dist",
