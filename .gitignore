@@ -6,5 +6,6 @@
 /.idea
 /.vscode
 /.vagrant
+*.lock
 *.log
 .env
