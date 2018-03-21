@@ -80,6 +80,11 @@ function plugin_path($path = '')
     return app_path('plugins' . ($path ? DIRECTORY_SEPARATOR . $path : $path));
 }
 
+/**
+ * 返回资源URL
+ * @param null $url
+ * @return string
+ */
 function asset($url = null)
 {
     $url = is_null($url) ? '' : '/' . ltrim($url, '/');

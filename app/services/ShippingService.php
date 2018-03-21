@@ -41,7 +41,7 @@ class ShippingService
             return $object;
         }
 
-        $shippingClass = 'App\\Plugins\\Shipping\\' . camel_case($shipping['shipping_code'], true);
+        $shippingClass = 'app\\plugins\\shipping\\' . camel_case($shipping['shipping_code'], true);
         $object = new $shippingClass();
 
         return $object;
@@ -141,7 +141,7 @@ class ShippingService
             $shipping_config = unserialize($shipping_config);
         }
 
-        $shippingClass = 'App\\Plugins\\Shipping\\' . camel_case($shipping_code, true);
+        $shippingClass = 'app\\plugins\\shipping\\' . camel_case($shipping_code, true);
 
         if (class_exists($shippingClass)) {
             $obj = new $shippingClass($shipping_config);
@@ -167,7 +167,7 @@ class ShippingService
             // 如果保价费用不是百分比则直接返回该数值
             return floatval($insure);
         } else {
-            $shippingClass = 'App\\Plugins\\Shipping\\' . camel_case($shipping_code, true);
+            $shippingClass = 'app\\plugins\\shipping\\' . camel_case($shipping_code, true);
 
             if (class_exists($shippingClass)) {
                 $shipping = new $shippingClass();

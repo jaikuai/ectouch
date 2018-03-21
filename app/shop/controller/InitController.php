@@ -21,7 +21,7 @@ class InitController extends Controller
     {
         define('PHP_SELF', basename(substr(basename($_SERVER['REQUEST_URI']), 0, stripos(basename($_SERVER['REQUEST_URI']), '?')), '.php'));
 
-        $_GET = input('get.');
+        $_GET = input('get.') + request()->route();
         $_POST = input('post.');
         $_REQUEST = $_GET + $_POST;
         $_REQUEST['act'] = isset($_REQUEST['act']) ? $_REQUEST['act'] : '';

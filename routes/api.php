@@ -1,7 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
-
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -13,15 +11,11 @@ use Illuminate\Http\Request;
 |
 */
 
-//Route::middleware('auth:api')->get('/user', function (Request $request) {
-//    return $request->user();
-//});
-
 Route::get('/', function () {
     return 'welcome.';
 });
 
-Route::namespace('App\Api\Controllers\V2')->prefix('v2')->group(function () {
+Route::group('api', function () {
 
     Route::get('article.{id}', 'ArticleController@show')
         ->where(['id' => '[0-9]+']);
@@ -39,7 +33,6 @@ Route::namespace('App\Api\Controllers\V2')->prefix('v2')->group(function () {
     Route::get('ecapi.auth.web.callback/{vendor:[0-9]+}', 'UserController@webCallback');
 
     // Guest
-    Route::middleware(['xss'])->group(function () {
 
         Route::post('ecapi.access.dns', 'AccessController@dns');
 
@@ -137,10 +130,7 @@ Route::namespace('App\Api\Controllers\V2')->prefix('v2')->group(function () {
 
         Route::post('ecapi.areacode.list', 'AreaCodeController@index');
 
-    });
-
     // Authorization
-    Route::middleware(['token', 'xss'])->group(function () {
 
         Route::post('ecapi.user.profile.get', 'UserController@profile');
 
@@ -236,7 +226,5 @@ Route::namespace('App\Api\Controllers\V2')->prefix('v2')->group(function () {
 
         Route::post('ecapi.balance.get', 'AccountController@surplus');
         Route::post('ecapi.balance.list', 'AccountController@accountDetail');
-
-    });
 
 });

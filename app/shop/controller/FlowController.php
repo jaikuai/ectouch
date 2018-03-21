@@ -1494,7 +1494,7 @@ class FlowController extends InitController
             if ($order['order_amount'] > 0) {
                 $payment = payment_info($order['pay_id']);
 
-                $paymentClass = 'App\\Plugins\\Payment\\' . camel_case($payment['pay_code'], true);
+                $paymentClass = 'app\\plugins\\payment\\' . camel_case($payment['pay_code'], true);
 
                 $pay_obj = new $paymentClass();
 
