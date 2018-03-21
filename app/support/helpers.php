@@ -83,7 +83,7 @@ function plugin_path($path = '')
 function asset($url = null)
 {
     $url = is_null($url) ? '' : '/' . ltrim($url, '/');
-    return request()->root() . $url;
+    return request()->rootUrl() . $url;
 }
 
 /**
