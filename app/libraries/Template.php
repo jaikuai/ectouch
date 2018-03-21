@@ -116,9 +116,9 @@ class Template
         error_reporting($this->_errorlevel);
         $this->_seterror--;
 
-        $csrf_token = '<meta name="csrf-token" content="' . csrf_token() . '">';
+        $csrf_token = '<meta name="csrf-token" content="' . request()->token() . '">';
         $out = preg_replace('/<head>/i', "<head>\n\r" . $csrf_token, $out);
-        $out = preg_replace('/<\/form>/i', csrf_field() . "\r\n</form>", $out);
+        $out = preg_replace('/<\/form>/i', token() . "\r\n</form>", $out);
 
         return $out;
     }
