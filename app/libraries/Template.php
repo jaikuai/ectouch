@@ -79,7 +79,7 @@ class Template
         /**
          * 自动返回ajax对象
          */
-        if (!defined('ECS_ADMIN') && (request()->ajax() || isset($_GET['_ajax']))) {
+        if (!defined('ECS_ADMIN') && (request()->isAjax() || isset($_GET['_ajax']))) {
             // 过滤语言包
             unset($this->_var['lang']);
             // 过滤敏感配置

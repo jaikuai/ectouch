@@ -477,18 +477,18 @@ class Integrate
         if (empty($username)) {
             // 摧毁cookie
             $time = 0;
-            \Cookie::queue('user_id', null);
-            \Cookie::queue('password', null);
+            cookie('user_id', null);
+            cookie('password', null);
         } elseif ($remember) {
             // 设置cookie
             $time = 3600 * 24 * 15;
 
-            \Cookie::queue('username', $username, $time);
+            cookie('username', $username, $time);
             $sql = "SELECT user_id, password FROM " . $GLOBALS['ecs']->table('users') . " WHERE user_name='$username' LIMIT 1";
             $row = $GLOBALS['db']->getRow($sql);
             if ($row) {
-                \Cookie::queue('user_id', $row['user_id'], $time);
-                \Cookie::queue('password', $row['password'], $time);
+                cookie('user_id', $row['user_id'], $time);
+                cookie('password', $row['password'], $time);
             }
         }
     }

@@ -209,7 +209,7 @@ class GoodsController extends InitController
         }
 
         // 记录浏览历史
-        $history = request()->cookie('history');
+        $history = cookie('history');
         if (!empty($history)) {
             $history = explode(',', $history);
 
@@ -220,9 +220,9 @@ class GoodsController extends InitController
                 array_pop($history);
             }
 
-            \Cookie::queue('history', implode(',', $history), 3600 * 24 * 30);
+            cookie('history', implode(',', $history), 3600 * 24 * 30);
         } else {
-            \Cookie::queue('history', $goods_id, 3600 * 24 * 30);
+            cookie('history', $goods_id, 3600 * 24 * 30);
         }
 
         // 更新点击次数

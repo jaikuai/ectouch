@@ -828,9 +828,9 @@ function visit_stats()
     }
     $time = gmtime();
     // 检查客户端是否存在访问统计的cookie
-    $visit_times = request()->cookie('visit_times');
+    $visit_times = cookie('visit_times');
     $visit_times = !empty($visit_times) ? intval($visit_times) + 1 : 1;
-    \Cookie::queue('visit_times', $visit_times, 1440 * 365);
+    cookie('visit_times', $visit_times, 1440 * 365);
 
     $browser = get_user_browser();
     $os = get_os();
@@ -1368,9 +1368,9 @@ function set_affiliate()
             } else {
                 $c = 1;
             }
-            \Cookie::queue('affiliate_uid', intval($_GET['u']), 60 * $config['config']['expire'] * $c);
+            cookie('affiliate_uid', intval($_GET['u']), 60 * $config['config']['expire'] * $c);
         } else {
-            \Cookie::queue('affiliate_uid', intval($_GET['u']), 60 * 24); // 过期时间为 1 天
+            cookie('affiliate_uid', intval($_GET['u']), 60 * 24); // 过期时间为 1 天
         }
     }
 }
@@ -1386,13 +1386,13 @@ function set_affiliate()
  **/
 function get_affiliate()
 {
-    $affiliate_uid = request()->cookie('affiliate_uid');
+    $affiliate_uid = cookie('affiliate_uid');
     if (!empty($affiliate_uid)) {
         $uid = intval($affiliate_uid);
         if ($GLOBALS['db']->getOne('SELECT user_id FROM ' . $GLOBALS['ecs']->table('users') . "WHERE user_id = '$uid'")) {
             return $uid;
         } else {
-            \Cookie::queue('affiliate_uid', null);
+            cookie('affiliate_uid', null);
         }
     }
 

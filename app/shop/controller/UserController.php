@@ -2466,7 +2466,7 @@ class UserController extends InitController
          * 清除商品浏览历史
          */
         if ($action == 'clear_history') {
-            \Cookie::queue('history', null);
+            cookie('history', null);
         }
     }
 }

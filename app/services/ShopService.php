@@ -163,9 +163,9 @@ class ShopService
                 } else {
                     $c = 1;
                 }
-                \Cookie::queue('affiliate_uid', intval($_GET['u']), 60 * $config['config']['expire'] * $c);
+                cookie('affiliate_uid', intval($_GET['u']), 60 * $config['config']['expire'] * $c);
             } else {
-                \Cookie::queue('affiliate_uid', intval($_GET['u']), 60 * 24); // 过期时间为 1 天
+                cookie('affiliate_uid', intval($_GET['u']), 60 * 24); // 过期时间为 1 天
             }
         }
     }
@@ -181,13 +181,13 @@ class ShopService
      **/
     function get_affiliate()
     {
-        $affiliate_uid = request()->cookie('affiliate_uid');
+        $affiliate_uid = cookie('affiliate_uid');
         if (!empty($affiliate_uid)) {
             $uid = intval($affiliate_uid);
             if ($GLOBALS['db']->getOne('SELECT user_id FROM ' . $GLOBALS['ecs']->table('users') . "WHERE user_id = '$uid'")) {
                 return $uid;
             } else {
-                \Cookie::queue('affiliate_uid', null);
+                cookie('affiliate_uid', null);
             }
         }
 

@@ -14,7 +14,7 @@ class InsertService
     function insert_history()
     {
         $str = '';
-        $history = request()->cookie('history');
+        $history = cookie('history');
         if (!empty($history)) {
             $where = db_create_in($history, 'goods_id');
             $sql = 'SELECT goods_id, goods_name, goods_thumb, shop_price FROM ' . $GLOBALS['ecs']->table('goods') .
@@ -162,7 +162,7 @@ class InsertService
         if (session('user_id') > 0) {
             $GLOBALS['smarty']->assign('user_info', get_user_info());
         } else {
-            $username = request()->cookie('username');
+            $username = cookie('username');
             if (!empty($username)) {
                 $GLOBALS['smarty']->assign('ecs_username', stripslashes($username));
             }
