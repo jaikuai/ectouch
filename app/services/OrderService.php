@@ -340,9 +340,9 @@ class OrderService
         $total['integral_formated'] = price_format($total['integral_money'], false);
 
         // 保存订单信息
-        session(['flow_order' => $order]);
+        session('flow_order', $order);
 
-        $se_flow_type = session()->has('flow_type') ? session('flow_type') : '';
+        $se_flow_type = session('?flow_type') ? session('flow_type') : '';
 
         // 支付费用
         if (!empty($order['pay_id']) && ($total['real_goods_count'] > 0 || $se_flow_type != CART_EXCHANGE_GOODS)) {
@@ -1189,7 +1189,7 @@ class OrderService
      */
     function flow_order_info()
     {
-        $order = session()->has('flow_order') ? session('flow_order') : [];
+        $order = session('?flow_order') ? session('flow_order') : [];
 
         // 初始化配送和支付方式
         if (!isset($order['shipping_id']) || !isset($order['pay_id'])) {
@@ -1231,7 +1231,7 @@ class OrderService
         }
 
         // 扩展信息
-        if (session()->has('flow_type') && intval(session('flow_type')) != CART_GENERAL_GOODS) {
+        if (session('?flow_type') && intval(session('flow_type')) != CART_GENERAL_GOODS) {
             $order['extension_code'] = session('extension_code');
             $order['extension_id'] = session('extension_id');
         }

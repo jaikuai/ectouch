@@ -62,11 +62,11 @@ class InitController extends Controller
             }
 
             session(null);
-            session(['user_id' => 0]);
-            session(['user_name' => '']);
-            session(['email' => '']);
-            session(['user_rank' => 0]);
-            session(['discount' => 1.00]);
+            session('user_id', 0);
+            session('user_name', '');
+            session('email', '');
+            session('user_rank', 0);
+            session('discount', 1.00);
         }
 
         define('SESS_ID', substr(session()->getId(), 0, 32));
@@ -110,13 +110,13 @@ class InitController extends Controller
         // 会员信息
         $this->user = $GLOBALS['user'] = init_users();
 
-        if (!session()->has('user_id')) {
+        if (!session('?user_id')) {
             // 获取投放站点的名称
             $site_name = isset($_GET['from']) ? htmlspecialchars($_GET['from']) : addslashes($GLOBALS['_LANG']['self_site']);
             $from_ad = !empty($_GET['ad_id']) ? intval($_GET['ad_id']) : 0;
 
-            session(['from_ad' => $from_ad]); // 用户点击的广告ID
-            session(['referer' => stripslashes($site_name)]); // 用户来源
+            session('from_ad', $from_ad); // 用户点击的广告ID
+            session('referer', stripslashes($site_name)); // 用户来源
 
             unset($site_name);
 
@@ -132,13 +132,13 @@ class InitController extends Controller
                     update_user_info();
                 }
             } else {
-                session(['user_id' => 0]);
-                session(['user_name' => '']);
-                session(['email' => '']);
-                session(['user_rank' => 0]);
-                session(['discount' => 1.00]);
-                if (!session()->has('login_fail')) {
-                    session(['login_fail' => 0]);
+                session('user_id', 0);
+                session('user_name', '');
+                session('email', '');
+                session('user_rank', 0);
+                session('discount', 1.00);
+                if (!session('?login_fail')) {
+                    session('login_fail', 0);
                 }
             }
         }

@@ -169,7 +169,7 @@ class WholesaleController extends InitController
             $wholesale = wholesale_info($act_id);
 
             // 检查session中该商品，该属性是否存在
-            if (session()->has('wholesale_goods')) {
+            if (session('?wholesale_goods')) {
                 foreach (session('wholesale_goods') as $goods) {
                     if ($goods['goods_id'] == $wholesale['goods_id']) {
                         if (empty($goods_attr)) {
@@ -257,8 +257,8 @@ class WholesaleController extends InitController
          */
         if ($_REQUEST['act'] == 'drop_goods') {
             $key = intval($_REQUEST['key']);
-            if (session()->has('wholesale_goods.' . $key)) {
-                session(['wholesale_goods.' . $key => null]);
+            if (session('?wholesale_goods.' . $key)) {
+                session('wholesale_goods.' . $key, null);
             }
 
             // 刷新页面
@@ -359,7 +359,7 @@ class WholesaleController extends InitController
             }
 
             // 清空购物车
-            session(['wholesale_goods' => null]);
+            session('wholesale_goods', null);
 
             // 提示
             return show_message(sprintf($GLOBALS['_LANG']['ws_order_submitted'], $order['order_sn']), $GLOBALS['_LANG']['ws_return_home'], 'index.php');
