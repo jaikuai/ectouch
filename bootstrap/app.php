@@ -7,6 +7,8 @@
  * @homepage https://www.ectouch.cn
  */
 
+namespace think;
+
 /*
 |--------------------------------------------------------------------------
 | 运行环境
@@ -33,6 +35,14 @@ define('VERSION', 'v3.0.0');
 
 /*
 |--------------------------------------------------------------------------
+| 发布时间
+|--------------------------------------------------------------------------
+*/
+
+define('RELEASE', '20180312');
+
+/*
+|--------------------------------------------------------------------------
 | 编码格式
 |--------------------------------------------------------------------------
 */
@@ -41,123 +51,49 @@ define('CHARSET', 'utf-8');
 
 /*
 |--------------------------------------------------------------------------
-| 项目根目录
+| 控制台入口
 |--------------------------------------------------------------------------
 */
 
-define('ROOT_PATH', str_replace('\\', '/', dirname(__DIR__)) . '/');
+define('ADMIN_PATH', 'dash');
 
 /*
 |--------------------------------------------------------------------------
-| 项目核心目录
+| 授权密钥
 |--------------------------------------------------------------------------
 */
 
-define('APP_PATH', ROOT_PATH . 'app/');
+define('AUTH_KEY', 'this is a key');
 
 /*
 |--------------------------------------------------------------------------
-| 二次开发目录
+| 授权密钥备份
 |--------------------------------------------------------------------------
 */
 
-define('PLAYGROUND_PATH', APP_PATH . 'Custom/');
+define('OLD_AUTH_KEY', '');
 
 /*
 |--------------------------------------------------------------------------
-| 插件目录
+| API 更新时间
 |--------------------------------------------------------------------------
 */
 
-define('ADDONS_PATH', APP_PATH . 'Plugins/');
+define('API_TIME', '2017-08-02 09:20:18');
 
 /*
 |--------------------------------------------------------------------------
-| 项目配置目录
+| Register The Auto Loader
 |--------------------------------------------------------------------------
+|
+| Composer provides a convenient, automatically generated class loader for
+| our application. We just need to utilize it! We'll simply require it
+| into the script here so that we don't have to worry about manual
+| loading any of our classes later on. It feels great to relax.
+|
 */
 
-define('CONF_PATH', ROOT_PATH . 'config/');
-
-/*
-|--------------------------------------------------------------------------
-| 语言包目录
-|--------------------------------------------------------------------------
-*/
-
-define('LANG_PATH', ROOT_PATH . 'resources/lang/');
-
-/*
-|--------------------------------------------------------------------------
-| 缓存目录
-|--------------------------------------------------------------------------
-*/
-
-define('RUNTIME_PATH', ROOT_PATH . 'storage/framework/');
-
-/*
-|--------------------------------------------------------------------------
-| 静态缓存目录
-|--------------------------------------------------------------------------
-*/
-
-define('HTML_PATH', RUNTIME_PATH . 'views/');
-
-/*
-|--------------------------------------------------------------------------
-| 日志目录
-|--------------------------------------------------------------------------
-*/
-
-define('LOG_PATH', ROOT_PATH . 'storage/logs/');
-
-/*
-|--------------------------------------------------------------------------
-| 模板文件目录
-|--------------------------------------------------------------------------
-*/
-
-define('TMPL_PATH', ROOT_PATH . 'resources/views/');
-
-/*
-|--------------------------------------------------------------------------
-| 目录安全文件
-|--------------------------------------------------------------------------
-*/
-
-define('BUILD_DIR_SECURE', false);
-
-/*
-|--------------------------------------------------------------------------
-| 加载 Eloquent
-|--------------------------------------------------------------------------
-*/
-
-use Illuminate\Database\Capsule\Manager as Capsule;
-
-$dbconf = require CONF_PATH . 'database.php';
-
-$capsule = new Capsule;
-
-$capsule->addConnection(array(
-    'driver' => $dbconf['db_type'],
-    'host' => $dbconf['db_host'],
-    'port' => $dbconf['db_port'],
-    'database' => $dbconf['db_name'],
-    'username' => $dbconf['db_user'],
-    'password' => $dbconf['db_pwd'],
-    'charset' => $dbconf['db_charset'],
-    'collation' => 'utf8_general_ci',
-    'prefix' => $dbconf['db_prefix'],
-    'strict' => false,
-));
-
-try {
-    $capsule->setAsGlobal();
-    $capsule->bootEloquent();
-} catch (Exception $e) {
-    exit($e->getMessage());
-}
+require dirname(__DIR__) . '/app/kernel/base.php';
 
 /*
 |--------------------------------------------------------------------------
@@ -165,9 +101,22 @@ try {
 |--------------------------------------------------------------------------
 |
 | The first thing we will do is create a new ECTouch application instance
-| which serves as the "glue" for all the components of ECTouch, and is
+| which serves as the "glue" for all the components of Laravel, and is
 | the IoC container for the system binding all of the various parts.
 |
 */
 
-require APP_PATH . 'Kernel/Kernel.php';
+$app = Container::get('app');
+
+/*
+|--------------------------------------------------------------------------
+| Return The Application
+|--------------------------------------------------------------------------
+|
+| This script returns the application instance. The instance is given to
+| the calling script so we can separate the building of the instances
+| from the actual running of the application and sending responses.
+|
+*/
+
+return $app;

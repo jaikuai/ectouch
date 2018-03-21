@@ -7,15 +7,6 @@
  * @author   carson <wanganlin@ecmoban.com>
  */
 
-define('APPNAME', 'ECTouch');
-define('VERSION', '3.0.0-dev');
-define('RELEASE', '20180312');
-define('CHARSET', 'utf-8');
-define('ADMIN_PATH', 'dash');
-define('AUTH_KEY', 'this is a key');
-define('OLD_AUTH_KEY', '');
-define('API_TIME', '2017-08-02 09:20:18');
-
 /* 图片处理相关常数 */
 define('ERR_INVALID_IMAGE',         1);
 define('ERR_NO_GD',                 2);
