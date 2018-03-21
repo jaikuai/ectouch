@@ -1,12 +1,10 @@
 <?php
 
-namespace App\Http\Proxy;
-
-use yii\httpclient\Client;
+namespace app\http\proxy;
 
 /**
  * Class ShippingProxy
- * @package App\Http\Proxy
+ * @package app\http\proxy
  */
 class ShippingProxy
 {

@@ -148,4 +148,18 @@ class InitController extends Controller
             set_affiliate();
         }
     }
+
+    /**
+     * URL重定向
+     * @access protected
+     * @param  string $url 跳转的URL表达式
+     * @param  array|integer $params 其它URL参数
+     * @param  integer $code http code
+     * @param  array $with 隐式传参
+     * @return void
+     */
+    protected function redirect($url, $params = [], $code = 302, $with = [])
+    {
+        parent::redirect('/' . $url);
+    }
 }

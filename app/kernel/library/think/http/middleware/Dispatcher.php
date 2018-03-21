@@ -11,16 +11,22 @@
 
 namespace think\http\middleware;
 
+use think\Container;
 use think\Request;
 use think\Response;
 
 class Dispatcher implements DispatcherInterface
 {
-    protected $queue;
+    protected $queue = [];
 
-    public function __construct($middlewares = [])
+    public function __construct(array $middlewares = [])
     {
-        $this->queue = (array) $middlewares;
+        $this->queue = $middlewares;
+    }
+
+    public function import(array $middlewares = [])
+    {
+        $this->queue = array_merge($this->queue, $middlewares);
     }
 
     /**
@@ -28,7 +34,8 @@ class Dispatcher implements DispatcherInterface
      */
     public function add($middleware)
     {
-        $this->assertValid($middleware);
+        $middleware = $this->makeInstance($middleware);
+
         $this->queue[] = $middleware;
     }
 
@@ -37,7 +44,8 @@ class Dispatcher implements DispatcherInterface
      */
     public function insert($middleware)
     {
-        $this->assertValid($middleware);
+        $middleware = $this->makeInstance($middleware);
+
         array_unshift($this->queue, $middleware);
     }
 
@@ -54,8 +62,22 @@ class Dispatcher implements DispatcherInterface
      */
     public function dispatch(Request $request)
     {
-        $requestHandler = $this->resolve();
-        return call_user_func($requestHandler, $request);
+        return call_user_func($this->resolve(), $request);
+    }
+
+    protected function makeInstance($middleware)
+    {
+        if ($middleware instanceof \Closure) {
+            return $middleware;
+        }
+
+        if (!is_string($middleware)) {
+            throw new \InvalidArgumentException('The middleware is invalid');
+        }
+
+        $class = false === strpos($middleware, '\\') ? Container::get('app')->getNamespace() . '\\http\\middleware\\' . $middleware : $middleware;
+
+        return [Container::get($class), 'handle'];
     }
 
     protected function resolve()
@@ -77,10 +99,4 @@ class Dispatcher implements DispatcherInterface
         };
     }
 
-    protected function assertValid($middleware)
-    {
-        if (!is_callable($middleware)) {
-            throw new \InvalidArgumentException('The middleware is invalid');
-        }
-    }
 }

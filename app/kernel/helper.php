@@ -16,6 +16,7 @@ use think\facade\Request;
 use think\facade\Route;
 use think\facade\Session;
 use think\facade\Url;
+use think\Loader;
 use think\Response;
 use think\route\RuleItem;
 
@@ -357,7 +358,7 @@ if (!function_exists('input')) {
      * @param string    $filter 过滤方法
      * @return mixed
      */
-    function input($key = '', $default = null, $filter = null)
+    function input($key = '', $default = null, $filter = '')
     {
         if (0 === strpos($key, '?')) {
             $key = substr($key, 1);
@@ -640,11 +641,18 @@ if (!function_exists('view')) {
      * @param string    $template 模板文件
      * @param array     $vars 模板变量
      * @param integer   $code 状态码
-     * @param callable  $filer 内容过滤
+     * @param callable  $filter 内容过滤
      * @return \think\response\View
      */
     function view($template = '', $vars = [], $code = 200, $filter = null)
     {
+        if ('' === $template) {
+            $trace    = debug_backtrace(false, 2);
+            $suffix   = Container::get('config')->get('app.action_suffix');
+            $action   = $suffix ? substr($trace[1]['function'], 0, -strlen($suffix)) : $trace[1]['function'];
+            $template = Loader::parseName($action);
+        }
+
         return Response::create($template, 'view', $code)->assign($vars)->filter($filter);
     }
 }

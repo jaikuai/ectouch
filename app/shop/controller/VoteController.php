@@ -12,7 +12,7 @@ class VoteController extends InitController
     public function index()
     {
         if (!isset($_REQUEST['vote']) || !isset($_REQUEST['options']) || !isset($_REQUEST['type'])) {
-            return redirect('/');
+            return $this->redirect('/');
         }
 
         $res = ['error' => 0, 'message' => '', 'content' => ''];

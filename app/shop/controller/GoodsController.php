@@ -120,7 +120,7 @@ class GoodsController extends InitController
 
             if ($goods === false) {
                 // 如果没有找到任何记录则跳回到首页
-                return redirect('/');
+                return $this->redirect('/');
             } else {
                 if ($goods['brand_id'] > 0) {
                     $goods['goods_brand_url'] = build_uri('brand', ['bid' => $goods['brand_id']], $goods['goods_brand']);
