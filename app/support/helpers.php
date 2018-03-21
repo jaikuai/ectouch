@@ -1,5 +1,76 @@
 <?php
 
+
+/**
+ * 应用根目录
+ * @param string $path
+ * @return string
+ */
+function base_path($path = '')
+{
+    return dirname(dirname(__DIR__)) . ($path ? DIRECTORY_SEPARATOR . $path : $path);
+}
+
+/**
+ * 应用核心目录
+ * @param string $path
+ * @return string
+ */
+function app_path($path = '')
+{
+    return base_path('app' . ($path ? DIRECTORY_SEPARATOR . $path : $path));
+}
+
+/**
+ * 应用配置目录
+ * @param string $path
+ * @return string
+ */
+function config_path($path = '')
+{
+    return base_path('config' . ($path ? DIRECTORY_SEPARATOR . $path : $path));
+}
+
+/**
+ * 应用数据库目录
+ * @param string $path
+ * @return string
+ */
+function database_path($path = '')
+{
+    return base_path('database' . ($path ? DIRECTORY_SEPARATOR . $path : $path));
+}
+
+/**
+ * 入口文件目录
+ * @param string $path
+ * @return string
+ */
+function public_path($path = '')
+{
+    return base_path('public' . ($path ? DIRECTORY_SEPARATOR . $path : $path));
+}
+
+/**
+ * 资源文件目录
+ * @param string $path
+ * @return string
+ */
+function resource_path($path = '')
+{
+    return base_path('resources' . ($path ? DIRECTORY_SEPARATOR . $path : $path));
+}
+
+/**
+ * 文件存储目录
+ * @param string $path
+ * @return string
+ */
+function storage_path($path = '')
+{
+    return base_path('storage' . ($path ? DIRECTORY_SEPARATOR . $path : $path));
+}
+
 /**
  * 插件目录
  * @param string $path
@@ -31,9 +102,9 @@ function load_helper($files = [], $module = '')
         $files = [$files];
     }
     if (empty($module)) {
-        $base_path = app_path('Helpers/');
+        $base_path = app_path('helpers/');
     } else {
-        $base_path = app_path('Modules/' . ucfirst($module) . '/Helpers/');
+        $base_path = app_path(ucfirst($module) . '/common/');
     }
     foreach ($files as $vo) {
         $helper = $base_path . $vo . '.php';
@@ -57,7 +128,7 @@ function load_lang($files = [], $module = '')
     if (empty($module)) {
         $base_path = resource_path('lang/' . $GLOBALS['_CFG']['lang'] . '/');
     } else {
-        $base_path = app_path('Modules/' . ucfirst($module) . '/Languages/' . $GLOBALS['_CFG']['lang'] . '/');
+        $base_path = app_path(ucfirst($module) . '/lang/' . $GLOBALS['_CFG']['lang'] . '/');
     }
     foreach ($files as $vo) {
         $helper = $base_path . $vo . '.php';
@@ -74,34 +145,16 @@ function load_lang($files = [], $module = '')
 
 /**
  * 浏览器友好的变量输出
- * @param mixed $var 变量
- * @param boolean $echo 是否输出 默认为True 如果为false 则返回输出字符串
- * @param string $label 标签 默认为空
- * @param boolean $strict 是否严谨 默认为true
- * @return void|string
+ * @param $var
+ * @param bool $echo
+ * @param null $label
+ * @return mixed|null|string|string[]
  */
-function d($var, $echo = true, $label = null, $strict = true)
+function dd($var, $echo = true, $label = null)
 {
-    $label = ($label === null) ? '' : rtrim($label) . ' ';
-    if (!$strict) {
-        if (ini_get('html_errors')) {
-            $output = print_r($var, true);
-            $output = '<pre>' . $label . htmlspecialchars($output, ENT_QUOTES) . '</pre>';
-        } else {
-            $output = $label . print_r($var, true);
-        }
-    } else {
-        ob_start();
-        var_dump($var);
-        $output = ob_get_clean();
-        if (!extension_loaded('xdebug')) {
-            $output = preg_replace('/\]\=\>\n(\s+)/m', '] => ', $output);
-            $output = '<pre>' . $label . htmlspecialchars($output, ENT_QUOTES) . '</pre>';
-        }
-    }
     if ($echo) {
-        die($output);
+        dump($var, $echo, $label);
     } else {
-        return $output;
+        return dump($var, $echo, $label);
     }
 }
