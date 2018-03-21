@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Plugins\Shipping;
+namespace app\plugins\shipping;
 
 /**
  * 到付运费插件 FPD(freight payable at destination)

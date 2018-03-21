@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Plugins\Shipping;
+namespace app\plugins\shipping;
 
 // 模块的基本信息
 if (isset($set_modules) && $set_modules == true) {
@@ -43,7 +43,7 @@ if (isset($set_modules) && $set_modules == true) {
 /**
  * 城际快递插件
  * Class CityExpress
- * @package App\Plugins\Shipping
+ * @package app\plugins\shipping
  */
 class CityExpress
 {

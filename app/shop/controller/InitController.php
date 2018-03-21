@@ -5,7 +5,6 @@ namespace app\shop\controller;
 use app\libraries\Shop;
 use app\libraries\Error;
 use app\libraries\Mysql;
-use app\libraries\Session;
 use app\libraries\Template;
 use think\Controller;
 
@@ -14,7 +13,6 @@ class InitController extends Controller
     protected $ecs;
     protected $db;
     protected $err;
-    protected $sess;
     protected $smarty;
     protected $_CFG;
     protected $user;
@@ -69,7 +67,7 @@ class InitController extends Controller
             session('discount', 1.00);
         }
 
-        define('SESS_ID', substr(session()->getId(), 0, 32));
+        define('SESS_ID', session_id());
 
         if (isset($_SERVER['PHP_SELF'])) {
             $_SERVER['PHP_SELF'] = htmlspecialchars($_SERVER['PHP_SELF']);

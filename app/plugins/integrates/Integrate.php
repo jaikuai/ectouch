@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Plugins\Integrates;
+namespace app\plugins\integrates;
 
 use app\libraries\Mysql;
 
 /**
  * 用户整合插件基类
  * Class Integrate
- * @package App\Plugins\Integrates
+ * @package app\plugins\integrates
  */
 class Integrate
 {
