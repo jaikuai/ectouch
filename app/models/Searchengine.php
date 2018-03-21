@@ -20,6 +20,4 @@ class Searchengine extends Model
     ];
 
     protected $guarded = [];
-
-        
 }

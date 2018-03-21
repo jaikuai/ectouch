@@ -50,7 +50,7 @@ class SearchengineStatsController extends InitController
             }
 
             $general_xml .= "<categories>";
-            foreach ($keyword AS $key => $val) {
+            foreach ($keyword as $key => $val) {
                 $key = str_replace('&', '＆', $key);
                 $key = str_replace('>', '＞', $key);
                 $key = str_replace('<', '＜', $key);
@@ -61,9 +61,9 @@ class SearchengineStatsController extends InitController
 
             $i = 0;
 
-            foreach ($searchengine AS $key => $val) {
+            foreach ($searchengine as $key => $val) {
                 $general_xml .= "<dataset seriesName='$key' color='" . chart_color($i) . "' showValues='0'>";
-                foreach ($keyword AS $k => $v) {
+                foreach ($keyword as $k => $v) {
                     $count = 0;
                     if (!empty($searchengine[$key][$k])) {
                         $count = $searchengine[$key][$k];
@@ -89,7 +89,7 @@ class SearchengineStatsController extends InitController
                 'SOSO' => false];
 
             if (isset($_POST['filter'])) {
-                foreach ($_POST['filter'] AS $v) {
+                foreach ($_POST['filter'] as $v) {
                     $searchengines[$v] = true;
                 }
             }
@@ -128,12 +128,12 @@ class SearchengineStatsController extends InitController
             header("Content-type: application/vnd.ms-excel; charset=utf-8");
             header("Content-Disposition: attachment; filename=$filename.xls");
             $data = "\t";
-            foreach ($searchengine AS $k => $v) {
+            foreach ($searchengine as $k => $v) {
                 $data .= "$k\t";
             }
-            foreach ($keyword AS $kw => $val) {
+            foreach ($keyword as $kw => $val) {
                 $data .= "\n$kw\t";
-                foreach ($searchengine AS $k => $v) {
+                foreach ($searchengine as $k => $v) {
                     if (isset($searchengine[$k][$kw])) {
                         $data .= $searchengine[$k][$kw] . "\t";
                     } else {

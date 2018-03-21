@@ -19,6 +19,4 @@ class AreaRegion extends Model
     ];
 
     protected $guarded = [];
-
-        
 }

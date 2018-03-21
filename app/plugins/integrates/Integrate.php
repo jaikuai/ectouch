@@ -555,6 +555,7 @@ class Integrate
                     return $cfg['md5password'];
                 }
 
+                // no break
             case PWD_PRE_SALT:
                 if (empty($cfg['salt'])) {
                     $cfg['salt'] = '';

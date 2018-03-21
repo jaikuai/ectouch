@@ -23,6 +23,4 @@ class FriendLink extends Model
     ];
 
     protected $guarded = [];
-
-        
 }

@@ -37,8 +37,7 @@ class ShippingController extends Controller
             'order_id'      => 'required|int',
         ];
 
-        if($res = Features::check('logistics'))
-        {
+        if ($res = Features::check('logistics')) {
             return $this->json($res);
         }
 

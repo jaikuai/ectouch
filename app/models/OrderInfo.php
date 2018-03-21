@@ -80,6 +80,4 @@ class OrderInfo extends Model
     ];
 
     protected $guarded = [];
-
-        
 }

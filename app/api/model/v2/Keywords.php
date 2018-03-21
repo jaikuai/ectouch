@@ -11,10 +11,10 @@ class Keywords extends BaseModel
 
     protected $table      = 'keywords';
 
-    public    $timestamps = false;
+    public $timestamps = false;
 
 
-	public static function getHot()
+    public static function getHot()
     {
         $goods_search_history = Keywords::select('keyword', DB::raw(' sum(`count`) as count'))
                                         ->groupBy('keyword')
@@ -33,7 +33,7 @@ class Keywords extends BaseModel
     public static function updateHistory($keyword)
     {
         $keyword = strip_tags($keyword);
-        if(empty($keyword)){
+        if (empty($keyword)) {
             return false;
         }
 

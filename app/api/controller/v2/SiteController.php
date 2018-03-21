@@ -10,6 +10,6 @@ class SiteController extends Controller
     //POST  ecapi.site.get
     public function index()
     {
-       return $this->json(ShopConfig::getSiteInfo());
+        return $this->json(ShopConfig::getSiteInfo());
     }
 }

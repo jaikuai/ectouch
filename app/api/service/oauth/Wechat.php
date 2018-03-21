@@ -3,7 +3,8 @@
 
 namespace App\Services\Oauth;
 
-class Wechat {
+class Wechat
+{
     /**
      * @ignore
      */
@@ -57,15 +58,18 @@ class Wechat {
      * @param null $access_token
      * @return OAuth
      */
-    public function __construct($appid, $secret, $access_token = null) {
+    public function __construct($appid, $secret, $access_token = null)
+    {
         $this->appid = $appid;
         $this->secret = $secret;
         $this->access_token = $access_token;
         return $this;
     }
-    public function error($error = NULL){
-        if(is_null($error))
+    public function error($error = null)
+    {
+        if (is_null($error)) {
             return $this->error;
+        }
         $this->error = $error;
         return false;
     }
@@ -78,7 +82,8 @@ class Wechat {
      * @param null $state
      * @return string
      */
-    public function getAuthorizeURL($redirect_uri, $scope = 'snsapi_userinfo', $state = null) {
+    public function getAuthorizeURL($redirect_uri, $scope = 'snsapi_userinfo', $state = null)
+    {
         $params = array();
         $params['appid'] = $this->appid;
         $params['redirect_uri'] = $redirect_uri;
@@ -96,7 +101,8 @@ class Wechat {
      * @param null $state
      * @return string
      */
-    public function getWeChatAuthorizeURL($redirect_uri, $scope = 'snsapi_userinfo', $state = null) {
+    public function getWeChatAuthorizeURL($redirect_uri, $scope = 'snsapi_userinfo', $state = null)
+    {
         $params = array();
         $params['appid'] = $this->appid;
         $params['redirect_uri'] = $redirect_uri;
@@ -110,7 +116,8 @@ class Wechat {
      * @param $access_token
      * @return $this
      */
-    public function setAccessToken($access_token){
+    public function setAccessToken($access_token)
+    {
         $this->access_token = $access_token;
         return $this;
     }
@@ -121,7 +128,8 @@ class Wechat {
      * @param $key [code|refresh_token]
      * @return string
      */
-    public function getAccessToken($type = 'code', $key) {
+    public function getAccessToken($type = 'code', $key)
+    {
         $params = array();
         $params['appid'] = $this->appid;
         $params['secret'] = $this->secret;
@@ -130,25 +138,26 @@ class Wechat {
             $params['appid'] = $this->appid;
             $params['grant_type'] = 'refresh_token';
             $params['refresh_token'] = $key;
-        }elseif($type === 'code') {
+        } elseif ($type === 'code') {
             $uri = 'sns/oauth2/access_token';
             $params['appid'] = $this->appid;
             $params['secret'] = $this->secret;
             $params['code'] = $key;
             $params['grant_type'] = 'authorization_code';
-        }else{
+        } else {
             return $this->error("wrong auth type");
         }
         $return = $this->request($this->host.$uri, 'GET', $params);
-        if(!is_array($return) || !$return)
+        if (!is_array($return) || !$return) {
             return $this->error("get access token failed".$return);
-        if (!isset($return['errcode'])){
+        }
+        if (!isset($return['errcode'])) {
             $this->access_token = $return['access_token'];
             $this->refresh_token = $return['refresh_token'];
             $this->expires_in = $return['expires_in'];
             $this->openid = $return['openid'];
             $this->unionid = isset($return['unionid']) ? $return['unionid'] : null;
-        }else{
+        } else {
             return $this->error("get access token failed: " . $return['errmsg']);
         }
         return $this->access_token;
@@ -159,35 +168,40 @@ class Wechat {
      * @param string $refresh_token
      * @return string
      */
-    public function refreshAccessToken($refresh_token){
+    public function refreshAccessToken($refresh_token)
+    {
         return $this->getAccessToken('token', $refresh_token);
     }
     /**
      * get refresh_token
      * @return string
      */
-    public function getRefreshToken(){
+    public function getRefreshToken()
+    {
         return $this->refresh_token;
     }
     /**
      * get expires time (seconds)
      * @return integer
      */
-    public function getExpiresIn(){
+    public function getExpiresIn()
+    {
         return $this->expires_in;
     }
     /**
      * get openid
      * @return string
      */
-    public function getOpenid(){
+    public function getOpenid()
+    {
         return $this->openid;
     }
     /**
      * get unionid
      * @return string
      */
-    public function getUnionid(){
+    public function getUnionid()
+    {
         return $this->unionid;
     }
     /**
@@ -198,16 +212,19 @@ class Wechat {
      * @param string $method
      * @return array|false
      */
-    public function api($api, $params = array(), $method = 'GET'){
-        if(!isset($params['access_token']) && !$this->access_token)
+    public function api($api, $params = array(), $method = 'GET')
+    {
+        if (!isset($params['access_token']) && !$this->access_token) {
             return $this->error('access_token error');
+        }
         $params['access_token'] = $this->access_token;
         $return = $this->request($this->host.$api, $method, $params);
-        if(!is_array($return) || !$return)
+        if (!is_array($return) || !$return) {
             return $this->error("request failed");
+        }
         if (!isset($return['errcode'])) {
             return $return;
-        }else{
+        } else {
             return $this->error("request failed: " . $return['errmsg']);
         }
     }
@@ -218,7 +235,8 @@ class Wechat {
      * @param $parameters
      * @return \Henter\WeChat\Response
      */
-    function request($url, $method, $parameters) {
+    public function request($url, $method, $parameters)
+    {
         return curl_request($url, $method, $parameters);
     }
 }

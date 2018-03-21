@@ -7,7 +7,8 @@ use app\api\model\v2\UserAddress;
 use app\api\model\v2\Features;
 use app\api\classes\Token;
 
-class ConsigneeController extends Controller {
+class ConsigneeController extends Controller
+{
 
     /**
     * POST ecapi.consignee.list
@@ -89,13 +90,11 @@ class ConsigneeController extends Controller {
     */
     public function setDefault()
     {
-
         $rules = [
             'consignee' => 'required|integer|min:1',
         ];
 
-        if($res = Features::check('address.default'))
-        {
+        if ($res = Features::check('address.default')) {
             return $this->json($res);
         }
 

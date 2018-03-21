@@ -36,7 +36,6 @@ class FlowController extends InitController
          * 添加商品到购物车
          */
         if ($_REQUEST['step'] == 'add_to_cart') {
-
             $_POST['goods'] = strip_tags(urldecode($_POST['goods']));
             $_POST['goods'] = json_str_iconv($_POST['goods']);
 
@@ -438,8 +437,13 @@ class FlowController extends InitController
 
             foreach ($shipping_list as $key => $val) {
                 $shipping_cfg = unserialize_config($val['configure']);
-                $shipping_fee = ($shipping_count == 0 and $cart_weight_price['free_shipping'] == 1) ? 0 : shipping_fee($val['shipping_code'], unserialize($val['configure']),
-                    $cart_weight_price['weight'], $cart_weight_price['amount'], $cart_weight_price['number']);
+                $shipping_fee = ($shipping_count == 0 and $cart_weight_price['free_shipping'] == 1) ? 0 : shipping_fee(
+                    $val['shipping_code'],
+                    unserialize($val['configure']),
+                    $cart_weight_price['weight'],
+                    $cart_weight_price['amount'],
+                    $cart_weight_price['number']
+                );
 
                 $shipping_list[$key]['format_shipping_fee'] = price_format($shipping_fee, false);
                 $shipping_list[$key]['shipping_fee'] = $shipping_fee;
@@ -1766,8 +1770,12 @@ class FlowController extends InitController
 
             //购物车的描述的格式化
             $this->smarty->assign('shopping_money', sprintf($GLOBALS['_LANG']['shopping_money'], $cart_goods['total']['goods_price']));
-            $this->smarty->assign('market_price_desc', sprintf($GLOBALS['_LANG']['than_market_price'],
-                $cart_goods['total']['market_price'], $cart_goods['total']['saving'], $cart_goods['total']['save_rate']));
+            $this->smarty->assign('market_price_desc', sprintf(
+                $GLOBALS['_LANG']['than_market_price'],
+                $cart_goods['total']['market_price'],
+                $cart_goods['total']['saving'],
+                $cart_goods['total']['save_rate']
+            ));
 
             // 显示收藏夹内的商品
             if (session('user_id') > 0) {
@@ -1866,8 +1874,12 @@ class FlowController extends InitController
             //查询：系统启用了库存，检查输入的商品数量是否有效
             if (intval($GLOBALS['_CFG']['use_storage']) > 0 && $goods['extension_code'] != 'package_buy') {
                 if ($row['goods_number'] < $val) {
-                    return show_message(sprintf($GLOBALS['_LANG']['stock_insufficiency'], $row['goods_name'],
-                        $row['goods_number'], $row['goods_number']));
+                    return show_message(sprintf(
+                        $GLOBALS['_LANG']['stock_insufficiency'],
+                        $row['goods_name'],
+                        $row['goods_number'],
+                        $row['goods_number']
+                    ));
                 }
                 // 是货品
                 $goods['product_id'] = trim($goods['product_id']);
@@ -1876,8 +1888,12 @@ class FlowController extends InitController
 
                     $product_number = $GLOBALS['db']->getOne($sql);
                     if ($product_number < $val) {
-                        return show_message(sprintf($GLOBALS['_LANG']['stock_insufficiency'], $row['goods_name'],
-                            $product_number['product_number'], $product_number['product_number']));
+                        return show_message(sprintf(
+                            $GLOBALS['_LANG']['stock_insufficiency'],
+                            $row['goods_name'],
+                            $product_number['product_number'],
+                            $product_number['product_number']
+                        ));
                     }
                 }
             } elseif (intval($GLOBALS['_CFG']['use_storage']) > 0 && $goods['extension_code'] == 'package_buy') {
@@ -1978,8 +1994,12 @@ class FlowController extends InitController
             //系统启用了库存，检查输入的商品数量是否有效
             if (intval($GLOBALS['_CFG']['use_storage']) > 0 && $goods['extension_code'] != 'package_buy') {
                 if ($row['goods_number'] < $val) {
-                    return show_message(sprintf($GLOBALS['_LANG']['stock_insufficiency'], $row['goods_name'],
-                        $row['goods_number'], $row['goods_number']));
+                    return show_message(sprintf(
+                        $GLOBALS['_LANG']['stock_insufficiency'],
+                        $row['goods_name'],
+                        $row['goods_number'],
+                        $row['goods_number']
+                    ));
                 }
 
                 // 是货品
@@ -1988,8 +2008,12 @@ class FlowController extends InitController
                     $sql = "SELECT product_number FROM " . $GLOBALS['ecs']->table('products') . " WHERE goods_id = '" . $goods['goods_id'] . "' AND product_id = '" . $row['product_id'] . "'";
                     $product_number = $GLOBALS['db']->getOne($sql);
                     if ($product_number < $val) {
-                        return show_message(sprintf($GLOBALS['_LANG']['stock_insufficiency'], $row['goods_name'],
-                            $row['goods_number'], $row['goods_number']));
+                        return show_message(sprintf(
+                            $GLOBALS['_LANG']['stock_insufficiency'],
+                            $row['goods_name'],
+                            $row['goods_number'],
+                            $row['goods_number']
+                        ));
                     }
                 }
             } elseif (intval($GLOBALS['_CFG']['use_storage']) > 0 && $goods['extension_code'] == 'package_buy') {

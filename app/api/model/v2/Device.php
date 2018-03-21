@@ -6,11 +6,11 @@ use app\api\model\BaseModel;
 use app\api\classes\Token;
 use app\api\classes\Header;
 
-class Device extends BaseModel {
-
+class Device extends BaseModel
+{
     protected $connection = 'shop';
     protected $table      = 'device';
-    public    $timestamps = true;
+    public $timestamps = true;
     protected $primaryKey = 'user_id';
 
     public static function toUpdateOrCreate($user_id, $data)
@@ -33,8 +33,8 @@ class Device extends BaseModel {
     }
 
 
-   public static function updateDevice(array $attributes)
-   {
+    public static function updateDevice(array $attributes)
+    {
         extract($attributes);
         $uid = Token::authorization();
         $userAgent = Header::getUserAgent();
@@ -46,15 +46,11 @@ class Device extends BaseModel {
         $device->device_type = (isset($userAgent['Device']) && $userAgent['Device']) ? strtolower($userAgent['Device']) : '';
         $device->device_id = $device_id;
 
-        if ($device->save())
-        {
+        if ($device->save()) {
             $device->user_id = $uid;
             return self::formatBody(['device' => $device->toArray()]);
-
-        }   else {
-
+        } else {
             return self::formatError(self::UNKNOWN_ERROR);
         }
-   }
-
+    }
 }

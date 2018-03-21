@@ -8,7 +8,6 @@ class Category extends BaseModel
 {
     protected $connection = 'shop';
     protected $table      = 'category';
-    public    $timestamps = false;
+    public $timestamps = false;
     protected $guarded = [];
-
 }

@@ -18,13 +18,14 @@ require_once("alipay_core.function.php");
  * @param $private_key_path 商户私钥文件路径
  * return 签名结果
  */
-function rsaSign($data, $private_key_path) {
+function rsaSign($data, $private_key_path)
+{
     $priKey = file_get_contents($private_key_path);
     $res = openssl_get_privatekey($priKey);
 //    logResult('rsaSign:'.$res);
     openssl_sign($data, $sign, $res);
     openssl_free_key($res);
-	//base64编码
+    //base64编码
     $sign = base64_encode($sign);
     return $sign;
 }
@@ -36,8 +37,9 @@ function rsaSign($data, $private_key_path) {
  * @param $sign 要校对的的签名结果
  * return 验证结果
  */
-function rsaVerify($data, $alipay_public_key, $sign)  {
-	$pubKey = $alipay_public_key;
+function rsaVerify($data, $alipay_public_key, $sign)
+{
+    $pubKey = $alipay_public_key;
     $res = openssl_get_publickey($pubKey);
 //    logResult('rsaVerify:'.$res);
     $result = (bool)openssl_verify($data, base64_decode($sign), $res);
@@ -51,14 +53,15 @@ function rsaVerify($data, $alipay_public_key, $sign)  {
  * @param $private_key_path 商户私钥文件路径
  * return 解密后内容，明文
  */
-function rsaDecrypt($content, $private_key_path) {
+function rsaDecrypt($content, $private_key_path)
+{
     $priKey = file_get_contents($private_key_path);
     $res = openssl_get_privatekey($priKey);
-	//用base64将内容还原成二进制
+    //用base64将内容还原成二进制
     $content = base64_decode($content);
-	//把需要解密的内容，按128位拆开解密
+    //把需要解密的内容，按128位拆开解密
     $result  = '';
-    for($i = 0; $i < strlen($content)/128; $i++  ) {
+    for ($i = 0; $i < strlen($content)/128; $i++) {
         $data = substr($content, $i * 128, 128);
         openssl_private_decrypt($data, $decrypt, $res);
         $result .= $decrypt;
@@ -66,4 +69,3 @@ function rsaDecrypt($content, $private_key_path) {
     openssl_free_key($res);
     return $result;
 }
-?>

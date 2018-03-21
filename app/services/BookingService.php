@@ -2,7 +2,6 @@
 
 namespace App\Services;
 
-
 class BookingService
 {
 
@@ -14,7 +13,7 @@ class BookingService
      * @param   int $user_id 会员的ID
      * @return  boolen      $bool
      */
-    function delete_booking($booking_id, $user_id)
+    public function delete_booking($booking_id, $user_id)
     {
         $sql = 'DELETE FROM ' . $GLOBALS['ecs']->table('booking_goods') .
             " WHERE rec_id = '$booking_id' AND user_id = '$user_id'";
@@ -29,7 +28,7 @@ class BookingService
      *
      * @return void
      */
-    function add_booking($booking)
+    public function add_booking($booking)
     {
         $sql = "INSERT INTO " . $GLOBALS['ecs']->table('booking_goods') .
             " VALUES ('', '" . session('user_id') . "', '$booking[email]', '$booking[linkman]', " .
@@ -50,7 +49,7 @@ class BookingService
      *
      * @return  array   $booking
      */
-    function get_booking_list($user_id, $num, $start)
+    public function get_booking_list($user_id, $num, $start)
     {
         $booking = [];
         $sql = "SELECT bg.rec_id, bg.goods_id, bg.goods_number, bg.booking_time, bg.dispose_note, g.goods_name " .
@@ -80,7 +79,7 @@ class BookingService
      *
      * @return  array   $info
      */
-    function get_goodsinfo($goods_id)
+    public function get_goodsinfo($goods_id)
     {
         $info = [];
         $sql = "SELECT goods_name FROM " . $GLOBALS['ecs']->table('goods') . " WHERE goods_id = '$goods_id'";
@@ -112,7 +111,7 @@ class BookingService
      *
      * @return  int
      */
-    function get_booking_rec($user_id, $goods_id)
+    public function get_booking_rec($user_id, $goods_id)
     {
         $sql = 'SELECT COUNT(*) ' .
             'FROM ' . $GLOBALS['ecs']->table('booking_goods') .
@@ -120,5 +119,4 @@ class BookingService
 
         return $GLOBALS['db']->getOne($sql);
     }
-
 }

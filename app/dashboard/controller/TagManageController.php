@@ -115,8 +115,11 @@ class TagManageController extends InitController
             $sort_flag = sort_flag($tag_list['filter']);
             $this->smarty->assign($sort_flag['tag'], $sort_flag['img']);
 
-            return make_json_result($this->smarty->fetch('tag_manage.htm'), '',
-                ['filter' => $tag_list['filter'], 'page_count' => $tag_list['page_count']]);
+            return make_json_result(
+                $this->smarty->fetch('tag_manage.htm'),
+                '',
+                ['filter' => $tag_list['filter'], 'page_count' => $tag_list['page_count']]
+            );
         }
 
         if ($_REQUEST['act'] == 'search_goods') {

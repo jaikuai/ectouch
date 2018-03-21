@@ -2,7 +2,6 @@
 
 namespace App\Services;
 
-
 class SnatchService
 {
 
@@ -15,7 +14,7 @@ class SnatchService
      * @return  array           array(user_name, bie_price, bid_time, num)
      *                          num通常为1，如果为2表示有2个用户取到最小值，但结果只返回最早出价用户。
      */
-    function get_snatch_result($id)
+    public function get_snatch_result($id)
     {
         $sql = 'SELECT u.user_id, u.user_name, u.email, lg.bid_price, lg.bid_time, count(*) as num' .
             ' FROM ' . $GLOBALS['ecs']->table('snatch_log') . ' AS lg ' .
@@ -56,5 +55,4 @@ class SnatchService
 
         return $rec;
     }
-
 }

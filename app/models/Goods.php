@@ -61,6 +61,4 @@ class Goods extends Model
     ];
 
     protected $guarded = [];
-
-        
 }

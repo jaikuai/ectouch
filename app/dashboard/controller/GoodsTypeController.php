@@ -52,8 +52,11 @@ class GoodsTypeController extends InitController
             $this->smarty->assign('record_count', $good_type_list['record_count']);
             $this->smarty->assign('page_count', $good_type_list['page_count']);
 
-            return make_json_result($this->smarty->fetch('goods_type.htm'), '',
-                ['filter' => $good_type_list['filter'], 'page_count' => $good_type_list['page_count']]);
+            return make_json_result(
+                $this->smarty->fetch('goods_type.htm'),
+                '',
+                ['filter' => $good_type_list['filter'], 'page_count' => $good_type_list['page_count']]
+            );
         }
 
         /**

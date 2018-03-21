@@ -14,15 +14,13 @@ class Erp
             return false;
         }
 
-        $certificate = unserialize($certificate_info);                    
+        $certificate = unserialize($certificate_info);
         $token = "";
-        if(isset($certificate['token']))
-        {
+        if (isset($certificate['token'])) {
             $token = $certificate['token'];
-        }
-        else{
+        } else {
             return;
-        }        
+        }
         
 
         //获取物流信息参数
@@ -33,7 +31,7 @@ class Erp
             'return_data' => 'json',//返回类型
         );
 
-        $ac = self::get_ac($param,$token);//验证签名
+        $ac = self::get_ac($param, $token);//验证签名
 
         $param['ac'] = $ac;//签名值放入参数中
 
@@ -42,24 +40,23 @@ class Erp
         $response = curl_request($api, 'POST', $param);
 
         if ($response['result'] == 'success') {
-           return true;
+            return true;
         }
 
         Log::error('订单号：' . $order_sn . ' 同步ERP失败');
 
         return false;
-
     }
 
     //验证方法
-    public static function get_ac($params,$token){
+    public static function get_ac($params, $token)
+    {
         ksort($params);
         $tmp_verfy='';
-        foreach($params as $key=>$value){
+        foreach ($params as $key=>$value) {
             $params[$key]=stripslashes($value);
             $tmp_verfy.=$params[$key];
         }
         return strtolower(md5(trim($tmp_verfy.$token)));
     }
-
 }

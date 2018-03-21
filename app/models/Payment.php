@@ -28,6 +28,4 @@ class Payment extends Model
     ];
 
     protected $guarded = [];
-
-        
 }

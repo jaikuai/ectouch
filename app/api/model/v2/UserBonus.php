@@ -5,11 +5,11 @@ namespace app\api\model\v2;
 use app\api\model\BaseModel;
 use app\api\classes\Token;
 
-class UserBonus extends BaseModel {
-
+class UserBonus extends BaseModel
+{
     protected $connection = 'shop';
     protected $table      = 'user_bonus';
-    public    $timestamps = false;
+    public $timestamps = false;
     protected $primaryKey = 'bonus_id';
 
     /* 红包发放的方式 */
@@ -27,10 +27,10 @@ class UserBonus extends BaseModel {
      */
     public static function useBonus($bonus_id, $order_id)
     {
-        if($model = self::where('bonus_id', $bonus_id)->first()){
+        if ($model = self::where('bonus_id', $bonus_id)->first()) {
             $model->order_id  = $order_id;
             $model->used_time = time();
-            if($model->save()){
+            if ($model->save()) {
                 return true;
             }
         }
@@ -44,14 +44,13 @@ class UserBonus extends BaseModel {
      */
     public static function unuseBonus($bonus_id)
     {
-        if($model = self::where('bonus_id', $bonus_id)->first()){
+        if ($model = self::where('bonus_id', $bonus_id)->first()) {
             $model->order_id  = 0;
             $model->used_time = 0;
-            if($model->save()){
+            if ($model->save()) {
                 return true;
             }
         }
         return false;
     }
-
 }

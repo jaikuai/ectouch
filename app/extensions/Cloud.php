@@ -13,15 +13,16 @@ namespace App\Extensions;
  * get.sms.abc
  * post.record 记录站点信息
  */
-class Cloud {
+class Cloud
+{
 
     //错误信息
     private $error = '出现未知错误 Cloud ！';
     //需要发送的数据
     private $data = [];
     //接口
-    private $act = NULL;
-    private $token = NULL;
+    private $act = null;
+    private $token = null;
 
     //服务器地址
     const serverHot = 'http://www.ectouch.cn/apis/';
@@ -31,7 +32,8 @@ class Cloud {
      * @access public
      * @return void
      */
-    static public function getInstance() {
+    public static function getInstance()
+    {
         static $systemHandier;
         if (empty($systemHandier)) {
             $systemHandier = new Cloud();
@@ -43,7 +45,8 @@ class Cloud {
      * 获取错误信息
      * @return type
      */
-    public function getError() {
+    public function getError()
+    {
         return $this->error;
     }
 
@@ -52,7 +55,8 @@ class Cloud {
      * @param type $data
      * @return Cloud
      */
-    public function data($data) {
+    public function data($data)
+    {
         $this->data = $data;
         return $this;
     }
@@ -62,7 +66,8 @@ class Cloud {
      * @param type $act 例如 version.detection
      * @return type
      */
-    public function act($act) {
+    public function act($act)
+    {
         if (empty($this->data)) {
             $data = null;
         } else {
@@ -78,7 +83,8 @@ class Cloud {
      * 检测当前站点授权文件是否正常
      * @return boolean
      */
-    public function competence() {
+    public function competence()
+    {
         $key = $this->getTokenKey();
         $token = S($key);
         if (empty($token)) {
@@ -94,7 +100,8 @@ class Cloud {
      * @param type $data
      * @return type
      */
-    private function run($data) {
+    private function run($data)
+    {
         $fields = [
             'data' => json_encode($data),
             'version' => VERSION,
@@ -117,7 +124,8 @@ class Cloud {
      * @param type $data
      * @return type
      */
-    private function returnResolve($data) {
+    private function returnResolve($data)
+    {
         if (empty($data)) {
             return [];
         }
@@ -137,8 +145,8 @@ class Cloud {
      * 获取token Key
      * @return type
      */
-    public function getTokenKey() {
+    public function getTokenKey()
+    {
         return md5(date('Y-m-d H') . 'cloud_token');
     }
-
 }

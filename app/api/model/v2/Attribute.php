@@ -6,11 +6,11 @@ use app\api\model\BaseModel;
 use app\api\classes\Token;
 use Log;
 
-class Attribute extends BaseModel {
-
+class Attribute extends BaseModel
+{
     protected $connection = 'shop';
     protected $table      = 'attribute';
-    public    $timestamps = false;
+    public $timestamps = false;
     protected $primaryKey = 'attr_id';
 
 
@@ -29,8 +29,7 @@ class Attribute extends BaseModel {
      */
     public static function is_property($goods_attr_id_array, $sort = 'asc')
     {
-        if (empty($goods_attr_id_array))
-        {
+        if (empty($goods_attr_id_array)) {
             return $goods_attr_id_array;
         }
 
@@ -38,29 +37,25 @@ class Attribute extends BaseModel {
         // $row = Attribute::where('attr_type',1)->with(['goodsattr' => function ($query) use ($goods_attr_id_array){
         //     $query->whereIn('goods_attr_id',$goods_attr_id_array);
         // }])->orderBy('attr_id',$sort)->get();
-        $row = self::leftJoin('goods_attr','goods_attr.attr_id','=','attribute.attr_id')
+        $row = self::leftJoin('goods_attr', 'goods_attr.attr_id', '=', 'attribute.attr_id')
             ->where(['attribute.attr_type' => 1])
-            ->whereIn('goods_attr.goods_attr_id',$goods_attr_id_array)
-            ->orderBy('attribute.attr_id',$sort)
+            ->whereIn('goods_attr.goods_attr_id', $goods_attr_id_array)
+            ->orderBy('attribute.attr_id', $sort)
             ->get(['attribute.attr_type','goods_attr.attr_value','goods_attr.goods_attr_id']);
 
         $return_arr = array();
-        foreach ($row as $value)
-        {
+        foreach ($row as $value) {
             $return_arr['sort'][]   = $value['goods_attr_id'];
 
             $return_arr['row'][$value['goods_attr_id']]    = $value;
         }
 
-        if(!empty($return_arr))
-        {
+        if (!empty($return_arr)) {
             return true;
-        }
-        else
-        {
+        } else {
             return false;
         }
-    }   
+    }
 
 
     /**
@@ -76,8 +71,7 @@ class Attribute extends BaseModel {
     {
         $attr   = '';
 
-        if (!empty($arr))
-        {
+        if (!empty($arr)) {
             $fmt = "%s:%s[%s] \n";
 
             // $sql = "SELECT a.attr_name, ga.attr_value, ga.attr_price ".
@@ -86,11 +80,10 @@ class Attribute extends BaseModel {
             //         "WHERE " .db_create_in($arr, 'ga.goods_attr_id')." AND a.attr_id = ga.attr_id";
             // $res = $GLOBALS['db']->query($sql);
 
-            $res = GoodsAttr::selectRaw('attr_price,attr_value,attr_name as name')->whereIn('goods_attr_id',$arr)->leftJoin('attribute',function ($query) use($arr){
-                $query->on('attribute.attr_id','=','goods_attr.attr_id');
+            $res = GoodsAttr::selectRaw('attr_price,attr_value,attr_name as name')->whereIn('goods_attr_id', $arr)->leftJoin('attribute', function ($query) use ($arr) {
+                $query->on('attribute.attr_id', '=', 'goods_attr.attr_id');
             })->get();
             foreach ($res as $key => $row) {
-
                 $attr_price = round(floatval($row['attr_price']), 2);
                 $attr .= sprintf($fmt, $row['name'], $row['attr_value'], $attr_price);
             }
@@ -113,24 +106,21 @@ class Attribute extends BaseModel {
      */
     public static function sort_goods_attr_id_array($goods_attr_id_array, $sort = 'asc')
     {
-
-        if (empty($goods_attr_id_array))
-        {
+        if (empty($goods_attr_id_array)) {
             return $goods_attr_id_array;
         }
 
         //重新排序
 
-        $row = self::leftJoin('goods_attr','goods_attr.attr_id','=','attribute.attr_id')
+        $row = self::leftJoin('goods_attr', 'goods_attr.attr_id', '=', 'attribute.attr_id')
             ->where(['attribute.attr_type' => 1])
-            ->whereIn('goods_attr.goods_attr_id',$goods_attr_id_array)
-            ->orderBy('attribute.attr_id',$sort)
+            ->whereIn('goods_attr.goods_attr_id', $goods_attr_id_array)
+            ->orderBy('attribute.attr_id', $sort)
             ->get(['attribute.attr_type','goods_attr.attr_value','goods_attr.goods_attr_id']);
 
         $return_arr = array();
 
-        foreach ($row as $value)
-        {
+        foreach ($row as $value) {
             if ($value['goods_attr_id']) {
                 $return_arr['sort'][]   = $value['goods_attr_id'];
                 $return_arr['row'][$value['goods_attr_id']]    = $value;
@@ -143,7 +133,7 @@ class Attribute extends BaseModel {
 
     public function getAttrsAttribute()
     {
-        return GoodsAttr::where('goods_id',$this->pivot->goods_id)->where('attr_id',$this->pivot->attr_id)->get()->toArray();
+        return GoodsAttr::where('goods_id', $this->pivot->goods_id)->where('attr_id', $this->pivot->attr_id)->get()->toArray();
     }
 
 

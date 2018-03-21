@@ -29,6 +29,4 @@ class BackGoods extends Model
     ];
 
     protected $guarded = [];
-
-        
 }

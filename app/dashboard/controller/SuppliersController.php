@@ -55,8 +55,11 @@ class SuppliersController extends InitController
             $sort_flag = sort_flag($result['filter']);
             $this->smarty->assign($sort_flag['tag'], $sort_flag['img']);
 
-            return make_json_result($this->smarty->fetch('suppliers_list.htm'), '',
-                ['filter' => $result['filter'], 'page_count' => $result['page_count']]);
+            return make_json_result(
+                $this->smarty->fetch('suppliers_list.htm'),
+                '',
+                ['filter' => $result['filter'], 'page_count' => $result['page_count']]
+            );
         }
 
         /**

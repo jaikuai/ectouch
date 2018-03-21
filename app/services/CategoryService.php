@@ -2,7 +2,6 @@
 
 namespace App\Services;
 
-
 class CategoryService
 {
 
@@ -17,7 +16,7 @@ class CategoryService
      * @param   int $is_show_all 如果为true显示所有分类，如果为false隐藏不可见分类。
      * @return  mix
      */
-    function cat_list($cat_id = 0, $selected = 0, $re_type = true, $level = 0, $is_show_all = true)
+    public function cat_list($cat_id = 0, $selected = 0, $re_type = true, $level = 0, $is_show_all = true)
     {
         static $res = null;
 
@@ -137,7 +136,7 @@ class CategoryService
      * @param   int $level 级别
      * @return  void
      */
-    function cat_options($spec_cat_id, $arr)
+    public function cat_options($spec_cat_id, $arr)
     {
         static $cat_options = [];
 
@@ -265,7 +264,7 @@ class CategoryService
      * @param   integer $cat_id 分类编号
      * @return  array
      */
-    function get_categories_tree($cat_id = 0)
+    public function get_categories_tree($cat_id = 0)
     {
         if ($cat_id > 0) {
             $sql = 'SELECT parent_id FROM ' . $GLOBALS['ecs']->table('category') . " WHERE cat_id = '$cat_id'";
@@ -305,7 +304,7 @@ class CategoryService
         }
     }
 
-    function get_child_tree($tree_id = 0)
+    public function get_child_tree($tree_id = 0)
     {
         $three_arr = [];
         $sql = 'SELECT count(*) FROM ' . $GLOBALS['ecs']->table('category') . " WHERE parent_id = '$tree_id' AND is_show = 1 ";
@@ -341,7 +340,7 @@ class CategoryService
      * @param   string $ext 商品扩展查询
      * @return  array
      */
-    function get_category_recommend_goods($type = '', $cats = '', $brand = 0, $min = 0, $max = 0, $ext = '')
+    public function get_category_recommend_goods($type = '', $cats = '', $brand = 0, $min = 0, $max = 0, $ext = '')
     {
         $brand_where = ($brand > 0) ? " AND g.brand_id = '$brand'" : '';
 
@@ -423,7 +422,7 @@ class CategoryService
      * @param   string $order_rule 指定商品排序规则
      * @return  array
      */
-    function assign_cat_goods($cat_id, $num = 0, $from = 'web', $order_rule = '')
+    public function assign_cat_goods($cat_id, $num = 0, $from = 'web', $order_rule = '')
     {
         $children = get_children($cat_id);
 
@@ -486,7 +485,7 @@ class CategoryService
      * @param   integer $cat 分类编号
      * @return  array
      */
-    function get_parent_cats($cat)
+    public function get_parent_cats($cat)
     {
         if ($cat == 0) {
             return [];
@@ -529,9 +528,8 @@ class CategoryService
      * @param   integer $cat 指定的分类ID
      * @return  string
      */
-    function get_children($cat = 0)
+    public function get_children($cat = 0)
     {
         return 'g.cat_id ' . db_create_in(array_unique(array_merge([$cat], array_keys(cat_list($cat, 0, false)))));
     }
-
 }

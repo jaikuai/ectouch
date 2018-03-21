@@ -6,11 +6,11 @@ use app\api\model\BaseModel;
 use app\api\classes\Token;
 use DB;
 
-class Comment extends BaseModel {
-
+class Comment extends BaseModel
+{
     protected $connection = 'shop';
     protected $table      = 'comment';
-    public    $timestamps = false;
+    public $timestamps = false;
 
     protected $appends = ['id','grade','content', 'is_anonymous', 'created_at','updated_at'];
 
@@ -37,7 +37,7 @@ class Comment extends BaseModel {
     */
     public static function getCommentCountById($goods_id)
     {
-         return self::where(['id_value' => $goods_id])->where(['comment_type' => self::GOODS])->count();
+        return self::where(['id_value' => $goods_id])->where(['comment_type' => self::GOODS])->count();
     }
 
     /**
@@ -49,7 +49,7 @@ class Comment extends BaseModel {
     */
     public static function getCommentRateById($goods_id)
     {
-        $rate = self::select('*',DB::raw('concat( sum(comment_rank)/(count(id_value) * 5)) AS goods_rank_rate'))->where('id_value', $goods_id)->where('comment_type' ,self::GOODS)->value('goods_rank_rate');
+        $rate = self::select('*', DB::raw('concat( sum(comment_rank)/(count(id_value) * 5)) AS goods_rank_rate'))->where('id_value', $goods_id)->where('comment_type', self::GOODS)->value('goods_rank_rate');
         return round($rate * 100);
     }
 
@@ -58,15 +58,14 @@ class Comment extends BaseModel {
         extract($attributes);
         $model = self::where(['comment_type' => self::GOODS, 'id_value' => $product])->orderBy('add_time', 'DESC');
         if (isset($grade) && is_numeric($grade)) {
-
             if ($grade == self::BAD) {
-                $model->where( function ($query) {
-                    $query->where('comment_rank', '<','3')->where('comment_rank', '>', 0);
+                $model->where(function ($query) {
+                    $query->where('comment_rank', '<', '3')->where('comment_rank', '>', 0);
                 });
-            }elseif($grade == self::MEDIUM){
+            } elseif ($grade == self::MEDIUM) {
                 $model->where('comment_rank', '=', '3');
-            }elseif($grade == self::GOOD){
-                $model->where( function ($query) {
+            } elseif ($grade == self::GOOD) {
+                $model->where(function ($query) {
                     $query->where('comment_rank', '>', '3')->orWhere('comment_rank', 0);
                 });
             }
@@ -87,7 +86,7 @@ class Comment extends BaseModel {
 
         $bad = self::where(['comment_type' => self::GOODS, 'id_value' => $product])
                     ->where(function ($query) {
-                        $query->where('comment_rank', '<','3')->where('comment_rank', '>', 0);
+                        $query->where('comment_rank', '<', '3')->where('comment_rank', '>', 0);
                     })
                     ->count();
 
@@ -102,7 +101,6 @@ class Comment extends BaseModel {
         $total = self::where(['comment_type' => self::GOODS, 'id_value' => $product])->count();
 
         return self::formatBody(['subtotal' => ['total' => $total, 'bad' => $bad, 'medium' => $medium, 'good' => $good]]);
-
     }
 
     public static function toCreate($uid, array $attributes, $is_anonymous)
@@ -115,7 +113,7 @@ class Comment extends BaseModel {
                 'id_value' => $goods,
                 'email' => $member->email,
                 //匿名时 用户名默认为ecshop
-                'user_name' => ( $is_anonymous == 0 ) ? $member->user_name : 'ecshop',
+                'user_name' => ($is_anonymous == 0) ? $member->user_name : 'ecshop',
                 'content' => $content,
                 'comment_rank' => ($grade == 2) ? 3 : (($grade == 3) ? 5 : 1),
                 'add_time' => time(),
@@ -144,7 +142,7 @@ class Comment extends BaseModel {
     public function getGradeAttribute()
     {
         $rank = $this->attributes['comment_rank'];
-        if ($rank > 0 && $rank < 3 ) {
+        if ($rank > 0 && $rank < 3) {
             return self::BAD;
         }
         if ($rank == 3) {
@@ -162,7 +160,7 @@ class Comment extends BaseModel {
 
     public function getIsAnonymousAttribute()
     {
-        if($this->attributes['user_name'] == 'ecshop'){
+        if ($this->attributes['user_name'] == 'ecshop') {
             return 1;
         }
         return 0;
@@ -177,5 +175,4 @@ class Comment extends BaseModel {
     {
         return $this->attributes['add_time'];
     }
-
 }

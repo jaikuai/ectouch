@@ -23,6 +23,4 @@ class GoodsAttr extends Model
     ];
 
     protected $guarded = [];
-
-        
 }

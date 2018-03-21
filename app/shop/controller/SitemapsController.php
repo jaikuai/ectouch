@@ -91,5 +91,3 @@ class SitemapsController extends InitController
         die($out);
     }
 }
-
-

@@ -2,7 +2,6 @@
 
 namespace App\Services;
 
-
 class CollectService
 {
 
@@ -16,7 +15,7 @@ class CollectService
      *
      * @return  array   $arr
      */
-    function get_collection_goods($user_id, $num = 10, $start = 0)
+    public function get_collection_goods($user_id, $num = 10, $start = 0)
     {
         $sql = 'SELECT g.goods_id, g.goods_name, g.market_price, g.shop_price AS org_price, ' .
             "IFNULL(mp.user_price, g.shop_price * '" . session('discount') . "') AS shop_price, " .
@@ -49,5 +48,4 @@ class CollectService
 
         return $goods_list;
     }
-
 }

@@ -29,7 +29,6 @@ class ArticleService implements ArticleInterface
      */
     public function createArticle($data)
     {
-
     }
 
     /**
@@ -39,7 +38,6 @@ class ArticleService implements ArticleInterface
     public function getDetail($id)
     {
         return $this->article->show($id);
-
     }
 
     /**
@@ -48,7 +46,6 @@ class ArticleService implements ArticleInterface
      */
     public function updateArticle($data)
     {
-
     }
 
     /**
@@ -57,7 +54,6 @@ class ArticleService implements ArticleInterface
      */
     public function deleteArticle($id)
     {
-
     }
 
     public function getCatArticles($cat_id, $page = 1, $size = 20, $requirement = '')
@@ -119,7 +115,7 @@ class ArticleService implements ArticleInterface
      *
      * @return void
      */
-    function get_article_children($cat = 0)
+    public function get_article_children($cat = 0)
     {
         return db_create_in(array_unique(array_merge([$cat], array_keys(article_cat_list($cat, 0, false)))), 'cat_id');
     }
@@ -131,7 +127,7 @@ class ArticleService implements ArticleInterface
      * @param   integer $cat_id 分类编号
      * @return  array
      */
-    function article_categories_tree($cat_id = 0)
+    public function article_categories_tree($cat_id = 0)
     {
         if ($cat_id > 0) {
             $sql = 'SELECT parent_id FROM ' . $GLOBALS['ecs']->table('article_cat') . " WHERE cat_id = '$cat_id'";
@@ -185,7 +181,7 @@ class ArticleService implements ArticleInterface
      * @param   integer $cat 分类编号
      * @return  array
      */
-    function get_article_parent_cats($cat)
+    public function get_article_parent_cats($cat)
     {
         if ($cat == 0) {
             return [];
@@ -230,7 +226,7 @@ class ArticleService implements ArticleInterface
      * @param   integer $num 文章数量
      * @return  array
      */
-    function assign_articles($id, $num)
+    public function assign_articles($id, $num)
     {
         $sql = 'SELECT cat_name FROM ' . $GLOBALS['ecs']->table('article_cat') . " WHERE cat_id = '" . $id . "'";
 
@@ -243,5 +239,4 @@ class ArticleService implements ArticleInterface
 
         return $articles;
     }
-
 }

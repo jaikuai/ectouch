@@ -28,6 +28,4 @@ class Attribute extends Model
     ];
 
     protected $guarded = [];
-
-        
 }

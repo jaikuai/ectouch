@@ -21,6 +21,4 @@ class LinkGoods extends Model
     ];
 
     protected $guarded = [];
-
-        
 }

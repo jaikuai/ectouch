@@ -71,5 +71,4 @@ class ShippingProxy
         $header = sprintf($header, time(), time() + rand(1000, 9999));
         return $header;
     }
-
 }

@@ -23,6 +23,4 @@ class PayLog extends Model
     ];
 
     protected $guarded = [];
-
-        
 }

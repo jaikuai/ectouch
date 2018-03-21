@@ -10,13 +10,11 @@ class VolumePrice extends BaseModel
 
     protected $table      = 'volume_price';
 
-    public    $timestamps = false;
+    public $timestamps = false;
 
     protected $visible = ['volume_number', 'volume_price'];
 
     // protected $appends = ['volume_number', 'volume_price'];
 
     protected $guarded = [];
-
-
 }

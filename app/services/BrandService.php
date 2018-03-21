@@ -2,14 +2,13 @@
 
 namespace App\Services;
 
-
 class BrandService
 {
     /**
      * 取得品牌列表
      * @return array 品牌列表 id => name
      */
-    function get_brand_list()
+    public function get_brand_list()
     {
         $sql = 'SELECT brand_id, brand_name FROM ' . $GLOBALS['ecs']->table('brand') . ' ORDER BY sort_order';
         $res = $GLOBALS['db']->getAll($sql);
@@ -29,7 +28,7 @@ class BrandService
      * @param   int $cat
      * @return  array
      */
-    function get_brands($cat = 0, $app = 'brand')
+    public function get_brands($cat = 0, $app = 'brand')
     {
         global $page_libs;
         $template = basename(PHP_SELF);
@@ -73,7 +72,7 @@ class BrandService
      * @param   string $order_rule 指定商品排序规则
      * @return  void
      */
-    function assign_brand_goods($brand_id, $num = 0, $cat_id = 0, $order_rule = '')
+    public function assign_brand_goods($brand_id, $num = 0, $cat_id = 0, $order_rule = '')
     {
         $sql = 'SELECT g.goods_id, g.goods_name, g.market_price, g.shop_price AS org_price, ' .
             "IFNULL(mp.user_price, g.shop_price * '". session('discount') ."') AS shop_price, " .
@@ -130,6 +129,4 @@ class BrandService
 
         return $brand_goods;
     }
-
-
 }

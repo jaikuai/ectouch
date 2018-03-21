@@ -2,7 +2,6 @@
 
 namespace App\Services;
 
-
 class AuctionService
 {
 
@@ -11,7 +10,7 @@ class AuctionService
      * @param   int $act_id 活动id
      * @return  array
      */
-    function auction_info($act_id, $config = false)
+    public function auction_info($act_id, $config = false)
     {
         $sql = "SELECT * FROM " . $GLOBALS['ecs']->table('goods_activity') . " WHERE act_id = '$act_id'";
         $auction = $GLOBALS['db']->getRow($sql);
@@ -74,7 +73,7 @@ class AuctionService
      * @param   int $act_id 活动id
      * @return  array
      */
-    function auction_log($act_id)
+    public function auction_log($act_id)
     {
         $log = [];
         $sql = "SELECT a.*, u.user_name " .
@@ -98,7 +97,7 @@ class AuctionService
      * @param   array $auction 拍卖活动原始信息
      * @return  int
      */
-    function auction_status($auction)
+    public function auction_status($auction)
     {
         $now = gmtime();
         if ($auction['is_finished'] == 0) {
@@ -115,5 +114,4 @@ class AuctionService
             return SETTLED; // 已结束，已处理
         }
     }
-
 }

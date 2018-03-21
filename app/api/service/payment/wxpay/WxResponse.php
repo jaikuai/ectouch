@@ -13,24 +13,27 @@
 //============================================================================
 
 namespace App\Services\Payment\wxpay;
+
 use Log;
 
 class WxResponse
 {
     //密钥
-    var $key;
+    public $key;
 
     //应答的参数
-    var $parameters;
+    public $parameters;
 
     //debug信息
-    var $debugInfo;
+    public $debugInfo;
 
     //初始构造函数
-    function __construct() {
+    public function __construct()
+    {
         $this->RequestHandler();
     }
-    function RequestHandler() {
+    public function RequestHandler()
+    {
         $this->gateUrl = "https://wpay.tenpay.com/wx_pub/v1.0/wx_app_api.cgi";
         $this->key = "";
         $this->parameters = array();
@@ -38,30 +41,36 @@ class WxResponse
     }
 
     //获取密钥
-    function getKey() {
+    public function getKey()
+    {
         return $this->key;
     }
 
     //设置密钥
-    function setKey($key) {
+    public function setKey($key)
+    {
         $this->key = $key;
     }
 
     //获取参数值
-    function getParameter($parameter) {
+    public function getParameter($parameter)
+    {
         return $this->parameters[$parameter];
     }
 
     //设置参数值
-    function setParameter($parameter, $parameterValue) {
+    public function setParameter($parameter, $parameterValue)
+    {
         $this->parameters[$parameter] = $parameterValue;
     }
     //清空参数值
-    function clearParameter(){
+    public function clearParameter()
+    {
         return $this->$parameters->RemoveAll;
     }
     //获取所有请求的参数,返回Scripting.Dictionary
-    function getAllParameters() {
+    public function getAllParameters()
+    {
         return $this->parameters;
     }
 
@@ -70,7 +79,7 @@ class WxResponse
      * @param string $xml
      * @return array
      */
-    function xmlToArray($xml)
+    public function xmlToArray($xml)
     {
         $xmlObj = simplexml_load_string(
             $xml,
@@ -81,8 +90,7 @@ class WxResponse
         $arr = [];
         $xmlObj->rewind(); //指针指向第一个元素
         while (1) {
-            if( ! is_object($xmlObj->current()) )
-            {
+            if (! is_object($xmlObj->current())) {
                 break;
             }
             $arr[$xmlObj->key()] = $xmlObj->current()->__toString();
@@ -98,12 +106,13 @@ class WxResponse
      *true:是
      *false:否
      */
-    function isTenpaySign() {
+    public function isTenpaySign()
+    {
         $signPars = "";
         ksort($this->parameters);
 
-        foreach($this->parameters as $k => $v) {
-            if("sign" != $k && "" != $v) {
+        foreach ($this->parameters as $k => $v) {
+            if ("sign" != $k && "" != $v) {
                 $signPars .= $k . "=" . $v . "&";
             }
         }
@@ -114,15 +123,16 @@ class WxResponse
         $tenpaySign = strtolower($this->getParameter("sign"));
         
         return $sign == $tenpaySign;
-
     }
 
     //获取debug信息
-    function getDebugInfo() {
+    public function getDebugInfo()
+    {
         return $this->debugInfo;
     }
 
-    function setDebugInfo($debug) {
+    public function setDebugInfo($debug)
+    {
         $this->debugInfo=$debug;
     }
 
@@ -147,6 +157,4 @@ class WxResponse
         $xml .= '</xml>';
         return $xml;
     }
-
 }
-?>

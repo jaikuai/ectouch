@@ -25,6 +25,4 @@ class AdCustom extends Model
     ];
 
     protected $guarded = [];
-
-        
 }

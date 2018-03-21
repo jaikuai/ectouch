@@ -2,7 +2,6 @@
 
 namespace App\Services;
 
-
 class PackageService
 {
 
@@ -14,7 +13,7 @@ class PackageService
      *
      * @return array       array(package_id, package_name, goods_id,start_time, end_time, min_price, integral)
      */
-    function get_package_info($id)
+    public function get_package_info($id)
     {
         $id = is_numeric($id) ? intval($id) : 0;
         $now = gmtime();
@@ -92,7 +91,7 @@ class PackageService
      * @param   integer $package_id
      * @return  array
      */
-    function get_package_goods($package_id)
+    public function get_package_goods($package_id)
     {
         $sql = "SELECT pg.goods_id, g.goods_name, pg.goods_number, p.goods_attr, p.product_number, p.product_id
             FROM " . $GLOBALS['ecs']->table('package_goods') . " AS pg
@@ -168,7 +167,7 @@ class PackageService
      * 检查礼包内商品的库存
      * @return  boolen
      */
-    function judge_package_stock($package_id, $package_num = 1)
+    public function judge_package_stock($package_id, $package_num = 1)
     {
         $sql = "SELECT goods_id, product_id, goods_number
             FROM " . $GLOBALS['ecs']->table('package_goods') . "
@@ -221,5 +220,4 @@ class PackageService
 
         return false;
     }
-
 }

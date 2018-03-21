@@ -5,11 +5,11 @@ namespace app\api\model\v2;
 use app\api\model\BaseModel;
 use app\api\classes\Token;
 
-class Brand extends BaseModel {
-
+class Brand extends BaseModel
+{
     protected $connection = 'shop';
     protected $table      = 'brand';
-    public    $timestamps = false;
+    public $timestamps = false;
 
     protected $appends = ['id', 'name', 'logo'];
 
@@ -31,7 +31,6 @@ class Brand extends BaseModel {
                 'logo' => null
             ];
         }
-
     }
 
     public static function getBrandById($id)
@@ -67,7 +66,8 @@ class Brand extends BaseModel {
 
     public function getIdAttribute()
     {
-        return $this->attributes['brand_id'];    }
+        return $this->attributes['brand_id'];
+    }
 
     public function getNameAttribute()
     {
@@ -78,6 +78,4 @@ class Brand extends BaseModel {
     {
         return formatPhoto($this->attributes['brand_logo'], null);
     }
-
-
 }

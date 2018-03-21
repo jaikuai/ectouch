@@ -5,13 +5,13 @@ namespace app\api\model\v2;
 use app\api\model\BaseModel;
 use app\api\classes\Token;
 
-class Push extends BaseModel {
-    
+class Push extends BaseModel
+{
     protected $connection = 'shop';
 
     protected $table      = 'push';
 
-    public  $timestamps   = true;
+    public $timestamps   = true;
 
     protected $visible = ['id', 'title', 'photo', 'content', 'link', 'created_at'];
 
@@ -22,7 +22,7 @@ class Push extends BaseModel {
 
         $reg_time = Member::where('user_id', $uid)->value('reg_time');
 
-        $model = Push::where('message_type', 1)->where('created_at', '>', date('Y-m-d H:i:s', $reg_time))->orderBy('created_at','DESC');
+        $model = Push::where('message_type', 1)->where('created_at', '>', date('Y-m-d H:i:s', $reg_time))->orderBy('created_at', 'DESC');
 
         $total = $model->count();
 
@@ -39,7 +39,7 @@ class Push extends BaseModel {
 
         $uid = Token::authorization();
 
-        $model = Push::where('isPush', 1)->where('message_type', 2)->where('user_id', $uid)->orderBy('created_at','DESC');
+        $model = Push::where('isPush', 1)->where('message_type', 2)->where('user_id', $uid)->orderBy('created_at', 'DESC');
 
         $total = $model->count();
 
@@ -57,7 +57,7 @@ class Push extends BaseModel {
         $uid = Token::authorization();
 
         //如果有选择类型
-        if(isset($type)){
+        if (isset($type)) {
             switch ($type) {
                 //如果是给系统消息
                 case 1:
@@ -65,11 +65,11 @@ class Push extends BaseModel {
                     break;
                 //如果是给订单消息　　
                 case 2:
-                    if($uid = Token::authorization()){
-                         $count = Push::where('isPush', 1)->where('message_type', 2)->where('user_id', $uid)
+                    if ($uid = Token::authorization()) {
+                        $count = Push::where('isPush', 1)->where('message_type', 2)->where('user_id', $uid)
                                 ->where('created_at', '>', date('Y-m-d H:i:s', $after))->count();
-                    }else{
-                         $count = 0;
+                    } else {
+                        $count = 0;
                     }
 
                     break;
@@ -78,8 +78,7 @@ class Push extends BaseModel {
                     $count = 0;
                     break;
             }
-
-        }else{
+        } else {
             $count = Push::where('status', 2)
                    ->where('created_at', '>', date('Y-m-d H:i:s', $after))->count();
         }
@@ -94,11 +93,10 @@ class Push extends BaseModel {
     }
 
     public function getPhotoAttribute()
-    {   
+    {
         if ($this->attributes['photo']) {
             return formatPhoto($this->attributes['photo']);
         }
         return null;
     }
-
 }

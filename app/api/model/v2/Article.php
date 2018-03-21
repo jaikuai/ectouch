@@ -10,7 +10,7 @@ class Article extends BaseModel
 
     protected $table      = 'article';
 
-    public    $timestamps = false;
+    public $timestamps = false;
 
     protected $hidden = [];
 
@@ -39,7 +39,7 @@ class Article extends BaseModel
     public static function getArticle($id)
     {
         $data = [];
-        if($model = Article::where('article_id', $id)->first()){
+        if ($model = Article::where('article_id', $id)->first()) {
             $data['title'] = $model->title;
             $data['content'] = $model->content;
             $data['add_time'] = $model->add_time;
@@ -73,5 +73,4 @@ class Article extends BaseModel
     {
         return false;
     }
-
 }

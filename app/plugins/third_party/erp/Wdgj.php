@@ -8,5 +8,4 @@ namespace app\plugins\third_party\erp;
  */
 class Wdgj
 {
-
 }

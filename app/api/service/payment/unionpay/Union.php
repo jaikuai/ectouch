@@ -2,9 +2,11 @@
 //
 
 namespace App\Services\Payment\Unionpay;
+
 use Exception;
 
-class Union  {
+class Union
+{
     /**
      * 支付配置
      * @var array
@@ -52,7 +54,7 @@ HTML;
     {
         $this->params['signature'] = $this->sign();
         $input = '';
-        foreach($this->params as $key => $item) {
+        foreach ($this->params as $key => $item) {
             $input .= "\t\t<input type=\"hidden\" name=\"{$key}\" value=\"{$item}\">\n";
         }
          
@@ -61,7 +63,7 @@ HTML;
      
     /**
      * 推送订单信息到银联，获取到流水号tn
-     * 
+     *
      * @return string
      */
     public function getTn()
@@ -69,13 +71,13 @@ HTML;
         $this->params['signature'] = $this->sign();
          
         $result = $this->postUrl($this->config['appUrl'], http_build_query($this->params));
-        if(!$result) {
+        if (!$result) {
             throw new Exception('推送订单信息到银联请求失败！');
         }
 
         parse_str($result, $resultArr);
 
-        if(!isset($resultArr['tn'])) {
+        if (!isset($resultArr['tn'])) {
             throw new Exception('获取银联受理订单号失败，原始返回：'.$result);
         }
          
@@ -89,7 +91,7 @@ HTML;
      * 根据key值按照字典排序，然后用&拼接key=value形式待验签字符串；
      * 然后对待验签字符串使用sha1算法做摘要；
      * 用银联公钥对摘要和签名信息做验签操作
-     * 
+     *
      * @throws \Exception
      * @return bool
      */
@@ -102,7 +104,7 @@ HTML;
         $verifySha1 = sha1($verifyStr);
         $signature = base64_decode($this->params['signature']);
         $result = openssl_verify($verifySha1, $signature, $publicKey);
-        if($result === -1) {
+        if ($result === -1) {
             throw new \Exception('Verify Error:'.openssl_error_string());
         }
          
@@ -116,7 +118,7 @@ HTML;
     public function getSignCertId()
     {
         return $this->getCertIdPfx($this->config['signCertPath']);
-    }  
+    }
      
     /**
      * 签名数据
@@ -126,15 +128,16 @@ HTML;
      * 然后对待签名字符串使用sha1算法做摘要；
      * 用银联颁发的私钥对摘要做RSA签名操作
      * 签名结果用base64编码后放在signature域
-     * 
+     *
      * @throws \InvalidArgumentException
      * @return multitype|string
      */
-    private function sign() {
+    private function sign()
+    {
         $signData = $this->filterBeforSign();
         ksort($signData);
         $signQueryString = $this->arrayToString($signData);
-        if($this->params['signMethod'] == 01) {
+        if ($this->params['signMethod'] == 01) {
             //签名之前先用sha1处理
             //echo $signQueryString;exit;
             $datasha1 = sha1($signQueryString);
@@ -144,7 +147,6 @@ HTML;
         }
                  
         return $signed;
-         
     }
      
     /**
@@ -155,7 +157,7 @@ HTML;
     private function arrayToString($arr)
     {
         $str = '';
-        foreach($arr as $key => $value) {
+        foreach ($arr as $key => $value) {
             $str .= $key.'='.$value.'&';
         }
         return substr($str, 0, strlen($str) - 1);
@@ -164,7 +166,7 @@ HTML;
     /**
      * 过滤待签名数据
      * signature域不参加签名
-     * 
+     *
      * @return array
      */
     private function filterBeforSign()
@@ -183,7 +185,7 @@ HTML;
     {
         $privatekey = $this->getSignPrivateKey();
         $result = openssl_sign($data, $signature, $privatekey);
-        if($result) {
+        if ($result) {
             return base64_encode($signature);
         }
         return false;
@@ -234,10 +236,10 @@ HTML;
     private function getVerifyPublicKey()
     {
         //先判断配置的验签证书与银联返回指定的证书是否一致
-        if($this->getCertIdCer($this->config['verifyCertPath']) != $this->params['certId']) {
+        if ($this->getCertIdCer($this->config['verifyCertPath']) != $this->params['certId']) {
             throw new \InvalidArgumentException('Verify sign cert is incorrect');
         }
-        return file_get_contents($this->config['verifyCertPath']);     
+        return file_get_contents($this->config['verifyCertPath']);
     }
      
     /**
@@ -247,7 +249,8 @@ HTML;
      *
      * @return mixed
      */
-    protected function postUrl($url, $data) {
+    protected function postUrl($url, $data)
+    {
         $curl = curl_init($url);
         curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false); //忽略证书验证
         curl_setopt($curl, CURLOPT_POST, true);

@@ -12,7 +12,7 @@ class ShippingService
      *
      * @return array;
      */
-    function get_shipping_config($area_id)
+    public function get_shipping_config($area_id)
     {
         // 获得配置信息
         $sql = 'SELECT configure FROM ' . $GLOBALS['ecs']->table('shipping_area') . " WHERE shipping_area_id = '$area_id'";
@@ -33,7 +33,7 @@ class ShippingService
      * @param   int $shipping_id 配送插件ID
      * @return  object     配送插件对象实例
      */
-    function &get_shipping_object($shipping_id)
+    public function &get_shipping_object($shipping_id)
     {
         $shipping = shipping_info($shipping_id);
         if (!$shipping) {
@@ -183,5 +183,4 @@ class ShippingService
             }
         }
     }
-
 }

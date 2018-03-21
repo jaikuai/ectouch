@@ -39,7 +39,7 @@ if (isset($set_modules) && $set_modules == true) {
     // 打印单背景
     $modules[$i]['print_bg'] = '';
 
-   // 打印快递单标签位置信息
+    // 打印快递单标签位置信息
     $modules[$i]['config_lable'] = '';
 
     return;

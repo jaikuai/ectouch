@@ -26,6 +26,4 @@ class ArticleCat extends Model
     ];
 
     protected $guarded = [];
-
-        
 }

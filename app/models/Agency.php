@@ -21,6 +21,4 @@ class Agency extends Model
     ];
 
     protected $guarded = [];
-
-        
 }

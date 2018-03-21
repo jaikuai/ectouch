@@ -5,7 +5,8 @@ namespace app\api\controller\v2;
 use app\api\controller\Controller;
 use app\api\model\v2\Invoice;
 
-class InvoiceController extends Controller {
+class InvoiceController extends Controller
+{
 
     /**
     * POST ecapi.invoice.type.list

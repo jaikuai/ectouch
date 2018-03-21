@@ -39,7 +39,7 @@ class CatalogController extends InitController
 
             preg_match_all('/jsonp(.*?)\}\)/', $content, $childs);
             $list = [];
-            foreach($childs[0] as $item) {
+            foreach ($childs[0] as $item) {
                 preg_match_all('/expoSrv(.*?)pictureUrl":"(.*?)"(.*?)name":"(.*?)"(.*?)picHeight/', $item, $matches);
                 $list[] = array_combine($matches[4], $matches[2]);
             }

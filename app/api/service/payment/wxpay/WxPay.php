@@ -18,32 +18,39 @@
  *
  */
 namespace App\Services\Payment\wxpay;
+
 use App\Services\Payment\wxpay\TenpayHttpClient;
 use Log;
 
-class WxPay {
+class WxPay
+{
 
     /** Token获取网关地址*/
-    var $tokenUrl;
+    public $tokenUrl;
 
     /**预支付网关url地址 */
-    var $gateUrl;
+    public $gateUrl;
 
-    var $unifiedorderUrl;
+    public $unifiedorderUrl;
 
     /** 商户参数 */
-    var $app_id, $partner_key, $app_secret, $app_key;
+    public $app_id;
+    public $partner_key;
+    public $app_secret;
+    public $app_key;
 
     /**  Token */
-    var $Token;
+    public $Token;
 
     /** debug信息 */
-    var $debugInfo;
+    public $debugInfo;
 
-    function __construct(){
+    public function __construct()
+    {
         $this->RequestHandler();
     }
-    function RequestHandler(){
+    public function RequestHandler()
+    {
         $this->tokenUrl		= 'https://api.weixin.qq.com/cgi-bin/token';
         $this->gateUrl		= 'https://api.weixin.qq.com/pay/genprepay';
         $this->notifyUrl	= 'https://gw.tenpay.com/gateway/simpleverifynotifyid.xml';
@@ -52,7 +59,8 @@ class WxPay {
     /**
      *初始化函数。
      */
-    function init($appid, $appsecret,$partnerkey) {
+    public function init($appid, $appsecret, $partnerkey)
+    {
         $this->debugInfo	= '';
         $this->Token		= '';
         $this->app_id		= $appid;
@@ -62,20 +70,22 @@ class WxPay {
     /**
      *获取debug信息
      */
-    function getDebugInfo() {
+    public function getDebugInfo()
+    {
         $res = $this->debugInfo;
         $this->debugInfo = '';
         return $res;
     }
 
     //
-    function httpSend($url, $method, $data){
+    public function httpSend($url, $method, $data)
+    {
         $client = new TenpayHttpClient();
         $client->setReqContent($url);
         $client->setMethod($method);
         $client->setReqBody($data);
         $res =  '';
-        if( $client->call()){
+        if ($client->call()) {
             $res =  $client->getResContent();
         }
         //设置debug信息
@@ -87,26 +97,23 @@ class WxPay {
     }
 
     //获取TOKEN，一天最多获取200次
-    function GetToken(){
-
-
-        if(Cache::has("weixin_access_token"))
-        {
-            if($this->Token = Cache::get('weixin_access_token')){
+    public function GetToken()
+    {
+        if (Cache::has("weixin_access_token")) {
+            if ($this->Token = Cache::get('weixin_access_token')) {
                 return $this->Token;
             }
         }
 
         $url= $this->tokenUrl . '?grant_type=client_credential&appid='.$this->app_id .'&secret='.$this->app_secret;
-        $json=$this->httpSend($url,'GET','');
-        if( $json != ""){
+        $json=$this->httpSend($url, 'GET', '');
+        if ($json != "") {
             $tk = json_decode($json);
-            if( $tk->access_token != "" )
-            {
+            if ($tk->access_token != "") {
                 $this->Token =$tk->access_token;
                 $expires_in = $tk->expires_in;
-                Cache::put("weixin_access_token",$this->Token,$expires_in);
-            }else{
+                Cache::put("weixin_access_token", $this->Token, $expires_in);
+            } else {
                 $this->Token = '';
             }
         }
@@ -119,12 +126,13 @@ class WxPay {
     /**
      *创建package签名
      */
-    function createMd5Sign($signParams) {
+    public function createMd5Sign($signParams)
+    {
         $signPars = '';
 
         ksort($signParams);
-        foreach($signParams as $k =>$v) {
-            if($v != "" && 'sign' !=$k) {
+        foreach ($signParams as $k =>$v) {
+            if ($v != "" && 'sign' !=$k) {
                 $signPars .= $k . '=' .$v.'&';
             }
         }
@@ -135,15 +143,14 @@ class WxPay {
         $this->_setDebugInfo('md5签名:'.$signPars . ' => sign:' .$sign);
 
         return $sign;
-
     }
 
     //获取带参数的签名包
-    function genPackage($packageParams){
-
+    public function genPackage($packageParams)
+    {
         $sign = $this->createMd5Sign($packageParams);
         $reqPars = '';
-        foreach ($packageParams as $k =>$v ){
+        foreach ($packageParams as $k =>$v) {
             $reqPars.=$k . '='.URLencode($v) . '&';
         }
         $reqPars = $reqPars . 'sign=' .$sign;
@@ -154,13 +161,14 @@ class WxPay {
     }
 
     //创建签名SHA1
-    function createSHA1Sign($packageParams){
+    public function createSHA1Sign($packageParams)
+    {
         $signPars = '';
         ksort($packageParams);
-        foreach($packageParams as $k=> $v) {
-            if($signPars == ''){
+        foreach ($packageParams as $k=> $v) {
+            if ($signPars == '') {
                 $signPars =$signPars .$k. '=' .$v;
-            }else{
+            } else {
                 $signPars =$signPars. '&' .$k. '=' .$v;
             }
         }
@@ -174,23 +182,23 @@ class WxPay {
     }
 
     //提交预支付
-    function sendPrepay($packageParams){
+    public function sendPrepay($packageParams)
+    {
         $prepayid = null;
 
         $smlStr = $this->arrayToXml($packageParams);
 
         $url= $this->unifiedorderUrl;
 
-        $res = $this->httpSend($url,'POST',$smlStr);
+        $res = $this->httpSend($url, 'POST', $smlStr);
 
         $res = $this->xmlToArray($res);
-        if($res['return_code'] == 'SUCCESS' && $res['result_code'] == 'SUCCESS'
-        && $this->verifySignResponse($res))
-        {
+        if ($res['return_code'] == 'SUCCESS' && $res['result_code'] == 'SUCCESS'
+        && $this->verifySignResponse($res)) {
             return $res['prepay_id'];
         }
 
-        if($res['return_code'] == 'FAIL') {
+        if ($res['return_code'] == 'FAIL') {
             // throw new \Exception("提交预支付交易单失败:{$res['return_msg']}");
             Log::error("提交预支付交易单失败:{$res['return_msg']}");
         }
@@ -208,7 +216,7 @@ class WxPay {
     protected function arrayToXml($params)
     {
         $xml = '<xml>';
-        foreach($params as $key => $value) {
+        foreach ($params as $key => $value) {
             $xml .= "<{$key}>";
             $xml .= "<![CDATA[{$value}]]>";
             $xml .= "</{$key}>";
@@ -256,8 +264,7 @@ class WxPay {
         $arr = [];
         $xmlObj->rewind(); //指针指向第一个元素
         while (1) {
-            if( ! is_object($xmlObj->current()) )
-            {
+            if (! is_object($xmlObj->current())) {
                 break;
             }
             $arr[$xmlObj->key()] = $xmlObj->current()->__toString();
@@ -274,16 +281,14 @@ class WxPay {
         unset($tmpArr['sign']);
         ksort($tmpArr);
         $str = '';
-        foreach($tmpArr as $key => $value) {
-            if($value)
-            {
+        foreach ($tmpArr as $key => $value) {
+            if ($value) {
                 $str .= "$key=$value&";
             }
-
         }
         $str .= 'key='.$this->partner_key;
 
-        if($arr['sign'] == $this->signMd5($str)) {
+        if ($arr['sign'] == $this->signMd5($str)) {
             return true;
         }
         return false;
@@ -304,8 +309,8 @@ class WxPay {
     /**
      *设置debug信息
      */
-    function _setDebugInfo($debugInfo) {
+    public function _setDebugInfo($debugInfo)
+    {
         $this->debugInfo = PHP_EOL.$this->debugInfo.$debugInfo.PHP_EOL;
     }
 }
-?>

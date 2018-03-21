@@ -8,7 +8,7 @@ class UserRegStatus extends BaseModel
 {
     protected $connection = 'shop';
     protected $table      = 'user_reg_status';
-    public    $timestamps = false;
+    public $timestamps = false;
     protected $primaryKey = 'user_id';
     protected $guarded = [];
     

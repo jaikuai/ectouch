@@ -22,6 +22,4 @@ class Suppliers extends Model
     ];
 
     protected $guarded = [];
-
-        
 }

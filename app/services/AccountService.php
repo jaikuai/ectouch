@@ -2,7 +2,6 @@
 
 namespace App\Services;
 
-
 class AccountService
 {
     /**
@@ -16,7 +15,7 @@ class AccountService
      * @param   int $change_type 变动类型：参见常量文件
      * @return  void
      */
-    function log_account_change($user_id, $user_money = 0, $frozen_money = 0, $rank_points = 0, $pay_points = 0, $change_desc = '', $change_type = ACT_OTHER)
+    public function log_account_change($user_id, $user_money = 0, $frozen_money = 0, $rank_points = 0, $pay_points = 0, $change_desc = '', $change_type = ACT_OTHER)
     {
         // 插入帐户变动记录
         $account_log = [
@@ -49,7 +48,7 @@ class AccountService
      * @param   int $user_id 会员的ID
      * @return  boolen
      */
-    function del_user_account($rec_id, $user_id)
+    public function del_user_account($rec_id, $user_id)
     {
         $sql = 'DELETE FROM ' . $GLOBALS['ecs']->table('user_account') .
             " WHERE is_paid = 0 AND id = '$rec_id' AND user_id = '$user_id'";
@@ -63,7 +62,7 @@ class AccountService
      * @param   int $user_id 会员ID
      * @return  int
      */
-    function get_user_surplus($user_id)
+    public function get_user_surplus($user_id)
     {
         $sql = "SELECT SUM(user_money) FROM " . $GLOBALS['ecs']->table('account_log') .
             " WHERE user_id = '$user_id'";
@@ -79,7 +78,7 @@ class AccountService
      *
      * @return  int
      */
-    function get_surplus_info($surplus_id)
+    public function get_surplus_info($surplus_id)
     {
         $sql = 'SELECT * FROM ' . $GLOBALS['ecs']->table('user_account') .
             " WHERE id = '$surplus_id'";
@@ -96,7 +95,7 @@ class AccountService
      * @param   int $start 开始显示的条数
      * @return  array
      */
-    function get_account_log($user_id, $num, $start)
+    public function get_account_log($user_id, $num, $start)
     {
         $account_log = [];
         $sql = 'SELECT * FROM ' . $GLOBALS['ecs']->table('user_account') .
@@ -149,7 +148,7 @@ class AccountService
      *
      * @return  int
      */
-    function update_user_account($surplus)
+    public function update_user_account($surplus)
     {
         $sql = 'UPDATE ' . $GLOBALS['ecs']->table('user_account') . ' SET ' .
             "amount     = '$surplus[amount]', " .
@@ -171,7 +170,7 @@ class AccountService
      *
      * @return  int
      */
-    function insert_user_account($surplus, $amount)
+    public function insert_user_account($surplus, $amount)
     {
         $sql = 'INSERT INTO ' . $GLOBALS['ecs']->table('user_account') .
             ' (user_id, admin_user, amount, add_time, paid_time, admin_note, user_note, process_type, payment, is_paid)' .
@@ -180,5 +179,4 @@ class AccountService
 
         return $GLOBALS['db']->insert_id();
     }
-
 }

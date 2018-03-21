@@ -2,7 +2,6 @@
 
 namespace App\Services;
 
-
 class AgencyService
 {
 
@@ -11,7 +10,7 @@ class AgencyService
      * @param   array $regions 配送区域（1、2、3、4级按顺序）
      * @return  int     办事处id，可能为0
      */
-    function get_agency_by_regions($regions)
+    public function get_agency_by_regions($regions)
     {
         if (!is_array($regions) || empty($regions)) {
             return 0;
@@ -37,5 +36,4 @@ class AgencyService
             }
         }
     }
-
 }

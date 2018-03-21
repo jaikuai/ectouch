@@ -31,6 +31,4 @@ class Feedback extends Model
     ];
 
     protected $guarded = [];
-
-        
 }

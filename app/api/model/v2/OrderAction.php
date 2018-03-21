@@ -5,12 +5,12 @@ namespace app\api\model\v2;
 use app\api\model\BaseModel;
 use app\api\classes\Token;
 
-class OrderAction extends BaseModel {
-
+class OrderAction extends BaseModel
+{
     protected $connection = 'shop';
     protected $table      = 'order_action';
     protected $primaryKey = 'action_id';
-    public    $timestamps = false;
+    public $timestamps = false;
 
     protected $guarded = [];
 

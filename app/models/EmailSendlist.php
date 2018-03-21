@@ -23,6 +23,4 @@ class EmailSendlist extends Model
     ];
 
     protected $guarded = [];
-
-        
 }

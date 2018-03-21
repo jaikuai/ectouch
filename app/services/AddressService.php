@@ -2,7 +2,6 @@
 
 namespace App\Services;
 
-
 class AddressService
 {
     /**
@@ -10,7 +9,7 @@ class AddressService
      * @param   int $user_id 用户编号
      * @return  array
      */
-    function get_consignee_list($user_id)
+    public function get_consignee_list($user_id)
     {
         $sql = "SELECT * FROM " . $GLOBALS['ecs']->table('user_address') .
             " WHERE user_id = '$user_id' LIMIT 5";
@@ -28,7 +27,7 @@ class AddressService
      * @param   boolean $default 是否将该收货人信息设置为默认收货人信息
      * @return  boolean
      */
-    function save_consignee($consignee, $default = false)
+    public function save_consignee($consignee, $default = false)
     {
         if ($consignee['address_id'] > 0) {
             // 修改地址
@@ -57,7 +56,7 @@ class AddressService
      * @param   integer $id
      * @return  boolean
      */
-    function drop_consignee($id)
+    public function drop_consignee($id)
     {
         $sql = "SELECT user_id FROM " . $GLOBALS['ecs']->table('user_address') . " WHERE address_id = '$id'";
         $uid = $GLOBALS['db']->getOne($sql);
@@ -79,7 +78,7 @@ class AddressService
      * @param   array $address
      * @return  bool
      */
-    function update_address($address)
+    public function update_address($address)
     {
         $address_id = intval($address['address_id']);
         unset($address['address_id']);
@@ -107,7 +106,7 @@ class AddressService
      * @param   int $user_id 用户id
      * @return  array
      */
-    function address_list($user_id)
+    public function address_list($user_id)
     {
         $sql = "SELECT * FROM " . $GLOBALS['ecs']->table('user_address') .
             " WHERE user_id = '$user_id'";
@@ -120,7 +119,7 @@ class AddressService
      * @param   int $address_id 地址id
      * @return  array
      */
-    function address_info($address_id)
+    public function address_info($address_id)
     {
         $sql = "SELECT * FROM " . $GLOBALS['ecs']->table('user_address') .
             " WHERE address_id = '$address_id'";
@@ -132,7 +131,7 @@ class AddressService
      * @param   int $user_id 用户编号
      * @return  array
      */
-    function get_consignee($user_id)
+    public function get_consignee($user_id)
     {
         if (session('?flow_consignee')) {
             // 如果存在session，则直接返回session中的收货人信息
@@ -162,7 +161,7 @@ class AddressService
      * @param   int $flow_type 购物流程类型
      * @return  bool    true 完整 false 不完整
      */
-    function check_consignee_info($consignee, $flow_type)
+    public function check_consignee_info($consignee, $flow_type)
     {
         if (exist_real_goods(0, $flow_type)) {
             // 如果存在实体商品
@@ -194,6 +193,4 @@ class AddressService
                 !empty($consignee['tel']);
         }
     }
-
-
 }

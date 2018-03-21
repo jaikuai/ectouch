@@ -24,6 +24,4 @@ class AdPosition extends Model
     ];
 
     protected $guarded = [];
-
-        
 }

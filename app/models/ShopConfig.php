@@ -24,6 +24,4 @@ class ShopConfig extends Model
     ];
 
     protected $guarded = [];
-
-        
 }

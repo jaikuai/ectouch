@@ -35,7 +35,7 @@ class Sms
            'return_data' => 'json',//返回类型
         );
 
-        $ac = self::get_ac($param,$token);//验证签名
+        $ac = self::get_ac($param, $token);//验证签名
 
         $param['ac'] = $ac;//签名值放入参数中
 
@@ -64,18 +64,20 @@ class Sms
     }
 
     //验证方法
-    public static function get_ac($params,$token){
+    public static function get_ac($params, $token)
+    {
         ksort($params);
         $tmp_verfy='';
-        foreach($params as $key=>$value){
+        foreach ($params as $key=>$value) {
             $params[$key]=stripslashes($value);
             $tmp_verfy.=$params[$key];
         }
         return strtolower(md5(trim($tmp_verfy.$token)));
     }
 
-    public static function generate_verify_code($num = 4) {
-        if(!$num) {
+    public static function generate_verify_code($num = 4)
+    {
+        if (!$num) {
             return false;
         }
         
@@ -88,5 +90,4 @@ class Sms
 
         return $code;
     }
-
 }

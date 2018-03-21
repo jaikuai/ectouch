@@ -28,7 +28,6 @@ class PaymentService
      */
     public function create($data)
     {
-
     }
 
     /**
@@ -38,7 +37,6 @@ class PaymentService
     public function detail($id)
     {
         return $this->article->show($id);
-
     }
 
     /**
@@ -47,7 +45,6 @@ class PaymentService
      */
     public function update($data)
     {
-
     }
 
     /**
@@ -56,14 +53,13 @@ class PaymentService
      */
     public function delete($id)
     {
-
     }
 
     /**
      * 取得已安装的支付方式列表
      * @return  array   已安装的配送方式列表
      */
-    function payment_list()
+    public function payment_list()
     {
         $sql = 'SELECT pay_id, pay_name ' .
             'FROM ' . $GLOBALS['ecs']->table('payment') .
@@ -77,7 +73,7 @@ class PaymentService
      * @param   int $pay_id 支付方式id
      * @return  array   支付方式信息
      */
-    function payment_info($pay_id)
+    public function payment_info($pay_id)
     {
         $sql = 'SELECT * FROM ' . $GLOBALS['ecs']->table('payment') .
             " WHERE pay_id = '$pay_id' AND enabled = 1";
@@ -94,7 +90,7 @@ class PaymentService
      * @param   mix $cod_fee
      * @return  float
      */
-    function pay_fee($payment_id, $order_amount, $cod_fee = null)
+    public function pay_fee($payment_id, $order_amount, $cod_fee = null)
     {
         $pay_fee = 0;
         $payment = payment_info($payment_id);
@@ -118,7 +114,7 @@ class PaymentService
      * @param   int $is_online 是否支持在线支付
      * @return  array   配送方式数组
      */
-    function available_payment_list($support_cod, $cod_fee = 0, $is_online = false)
+    public function available_payment_list($support_cod, $cod_fee = 0, $is_online = false)
     {
         $sql = 'SELECT pay_id, pay_code, pay_name, pay_fee, pay_desc, pay_config, is_cod' .
             ' FROM ' . $GLOBALS['ecs']->table('payment') .
@@ -154,7 +150,7 @@ class PaymentService
      * 取得返回信息地址
      * @param   string $code 支付方式代码
      */
-    function return_url($code)
+    public function return_url($code)
     {
         return $GLOBALS['ecs']->url() . 'respond.php?code=' . $code;
     }
@@ -163,7 +159,7 @@ class PaymentService
      *  取得某支付方式信息
      * @param  string $code 支付方式代码
      */
-    function get_payment($code)
+    public function get_payment($code)
     {
         $sql = 'SELECT * FROM ' . $GLOBALS['ecs']->table('payment') .
             " WHERE pay_code = '$code' AND enabled = '1'";
@@ -188,7 +184,7 @@ class PaymentService
      * @param   float $money 支付接口返回的金额
      * @return  true
      */
-    function check_money($log_id, $money)
+    public function check_money($log_id, $money)
     {
         if (is_numeric($log_id)) {
             $sql = 'SELECT order_amount FROM ' . $GLOBALS['ecs']->table('pay_log') .
@@ -213,7 +209,7 @@ class PaymentService
      * @param   string $note 备注
      * @return  void
      */
-    function order_paid($log_id, $pay_status = PS_PAYED, $note = '')
+    public function order_paid($log_id, $pay_status = PS_PAYED, $note = '')
     {
         // 取得支付编号
         $log_id = intval($log_id);
@@ -255,8 +251,13 @@ class PaymentService
                     // 如果需要，发短信
                     if ($GLOBALS['_CFG']['sms_order_payed'] == '1' && $GLOBALS['_CFG']['sms_shop_mobile'] != '') {
                         $sms = new Sms();
-                        $sms->send($GLOBALS['_CFG']['sms_shop_mobile'],
-                            sprintf($GLOBALS['_LANG']['order_payed_sms'], $order_sn, $order['consignee'], $order['tel']), '', 13, 1);
+                        $sms->send(
+                            $GLOBALS['_CFG']['sms_shop_mobile'],
+                            sprintf($GLOBALS['_LANG']['order_payed_sms'], $order_sn, $order['consignee'], $order['tel']),
+                            '',
+                            13,
+                            1
+                        );
                     }
 
                     // 对虚拟商品的支持
@@ -348,7 +349,7 @@ class PaymentService
      * @param   bool $include_balance 是否包含余额支付（冲值时不应包括）
      * @return  array   已安装的配送方式列表
      */
-    function get_online_payment_list($include_balance = true)
+    public function get_online_payment_list($include_balance = true)
     {
         $sql = 'SELECT pay_id, pay_code, pay_name, pay_fee, pay_desc ' .
             'FROM ' . $GLOBALS['ecs']->table('payment') .
@@ -375,7 +376,7 @@ class PaymentService
      *
      * @return  int
      */
-    function insert_pay_log($id, $amount, $type = PAY_SURPLUS, $is_paid = 0)
+    public function insert_pay_log($id, $amount, $type = PAY_SURPLUS, $is_paid = 0)
     {
         $sql = 'INSERT INTO ' . $GLOBALS['ecs']->table('pay_log') . " (order_id, order_amount, order_type, is_paid)" .
             " VALUES  ('$id', '$amount', '$type', '$is_paid')";
@@ -393,7 +394,7 @@ class PaymentService
      *
      * @return  int
      */
-    function get_paylog_id($surplus_id, $pay_type = PAY_SURPLUS)
+    public function get_paylog_id($surplus_id, $pay_type = PAY_SURPLUS)
     {
         $sql = 'SELECT log_id FROM' . $GLOBALS['ecs']->table('pay_log') .
             " WHERE order_id = '$surplus_id' AND order_type = '$pay_type' AND is_paid = 0";
@@ -407,7 +408,7 @@ class PaymentService
      * @param   bool $is_cod 是否货到付款
      * @return  array
      */
-    function payment_id_list($is_cod)
+    public function payment_id_list($is_cod)
     {
         $sql = "SELECT pay_id FROM " . $GLOBALS['ecs']->table('payment');
         if ($is_cod) {
@@ -418,5 +419,4 @@ class PaymentService
 
         return $GLOBALS['db']->getCol($sql);
     }
-
 }

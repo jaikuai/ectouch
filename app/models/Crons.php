@@ -34,6 +34,4 @@ class Crons extends Model
     ];
 
     protected $guarded = [];
-
-        
 }

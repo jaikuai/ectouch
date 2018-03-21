@@ -30,6 +30,4 @@ class Shipping extends Model
     ];
 
     protected $guarded = [];
-
-        
 }

@@ -12,8 +12,7 @@ class VersionController extends Controller
      */
     public function check()
     {
-    	$data = Version::checkVersion();
+        $data = Version::checkVersion();
         return $this->json($data);
     }
-
 }

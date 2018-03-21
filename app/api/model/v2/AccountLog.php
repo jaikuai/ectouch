@@ -11,7 +11,7 @@ class AccountLog extends BaseModel
 
     protected $table      = 'account_log';
 
-    public    $timestamps = false;
+    public $timestamps = false;
 
     protected $appends = ['id', 'change', 'reason', 'created_at'];
 
@@ -69,7 +69,7 @@ class AccountLog extends BaseModel
         
         $flag = 0;
         /* 更新用户信息 */
-        if($member = Member::where('user_id', $uid)->first()){
+        if ($member = Member::where('user_id', $uid)->first()) {
             $member->user_money += $user_money;
             $member->frozen_money += $frozen_money;
             $member->rank_points += $rank_points;
@@ -77,8 +77,7 @@ class AccountLog extends BaseModel
             $flag = $member->save();
         }
 
-        if($flag)
-        {
+        if ($flag) {
             /* 插入帐户变动记录 */
             $model = new AccountLog;
             $model->user_id             = $uid;
@@ -90,8 +89,8 @@ class AccountLog extends BaseModel
             $model->change_type         = $change_type;
             $model->change_time         = time();
 
-            if ($model->save()){
-              return true;
+            if ($model->save()) {
+                return true;
             }
         }
         return false;
@@ -121,5 +120,4 @@ class AccountLog extends BaseModel
     {
         return null;
     }
-
 }

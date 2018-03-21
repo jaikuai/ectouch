@@ -20,6 +20,4 @@ class Adsense extends Model
     ];
 
     protected $guarded = [];
-
-        
 }

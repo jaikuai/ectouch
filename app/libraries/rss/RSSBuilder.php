@@ -236,14 +236,15 @@ class RSSBuilder extends RSSBase
     // @uses setEncoding(), setAbout(), setTitle(), setDescription(), setImageLink(), setCategory(), setCache()
     // @access private
     //-------------------------------------------------
-    public function RSSBuilder($encoding = '',
+    public function RSSBuilder(
+        $encoding = '',
                                $about = '',
                                $title = '',
                                $description = '',
                                $image_link = '',
                                $category = '',
-                               $cache = '')
-    {
+                               $cache = ''
+    ) {
         $this->setEncoding($encoding);
         $this->setAbout($about);
         $this->setTitle($title);
@@ -272,14 +273,15 @@ class RSSBuilder extends RSSBase
     // @uses setPublisher(), setCreator(), setDate(), setLanguage(), setRights(), setCoverage(), setContributor()
     // @access public
     //-------------------------------------------------
-    public function addDCdata($publisher = '',
+    public function addDCdata(
+        $publisher = '',
                               $creator = '',
                               $date = '',
                               $language = '',
                               $rights = '',
                               $coverage = '',
-                              $contributor = '')
-    {
+                              $contributor = ''
+    ) {
         $this->setPublisher($publisher);
         $this->setCreator($creator);
         $this->setDate($date);
@@ -847,23 +849,26 @@ class RSSBuilder extends RSSBase
     // @see $items
     // @uses RSSItem
     //-------------------------------------------------
-    public function addItem($about = '',
+    public function addItem(
+        $about = '',
                             $title = '',
                             $link = '',
                             $description = '',
                             $subject = '',
                             $date = '',
                             $author = '',
-                            $comments = '')
-    {
-        $item = new RSSItem($about,
+                            $comments = ''
+    ) {
+        $item = new RSSItem(
+            $about,
             $title,
             $link,
             $description,
             $subject,
             $date,
             $author = '',
-            $comments = '');
+            $comments = ''
+        );
         $this->items[] = $item;
     } // end function
 

@@ -61,8 +61,11 @@ class ArticleController extends InitController
             $sort_flag = sort_flag($article_list['filter']);
             $this->smarty->assign($sort_flag['tag'], $sort_flag['img']);
 
-            return make_json_result($this->smarty->fetch('article_list.htm'), '',
-                ['filter' => $article_list['filter'], 'page_count' => $article_list['page_count']]);
+            return make_json_result(
+                $this->smarty->fetch('article_list.htm'),
+                '',
+                ['filter' => $article_list['filter'], 'page_count' => $article_list['page_count']]
+            );
         }
 
         /**
@@ -352,7 +355,6 @@ class ArticleController extends InitController
          * 将商品加入关联
          */
         if ($_REQUEST['act'] == 'add_link_goods') {
-
             $json = new Json();
 
             check_authz_json('article_manage');
@@ -388,7 +390,6 @@ class ArticleController extends InitController
          * 将商品删除关联
          */
         if ($_REQUEST['act'] == 'drop_link_goods') {
-
             $json = new Json();
 
             check_authz_json('article_manage');
@@ -422,7 +423,6 @@ class ArticleController extends InitController
          * 搜索商品
          */
         if ($_REQUEST['act'] == 'get_goods_list') {
-
             $json = new Json();
 
             $filters = $json->decode($_GET['JSON']);

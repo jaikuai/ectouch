@@ -2,7 +2,6 @@
 
 namespace app\shop\controller;
 
-
 use app\libraries\Json;
 use app\libraries\Captcha;
 
@@ -1146,8 +1145,12 @@ class UserController extends InitController
             }
 
             if (add_booking($booking)) {
-                return show_message($GLOBALS['_LANG']['booking_success'], $GLOBALS['_LANG']['back_booking_list'], 'user.php?act=booking_list',
-                    'info');
+                return show_message(
+                    $GLOBALS['_LANG']['booking_success'],
+                    $GLOBALS['_LANG']['back_booking_list'],
+                    'user.php?act=booking_list',
+                    'info'
+                );
             } else {
                 return $this->err->show($GLOBALS['_LANG']['booking_list_lnk'], 'user.php?act=booking_list');
             }

@@ -38,7 +38,6 @@ class ArticleRepository implements ArticleInterface
      */
     public function create($data)
     {
-
     }
 
     /**
@@ -57,7 +56,6 @@ class ArticleRepository implements ArticleInterface
      */
     public function update($data)
     {
-
     }
 
     /**
@@ -65,7 +63,6 @@ class ArticleRepository implements ArticleInterface
      */
     public function delete($id)
     {
-
     }
 
     /**
@@ -273,6 +270,4 @@ class ArticleRepository implements ArticleInterface
             return $spec_cat_id_array;
         }
     }
-
-
 }

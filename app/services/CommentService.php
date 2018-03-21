@@ -2,7 +2,6 @@
 
 namespace App\Services;
 
-
 class CommentService
 {
 
@@ -15,7 +14,7 @@ class CommentService
      * @param   int $start 列表起始页
      * @return  array
      */
-    function get_comment_list($user_id, $page_size, $start)
+    public function get_comment_list($user_id, $page_size, $start)
     {
         $sql = "SELECT c.*, g.goods_name AS cmt_name, r.content AS reply_content, r.add_time AS reply_time " .
             " FROM " . $GLOBALS['ecs']->table('comment') . " AS c " .
@@ -56,5 +55,4 @@ class CommentService
 
         return $comments;
     }
-
 }

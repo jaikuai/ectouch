@@ -250,7 +250,6 @@ class NavigatorController extends InitController
                 return make_json_error($this->db->error());
             }
         }
-
     }
 
     private function get_nav()
@@ -357,10 +356,10 @@ class NavigatorController extends InitController
         $uri = strtolower(str_replace('&amp;', '&', $uri));
         $arr = explode('-', $uri);
         switch ($arr[0]) {
-            case 'category' :
+            case 'category':
                 return ['type' => 'c', 'id' => $arr[1]];
                 break;
-            case 'article_cat' :
+            case 'article_cat':
                 return ['type' => 'a', 'id' => $arr[1]];
                 break;
             default:
@@ -370,13 +369,13 @@ class NavigatorController extends InitController
 
         list($fn, $pm) = explode('?', $uri);
 
-        if (strpos($uri, '&') === FALSE) {
+        if (strpos($uri, '&') === false) {
             $arr = [$pm];
         } else {
             $arr = explode('&', $pm);
         }
         switch ($fn) {
-            case 'category.php' :
+            case 'category.php':
                 //商品分类
                 foreach ($arr as $k => $v) {
                     list($key, $val) = explode('=', $v);
@@ -385,7 +384,7 @@ class NavigatorController extends InitController
                     }
                 }
                 break;
-            case 'article_cat.php'  :
+            case 'article_cat.php':
                 //文章分类
                 foreach ($arr as $k => $v) {
                     list($key, $val) = explode('=', $v);
@@ -399,7 +398,6 @@ class NavigatorController extends InitController
                 return false;
                 break;
         }
-
     }
 
     /**

@@ -46,8 +46,11 @@ class VoteController extends InitController
             $this->smarty->assign('record_count', $vote_list['record_count']);
             $this->smarty->assign('page_count', $vote_list['page_count']);
 
-            return make_json_result($this->smarty->fetch('vote_list.htm'), '',
-                ['filter' => $vote_list['filter'], 'page_count' => $vote_list['page_count']]);
+            return make_json_result(
+                $this->smarty->fetch('vote_list.htm'),
+                '',
+                ['filter' => $vote_list['filter'], 'page_count' => $vote_list['page_count']]
+            );
         }
 
         /**

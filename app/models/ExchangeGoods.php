@@ -22,6 +22,4 @@ class ExchangeGoods extends Model
     ];
 
     protected $guarded = [];
-
-        
 }

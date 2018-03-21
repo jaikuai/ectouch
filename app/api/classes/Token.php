@@ -139,7 +139,6 @@ class Token
 
         if ($token) {
             if ($payload = self::decode($token)) {
-
                 if (is_object($payload)) {
 
                     // 超过1天
@@ -151,7 +150,7 @@ class Token
 
                     // 版本号不匹配
                     if (property_exists($payload, 'ver')) {
-                        if(version_compare(config('token.ver'), $payload->ver) != 0){
+                        if (version_compare(config('token.ver'), $payload->ver) != 0) {
                             return self::new_token($payload);
                         }
                     }
@@ -165,7 +164,6 @@ class Token
         }
 
         return false;
-
     }
 
     private static function new_token($payload)
@@ -186,7 +184,7 @@ class Token
     }
 
     private static function parse_domain($url)
-    {   
+    {
         $data = parse_url($url);
         $host = $data['host'];
 
@@ -229,7 +227,7 @@ class Token
         if ($keyId !== null) {
             $header['kid'] = $keyId;
         }
-        if ( isset($head) && is_array($head) ) {
+        if (isset($head) && is_array($head)) {
             $header = array_merge($head, $header);
         }
         $segments = array();
@@ -261,7 +259,7 @@ class Token
             return false;
         }
         list($function, $algorithm) = self::$supported_algs[$alg];
-        switch($function) {
+        switch ($function) {
             case 'hash_hmac':
                 return hash_hmac($algorithm, $msg, $key, true);
             case 'openssl':
@@ -295,7 +293,7 @@ class Token
         }
 
         list($function, $algorithm) = self::$supported_algs[$alg];
-        switch($function) {
+        switch ($function) {
             case 'openssl':
                 $success = openssl_verify($msg, $signature, $key, $algorithm);
                 if (!$success) {
@@ -303,6 +301,7 @@ class Token
                 } else {
                     return $signature;
                 }
+                // no break
             case 'hash_hmac':
             default:
                 $hash = hash_hmac($algorithm, $msg, $key, true);
@@ -447,7 +446,7 @@ class Token
     }
 
     private static function verifyPlatform($uid)
-    {   
+    {
         return true;
         $platform = Header::getUserAgent('Platform');
 

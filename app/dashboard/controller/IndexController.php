@@ -10,7 +10,6 @@ use app\libraries\Image;
  */
 class IndexController extends InitController
 {
-
     public function index()
     {
         load_helper('order');
@@ -808,7 +807,8 @@ class IndexController extends InitController
          * 拖拽工具栏
          */
         if ($_REQUEST['act'] == 'drag') {
-            return $this->smarty->display('drag.htm');;
+            return $this->smarty->display('drag.htm');
+            ;
         }
 
         /**

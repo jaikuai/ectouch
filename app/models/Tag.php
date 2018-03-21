@@ -22,6 +22,4 @@ class Tag extends Model
     ];
 
     protected $guarded = [];
-
-        
 }

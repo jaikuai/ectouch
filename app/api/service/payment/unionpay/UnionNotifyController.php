@@ -31,22 +31,23 @@ class UnionNotifyController extends BaseController
     public function postNotify()
     {
         $unionpay = new Union;
-        $unionpay->config = Config::get('unionpay');; //上面给出的配置参数
+        $unionpay->config = Config::get('unionpay');
+        ; //上面给出的配置参数
         $postStr = $_POST;
         $unionpay->params = $_POST;
         
-        if(!$unionpay->verifySign()) {
+        if (!$unionpay->verifySign()) {
             echo 'fail';
             exit;
         }
-        if($unionpay->params['respCode'] == '00') {
+        if ($unionpay->params['respCode'] == '00') {
             $out_trade_no = $unionpay->params['queryId'];
             $order_sn = $unionpay->params['orderId'];
 
-           //业务代码
-            $this->pay($order_sn,$out_trade_no);
+            //业务代码
+            $this->pay($order_sn, $out_trade_no);
 
-            $this->callback(json_encode($unionpay->params),$order_sn,$out_trade_no);
+            $this->callback(json_encode($unionpay->params), $order_sn, $out_trade_no);
         }
         echo 'success';
     }
@@ -57,7 +58,7 @@ class UnionNotifyController extends BaseController
      * @param  [type] $order_sn [系统订单号]
      * @param  [type] $transaction_id [银联订单号]
      */
-    private function pay($order_sn,$transaction_id)
+    private function pay($order_sn, $transaction_id)
     {
         //修改订单状态
         $orders = Trade::where('sn', $order_sn)->firstOrFail();
@@ -78,10 +79,10 @@ class UnionNotifyController extends BaseController
      * @param  [type]   $trade_no [银联交易号]
      * @return function           [交易流水记录]
      */
-    private function callback($json,$order_sn,$trade_no)
+    private function callback($json, $order_sn, $trade_no)
     {
-        $user_id = Trade::where('sn',$order_sn)->first()->user_id;
-        $order_id = Trade::where('sn',$order_sn)->first()->id;
+        $user_id = Trade::where('sn', $order_sn)->first()->user_id;
+        $order_id = Trade::where('sn', $order_sn)->first()->id;
         
         $callback   = new Callback;
         $callback->order_id = $order_id;
@@ -92,5 +93,4 @@ class UnionNotifyController extends BaseController
 
         $callback->save();
     }
-
 }

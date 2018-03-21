@@ -2,7 +2,6 @@
 
 namespace App\Services;
 
-
 class VoteService
 {
     /**
@@ -12,7 +11,7 @@ class VoteService
      * @param   integer $id 调查的编号
      * @return  array
      */
-    function get_vote($id = '')
+    public function get_vote($id = '')
     {
         // 随机取得一个调查的主题
         if (empty($id)) {
@@ -71,5 +70,4 @@ class VoteService
             return $vote;
         }
     }
-
 }

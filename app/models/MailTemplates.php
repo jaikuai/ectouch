@@ -26,6 +26,4 @@ class MailTemplates extends Model
     ];
 
     protected $guarded = [];
-
-        
 }

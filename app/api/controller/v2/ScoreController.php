@@ -7,15 +7,15 @@ use app\api\model\v2\Member;
 use app\api\model\v2\Features;
 use app\api\model\v2\AccountLog;
 
-class ScoreController extends Controller {
+class ScoreController extends Controller
+{
 
     /**
     * POST ecapi.score.get
     */
     public function view()
     {
-        if($res = Features::check('score'))
-        {
+        if ($res = Features::check('score')) {
             return $this->json($res);
         }
 
@@ -28,8 +28,7 @@ class ScoreController extends Controller {
     */
     public function history()
     {
-        if($res = Features::check('score'))
-        {
+        if ($res = Features::check('score')) {
             return $this->json($res);
         }
 

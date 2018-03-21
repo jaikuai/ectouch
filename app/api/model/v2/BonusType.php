@@ -5,11 +5,11 @@ namespace app\api\model\v2;
 use app\api\model\BaseModel;
 use app\api\classes\Token;
 
-class BonusType extends BaseModel {
-
+class BonusType extends BaseModel
+{
     protected $connection = 'shop';
     protected $table      = 'bonus_type';
-    public    $timestamps = false;
+    public $timestamps = false;
 
     protected $appends = ['id', 'name', 'status', 'value', 'effective', 'expires', 'condition'];
 
@@ -24,7 +24,6 @@ class BonusType extends BaseModel {
 
         $uid = Token::authorization();
         if (isset($status)) {
-
             $today  = self::today();
             $model = self::join('user_bonus', 'bonus_type.type_id', '=', 'user_bonus.bonus_type_id')
                    ->where('user_id', '<>', 0)
@@ -60,7 +59,6 @@ class BonusType extends BaseModel {
         }
 
         return self::formatError(self::NOT_FOUND);
-
     }
 
     public static function getAvailableListByUser(array $attributes)
@@ -71,7 +69,7 @@ class BonusType extends BaseModel {
 
         $uid = Token::authorization();
 
-        $model =self::join('user_bonus','bonus_type.type_id','=','user_bonus.bonus_type_id')
+        $model =self::join('user_bonus', 'bonus_type.type_id', '=', 'user_bonus.bonus_type_id')
                     ->where('user_id', '<>', 0)
                     ->where('user_id', $uid)
                     ->where('order_id', 0)
@@ -105,11 +103,11 @@ class BonusType extends BaseModel {
     {
         $today  = self::today();
 
-        if($this->order_id > 0){
+        if ($this->order_id > 0) {
             return 2;
-        }elseif ($this->use_end_date >= $today) {
+        } elseif ($this->use_end_date >= $today) {
             return 0;
-        }elseif($this->use_end_date < $today){
+        } elseif ($this->use_end_date < $today) {
             return 1;
         }
     }
@@ -131,7 +129,7 @@ class BonusType extends BaseModel {
 
     public function getConditionAttribute()
     {
-      return $this->attributes['min_goods_amount'];
+        return $this->attributes['min_goods_amount'];
     }
 
 

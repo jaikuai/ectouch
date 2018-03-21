@@ -31,6 +31,4 @@ class FavourableActivity extends Model
     ];
 
     protected $guarded = [];
-
-        
 }

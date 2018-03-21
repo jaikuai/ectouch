@@ -2,7 +2,6 @@
 
 namespace App\Services;
 
-
 class ActivityService
 {
 
@@ -11,7 +10,7 @@ class ActivityService
      * @param   int $act_id 活动id
      * @return  array
      */
-    function favourable_info($act_id)
+    public function favourable_info($act_id)
     {
         $sql = "SELECT * FROM " . $GLOBALS['ecs']->table('favourable_activity') .
             " WHERE act_id = '$act_id'";

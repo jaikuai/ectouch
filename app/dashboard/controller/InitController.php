@@ -133,7 +133,6 @@ class InitController extends Controller
                 }
             }
         }
-
     }
 
     /**

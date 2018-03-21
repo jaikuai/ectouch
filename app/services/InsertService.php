@@ -2,7 +2,6 @@
 
 namespace App\Services;
 
-
 class InsertService
 {
     /**
@@ -11,7 +10,7 @@ class InsertService
      * @access  public
      * @return  string
      */
-    function insert_history()
+    public function insert_history()
     {
         $str = '';
         $history = cookie('history');
@@ -41,7 +40,7 @@ class InsertService
      * @access  public
      * @return  string
      */
-    function insert_cart_info()
+    public function insert_cart_info()
     {
         $sql = 'SELECT SUM(goods_number) AS number, SUM(goods_price * goods_number) AS amount' .
             ' FROM ' . $GLOBALS['ecs']->table('cart') .
@@ -69,7 +68,7 @@ class InsertService
      * @param   integer $num 广告数量
      * @return  string
      */
-    function insert_ads($arr)
+    public function insert_ads($arr)
     {
         static $static_res = null;
 
@@ -154,7 +153,7 @@ class InsertService
      * @access  public
      * @return  string
      */
-    function insert_member_info()
+    public function insert_member_info()
     {
         $need_cache = $GLOBALS['smarty']->caching;
         $GLOBALS['smarty']->caching = false;
@@ -185,7 +184,7 @@ class InsertService
      * @access  public
      * @return  string
      */
-    function insert_comments($arr)
+    public function insert_comments($arr)
     {
         $need_cache = $GLOBALS['smarty']->caching;
         $need_compile = $GLOBALS['smarty']->force_compile;
@@ -222,7 +221,7 @@ class InsertService
      * @access  public
      * @return  string
      */
-    function insert_bought_notes($arr)
+    public function insert_bought_notes($arr)
     {
         $need_cache = $GLOBALS['smarty']->caching;
         $need_compile = $GLOBALS['smarty']->force_compile;
@@ -276,7 +275,7 @@ class InsertService
      * @access  public
      * @return  string
      */
-    function insert_vote()
+    public function insert_vote()
     {
         $vote = get_vote();
         if (!empty($vote)) {
@@ -287,5 +286,4 @@ class InsertService
 
         return $val;
     }
-
 }

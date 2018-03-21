@@ -37,6 +37,4 @@ class Cart extends Model
     ];
 
     protected $guarded = [];
-
-        
 }

@@ -5,11 +5,11 @@ namespace app\api\model\v2;
 use app\api\model\BaseModel;
 use app\api\classes\Token;
 
-class GoodsAttr extends BaseModel {
-
+class GoodsAttr extends BaseModel
+{
     protected $connection = 'shop';
     protected $table      = 'goods_attr';
-    public    $timestamps = false;
+    public $timestamps = false;
 
 
     protected $visible = ['id','attr_name','attr_price','is_multiselect'];
@@ -37,7 +37,7 @@ class GoodsAttr extends BaseModel {
 
     public function getIsmultiselectAttribute()
     {
-        return Attribute::where('attr_id',$this->attr_id)->value('attr_type') == 2 ? true :false;
+        return Attribute::where('attr_id', $this->attr_id)->value('attr_type') == 2 ? true :false;
     }
 
 
@@ -51,21 +51,16 @@ class GoodsAttr extends BaseModel {
      */
     public static function property_price($property)
     {
-        if (!empty($property))
-        {
-            if(is_array($property))
-            {
-                foreach($property as $key=>$val)
-                {
-                    if (strpos($val,',')) {
-                        $property = explode(',',$val);
-                    }else{
+        if (!empty($property)) {
+            if (is_array($property)) {
+                foreach ($property as $key=>$val) {
+                    if (strpos($val, ',')) {
+                        $property = explode(',', $val);
+                    } else {
                         $property[$key]=addslashes($val);
                     }
                 }
-            }
-            else
-            {
+            } else {
                 $property = addslashes($property);
             }
             // $where = db_create_in($property, 'goods_attr_id');
@@ -73,10 +68,8 @@ class GoodsAttr extends BaseModel {
             // $sql = 'SELECT SUM(attr_price) AS attr_price FROM ' . $GLOBALS['ecs']->table('goods_attr') . " WHERE $where";
             // $price = floatval($GLOBALS['db']->getOne($sql));
 
-            $price = self::whereIn('goods_attr_id',$property)->sum('attr_price');
-        }
-        else
-        {
+            $price = self::whereIn('goods_attr_id', $property)->sum('attr_price');
+        } else {
             $price = 0;
         }
 
@@ -86,6 +79,6 @@ class GoodsAttr extends BaseModel {
 
     public function attributes()
     {
-        return $this->belongsTo('app\api\model\v2\Attribute','attr_id','attr_id');
+        return $this->belongsTo('app\api\model\v2\Attribute', 'attr_id', 'attr_id');
     }
 }

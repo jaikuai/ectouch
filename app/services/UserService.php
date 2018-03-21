@@ -2,7 +2,6 @@
 
 namespace App\Services;
 
-
 class UserService
 {
 
@@ -12,7 +11,7 @@ class UserService
      * @access  public
      * @return  object
      */
-    function init_users()
+    public function init_users()
     {
         static $cls = null;
         if ($cls != null) {
@@ -33,7 +32,7 @@ class UserService
      *
      * @return  boolen      $bool
      */
-    function edit_profile($profile)
+    public function edit_profile($profile)
     {
         if (empty($profile['user_id'])) {
             $GLOBALS['err']->add($GLOBALS['_LANG']['not_login']);
@@ -95,7 +94,7 @@ class UserService
      *
      * @return void
      */
-    function get_profile($user_id)
+    public function get_profile($user_id)
     {
         global $user;
 
@@ -172,7 +171,7 @@ class UserService
      * @param   int $user_id 用户id
      * @return  array   用户信息
      */
-    function user_info($user_id)
+    public function user_info($user_id)
     {
         $sql = "SELECT * FROM " . $GLOBALS['ecs']->table('users') .
             " WHERE user_id = '$user_id'";
@@ -200,10 +199,14 @@ class UserService
      * @param   array $user key => value
      * @return  bool
      */
-    function update_user($user_id, $user)
+    public function update_user($user_id, $user)
     {
-        return $GLOBALS['db']->autoExecute($GLOBALS['ecs']->table('users'),
-            $user, 'UPDATE', "user_id = '$user_id'");
+        return $GLOBALS['db']->autoExecute(
+            $GLOBALS['ecs']->table('users'),
+            $user,
+            'UPDATE',
+            "user_id = '$user_id'"
+        );
     }
 
     /**
@@ -213,7 +216,7 @@ class UserService
      *
      * @return array
      */
-    function get_rank_info()
+    public function get_rank_info()
     {
         if (!empty(session('user_rank'))) {
             $sql = "SELECT rank_name, special_rank FROM " . $GLOBALS['ecs']->table('user_rank') . " WHERE rank_id = '" . session('user_rank') . "'";
@@ -246,7 +249,7 @@ class UserService
      *
      * @return  array       $info               默认页面所需资料数组
      */
-    function get_user_default($user_id)
+    public function get_user_default($user_id)
     {
         $user_bonus = get_user_bonus();
 
@@ -295,7 +298,7 @@ class UserService
      *
      * @return  array
      */
-    function get_user_prompt($user_id)
+    public function get_user_prompt($user_id)
     {
         $prompt = [];
         $now = gmtime();
@@ -362,7 +365,7 @@ class UserService
      * @access  public
      * @return  void
      */
-    function update_user_info()
+    public function update_user_info()
     {
         if (!session('?user_id')) {
             return false;
@@ -436,7 +439,7 @@ class UserService
      *
      * @return array        $user       用户信息数组
      */
-    function get_user_info($id = 0)
+    public function get_user_info($id = 0)
     {
         if ($id == 0) {
             $id = session('user_id');
@@ -455,5 +458,4 @@ class UserService
 
         return $user;
     }
-
 }

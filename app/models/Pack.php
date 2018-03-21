@@ -24,6 +24,4 @@ class Pack extends Model
     ];
 
     protected $guarded = [];
-
-        
 }

@@ -22,6 +22,4 @@ class RegExtendInfo extends Model
     ];
 
     protected $guarded = [];
-
-        
 }

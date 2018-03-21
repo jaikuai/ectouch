@@ -22,6 +22,4 @@ class PackageGoods extends Model
     ];
 
     protected $guarded = [];
-
-        
 }

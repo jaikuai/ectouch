@@ -48,6 +48,4 @@ class DeliveryOrder extends Model
     ];
 
     protected $guarded = [];
-
-        
 }

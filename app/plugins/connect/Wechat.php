@@ -8,5 +8,4 @@ namespace app\plugins\connect;
  */
 class Wechat
 {
-
 }

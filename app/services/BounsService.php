@@ -2,7 +2,6 @@
 
 namespace App\Services;
 
-
 class BounsService
 {
 
@@ -14,7 +13,7 @@ class BounsService
      * @param   integer $user_id
      * @return  void
      */
-    function get_user_bonus($user_id = 0)
+    public function get_user_bonus($user_id = 0)
     {
         if ($user_id == 0) {
             $user_id = session('user_id');
@@ -38,7 +37,7 @@ class BounsService
      *
      * @return  array       $arr             红保列表
      */
-    function get_user_bouns_list($user_id, $num = 10, $start = 0)
+    public function get_user_bouns_list($user_id, $num = 10, $start = 0)
     {
         $sql = "SELECT u.bonus_sn, u.order_id, b.type_name, b.type_money, b.min_goods_amount, b.use_start_date, b.use_end_date " .
             " FROM " . $GLOBALS['ecs']->table('user_bonus') . " AS u ," .
@@ -82,7 +81,7 @@ class BounsService
      *
      * @return  boolen      $result
      */
-    function add_bonus($user_id, $bouns_sn)
+    public function add_bonus($user_id, $bouns_sn)
     {
         if (empty($user_id)) {
             $GLOBALS['err']->add($GLOBALS['_LANG']['not_login']);
@@ -141,7 +140,7 @@ class BounsService
      * @param   float $goods_amount 订单商品金额
      * @return  array   红包数组
      */
-    function user_bonus($user_id, $goods_amount = 0)
+    public function user_bonus($user_id, $goods_amount = 0)
     {
         $day = getdate();
         $today = local_mktime(23, 59, 59, $day['mon'], $day['mday'], $day['year']);
@@ -165,7 +164,7 @@ class BounsService
      * @param   string $bonus_sn 红包序列号
      * @param   array   红包信息
      */
-    function bonus_info($bonus_id, $bonus_sn = '')
+    public function bonus_info($bonus_id, $bonus_sn = '')
     {
         $sql = "SELECT t.*, b.* " .
             "FROM " . $GLOBALS['ecs']->table('bonus_type') . " AS t," .
@@ -185,7 +184,7 @@ class BounsService
      * @param   int $bonus_id 红包id
      * @return  bool
      */
-    function bonus_used($bonus_id)
+    public function bonus_used($bonus_id)
     {
         $sql = "SELECT order_id FROM " . $GLOBALS['ecs']->table('user_bonus') .
             " WHERE bonus_id = '$bonus_id'";
@@ -199,7 +198,7 @@ class BounsService
      * @param   int $order_id 订单id
      * @return  bool
      */
-    function use_bonus($bonus_id, $order_id)
+    public function use_bonus($bonus_id, $order_id)
     {
         $sql = "UPDATE " . $GLOBALS['ecs']->table('user_bonus') .
             " SET order_id = '$order_id', used_time = '" . gmtime() . "' " .
@@ -214,7 +213,7 @@ class BounsService
      * @param   int $order_id 订单id
      * @return  bool
      */
-    function unuse_bonus($bonus_id)
+    public function unuse_bonus($bonus_id)
     {
         $sql = "UPDATE " . $GLOBALS['ecs']->table('user_bonus') .
             " SET order_id = 0, used_time = 0 " .
@@ -226,7 +225,7 @@ class BounsService
     /**
      * 取得当前用户应该得到的红包总额
      */
-    function get_total_bonus()
+    public function get_total_bonus()
     {
         $day = getdate();
         $today = local_mktime(23, 59, 59, $day['mon'], $day['mday'], $day['year']);
@@ -272,7 +271,7 @@ class BounsService
      * @param   int $order_id 订单号
      * @param   int $is_used 是否使用了
      */
-    function change_user_bonus($bonus_id, $order_id, $is_used = true)
+    public function change_user_bonus($bonus_id, $order_id, $is_used = true)
     {
         if ($is_used) {
             $sql = 'UPDATE ' . $GLOBALS['ecs']->table('user_bonus') . ' SET ' .
@@ -287,6 +286,4 @@ class BounsService
         }
         $GLOBALS['db']->query($sql);
     }
-
-
 }

@@ -103,7 +103,6 @@ class UserMsgController extends InitController
          * 列出所有留言
          */
         if ($_REQUEST['act'] == 'list_all') {
-
             $msg_list = $this->msg_list();
 
             $this->smarty->assign('msg_list', $msg_list['msg_list']);
@@ -176,15 +175,15 @@ class UserMsgController extends InitController
                         $this->db->query("DELETE FROM " . $this->ecs->table('feedback') . " WHERE " . db_create_in($_POST['checkboxes'], 'parent_id'));
                         break;
 
-                    case 'allow' :
+                    case 'allow':
                         $this->db->query("UPDATE " . $this->ecs->table('feedback') . " SET msg_status = 1  WHERE " . db_create_in($_POST['checkboxes'], 'msg_id'));
                         break;
 
-                    case 'deny' :
+                    case 'deny':
                         $this->db->query("UPDATE " . $this->ecs->table('feedback') . " SET msg_status = 0,msg_area =1  WHERE " . db_create_in($_POST['checkboxes'], 'msg_id'));
                         break;
 
-                    default :
+                    default:
                         break;
                 }
 
@@ -311,7 +310,7 @@ class UserMsgController extends InitController
             "LIMIT " . $filter['start'] . ', ' . $filter['page_size'];
 
         $msg_list = $GLOBALS['db']->getAll($sql);
-        foreach ($msg_list AS $key => $value) {
+        foreach ($msg_list as $key => $value) {
             if ($value['order_id'] > 0) {
                 $msg_list[$key]['order_sn'] = $GLOBALS['db']->getOne("SELECT order_sn FROM " . $GLOBALS['ecs']->table('order_info') . " WHERE order_id= " . $value['order_id']);
             }

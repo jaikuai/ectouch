@@ -21,6 +21,4 @@ class GroupGoods extends Model
     ];
 
     protected $guarded = [];
-
-        
 }

@@ -29,6 +29,4 @@ class BonusType extends Model
     ];
 
     protected $guarded = [];
-
-        
 }

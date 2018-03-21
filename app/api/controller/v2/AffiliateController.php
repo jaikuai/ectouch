@@ -5,7 +5,8 @@ namespace app\api\controller\v2;
 use app\api\controller\Controller;
 use app\api\model\v2\AffiliateLog;
 
-class AffiliateController extends Controller {
+class AffiliateController extends Controller
+{
 
     /**
     * POST ecapi.recommend.affiliate.list

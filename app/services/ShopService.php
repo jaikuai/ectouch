@@ -2,7 +2,6 @@
 
 namespace App\Services;
 
-
 class ShopService
 {
     /**
@@ -11,7 +10,7 @@ class ShopService
      * @access  public
      * @return  array
      */
-    function load_config()
+    public function load_config()
     {
         $arr = [];
 
@@ -83,7 +82,7 @@ class ShopService
      * @access  public
      * @return  array
      */
-    function get_shop_help()
+    public function get_shop_help()
     {
         $sql = 'SELECT c.cat_id, c.cat_name, c.sort_order, a.article_id, a.title, a.file_url, a.open_type ' .
             'FROM ' . $GLOBALS['ecs']->table('article') . ' AS a ' .
@@ -108,7 +107,7 @@ class ShopService
     }
 
 
-    function assign_template($ctype = '', $catlist = [])
+    public function assign_template($ctype = '', $catlist = [])
     {
         $GLOBALS['smarty']->assign('image_width', $GLOBALS['_CFG']['image_width']);
         $GLOBALS['smarty']->assign('image_height', $GLOBALS['_CFG']['image_height']);
@@ -149,7 +148,7 @@ class ShopService
      * @return void
      * @author xuanyan
      **/
-    function set_affiliate()
+    public function set_affiliate()
     {
         $config = unserialize($GLOBALS['_CFG']['affiliate']);
         if (!empty($_GET['u']) && $config['on'] == 1) {
@@ -179,7 +178,7 @@ class ShopService
      * @return int
      * @author xuanyan
      **/
-    function get_affiliate()
+    public function get_affiliate()
     {
         $affiliate_uid = cookie('affiliate_uid');
         if (!empty($affiliate_uid)) {
@@ -200,7 +199,7 @@ class ShopService
      * @param   string $type 位置，如top、bottom、middle
      * @return  array         列表
      */
-    function get_navigator($ctype = '', $catlist = [])
+    public function get_navigator($ctype = '', $catlist = [])
     {
         $sql = 'SELECT * FROM ' . $GLOBALS['ecs']->table('nav') . '
             WHERE ifshow = \'1\' ORDER BY type, vieworder';
@@ -272,7 +271,7 @@ class ShopService
      * @param   string $cfg
      * @return  void
      */
-    function unserialize_config($cfg)
+    public function unserialize_config($cfg)
     {
         if (is_string($cfg) && ($arr = unserialize($cfg)) !== false) {
             $config = [];
@@ -286,5 +285,4 @@ class ShopService
             return false;
         }
     }
-
 }

@@ -20,6 +20,4 @@ class ErrorLog extends Model
     ];
 
     protected $guarded = [];
-
-        
 }

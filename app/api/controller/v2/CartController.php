@@ -6,8 +6,8 @@ use app\api\controller\Controller;
 use app\api\model\v2\Cart;
 use app\api\classes\Token;
 
-
-class CartController extends Controller {
+class CartController extends Controller
+{
 
     /**
      * POST ecapi.cart.add
@@ -134,5 +134,4 @@ class CartController extends Controller {
 
         return $this->json($response);
     }
-    
 }

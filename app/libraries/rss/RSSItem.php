@@ -116,15 +116,16 @@ class RSSItem extends RSSBase
     // @uses setAbout(), setTitle(), setLink(), setDescription(), setSubject(), setDate(), setAuthor(), setComments()
     // @access private
     //-------------------------------------------------
-    public function RSSItem($about = '',
+    public function RSSItem(
+        $about = '',
                             $title = '',
                             $link = '',
                             $description = '',
                             $subject = '',
                             $date = '',
                             $author = '',
-                            $comments = '')
-    {
+                            $comments = ''
+    ) {
         $this->setAbout($about);
         $this->setTitle($title);
         $this->setLink($link);

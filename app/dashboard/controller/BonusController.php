@@ -51,8 +51,11 @@ class BonusController extends InitController
             $sort_flag = sort_flag($list['filter']);
             $this->smarty->assign($sort_flag['tag'], $sort_flag['img']);
 
-            return make_json_result($this->smarty->fetch('bonus_type.htm'), '',
-                ['filter' => $list['filter'], 'page_count' => $list['page_count']]);
+            return make_json_result(
+                $this->smarty->fetch('bonus_type.htm'),
+                '',
+                ['filter' => $list['filter'], 'page_count' => $list['page_count']]
+            );
         }
 
         /**
@@ -571,7 +574,6 @@ class BonusController extends InitController
          * 搜索商品
          */
         if ($_REQUEST['act'] == 'get_goods_list') {
-
             $json = new Json();
 
             $filters = $json->decode($_GET['JSON']);
@@ -622,7 +624,6 @@ class BonusController extends InitController
          * 删除发放红包的商品
          */
         if ($_REQUEST['act'] == 'drop_bonus_goods') {
-
             $json = new Json();
 
             check_authz_json('bonus_manage');
@@ -714,8 +715,11 @@ class BonusController extends InitController
             $sort_flag = sort_flag($list['filter']);
             $this->smarty->assign($sort_flag['tag'], $sort_flag['img']);
 
-            return make_json_result($this->smarty->fetch('bonus_list.htm'), '',
-                ['filter' => $list['filter'], 'page_count' => $list['page_count']]);
+            return make_json_result(
+                $this->smarty->fetch('bonus_list.htm'),
+                '',
+                ['filter' => $list['filter'], 'page_count' => $list['page_count']]
+            );
         }
 
         /**

@@ -2,7 +2,6 @@
 
 namespace App\Services;
 
-
 class RegionService
 {
 
@@ -13,7 +12,7 @@ class RegionService
      * @param   array $arr 地区数组 *
      * @return  void
      */
-    function region_result($parent, $sel_name, $type)
+    public function region_result($parent, $sel_name, $type)
     {
         global $cp;
 
@@ -37,12 +36,11 @@ class RegionService
      * @param       int     country    国家的编号
      * @return      array
      */
-    function get_regions($type = 0, $parent = 0)
+    public function get_regions($type = 0, $parent = 0)
     {
         $sql = 'SELECT region_id, region_name FROM ' . $GLOBALS['ecs']->table('region') .
             " WHERE region_type = '$type' AND parent_id = '$parent'";
 
         return $GLOBALS['db']->getAll($sql);
     }
-
 }

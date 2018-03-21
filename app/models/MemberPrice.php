@@ -22,6 +22,4 @@ class MemberPrice extends Model
     ];
 
     protected $guarded = [];
-
-        
 }

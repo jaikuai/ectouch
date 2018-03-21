@@ -134,7 +134,6 @@ class GoodsController extends Controller
      */
     public function review()
     {
-
         $rules = [
             'page'     => 'required|integer|min:1',
             'per_page' => 'required|integer|min:1',
@@ -156,7 +155,6 @@ class GoodsController extends Controller
      */
     public function subtotal()
     {
-
         $rules = [
             'product'  => 'required|integer|min:1',
         ];
@@ -216,7 +214,6 @@ class GoodsController extends Controller
             'page'            => 'required|integer|min:1',
             'per_page'        => 'required|integer|min:1',
         ];
-
     }
 
     public function category()

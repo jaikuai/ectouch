@@ -5,11 +5,11 @@ namespace app\api\model\v2;
 use app\api\model\BaseModel;
 use app\api\classes\Token;
 
-class GoodsGallery extends BaseModel {
-
+class GoodsGallery extends BaseModel
+{
     protected $connection = 'shop';
     protected $table      = 'goods_gallery';
-    public    $timestamps = false;
+    public $timestamps = false;
 
     /**
      * 商品图片
@@ -17,13 +17,12 @@ class GoodsGallery extends BaseModel {
      * @return [type]           [description]
      */
     public static function getPhotosById($id)
-    {   
+    {
         $goods_images = [];
 
         $model = self::where('goods_id', $id)->orderBy('img_id')->get();
 
-        if (!$model->IsEmpty())
-        {
+        if (!$model->IsEmpty()) {
             foreach ($model as $value) {
                 $photo = formatPhoto($value->img_url, $value->thumb_url);
                 if (is_array($photo)) {
@@ -32,7 +31,7 @@ class GoodsGallery extends BaseModel {
             }
         }
 
-	    return $goods_images;
+        return $goods_images;
     }
     
     public static function getCategoryPhoto($cat_id)

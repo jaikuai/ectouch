@@ -14,7 +14,9 @@ class XXTEA
         if ($w) {
             $m = $v[$len - 1];
             $n -= 4;
-            if (($m < $n - 3) || ($m > $n)) return false;
+            if (($m < $n - 3) || ($m > $n)) {
+                return false;
+            }
             $n = $m;
         }
 
@@ -96,7 +98,6 @@ class XXTEA
     // $key is the decrypt key. It is the same as the encrypt key.
     public static function decrypt($str, $key = false)
     {
-
         if (!$key) {
             $key = config('security.xxtea_key');
         }

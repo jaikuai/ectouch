@@ -23,6 +23,4 @@ class Region extends Model
     ];
 
     protected $guarded = [];
-
-        
 }

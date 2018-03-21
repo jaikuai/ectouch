@@ -16,11 +16,7 @@ abstract class Notification
      */
     public function send()
     {
-
         foreach ($this->via as $via) {
-
         }
-
     }
-
 }

@@ -2,7 +2,6 @@
 
 namespace App\Services;
 
-
 class GroupBuyService
 {
     /**
@@ -15,7 +14,7 @@ class GroupBuyService
      *
      * @return  array       $arr             团购活动列表
      */
-    function get_user_group_buy($user_id, $num = 10, $start = 0)
+    public function get_user_group_buy($user_id, $num = 10, $start = 0)
     {
         return true;
     }
@@ -25,7 +24,7 @@ class GroupBuyService
      *
      *
      */
-    function get_group_buy_detail($user_id, $group_buy_id)
+    public function get_group_buy_detail($user_id, $group_buy_id)
     {
         return true;
     }
@@ -38,7 +37,7 @@ class GroupBuyService
      * @return  array
      *                  status          状态：
      */
-    function group_buy_info($group_buy_id, $current_num = 0)
+    public function group_buy_info($group_buy_id, $current_num = 0)
     {
         // 取得团购活动信息
         $group_buy_id = intval($group_buy_id);
@@ -118,7 +117,7 @@ class GroupBuyService
      *                  valid_order     有效订单数
      *                  valid_goods     有效商品数
      */
-    function group_buy_stat($group_buy_id, $deposit)
+    public function group_buy_stat($group_buy_id, $deposit)
     {
         $group_buy_id = intval($group_buy_id);
 
@@ -169,7 +168,7 @@ class GroupBuyService
      * @param   array
      * @return  integer
      */
-    function group_buy_status($group_buy)
+    public function group_buy_status($group_buy)
     {
         $now = gmtime();
         if ($group_buy['is_finished'] == 0) {
@@ -195,5 +194,4 @@ class GroupBuyService
 
         return $status;
     }
-
 }

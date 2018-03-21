@@ -6,7 +6,8 @@ use app\api\controller\Controller;
 use app\api\model\v2\Push;
 use app\api\model\v2\Device;
 
-class MessageController extends Controller {
+class MessageController extends Controller
+{
 
     /**
     * POST ecapi.message.system.list

@@ -13,15 +13,15 @@ class AffiliateLog extends BaseModel
 
     protected $table      = 'affiliate_log';
 
-    public    $timestamps = false;
+    public $timestamps = false;
     
     protected $guarded = [];
     
-    // AFFILIATE_STSTUA 
+    // AFFILIATE_STSTUA
     const SIGNUP = 0;   //  注册分成
-	const ORDER  = 1; 	//  订单分成
+    const ORDER  = 1; 	//  订单分成
 
-	// AFFILIATE_TYPE
+    // AFFILIATE_TYPE
     const WAIT    = 0;  //  等待处理
     const FINISH  = 1;  //  已分成
     const CANCEL  = 2;  //  已取消
@@ -29,7 +29,7 @@ class AffiliateLog extends BaseModel
 
     public static function expireUnit()
     {
-        return [ 
+        return [
             'hour' => trans('message.affiliate.expire.hour'),
             'day'  => trans('message.affiliate.expire.day'),
             'week' => trans('message.affiliate.expire.week'),
@@ -38,7 +38,7 @@ class AffiliateLog extends BaseModel
 
     public static function affiliateIntro()
     {
-        return [ 
+        return [
             trans('message.affiliate.intro.separate_by_0'),
             trans('message.affiliate.intro.separate_by_1'),
         ];
@@ -46,26 +46,26 @@ class AffiliateLog extends BaseModel
 
     public static function getAffiliateConfig()
     {
-    	$value = null;
-    	if ($row = ShopConfig::where('code', 'affiliate')->first()) {
-    		$value = unserialize($row->value);	
-    	}
-    	return $value;
+        $value = null;
+        if ($row = ShopConfig::where('code', 'affiliate')->first()) {
+            $value = unserialize($row->value);
+        }
+        return $value;
     }
 
     public static function getList(array $attributes)
-    {	
-    	$user_id = Token::authorization();
-    	/* 检查是否开启 */
-    	$on = self::checkOpen();
-    	if ($on != 1 || empty($on)) {
-    		return false;
-    	}
+    {
+        $user_id = Token::authorization();
+        /* 检查是否开启 */
+        $on = self::checkOpen();
+        if ($on != 1 || empty($on)) {
+            return false;
+        }
 
-        extract($attributes); 
+        extract($attributes);
 
         $prefix = config('database.connections.shop.prefix');
-    	
+        
         $affiliate = self::getAffiliateConfig();
 
         if ($affiliate['config']['separate_by'] == self::SIGNUP) {
@@ -73,17 +73,13 @@ class AffiliateLog extends BaseModel
             $num = count($affiliate['item']);
             $all_uid = [$user_id];
             $up_uid = [$user_id];
-            for ($i = 1 ; $i <= $num ;$i++)
-            {
-                if ($up_uid)
-                {
+            for ($i = 1 ; $i <= $num ;$i++) {
+                if ($up_uid) {
                     $rts = Member::select('user_id')->whereIn('parent_id', $up_uid)->get();
                     $up_uid = [];
-                    foreach ($rts  as $rt)
-                    {
+                    foreach ($rts  as $rt) {
                         array_push($up_uid, $rt->user_id);
-                        if($i < $num)
-                        {
+                        if ($i < $num) {
                             array_push($all_uid, $rt->user_id);
                         }
                     }
@@ -94,16 +90,15 @@ class AffiliateLog extends BaseModel
                 ->leftJoin('users', 'users.user_id', '=', 'order_info.user_id')
                 ->leftJoin('affiliate_log', 'affiliate_log.order_id', '=', 'order_info.order_id')
                 ->where('order_info.user_id', '>', 0)
-                ->where(function ($query) use($all_uid, $user_id) {
-                        $query->whereIn('users.parent_id', $all_uid)
+                ->where(function ($query) use ($all_uid, $user_id) {
+                    $query->whereIn('users.parent_id', $all_uid)
                               ->where('order_info.is_separate', 0)
                               ->orWhere('affiliate_log.user_id', $user_id)
                               ->where('order_info.is_separate', '>', 0)
                               ->orWhereIn('users.parent_id', $all_uid)
                               ->where('order_info.is_separate', '=', 2);
-                    })
+                })
                 ->orderBy('order_info.order_id', 'desc');
-
         } else {
 
             // 推荐订单分成
@@ -111,19 +106,19 @@ class AffiliateLog extends BaseModel
             ->leftJoin('users', 'users.user_id', '=', 'order_info.user_id')
             ->leftJoin('affiliate_log', 'affiliate_log.order_id', '=', 'order_info.order_id')
             ->where('order_info.user_id', '>', 0)
-             ->where(function ($query) use($user_id) {
-                        $query->where('users.parent_id', $user_id)
+             ->where(function ($query) use ($user_id) {
+                 $query->where('users.parent_id', $user_id)
                               ->where('order_info.is_separate', 0)
                               ->orWhere('affiliate_log.user_id', $user_id)
                               ->where('order_info.is_separate', '>', 0);
-                    })
+             })
             ->orderBy('order_info.order_id', 'desc');
-        }	
+        }
 
         $data = $model->paginate($per_page)->toArray();
 
         foreach ($data['data'] as $key => $value) {
-            if ( !isset($value['is_separate']) == 0 ) {
+            if (!isset($value['is_separate']) == 0) {
                 $data['data'][$key]['status'] = self::WAIT;
             }
             if ($value['is_separate'] == 1) {
@@ -141,7 +136,7 @@ class AffiliateLog extends BaseModel
 
         $total = $model->count();
 
-    	return self::formatBody(['paged' => self::formatPaged($page, $per_page, $total), 'bonues' => $data['data']]);
+        return self::formatBody(['paged' => self::formatPaged($page, $per_page, $total), 'bonues' => $data['data']]);
     }
 
     public static function info()
@@ -162,18 +157,14 @@ class AffiliateLog extends BaseModel
             $all_uid = [$user_id];
             $up_uid = [$user_id];
 
-            for ($i = 1 ; $i <= $num ;$i++)
-            {
+            for ($i = 1 ; $i <= $num ;$i++) {
                 $count = 0;
-                if ($up_uid)
-                {
+                if ($up_uid) {
                     $rts = Member::select('user_id')->whereIn('parent_id', $up_uid)->get();
                     $up_uid = [];
-                    foreach ($rts  as $rt)
-                    {
+                    foreach ($rts  as $rt) {
                         array_push($up_uid, $rt->user_id);
-                        if($i < $num)
-                        {
+                        if ($i < $num) {
                             array_push($all_uid, $rt->user_id);
                         }
                         $count++;
@@ -194,7 +185,7 @@ class AffiliateLog extends BaseModel
             $sql_finished = AffiliateOrder::leftJoin('users', 'users.user_id', '=', 'order_info.user_id')
                     ->leftJoin('affiliate_log', 'affiliate_log.order_id', '=', 'order_info.order_id')
                     ->where('order_info.user_id', '>', 0)
-                    ->where(function ($query) use($all_uid, $user_id) {
+                    ->where(function ($query) use ($all_uid, $user_id) {
                         $query->whereIn('users.parent_id', $all_uid)
                               ->where('affiliate_log.separate_type', 0)
                               ->Where('affiliate_log.user_id', $user_id)
@@ -203,13 +194,12 @@ class AffiliateLog extends BaseModel
 
             /* rule_desc */
             $rule_desc = nl2br(sprintf(self::affiliateIntro()[$separate_by], $affiliate['config']['expire'], self::expireUnit()[$affiliate['config']['expire_unit']], $affiliate['config']['level_register_all'], $affiliate['config']['level_register_up'], $affiliate['config']['level_money_all'], $affiliate['config']['level_point_all']));
-
         } else {
             //推荐订单分成
             $sql_all = AffiliateOrder::leftJoin('users', 'users.user_id', '=', 'order_info.user_id')
                     ->leftJoin('affiliate_log', 'affiliate_log.order_id', '=', 'order_info.order_id')
                     ->where('order_info.user_id', '>', 0)
-                    ->where(function ($query) use($user_id) {
+                    ->where(function ($query) use ($user_id) {
                         $query->where('users.parent_id', $user_id)
                               ->where('order_info.is_separate', 0)
                               ->orWhere('affiliate_log.user_id', $user_id)
@@ -220,7 +210,7 @@ class AffiliateLog extends BaseModel
             $sql_finished = AffiliateOrder::leftJoin('users', 'users.user_id', '=', 'order_info.user_id')
                     ->leftJoin('affiliate_log', 'affiliate_log.order_id', '=', 'order_info.order_id')
                     ->where('order_info.user_id', '>', 0)
-                    ->where(function ($query) use($user_id) {
+                    ->where(function ($query) use ($user_id) {
                         $query->where('users.parent_id', $user_id)
                               ->where('order_info.is_separate', 1)
                               ->where('affiliate_log.user_id', $user_id);
@@ -241,13 +231,12 @@ class AffiliateLog extends BaseModel
 
     public static function checkOpen()
     {
-    	$value = self::getAffiliateConfig();
-    	if (!empty($value)) {
-    		return $value['on'];
-    	}
-    	else{
-    		return false;
-    	}
+        $value = self::getAffiliateConfig();
+        if (!empty($value)) {
+            return $value['on'];
+        } else {
+            return false;
+        }
     }
 
     public static function writeAffiliateLog($oid, $uid, $username, $money, $point, $separate_by)
@@ -256,7 +245,7 @@ class AffiliateLog extends BaseModel
         $model->order_id = $oid;
         $model->user_id = $uid;
         $model->user_name = $username;
-        $model->time = time(); 
+        $model->time = time();
         $model->money = $money;
         $model->point = $point;
         $model->separate_type = $separate_by;
@@ -280,16 +269,13 @@ class AffiliateLog extends BaseModel
         if ($order) {
             $order_sn = $order->order_sn;
             $goods_amount = $order->goods_amount - $order->discount;
-            if (empty($order->is_separate))
-            {
+            if (empty($order->is_separate)) {
                 $affiliate['config']['level_point_all'] = (float)$affiliate['config']['level_point_all'];
                 $affiliate['config']['level_money_all'] = (float)$affiliate['config']['level_money_all'];
-                if ($affiliate['config']['level_point_all'])
-                {
+                if ($affiliate['config']['level_point_all']) {
                     $affiliate['config']['level_point_all'] /= 100;
                 }
-                if ($affiliate['config']['level_money_all'])
-                {
+                if ($affiliate['config']['level_money_all']) {
                     $affiliate['config']['level_money_all'] /= 100;
                 }
                 $money = round($affiliate['config']['level_money_all'] * $goods_amount, 2);
@@ -298,22 +284,18 @@ class AffiliateLog extends BaseModel
 
                 Log::debug("推荐分成", ['money' => $money, 'integral' => $integral, 'point' => $point]);
 
-                if(empty($separate_by))
-                {
+                if (empty($separate_by)) {
                     //推荐注册分成
                     $num = count($affiliate['item']);
                     $user_id = $order->user_id;
 
-                    for ($i=0; $i < $num; $i++)
-                    {
+                    for ($i=0; $i < $num; $i++) {
                         $affiliate['item'][$i]['level_point'] = (float)$affiliate['item'][$i]['level_point'];
                         $affiliate['item'][$i]['level_money'] = (float)$affiliate['item'][$i]['level_money'];
-                        if ($affiliate['item'][$i]['level_point'])
-                        {
+                        if ($affiliate['item'][$i]['level_point']) {
                             $affiliate['item'][$i]['level_point'] /= 100;
                         }
-                        if ($affiliate['item'][$i]['level_money'])
-                        {
+                        if ($affiliate['item'][$i]['level_money']) {
                             $affiliate['item'][$i]['level_money'] /= 100;
                         }
                         $setmoney = round($money * $affiliate['item'][$i]['level_money'], 2);
@@ -331,12 +313,9 @@ class AffiliateLog extends BaseModel
                             }
                         }
 
-                        if (empty($up_uid) || empty($up_user_name))
-                        {
+                        if (empty($up_uid) || empty($up_user_name)) {
                             break;
-                        }
-                        else
-                        {
+                        } else {
                             $info = sprintf('订单号 %s, 分成:金钱 %s 积分 %s', $order_sn, $setmoney, $setpoint);
                             AccountLog::logAccountChange($setmoney, 0, $setpoint, 0, $info, 99, $up_uid);
                             AffiliateLog::writeAffiliateLog($order_id, $up_uid, $up_user_name, $setmoney, $setpoint, $separate_by);
@@ -344,9 +323,7 @@ class AffiliateLog extends BaseModel
                             unset($up_user_name);
                         }
                     }
-                }
-                else
-                {
+                } else {
                     //推荐订单分成
                     if ($order->parent_id) {
                         $up_user = Member::where('user_id', $order->parent_id)->first();
@@ -354,8 +331,7 @@ class AffiliateLog extends BaseModel
                         $up_user_name = $up_user->user_name;
                     }
 
-                    if (!empty($up_uid) && !empty($up_user_name))
-                    {
+                    if (!empty($up_uid) && !empty($up_user_name)) {
                         $info = sprintf('订单号 %s, 分成:金钱 %s 积分 %s', $order_sn, $money, $point);
                         AccountLog::logAccountChange($money, 0, $point, 0, $info, 99, $up_uid);
                         AffiliateLog::writeAffiliateLog($order_id, $up_uid, $up_user_name, $money, $point, $separate_by);

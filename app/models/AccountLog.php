@@ -27,6 +27,4 @@ class AccountLog extends Model
     ];
 
     protected $guarded = [];
-
-        
 }

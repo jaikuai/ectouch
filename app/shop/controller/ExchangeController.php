@@ -2,8 +2,6 @@
 
 namespace app\shop\controller;
 
-
-
 /**
  * 积分商城
  * Class ExchangeController

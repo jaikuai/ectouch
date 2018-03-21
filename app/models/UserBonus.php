@@ -25,6 +25,4 @@ class UserBonus extends Model
     ];
 
     protected $guarded = [];
-
-        
 }

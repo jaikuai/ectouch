@@ -114,40 +114,40 @@ if (!function_exists('curl_request')) {
         $curl = curl_init();
 
         switch (strtoupper($method)) {
-            case 'GET' :
+            case 'GET':
                 if (!empty($params)) {
                     $api .= (strpos($api, '?') ? '&' : '?') . http_build_query($params);
                 }
-                curl_setopt($curl, CURLOPT_HTTPGET, TRUE);
+                curl_setopt($curl, CURLOPT_HTTPGET, true);
                 break;
-            case 'POST' :
-                curl_setopt($curl, CURLOPT_POST, TRUE);
+            case 'POST':
+                curl_setopt($curl, CURLOPT_POST, true);
                 curl_setopt($curl, CURLOPT_POSTFIELDS, $params);
 
                 break;
-            case 'PUT' :
+            case 'PUT':
                 curl_setopt($curl, CURLOPT_CUSTOMREQUEST, 'PUT');
                 curl_setopt($curl, CURLOPT_POSTFIELDS, $params);
                 break;
-            case 'DELETE' :
+            case 'DELETE':
                 curl_setopt($curl, CURLOPT_CUSTOMREQUEST, 'DELETE');
                 curl_setopt($curl, CURLOPT_POSTFIELDS, $params);
                 break;
         }
 
         curl_setopt($curl, CURLOPT_URL, $api);
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, TRUE);
-        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, FALSE);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
         curl_setopt($curl, CURLOPT_HEADER, 0);
 
         curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
 
         $response = curl_exec($curl);
 
-        if ($response === FALSE) {
+        if ($response === false) {
             $error = curl_error($curl);
             curl_close($curl);
-            return FALSE;
+            return false;
         } else {
             // 解决windows 服务器 BOM 问题
             $response = trim($response, chr(239) . chr(187) . chr(191));
@@ -250,7 +250,7 @@ if (!function_exists('unserialize_config')) {
         if (is_string($cfg) && ($arr = unserialize($cfg)) !== false) {
             $config = array();
 
-            foreach ($arr AS $key => $val) {
+            foreach ($arr as $key => $val) {
                 $config[$val['name']] = $val['value'];
             }
 
@@ -279,7 +279,7 @@ if (!function_exists('format_array')) {
             foreach ($array as $key => $value) {
                 if ($value === null) {
                     $array[$key] = '';
-                } else if (is_array($value)) {
+                } elseif (is_array($value)) {
                     $value = format_array($value);
                     if ($value === null) {
                         $array[$key] = '';

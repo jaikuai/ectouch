@@ -39,11 +39,10 @@ class UserController extends Controller
             'username'      => 'required|min:3|max:25|alpha_num',
             'email'         => 'required|email',
             'password'      => 'required|min:6|max:20',
-            'invite_code'   => 'integer', 
+            'invite_code'   => 'integer',
         ];
 
-        if($res = Features::check('signup.default'))
-        {
+        if ($res = Features::check('signup.default')) {
             return $this->json($res);
         }
 
@@ -60,8 +59,7 @@ class UserController extends Controller
      */
     public function signupByMobile()
     {
-        if($res = Features::check('signup.mobile'))
-        {
+        if ($res = Features::check('signup.mobile')) {
             return $this->json($res);
         }
 
@@ -70,7 +68,7 @@ class UserController extends Controller
             'password'      => 'required|min:6|max:20',
             'mobile'        => 'required|string',
             'code'          => 'required|string|digits:6',
-            'invite_code'   => 'integer', 
+            'invite_code'   => 'integer',
         ];
 
         if ($error = $this->validateInput($rules)) {
@@ -173,8 +171,7 @@ class UserController extends Controller
             'password' => 'required|min:6|max:20'
         ];
 
-        if($res = Features::check('findpass.default'))
-        {
+        if ($res = Features::check('findpass.default')) {
             return $this->json($res);
         }
 
@@ -195,8 +192,7 @@ class UserController extends Controller
             'email' => 'required|email'
         ];
 
-        if($res = Features::check('findpass.default'))
-        {
+        if ($res = Features::check('findpass.default')) {
             return $this->json($res);
         }
 
@@ -262,17 +258,16 @@ class UserController extends Controller
     /**
      * GET /ecapi.auth.web.callback/:vendor
      */
-     public function webCallback($vendor)
-     {
-         $data = Member::webOauthCallback($vendor);
-          if (isset($data['error'])) {
-              return $this->json($data);
-          }
+    public function webCallback($vendor)
+    {
+        $data = Member::webOauthCallback($vendor);
+        if (isset($data['error'])) {
+            return $this->json($data);
+        }
 
-          if (isset($_GET['referer'])) {
-              return redirect(urldecode($_GET['referer']).'?token='.$data['token'].'&openid='.$data['openid']);
-          }
-          return $this->json(['token' => $data]);
-     }
-
+        if (isset($_GET['referer'])) {
+            return redirect(urldecode($_GET['referer']).'?token='.$data['token'].'&openid='.$data['openid']);
+        }
+        return $this->json(['token' => $data]);
+    }
 }

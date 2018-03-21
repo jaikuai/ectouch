@@ -5,7 +5,8 @@ namespace app\api\controller\v2;
 use app\api\controller\Controller;
 use app\api\model\v2\Brand;
 
-class BrandController extends Controller {
+class BrandController extends Controller
+{
 
     /**
     * POST ecapi.brand.list

@@ -11,7 +11,7 @@ class GoodsGroup extends BaseModel
 
     protected $table      = 'group_goods';
 
-    public    $timestamps = false;
+    public $timestamps = false;
 
     protected $visible = ['id', 'name','photo', 'price','created_at','updated_at'];
 
@@ -33,7 +33,7 @@ class GoodsGroup extends BaseModel
     }
     public function getNameAttribute()
     {
-        return Goods::where('goods_id',$this->goods_id)->value('goods_name');
+        return Goods::where('goods_id', $this->goods_id)->value('goods_name');
     }
 
     public function getPriceAttribute()
@@ -56,8 +56,7 @@ class GoodsGroup extends BaseModel
     }
     public static function getAccessories($parent_id)
     {
-        if($model = self::where('parent_id', $parent_id)->pluck('goods_id'))
-        {
+        if ($model = self::where('parent_id', $parent_id)->pluck('goods_id')) {
             return $model;
         }
         return [];

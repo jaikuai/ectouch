@@ -605,8 +605,11 @@ function order_fee($order, $goods, $consignee)
             $total['shipping_fee'] = ($shipping_count == 0 and $weight_price['free_shipping'] == 1) ? 0 : shipping_fee($shipping_info['shipping_code'], $shipping_info['configure'], $weight_price['weight'], $total['goods_price'], $weight_price['number']);
 
             if (!empty($order['need_insure']) && $shipping_info['insure'] > 0) {
-                $total['shipping_insure'] = shipping_insure_fee($shipping_info['shipping_code'],
-                    $total['goods_price'], $shipping_info['insure']);
+                $total['shipping_insure'] = shipping_insure_fee(
+                    $shipping_info['shipping_code'],
+                    $total['goods_price'],
+                    $shipping_info['insure']
+                );
             } else {
                 $total['shipping_insure'] = 0;
             }
@@ -729,8 +732,12 @@ function order_fee($order, $goods, $consignee)
  */
 function update_order($order_id, $order)
 {
-    return $GLOBALS['db']->autoExecute($GLOBALS['ecs']->table('order_info'),
-        $order, 'UPDATE', "order_id = '$order_id'");
+    return $GLOBALS['db']->autoExecute(
+        $GLOBALS['ecs']->table('order_info'),
+        $order,
+        'UPDATE',
+        "order_id = '$order_id'"
+    );
 }
 
 /**
@@ -1205,8 +1212,12 @@ function user_info($user_id)
  */
 function update_user($user_id, $user)
 {
-    return $GLOBALS['db']->autoExecute($GLOBALS['ecs']->table('users'),
-        $user, 'UPDATE', "user_id = '$user_id'");
+    return $GLOBALS['db']->autoExecute(
+        $GLOBALS['ecs']->table('users'),
+        $user,
+        'UPDATE',
+        "user_id = '$user_id'"
+    );
 }
 
 /**
@@ -1800,8 +1811,13 @@ function merge_order($from_order_sn, $to_order_sn)
         $region_id_list = [$order['country'], $order['province'], $order['city'], $order['district']];
         $shipping_area = shipping_area_info($order['shipping_id'], $region_id_list);
 
-        $order['shipping_fee'] = shipping_fee($shipping_area['shipping_code'],
-            unserialize($shipping_area['configure']), $weight_price['weight'], $weight_price['amount'], $weight_price['number']);
+        $order['shipping_fee'] = shipping_fee(
+            $shipping_area['shipping_code'],
+            unserialize($shipping_area['configure']),
+            $weight_price['weight'],
+            $weight_price['amount'],
+            $weight_price['number']
+        );
 
         // 如果保价了，重新计算保价费
         if ($order['insure_fee'] > 0) {

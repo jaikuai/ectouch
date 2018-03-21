@@ -25,6 +25,4 @@ class Nav extends Model
     ];
 
     protected $guarded = [];
-
-        
 }

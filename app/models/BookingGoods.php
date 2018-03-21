@@ -31,6 +31,4 @@ class BookingGoods extends Model
     ];
 
     protected $guarded = [];
-
-        
 }

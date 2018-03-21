@@ -234,13 +234,25 @@ class AuctionController extends InitController
 
                 // 如果不是第一个出价，解冻上一个用户的保证金
                 if ($auction['bid_user_count'] > 0) {
-                    log_account_change($auction['last_bid']['bid_user'], $auction['deposit'], (-1) * $auction['deposit'],
-                        0, 0, sprintf($GLOBALS['_LANG']['au_unfreeze_deposit'], $auction['act_name']));
+                    log_account_change(
+                        $auction['last_bid']['bid_user'],
+                        $auction['deposit'],
+                        (-1) * $auction['deposit'],
+                        0,
+                        0,
+                        sprintf($GLOBALS['_LANG']['au_unfreeze_deposit'], $auction['act_name'])
+                    );
                 }
 
                 // 冻结当前用户的保证金
-                log_account_change($user_id, (-1) * $auction['deposit'], $auction['deposit'],
-                    0, 0, sprintf($GLOBALS['_LANG']['au_freeze_deposit'], $auction['act_name']));
+                log_account_change(
+                    $user_id,
+                    (-1) * $auction['deposit'],
+                    $auction['deposit'],
+                    0,
+                    0,
+                    sprintf($GLOBALS['_LANG']['au_freeze_deposit'], $auction['act_name'])
+                );
             }
 
             // 插入出价记录

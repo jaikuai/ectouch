@@ -13,7 +13,7 @@ class Account extends BaseModel
 
     protected $primaryKey = 'log_id';
     
-    public    $timestamps = false;
+    public $timestamps = false;
 
     protected $appends = ['price', 'action', 'memo', 'create_at', 'status'];
 
@@ -29,9 +29,9 @@ class Account extends BaseModel
 
     public function getActionAttribute()
     {
-    	if ( $this->attributes['user_money'] > 0 ) {
-    		return trans('message.account.increment');
-    	} else {
+        if ($this->attributes['user_money'] > 0) {
+            return trans('message.account.increment');
+        } else {
             return trans('message.account.decrement');
         }
     }
@@ -48,7 +48,7 @@ class Account extends BaseModel
 
     public function getStatusAttribute()
     {
-        if ( $this->attributes['user_money'] > 0 ) {
+        if ($this->attributes['user_money'] > 0) {
             return self::IN;
         } else {
             return self::OUT;
@@ -81,5 +81,4 @@ class Account extends BaseModel
         
         return self::formatBody(['paged' => $paged, 'balances' => $lists['data']]);
     }
-
 }

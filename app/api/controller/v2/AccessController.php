@@ -7,7 +7,6 @@ use app\api\model\BaseModel;
 
 class AccessController extends Controller
 {
-
     public function dns()
     {
         $hosts = json_decode(config('app.hosts'), true);
@@ -33,7 +32,6 @@ class AccessController extends Controller
         $batch_data = [];
 
         foreach ($batch as $key => $value) {
-            
             $header_arr = [];
             if ($headers = @json_decode($value['header'], true)) {
                 foreach ($headers as $header_key => $header_value) {

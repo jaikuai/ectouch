@@ -20,6 +20,4 @@ class EmailList extends Model
     ];
 
     protected $guarded = [];
-
-        
 }

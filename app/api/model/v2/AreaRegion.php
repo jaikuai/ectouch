@@ -10,8 +10,7 @@ class AreaRegion extends BaseModel
 
     protected $table      = 'area_region';
 
-    public    $timestamps = false;
+    public $timestamps = false;
 
     protected $visible = [];
-
 }

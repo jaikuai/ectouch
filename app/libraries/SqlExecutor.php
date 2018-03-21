@@ -740,9 +740,11 @@ class SqlExecutor
     public function insert_charset($sql_string)
     {
         if ($this->db->version() > '4.1') {
-            $sql_string = preg_replace('/(TEXT|CHAR\(.*?\)|VARCHAR\(.*?\))\s+/i',
+            $sql_string = preg_replace(
+                '/(TEXT|CHAR\(.*?\)|VARCHAR\(.*?\))\s+/i',
                 '\1 CHARACTER SET ' . $this->db_charset . ' ',
-                $sql_string);
+                $sql_string
+            );
         }
 
         return $sql_string;

@@ -2,7 +2,6 @@
 
 namespace App\Services;
 
-
 class OrderService
 {
 
@@ -13,7 +12,7 @@ class OrderService
      * @param   string $order_sn 订单号
      * @return  array   订单信息（金额都有相应格式化的字段，前缀是formated_）
      */
-    function order_info($order_id, $order_sn = '')
+    public function order_info($order_id, $order_sn = '')
     {
         // 计算订单各种费用之和的语句
         $total_fee = " (goods_amount - discount + tax + shipping_fee + insure_fee + pay_fee + pack_fee + card_fee) AS total_fee ";
@@ -54,7 +53,7 @@ class OrderService
      * @param   array $order 订单信息
      * @return  bool
      */
-    function order_finished($order)
+    public function order_finished($order)
     {
         return $order['order_status'] == OS_CONFIRMED &&
             ($order['shipping_status'] == SS_SHIPPED || $order['shipping_status'] == SS_RECEIVED) &&
@@ -66,7 +65,7 @@ class OrderService
      * @param   int $order_id 订单id
      * @return  array   订单商品数组
      */
-    function order_goods($order_id)
+    public function order_goods($order_id)
     {
         $sql = "SELECT rec_id, goods_id, goods_name, goods_sn, market_price, goods_number, " .
             "goods_price, goods_attr, is_real, parent_id, is_gift, " .
@@ -93,7 +92,7 @@ class OrderService
      * @param   bool $include_gift 是否包括赠品
      * @return  float   订单总金额
      */
-    function order_amount($order_id, $include_gift = true)
+    public function order_amount($order_id, $include_gift = true)
     {
         $sql = "SELECT SUM(goods_price * goods_number) " .
             "FROM " . $GLOBALS['ecs']->table('order_goods') .
@@ -110,7 +109,7 @@ class OrderService
      * @param   int $order_id 订单id
      * @return  array   ('weight' => **, 'amount' => **, 'formated_weight' => **)
      */
-    function order_weight_price($order_id)
+    public function order_weight_price($order_id)
     {
         $sql = "SELECT SUM(g.goods_weight * o.goods_number) AS weight, " .
             "SUM(o.goods_price * o.goods_number) AS amount ," .
@@ -141,7 +140,7 @@ class OrderService
      * @param   bool $is_gb_deposit 是否团购保证金（如果是，应付款金额只计算商品总额和支付费用，可以获得的积分取 $gift_integral）
      * @return  array
      */
-    function order_fee($order, $goods, $consignee)
+    public function order_fee($order, $goods, $consignee)
     {
         // 初始化订单的扩展code
         if (!isset($order['extension_code'])) {
@@ -265,8 +264,11 @@ class OrderService
                 $total['shipping_fee'] = ($shipping_count == 0 and $weight_price['free_shipping'] == 1) ? 0 : shipping_fee($shipping_info['shipping_code'], $shipping_info['configure'], $weight_price['weight'], $total['goods_price'], $weight_price['number']);
 
                 if (!empty($order['need_insure']) && $shipping_info['insure'] > 0) {
-                    $total['shipping_insure'] = shipping_insure_fee($shipping_info['shipping_code'],
-                        $total['goods_price'], $shipping_info['insure']);
+                    $total['shipping_insure'] = shipping_insure_fee(
+                        $shipping_info['shipping_code'],
+                        $total['goods_price'],
+                        $shipping_info['insure']
+                    );
                 } else {
                     $total['shipping_insure'] = 0;
                 }
@@ -387,10 +389,14 @@ class OrderService
      * @param   array $order key => value
      * @return  bool
      */
-    function update_order($order_id, $order)
+    public function update_order($order_id, $order)
     {
-        return $GLOBALS['db']->autoExecute($GLOBALS['ecs']->table('order_info'),
-            $order, 'UPDATE', "order_id = '$order_id'");
+        return $GLOBALS['db']->autoExecute(
+            $GLOBALS['ecs']->table('order_info'),
+            $order,
+            'UPDATE',
+            "order_id = '$order_id'"
+        );
     }
 
     /**
@@ -401,7 +407,7 @@ class OrderService
      * @param   float $refund_amount 退款金额（如果为0，取订单已付款金额）
      * @return  bool
      */
-    function order_refund($order, $refund_type, $refund_note, $refund_amount = 0)
+    public function order_refund($order, $refund_type, $refund_note, $refund_amount = 0)
     {
         // 检查参数
         $user_id = $order['user_id'];
@@ -463,7 +469,7 @@ class OrderService
      * @param   bool $is_dec 是否减少库存
      * @param   bool $storage 减库存的时机，1，下订单时；0，发货时；
      */
-    function change_order_goods_storage($order_id, $is_dec = true, $storage = 0)
+    public function change_order_goods_storage($order_id, $is_dec = true, $storage = 0)
     {
         // 查询订单商品信息
         switch ($storage) {
@@ -518,7 +524,7 @@ class OrderService
      *
      * @return  bool               true，成功；false，失败；
      */
-    function change_goods_storage($good_id, $product_id, $number = 0)
+    public function change_goods_storage($good_id, $product_id, $number = 0)
     {
         if ($number == 0) {
             return true; // 值为0即不做、增减操作，返回true
@@ -564,7 +570,7 @@ class OrderService
      * @param   int $start 列表起始位置
      * @return  array       $order_list     订单列表
      */
-    function get_user_orders($user_id, $num = 10, $start = 0)
+    public function get_user_orders($user_id, $num = 10, $start = 0)
     {
         // 取得订单列表
         $arr = [];
@@ -618,7 +624,7 @@ class OrderService
      *
      * @return void
      */
-    function cancel_order($order_id, $user_id = 0)
+    public function cancel_order($order_id, $user_id = 0)
     {
         // 查询订单信息，检查状态
         $sql = "SELECT user_id, order_id, order_sn , surplus , integral , bonus_id, order_status, shipping_status, pay_status FROM " . $GLOBALS['ecs']->table('order_info') . " WHERE order_id = '$order_id'";
@@ -712,7 +718,7 @@ class OrderService
      *
      * @return  bool        $bool
      */
-    function affirm_received($order_id, $user_id = 0)
+    public function affirm_received($order_id, $user_id = 0)
     {
         // 查询订单信息，检查状态
         $sql = "SELECT user_id, order_sn , order_status, shipping_status, pay_status FROM " . $GLOBALS['ecs']->table('order_info') . " WHERE order_id = '$order_id'";
@@ -756,7 +762,7 @@ class OrderService
      *
      * @return   arr        $order          订单所有信息的数组
      */
-    function get_order_detail($order_id, $user_id = 0)
+    public function get_order_detail($order_id, $user_id = 0)
     {
         load_helper('order');
 
@@ -897,7 +903,7 @@ class OrderService
      *
      * @return  array       $merge          可合并订单数组
      */
-    function get_user_merge($user_id)
+    public function get_user_merge($user_id)
     {
         load_helper('order');
         $sql = "SELECT order_sn FROM " . $GLOBALS['ecs']->table('order_info') .
@@ -923,7 +929,7 @@ class OrderService
      *
      * @return  boolen      $bool
      */
-    function merge_user_order($from_order, $to_order, $user_id = 0)
+    public function merge_user_order($from_order, $to_order, $user_id = 0)
     {
         if ($user_id > 0) {
             // 检查订单是否属于指定用户
@@ -957,7 +963,7 @@ class OrderService
      *
      * @return  mix         $message        成功返回true, 错误返回出错信息
      */
-    function return_to_cart($order_id)
+    public function return_to_cart($order_id)
     {
         // 初始化基本件数量 goods_id => goods_number
         $basic_number = [];
@@ -1104,7 +1110,7 @@ class OrderService
      *
      * @return  boolen  $bool
      */
-    function save_order_address($address, $user_id)
+    public function save_order_address($address, $user_id)
     {
         $GLOBALS['err']->clean();
         // 数据验证
@@ -1148,7 +1154,7 @@ class OrderService
      * @param  string $order_sn 订单sn
      * @param  blob $voucher 是否为会员充值
      */
-    function get_order_id_by_sn($order_sn, $voucher = 'false')
+    public function get_order_id_by_sn($order_sn, $voucher = 'false')
     {
         if ($voucher == 'true') {
             if (is_numeric($order_sn)) {
@@ -1174,7 +1180,7 @@ class OrderService
      *  通过订单ID取得订单商品名称
      * @param  string $order_id 订单ID
      */
-    function get_goods_name_by_id($order_id)
+    public function get_goods_name_by_id($order_id)
     {
         $sql = 'SELECT goods_name FROM ' . $GLOBALS['ecs']->table('order_goods') . " WHERE order_id = '$order_id'";
         $goods_name = $GLOBALS['db']->getCol($sql);
@@ -1187,7 +1193,7 @@ class OrderService
      * @access  private
      * @return  array
      */
-    function flow_order_info()
+    public function flow_order_info()
     {
         $order = session('?flow_order') ? session('flow_order') : [];
 
@@ -1245,7 +1251,7 @@ class OrderService
      * @param   string $to_order_sn 主订单号
      * @return  成功返回true，失败返回错误信息
      */
-    function merge_order($from_order_sn, $to_order_sn)
+    public function merge_order($from_order_sn, $to_order_sn)
     {
         // 订单号不能为空
         if (trim($from_order_sn) == '' || trim($to_order_sn) == '') {
@@ -1317,8 +1323,13 @@ class OrderService
             $region_id_list = [$order['country'], $order['province'], $order['city'], $order['district']];
             $shipping_area = shipping_area_info($order['shipping_id'], $region_id_list);
 
-            $order['shipping_fee'] = shipping_fee($shipping_area['shipping_code'],
-                unserialize($shipping_area['configure']), $weight_price['weight'], $weight_price['amount'], $weight_price['number']);
+            $order['shipping_fee'] = shipping_fee(
+                $shipping_area['shipping_code'],
+                unserialize($shipping_area['configure']),
+                $weight_price['weight'],
+                $weight_price['amount'],
+                $weight_price['number']
+            );
 
             // 如果保价了，重新计算保价费
             if ($order['insure_fee'] > 0) {
@@ -1420,7 +1431,7 @@ class OrderService
      * @param   string $username 用户名，用户自己的操作则为 buyer
      * @return  void
      */
-    function order_action($order_sn, $order_status, $shipping_status, $pay_status, $note = '', $username = null, $place = 0)
+    public function order_action($order_sn, $order_status, $shipping_status, $pay_status, $note = '', $username = null, $place = 0)
     {
         if (is_null($username)) {
             $username = session('admin_name');
@@ -1444,7 +1455,7 @@ class OrderService
      *
      * @return array()
      */
-    function get_virtual_goods($order_id, $shipping = false)
+    public function get_virtual_goods($order_id, $shipping = false)
     {
         if ($shipping) {
             $sql = 'SELECT goods_id, goods_name, send_number AS num, extension_code FROM ' .
@@ -1476,7 +1487,7 @@ class OrderService
      *
      * @return bool
      */
-    function virtual_goods_ship(&$virtual_goods, &$msg, $order_sn, $return_result = false, $process = 'other')
+    public function virtual_goods_ship(&$virtual_goods, &$msg, $order_sn, $return_result = false, $process = 'other')
     {
         $virtual_card = [];
         foreach ($virtual_goods as $code => $goods_list) {
@@ -1509,7 +1520,7 @@ class OrderService
      *
      * @return  boolen
      */
-    function virtual_card_shipping($goods, $order_sn, &$msg, $process = 'other')
+    public function virtual_card_shipping($goods, $order_sn, &$msg, $process = 'other')
     {
         // 包含加密解密函数所在文件
         load_helper('code');
@@ -1616,7 +1627,7 @@ class OrderService
      *
      * @return void
      */
-    function virtual_card_result($order_sn, $goods)
+    public function virtual_card_result($order_sn, $goods)
     {
         // 包含加密解密函数所在文件
         load_helper('code');
@@ -1652,7 +1663,7 @@ class OrderService
      * @access  public
      * @return  void
      */
-    function last_shipping_and_payment()
+    public function last_shipping_and_payment()
     {
         $sql = "SELECT shipping_id, pay_id " .
             " FROM " . $GLOBALS['ecs']->table('order_info') .
@@ -1674,7 +1685,7 @@ class OrderService
      * @param   string $alias order表的别名（包括.例如 o.）
      * @return  string
      */
-    function order_query_sql($type = 'finished', $alias = '')
+    public function order_query_sql($type = 'finished', $alias = '')
     {
         // 已完成订单
         if ($type == 'finished') {
@@ -1720,7 +1731,7 @@ class OrderService
      * @param   string $alias order表的别名（包括.例如 o.）
      * @return  string
      */
-    function order_amount_field($alias = '')
+    public function order_amount_field($alias = '')
     {
         return "   {$alias}goods_amount + {$alias}tax + {$alias}shipping_fee" .
             " + {$alias}insure_fee + {$alias}pay_fee + {$alias}pack_fee" .
@@ -1732,7 +1743,7 @@ class OrderService
      * @param   string $alias order表的别名（包括.例如 o.）
      * @return  string
      */
-    function order_due_field($alias = '')
+    public function order_due_field($alias = '')
     {
         return order_amount_field($alias) .
             " - {$alias}money_paid - {$alias}surplus - {$alias}integral_money" .
@@ -1745,7 +1756,7 @@ class OrderService
      * @param   array $order 订单
      * @return  int     积分数
      */
-    function integral_to_give($order)
+    public function integral_to_give($order)
     {
         // 判断是否团购
         if ($order['extension_code'] == 'group_buy') {
@@ -1773,7 +1784,7 @@ class OrderService
      * @param   int $order_id 订单号
      * @return  bool
      */
-    function send_order_bonus($order_id)
+    public function send_order_bonus($order_id)
     {
         // 取得订单应该发放的红包
         $bonus_list = order_bonus($order_id);
@@ -1826,7 +1837,7 @@ class OrderService
      * 返回订单发放的红包
      * @param   int $order_id 订单id
      */
-    function return_order_bonus($order_id)
+    public function return_order_bonus($order_id)
     {
         // 取得订单应该发放的红包
         $bonus_list = order_bonus($order_id);
@@ -1852,7 +1863,7 @@ class OrderService
      * @param   int $order_id 订单id
      * @return  array
      */
-    function order_bonus($order_id)
+    public function order_bonus($order_id)
     {
         // 查询按商品发的红包
         $day = getdate();
@@ -1891,5 +1902,4 @@ class OrderService
 
         return $list;
     }
-
 }

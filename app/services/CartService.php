@@ -2,7 +2,6 @@
 
 namespace App\Services;
 
-
 class CartService
 {
     /**
@@ -11,7 +10,7 @@ class CartService
      * @access  public
      * @return  array
      */
-    function get_cart_goods()
+    public function get_cart_goods()
     {
         // 初始化
         $goods_list = [];
@@ -88,7 +87,7 @@ class CartService
      * @param   int $type 类型：默认普通商品
      * @return  array   购物车商品数组
      */
-    function cart_goods($type = CART_GENERAL_GOODS)
+    public function cart_goods($type = CART_GENERAL_GOODS)
     {
         $sql = "SELECT rec_id, user_id, goods_id, goods_name, goods_sn, goods_number, " .
             "market_price, goods_price, goods_attr, is_real, extension_code, parent_id, is_gift, is_shipping, " .
@@ -119,7 +118,7 @@ class CartService
      * @param   int $type 类型：默认普通商品
      * @return  float   购物车总金额
      */
-    function cart_amount($include_gift = true, $type = CART_GENERAL_GOODS)
+    public function cart_amount($include_gift = true, $type = CART_GENERAL_GOODS)
     {
         $sql = "SELECT SUM(goods_price * goods_number) " .
             " FROM " . $GLOBALS['ecs']->table('cart') .
@@ -142,7 +141,7 @@ class CartService
      * @param   int $type 类型：默认普通商品
      * @return  boolean
      */
-    function cart_goods_exists($id, $spec, $type = CART_GENERAL_GOODS)
+    public function cart_goods_exists($id, $spec, $type = CART_GENERAL_GOODS)
     {
         // 检查该商品是否已经存在在购物车中
         $sql = "SELECT COUNT(*) FROM " . $GLOBALS['ecs']->table('cart') .
@@ -160,7 +159,7 @@ class CartService
      * @param   int $type 类型：默认普通商品
      * @return  array
      */
-    function cart_weight_price($type = CART_GENERAL_GOODS)
+    public function cart_weight_price($type = CART_GENERAL_GOODS)
     {
         $package_row['weight'] = 0;
         $package_row['amount'] = 0;
@@ -233,7 +232,7 @@ class CartService
      * @param   integer $parent 基本件
      * @return  boolean
      */
-    function addto_cart($goods_id, $num = 1, $spec = [], $parent = 0)
+    public function addto_cart($goods_id, $num = 1, $spec = [], $parent = 0)
     {
         $GLOBALS['err']->clean();
         $_parent_id = $parent;
@@ -468,7 +467,7 @@ class CartService
      * 清空购物车
      * @param   int $type 类型：默认普通商品
      */
-    function clear_cart($type = CART_GENERAL_GOODS)
+    public function clear_cart($type = CART_GENERAL_GOODS)
     {
         $sql = "DELETE FROM " . $GLOBALS['ecs']->table('cart') .
             " WHERE session_id = '" . SESS_ID . "' AND rec_type = '$type'";
@@ -480,7 +479,7 @@ class CartService
      * @param   int $flow_type 购物流程类型
      * @return  bool
      */
-    function exist_real_goods($order_id = 0, $flow_type = CART_GENERAL_GOODS)
+    public function exist_real_goods($order_id = 0, $flow_type = CART_GENERAL_GOODS)
     {
         if ($order_id <= 0) {
             $sql = "SELECT COUNT(*) FROM " . $GLOBALS['ecs']->table('cart') .
@@ -498,7 +497,7 @@ class CartService
      * 计算折扣：根据购物车和优惠活动
      * @return  float   折扣
      */
-    function compute_discount()
+    public function compute_discount()
     {
         // 查询优惠活动
         $now = gmtime();
@@ -589,7 +588,7 @@ class CartService
      * 取得购物车该赠送的积分数
      * @return  int     积分数
      */
-    function get_give_integral()
+    public function get_give_integral()
     {
         $sql = "SELECT SUM(c.goods_number * IF(g.give_integral > -1, g.give_integral, c.goods_price))" .
             "FROM " . $GLOBALS['ecs']->table('cart') . " AS c, " .
@@ -609,7 +608,7 @@ class CartService
      * 计算购物车中的商品能享受红包支付的总额
      * @return  float   享受红包支付的总额
      */
-    function compute_discount_amount()
+    public function compute_discount_amount()
     {
         // 查询优惠活动
         $now = gmtime();
@@ -699,7 +698,7 @@ class CartService
      * @param   integer $num 礼包数量
      * @return  boolean
      */
-    function add_package_to_cart($package_id, $num = 1)
+    public function add_package_to_cart($package_id, $num = 1)
     {
         $GLOBALS['err']->clean();
 
@@ -786,5 +785,4 @@ class CartService
 
         return true;
     }
-
 }

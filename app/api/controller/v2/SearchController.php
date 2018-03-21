@@ -11,6 +11,6 @@ class SearchController extends Controller
     //POST  ecapi.search.keyword.list
     public function index()
     {
-       return $this->json(Keywords::getHot());
+        return $this->json(Keywords::getHot());
     }
 }

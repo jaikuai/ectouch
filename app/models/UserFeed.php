@@ -24,6 +24,4 @@ class UserFeed extends Model
     ];
 
     protected $guarded = [];
-
-        
 }

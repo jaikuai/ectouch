@@ -9,5 +9,4 @@ namespace App\Notifications;
  */
 class OrderConfirmation
 {
-
 }

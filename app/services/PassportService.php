@@ -2,7 +2,6 @@
 
 namespace App\Services;
 
-
 class PassportService
 {
 
@@ -17,7 +16,7 @@ class PassportService
      *
      * @return  bool         $bool
      */
-    function register($username, $password, $email, $other = [])
+    public function register($username, $password, $email, $other = [])
     {
         // 检查注册是否关闭
         if (!empty($GLOBALS['_CFG']['shop_reg_closed'])) {
@@ -140,7 +139,7 @@ class PassportService
      *
      * @return void
      */
-    function logout()
+    public function logout()
     {
         // todo
     }
@@ -156,7 +155,7 @@ class PassportService
      *
      * @return  boolen  $bool
      */
-    function edit_password($user_id, $old_password, $new_password = '', $code = '')
+    public function edit_password($user_id, $old_password, $new_password = '', $code = '')
     {
         if (empty($user_id)) {
             $GLOBALS['err']->add($GLOBALS['_LANG']['not_login']);
@@ -180,7 +179,7 @@ class PassportService
      *
      * @return  boolen
      */
-    function check_userinfo($user_name, $email)
+    public function check_userinfo($user_name, $email)
     {
         if (empty($user_name) || empty($email)) {
             return redirect("user.php?act=get_password");
@@ -206,7 +205,7 @@ class PassportService
      *
      * @return  boolen  $result;
      */
-    function send_pwd_email($uid, $user_name, $email, $code)
+    public function send_pwd_email($uid, $user_name, $email, $code)
     {
         if (empty($uid) || empty($user_name) || empty($email) || empty($code)) {
             return redirect("user.php?act=get_password");
@@ -240,7 +239,7 @@ class PassportService
      *
      * @return boolen
      */
-    function send_regiter_hash($user_id)
+    public function send_regiter_hash($user_id)
     {
         // 设置验证邮件模板所需要的内容信息
         $template = get_mail_template('register_validate');
@@ -273,7 +272,7 @@ class PassportService
      *
      * @return void
      */
-    function register_hash($operation, $key)
+    public function register_hash($operation, $key)
     {
         if ($operation == 'encode') {
             $user_id = intval($key);
@@ -318,11 +317,10 @@ class PassportService
      * @param   string $adminname 超级管理员用户名
      * @return  boolean
      */
-    function admin_registered($adminname)
+    public function admin_registered($adminname)
     {
         $res = $GLOBALS['db']->getOne("SELECT COUNT(*) FROM " . $GLOBALS['ecs']->table('admin_user') .
             " WHERE user_name = '$adminname'");
         return $res;
     }
-
 }

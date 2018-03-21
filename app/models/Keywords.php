@@ -21,6 +21,4 @@ class Keywords extends Model
     ];
 
     protected $guarded = [];
-
-        
 }

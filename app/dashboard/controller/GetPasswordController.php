@@ -92,8 +92,13 @@ class GetPasswordController extends InitController
                     $content = $this->smarty->fetch('str:' . $template['template_content']);
 
                     // 发送确认重置密码的确认邮件
-                    if (send_mail($admin_username, $admin_email, $template['template_subject'], $content,
-                        $template['is_html'])) {
+                    if (send_mail(
+                        $admin_username,
+                        $admin_email,
+                        $template['template_subject'],
+                        $content,
+                        $template['is_html']
+                    )) {
                         //提示信息
                         $link[0]['text'] = $GLOBALS['_LANG']['back'];
                         $link[0]['href'] = 'privilege.php?act=login';

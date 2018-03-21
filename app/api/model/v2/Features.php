@@ -4,8 +4,8 @@ namespace app\api\model\v2;
 
 use app\api\model\BaseModel;
 
-class Features extends BaseModel {
-
+class Features extends BaseModel
+{
     public static $features = [
         "invoice"          => true,  // 是否支持发票
         "cashgift"         => true,  // 是否支持红包
@@ -45,8 +45,7 @@ class Features extends BaseModel {
 
     public static function check($code)
     {
-        if(self::getStatus($code) === false)
-        {
+        if (self::getStatus($code) === false) {
             return self::formatError(self::UNAUTHORIZED, trans('message.error.unauthorized'));
         }
     }
@@ -61,5 +60,4 @@ class Features extends BaseModel {
     {
         return $data;
     }
-
 }

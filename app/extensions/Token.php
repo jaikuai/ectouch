@@ -139,7 +139,6 @@ class Token
 
         if ($token) {
             if ($payload = self::decode($token)) {
-
                 if (is_object($payload)) {
 
                     // 超过1天
@@ -165,7 +164,6 @@ class Token
         }
 
         return false;
-
     }
 
     private static function new_token($payload)
@@ -303,6 +301,7 @@ class Token
                 } else {
                     return $signature;
                 }
+                // no break
             case 'hash_hmac':
             default:
                 $hash = hash_hmac($algorithm, $msg, $key, true);

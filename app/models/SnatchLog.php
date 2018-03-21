@@ -23,6 +23,4 @@ class SnatchLog extends Model
     ];
 
     protected $guarded = [];
-
-        
 }

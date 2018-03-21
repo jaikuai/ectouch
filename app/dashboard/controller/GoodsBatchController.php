@@ -70,7 +70,7 @@ class GoodsBatchController extends InitController
             $field_list = array_keys($GLOBALS['_LANG']['upload_goods']); // 字段列表
             $data = file($_FILES['file']['tmp_name']);
             if ($_POST['data_cat'] == 'ecshop') {
-                foreach ($data AS $line) {
+                foreach ($data as $line) {
                     // 跳过第一行
                     if ($line_number == 0) {
                         $line_number++;
@@ -101,7 +101,7 @@ class GoodsBatchController extends InitController
                                 case '\'':
                                     $buff .= '\'';
                                     break;
-                                case ',';
+                                case ',':
                                     $buff .= ',';
                                     break;
                                 default:
@@ -142,7 +142,7 @@ class GoodsBatchController extends InitController
                 }
             } elseif ($_POST['data_cat'] == 'taobao') {
                 $id_is = 0;
-                foreach ($data AS $line) {
+                foreach ($data as $line) {
                     // 跳过第一行
                     if ($line_number == 0) {
                         $line_number++;
@@ -180,7 +180,7 @@ class GoodsBatchController extends InitController
                 }
             } elseif ($_POST['data_cat'] == 'paipai') {
                 $id_is = 0;
-                foreach ($data AS $line) {
+                foreach ($data as $line) {
                     // 跳过第一行
                     if ($line_number == 0) {
                         $line_number++;
@@ -217,7 +217,7 @@ class GoodsBatchController extends InitController
                 }
             } elseif ($_POST['data_cat'] == 'paipai3') {
                 $id_is = 0;
-                foreach ($data AS $line) {
+                foreach ($data as $line) {
                     // 跳过第一行
                     if ($line_number == 0) {
                         $line_number++;
@@ -254,7 +254,7 @@ class GoodsBatchController extends InitController
                 }
             } elseif ($_POST['data_cat'] == 'taobao46') {
                 $id_is = 0;
-                foreach ($data AS $line) {
+                foreach ($data as $line) {
                     // 跳过第一行
                     if ($line_number == 0) {
                         $line_number++;
@@ -317,7 +317,6 @@ class GoodsBatchController extends InitController
             admin_priv('goods_batch');
 
             if (isset($_POST['checked'])) {
-
                 $image = new Image($GLOBALS['_CFG']['bgcolor']);
 
                 // 字段默认值
@@ -354,7 +353,7 @@ class GoodsBatchController extends InitController
                 $max_id = $this->db->getOne("SELECT MAX(goods_id) + 1 FROM " . $this->ecs->table('goods'));
 
                 // 循环插入商品数据
-                foreach ($_POST['checked'] AS $key => $value) {
+                foreach ($_POST['checked'] as $key => $value) {
                     // 合并
                     $field_arr = [
                         'cat_id' => $_POST['cat'],
@@ -362,7 +361,7 @@ class GoodsBatchController extends InitController
                         'last_update' => gmtime(),
                     ];
 
-                    foreach ($field_list AS $field) {
+                    foreach ($field_list as $field) {
                         // 转换编码
                         $field_value = isset($_POST[$field][$value]) ? $_POST[$field][$value] : '';
 
@@ -609,7 +608,7 @@ class GoodsBatchController extends InitController
             if ($_POST['edit_method'] == 'each') {
                 // 循环更新每个商品
                 if (!empty($_POST['goods_id'])) {
-                    foreach ($_POST['goods_id'] AS $goods_id) {
+                    foreach ($_POST['goods_id'] as $goods_id) {
                         //如果存在货品则处理货品
                         if (!empty($_POST['product_number'][$goods_id])) {
                             $_POST['goods_number'][$goods_id] = 0;
@@ -634,7 +633,7 @@ class GoodsBatchController extends InitController
 
                         // 更新会员价格
                         if (!empty($_POST['rank_id'])) {
-                            foreach ($_POST['rank_id'] AS $rank_id) {
+                            foreach ($_POST['rank_id'] as $rank_id) {
                                 if (trim($_POST['member_price'][$goods_id][$rank_id]) == '') {
                                     // 为空时不做处理
                                     continue;
@@ -652,7 +651,6 @@ class GoodsBatchController extends InitController
                                     } else {
                                         $this->db->autoExecute($this->ecs->table('member_price'), $rank, 'UPDATE', "goods_id = '$goods_id' AND user_rank = '$rank_id'");
                                     }
-
                                 } else {
                                     if ($rank['user_price'] >= 0) {
                                         $this->db->autoExecute($this->ecs->table('member_price'), $rank, 'INSERT');
@@ -665,7 +663,7 @@ class GoodsBatchController extends InitController
             } else {
                 // 循环更新每个商品
                 if (!empty($_POST['goods_id'])) {
-                    foreach ($_POST['goods_id'] AS $goods_id) {
+                    foreach ($_POST['goods_id'] as $goods_id) {
                         // 更新商品
                         $goods = [];
                         if (trim($_POST['market_price'] != '')) {
@@ -692,7 +690,7 @@ class GoodsBatchController extends InitController
 
                         // 更新会员价格
                         if (!empty($_POST['rank_id'])) {
-                            foreach ($_POST['rank_id'] AS $rank_id) {
+                            foreach ($_POST['rank_id'] as $rank_id) {
                                 if (trim($_POST['member_price'][$rank_id]) != '') {
                                     $rank = [
                                         'goods_id' => $goods_id,
@@ -707,7 +705,6 @@ class GoodsBatchController extends InitController
                                         } else {
                                             $this->db->autoExecute($this->ecs->table('member_price'), $rank, 'UPDATE', "goods_id = '$goods_id' AND user_rank = '$rank_id'");
                                         }
-
                                     } else {
                                         if ($rank['user_price'] >= 0) {
                                             $this->db->autoExecute($this->ecs->table('member_price'), $rank, 'INSERT');

@@ -23,6 +23,4 @@ class VoteOption extends Model
     ];
 
     protected $guarded = [];
-
-        
 }

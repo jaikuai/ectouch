@@ -2,7 +2,6 @@
 
 namespace App\Services;
 
-
 class PackService
 {
 
@@ -10,7 +9,7 @@ class PackService
      * 取得包装列表
      * @return  array   包装列表
      */
-    function pack_list()
+    public function pack_list()
     {
         $sql = 'SELECT * FROM ' . $GLOBALS['ecs']->table('pack');
         $res = $GLOBALS['db']->query($sql);
@@ -30,7 +29,7 @@ class PackService
      * @param   int $pack_id 包装id
      * @return  array   包装信息
      */
-    function pack_info($pack_id)
+    public function pack_info($pack_id)
     {
         $sql = "SELECT * FROM " . $GLOBALS['ecs']->table('pack') .
             " WHERE pack_id = '$pack_id'";
@@ -46,7 +45,7 @@ class PackService
      * @param   float $goods_amount
      * @return  float
      */
-    function pack_fee($pack_id, $goods_amount)
+    public function pack_fee($pack_id, $goods_amount)
     {
         $pack = pack_info($pack_id);
 
@@ -54,5 +53,4 @@ class PackService
 
         return $val;
     }
-
 }

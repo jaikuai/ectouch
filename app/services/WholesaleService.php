@@ -2,7 +2,6 @@
 
 namespace App\Services;
 
-
 class WholesaleService
 {
 
@@ -11,7 +10,7 @@ class WholesaleService
      * @param   int $act_id 活动id
      * @return  array
      */
-    function wholesale_info($act_id)
+    public function wholesale_info($act_id)
     {
         $sql = "SELECT * FROM " . $GLOBALS['ecs']->table('wholesale') .
             " WHERE act_id = '$act_id'";
@@ -22,5 +21,4 @@ class WholesaleService
 
         return $row;
     }
-
 }

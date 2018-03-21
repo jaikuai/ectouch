@@ -5,11 +5,11 @@ namespace app\api\model\v2;
 use app\api\model\BaseModel;
 use Cache;
 
-class Region extends BaseModel {
-
+class Region extends BaseModel
+{
     protected $connection = 'shop';
     protected $table      = 'region';
-    public    $timestamps = false;
+    public $timestamps = false;
 
     protected $appends = ['id', 'name', 'more'];
     protected $visible = ['id', 'name', 'more', 'regions'];
@@ -32,8 +32,7 @@ class Region extends BaseModel {
     {
         $body = [];
         while (true) {
-            if($model = Region::where('region_id', $id)->first())
-            {
+            if ($model = Region::where('region_id', $id)->first()) {
                 $id = $model->parent_id;
                 $body[] = $model;
             } else {
@@ -48,8 +47,7 @@ class Region extends BaseModel {
     {
         $body = [];
         while (true) {
-            if($model = Region::where('region_id', $id)->first())
-            {
+            if ($model = Region::where('region_id', $id)->first()) {
                 $id = $model->parent_id;
 
                 switch ($model->region_type) {
@@ -72,7 +70,6 @@ class Region extends BaseModel {
                     default:
                         break;
                 }
-
             } else {
                 break;
             }
@@ -109,10 +106,9 @@ class Region extends BaseModel {
 
     public function getMoreAttribute()
     {
-       if (Region::where('parent_id', $this->region_id)->count()) {
+        if (Region::where('parent_id', $this->region_id)->count()) {
             return 1;
         }
         return 0;
     }
-
 }

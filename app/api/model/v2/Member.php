@@ -11,8 +11,8 @@ use Illuminate\Support\Facades\Mail;
 use App\Services\Shopex\Sms;
 use App\Services\Oauth\Wechat;
 
-class Member extends BaseModel {
-
+class Member extends BaseModel
+{
     const VENDOR_WEIXIN = 1;
     const VENDOR_WEIBO  = 2;
     const VENDOR_QQ     = 3;
@@ -33,7 +33,7 @@ class Member extends BaseModel {
     protected $connection = 'shop';
     protected $table      = 'users';
     protected $primaryKey = 'user_id';
-    public    $timestamps = false;
+    public $timestamps = false;
 
     protected $guarded = [];
     protected $appends = ['id','age','rank','gender','username','nickname','mobile','avatar','mobile_binded','joined_at','is_auth', 'is_completed'];
@@ -82,8 +82,7 @@ class Member extends BaseModel {
     {
         extract($attributes);
 
-        if (!Member::where('user_name', $username)->orWhere('email', $email)->first())
-        {
+        if (!Member::where('user_name', $username)->orWhere('email', $email)->first()) {
             $data = [
                 'user_name' => $username,
                 'email' => $email,
@@ -96,35 +95,27 @@ class Member extends BaseModel {
                 'rank_points' => 0
             ];
 
-            if ($model = self::create($data))
-            {
+            if ($model = self::create($data)) {
                 // 邀请注册
                 if (isset($invite_code)) {
                     $up_uid = $invite_code;
 
                     if (AffiliateLog::checkOpen() == 1) {
-
                         $affiliate = AffiliateLog::getAffiliateConfig();
                         $affiliate['config']['level_register_all'] = intval($affiliate['config']['level_register_all']);
                         $affiliate['config']['level_register_up'] = intval($affiliate['config']['level_register_up']);
                         $_LANG = trans('message.member.account');
                         if ($up_uid) {
-                            if (!empty($affiliate['config']['level_register_all']))
-                            {
-                                if (!empty($affiliate['config']['level_register_up']))
-                                {
+                            if (!empty($affiliate['config']['level_register_all'])) {
+                                if (!empty($affiliate['config']['level_register_up'])) {
                                     if ($rank_points = self::find($up_uid)) {
                                         $rank_points = $rank_points->rank_points;
                                     
-                                        if ($rank_points + $affiliate['config']['level_register_all'] <= $affiliate['config']['level_register_up'])
-                                        {
+                                        if ($rank_points + $affiliate['config']['level_register_all'] <= $affiliate['config']['level_register_up']) {
                                             self::logAccountChange($up_uid, 0, 0, $affiliate['config']['level_register_all'], 0, sprintf($_LANG, $model->user_id, $model->user_name));
                                         }
                                     }
-                                    
-                                }
-                                else
-                                {
+                                } else {
                                     self::logAccountChange($up_uid, 0, 0, $affiliate['config']['level_register_all'], 0, $_LANG);
                                 }
                             }
@@ -135,7 +126,7 @@ class Member extends BaseModel {
                         }
                     }
                 }
-		
+        
                 if (isset($device_id) && $device_id) {
                     Device::toUpdateOrCreate($model->user_id, $attributes);
                 }
@@ -144,17 +135,11 @@ class Member extends BaseModel {
 
                 $token = Token::encode(['uid' => $model->user_id]);
                 return self::formatBody(['token' => $token, 'user' => $model->toArray()]);
-
-            }   else {
-
+            } else {
                 return self::formatError(self::UNKNOWN_ERROR);
-
             }
-
         } else {
-
             return self::formatError(self::BAD_REQUEST, trans('message.member.exists'));
-
         }
     }
 
@@ -162,8 +147,7 @@ class Member extends BaseModel {
     {
         extract($attributes);
 
-        if (!Member::where('user_name', $mobile)->first())
-        {
+        if (!Member::where('user_name', $mobile)->first()) {
             if (!self::verifyCode($mobile, $code)) {
                 return self::formatError(self::BAD_REQUEST, trans('message.member.mobile.code.error'));
             }
@@ -180,35 +164,27 @@ class Member extends BaseModel {
                 'rank_points' => 0
             ];
 
-            if ($model = self::create($data))
-            {
+            if ($model = self::create($data)) {
                 // 邀请注册
                 if (isset($invite_code)) {
                     $up_uid = $invite_code;
 
                     if (AffiliateLog::checkOpen() == 1) {
-
                         $affiliate = AffiliateLog::getAffiliateConfig();
                         $affiliate['config']['level_register_all'] = intval($affiliate['config']['level_register_all']);
                         $affiliate['config']['level_register_up'] = intval($affiliate['config']['level_register_up']);
                         $_LANG = trans('message.member.account');
                         if ($up_uid) {
-                            if (!empty($affiliate['config']['level_register_all']))
-                            {
-                                if (!empty($affiliate['config']['level_register_up']))
-                                {
+                            if (!empty($affiliate['config']['level_register_all'])) {
+                                if (!empty($affiliate['config']['level_register_up'])) {
                                     if ($rank_points = self::find($up_uid)) {
                                         $rank_points = $rank_points->rank_points;
                                     
-                                        if ($rank_points + $affiliate['config']['level_register_all'] <= $affiliate['config']['level_register_up'])
-                                        {
+                                        if ($rank_points + $affiliate['config']['level_register_all'] <= $affiliate['config']['level_register_up']) {
                                             self::logAccountChange($up_uid, 0, 0, $affiliate['config']['level_register_all'], 0, sprintf($_LANG, $model->user_id, $model->user_name));
                                         }
                                     }
-                                    
-                                }
-                                else
-                                {
+                                } else {
                                     self::logAccountChange($up_uid, 0, 0, $affiliate['config']['level_register_all'], 0, $_LANG);
                                 }
                             }
@@ -219,7 +195,7 @@ class Member extends BaseModel {
                         }
                     }
                 }
-		
+        
                 if (isset($device_id) && $device_id) {
                     Device::toUpdateOrCreate($model->user_id, $attributes);
                 }
@@ -228,25 +204,18 @@ class Member extends BaseModel {
 
                 $token = Token::encode(['uid' => $model->user_id]);
                 return self::formatBody(['token' => $token, 'user' => $model->toArray()]);
-
-            }   else {
-
+            } else {
                 return self::formatError(self::UNKNOWN_ERROR);
-
             }
-
         } else {
-
             return self::formatError(self::BAD_REQUEST, trans('message.member.exists'));
-
         }
     }
 
     public static function verifyMobile(array $attributes)
     {
         extract($attributes);
-        if ($model = Member::where('user_name', $mobile)->first())
-        {
+        if ($model = Member::where('user_name', $mobile)->first()) {
             return self::formatError(self::BAD_REQUEST, trans('message.member.mobile.exists'));
         }
 
@@ -270,16 +239,11 @@ class Member extends BaseModel {
     {
         $uid = Token::authorization();
 
-        if ($model = Member::where('user_id', $uid)->first())
-        {
+        if ($model = Member::where('user_id', $uid)->first()) {
             return self::formatBody(['user' => $model->toArray()]);
-
         } else {
-
             return self::formatError(self::NOT_FOUND);
-
         }
-
     }
 
     public static function updateMember(array $attributes)
@@ -288,8 +252,7 @@ class Member extends BaseModel {
 
         $uid = Token::authorization();
 
-        if ($model = Member::where('user_id', $uid)->first())
-        {
+        if ($model = Member::where('user_id', $uid)->first()) {
             if (isset($gender)) {
                 $model->sex = $gender;
             }
@@ -298,11 +261,11 @@ class Member extends BaseModel {
                 $model->alias = strip_tags($nickname);
             }
 
-            if(isset($avatar_url)){
-                if($avatar = Avatar::where('user_id', $uid)->first()){
+            if (isset($avatar_url)) {
+                if ($avatar = Avatar::where('user_id', $uid)->first()) {
                     $avatar->avatar = $avatar_url;
                     $avatar->save();
-                }else{
+                } else {
                     $avatar = new Avatar;
                     $avatar->user_id = $uid;
                     $avatar->avatar = $avatar_url;
@@ -321,19 +284,13 @@ class Member extends BaseModel {
                 }
             }
 
-            if ($model->save())
-            {
+            if ($model->save()) {
                 return self::formatBody(['user' => $model->toArray()]);
-
-            }   else {
-
+            } else {
                 return self::formatError(self::UNKNOWN_ERROR);
             }
-
         } else {
-
             return self::formatError(self::NOT_FOUND);
-
         }
     }
 
@@ -344,7 +301,6 @@ class Member extends BaseModel {
         $uid = Token::authorization();
 
         if ($model = Member::where('user_id', $uid)->first()) {
-
             if (self::setPassword($old_password, $model->ec_salt) == $model->password) {
                 // update password
                 $model->password = self::setPassword($password);
@@ -352,22 +308,16 @@ class Member extends BaseModel {
                 $model->salt = 0;
 
                 if ($model->save()) {
-
                     return self::formatBody();
-
                 } else {
-
                     return self::formatError(self::UNKNOWN_ERROR);
                 }
-
             } else {
                 //old password error
                 return self::formatError(self::BAD_REQUEST, trans('message.member.password.old_password'));
             }
         } else {
-
             return self::formatError(self::NOT_FOUND);
-
         }
     }
 
@@ -377,28 +327,22 @@ class Member extends BaseModel {
         extract($attributes);
 
         if ($model = Member::where('user_name', $mobile)->first()) {
+            if (self::verifyCode($mobile, $code)) {
+                // update password
+                $model->password = self::setPassword($password);
+                $model->ec_salt = 0;
+                $model->salt = 0;
 
-                if (self::verifyCode($mobile, $code)) {
-                    // update password
-                    $model->password = self::setPassword($password);
-                    $model->ec_salt = 0;
-                    $model->salt = 0;
-
-                    if ($model->save()) {
-
-                        return self::formatBody();
-
-                    } else {
-                        return self::formatError(self::UNKNOWN_ERROR);
-                    }
+                if ($model->save()) {
+                    return self::formatBody();
                 } else {
-                    return self::formatError(self::BAD_REQUEST, trans('message.member.mobile.code.error'));
+                    return self::formatError(self::UNKNOWN_ERROR);
                 }
-
+            } else {
+                return self::formatError(self::BAD_REQUEST, trans('message.member.mobile.code.error'));
+            }
         } else {
-
             return self::formatError(self::BAD_REQUEST, trans('message.member.mobile.404'));
-
         }
     }
 
@@ -406,24 +350,24 @@ class Member extends BaseModel {
     {
         extract($attributes);
 
-        if ($model = Member::where('email', $email)->first()){
-	
+        if ($model = Member::where('email', $email)->first()) {
             $hash_code = ShopConfig::findByCode('hash_code');
-	    
+        
             $activation = md5($model->user_id . $hash_code . $model->reg_time);
 
             //Send mail
-            Mail::send('emails.reset',
+            Mail::send(
+                'emails.reset',
             [
                 'username' => $model->user_name,
                 'sitename' => env('MAIL_FROM_NAME'),
                 'link'     => config('app.shop_url').'/user.php?act=get_password&uid='.$model->user_id.'&code='.$activation
             ],
-            function($message) use ($model)
-            {
-              $message->to($model->email)
+            function ($message) use ($model) {
+                $message->to($model->email)
                   ->subject(trans('message.email.reset.subject'));
-            });
+            }
+            );
 
             return self::formatBody();
         }
@@ -452,15 +396,14 @@ class Member extends BaseModel {
                 return false;
                 break;
             case self::VENDOR_WXA:
-                $wxainfo = self::getUserByWXA($js_code);                
-                if($wxainfo)
-                {
+                $wxainfo = self::getUserByWXA($js_code);
+                if ($wxainfo) {
                     $open_id = $wxainfo['openid'];
                     $session_key = $wxainfo['session_key'];
                     $userinfo['prefix'] = 'wxa';
                     $userinfo['avatar'] = '';
                     $userinfo['gender'] = 0;
-                    $userinfo['nickname'] = 'wxa_'+$wxainfo['openid'];    
+                    $userinfo['nickname'] = 'wxa_'+$wxainfo['openid'];
                 }
                 
                 break;
@@ -484,7 +427,6 @@ class Member extends BaseModel {
 
             $user_id = $model->user_id;
             $is_new_user = true;
-
         } else {
             UserRegStatus::toUpdate($user_id, 1);
         }
@@ -492,13 +434,13 @@ class Member extends BaseModel {
         if (isset($device_id) && $device_id) {
             Device::toUpdateOrCreate($user_id, $attributes);
         }
-        if(!isset($open_id)){
+        if (!isset($open_id)) {
             $open_id = '';
         }
         // login
-        return self::formatBody(['token' => Token::encode(['uid' => $user_id]), 'user' => Member::where('user_id', $user_id)->first(),'openid'=>$open_id,'is_new_user' => $is_new_user]
+        return self::formatBody(
+            ['token' => Token::encode(['uid' => $user_id]), 'user' => Member::where('user_id', $user_id)->first(),'openid'=>$open_id,'is_new_user' => $is_new_user]
             );
-
     }
 
 
@@ -517,7 +459,7 @@ class Member extends BaseModel {
                 }
 
                 $wechat = new Wechat($config['app_id'], $config['app_secret']);
-                return $wechat->getWeChatAuthorizeURL(url('/v2/ecapi.auth.web.callback/'.self::VENDOR_WEIXIN.'/?referer='.$referer.'&scope='.$scope),$scope);
+                return $wechat->getWeChatAuthorizeURL(url('/v2/ecapi.auth.web.callback/'.self::VENDOR_WEIXIN.'/?referer='.$referer.'&scope='.$scope), $scope);
                 break;
 
             case self::VENDOR_WEIBO:
@@ -537,7 +479,7 @@ class Member extends BaseModel {
 
                 $qc = new Qc($config['app_id'], $config['app_secret']);
 
-                $res = $qc->login(url('/v2/ecapi.auth.web.callback/'.self::VENDOR_QQ.'/?referer='.$referer), 'get_user_info');               
+                $res = $qc->login(url('/v2/ecapi.auth.web.callback/'.self::VENDOR_QQ.'/?referer='.$referer), 'get_user_info');
 
                 return $res;
                 
@@ -560,14 +502,14 @@ class Member extends BaseModel {
 
                 $oauth = Configs::where(['type' => 'oauth', 'status' => 1, 'code' => 'wechat.web'])->first();
 
-                $config = Configs::verifyConfig(['app_id', 'app_secret'], $oauth);                                                                
+                $config = Configs::verifyConfig(['app_id', 'app_secret'], $oauth);
 
                 if (!$oauth || !$config) {
                     return self::formatError(self::BAD_REQUEST, trans('message.config.oauth.wechat'));
                 }
 
 
-        		$scope = isset($_GET['scope'])?$_GET['scope']:"";
+                $scope = isset($_GET['scope'])?$_GET['scope']:"";
 
                 $wechat = new Wechat($config['app_id'], $config['app_secret']);
 
@@ -576,14 +518,14 @@ class Member extends BaseModel {
                     return self::formatError(self::BAD_REQUEST, trans('message.member.auth.error'));
                 }
                 $open_id = $wechat->getOpenid();
-                if($scope == "snsapi_userinfo"){
+                if ($scope == "snsapi_userinfo") {
                     $oauth_id = $wechat->getUnionid() ?: $open_id;
                     $userinfo = self::getUserByWeixin($access_token, $oauth_id);
-                }                
+                }
 
                 $platform = 'wechat';
 
-                if($scope == "snsapi_userinfo"){
+                if ($scope == "snsapi_userinfo") {
                     if (!$userinfo) {
                         return self::formatError(self::BAD_REQUEST, trans('message.member.auth.error'));
                     }
@@ -605,9 +547,8 @@ class Member extends BaseModel {
                     Cache::put($key, $platform, 0);
 
                     return ['token' => $token, 'openid' => $open_id];
-                }
-                else{
-                    return ['token' => "", 'openid' => $open_id];        
+                } else {
+                    return ['token' => "", 'openid' => $open_id];
                 }
 
                 break;
@@ -627,7 +568,7 @@ class Member extends BaseModel {
                 
                 $qc = new Qc($config['app_id'], $config['app_secret']);
 
-                $access_token = $qc->get_access_token(url('/v2/ecapi.auth.web.callback/'.self::VENDOR_QQ)); // 
+                $access_token = $qc->get_access_token(url('/v2/ecapi.auth.web.callback/'.self::VENDOR_QQ)); //
 
                 $open_id = $qc->get_openid($access_token); // open_id
 
@@ -658,7 +599,6 @@ class Member extends BaseModel {
                 return false;
                 break;
         }
-
     }
 
 
@@ -683,10 +623,9 @@ class Member extends BaseModel {
     {
         $oauth = Configs::where(['type' => 'oauth', 'status' => 1, 'code' => 'wechat.wxa'])->first();
         $config = Configs::verifyConfig(['app_id', 'app_secret'], $oauth);
-        Log::error('weixin_config: '.var_export($config,true));
+        Log::error('weixin_config: '.var_export($config, true));
         if (!$oauth || !$config) {
             return self::formatError(self::BAD_REQUEST, trans('message.config.oauth.wechat'));
-
         }
 
         $app_id = $config['app_id'];
@@ -702,9 +641,8 @@ class Member extends BaseModel {
         return [
             'openid' => $res['openid'],
             'prefix' => 'wxa',
-            'session_key' => $res['session_key']            
+            'session_key' => $res['session_key']
         ];
-        
     }
     
 
@@ -748,7 +686,6 @@ class Member extends BaseModel {
         }
 
         return false;
-
     }
 
     private static function checkBind($open_id)
@@ -764,8 +701,7 @@ class Member extends BaseModel {
     {
         $username = self::genUsername($prefix);
 
-        if (!Member::where('user_name', $username)->first())
-        {
+        if (!Member::where('user_name', $username)->first()) {
             $data = [
                 'user_name' => $username,
                 'email' => "{$username}@sns.user",
@@ -778,8 +714,7 @@ class Member extends BaseModel {
                 'rank_points' => 0
             ];
 
-            if ($model = self::create($data))
-            {
+            if ($model = self::create($data)) {
                 $sns = new Sns;
                 $sns->user_id = $model->user_id;
                 $sns->open_id = $open_id;
@@ -795,7 +730,7 @@ class Member extends BaseModel {
 
     private static function genUsername($type)
     {
-        return $type.'_'.time().rand(1000,9999);
+        return $type.'_'.time().rand(1000, 9999);
     }
 
     private static function validatePassword($username, $password)
@@ -803,17 +738,12 @@ class Member extends BaseModel {
         $type = self::getUsernameType($username);
 
         if ($type == 'email') {
-
             $model = self::where('email', $username)->first();
-
         } else {
-
             $model = self::where('user_name', $username)->first();
-
         }
 
-        if ($model && $model->password == self::setPassword($password, $model->ec_salt))
-        {
+        if ($model && $model->password == self::setPassword($password, $model->ec_salt)) {
             $model->last_login = time();
             $model->last_ip = app('request')->ip();
             $model->save();
@@ -821,7 +751,7 @@ class Member extends BaseModel {
             return $model;
         }
 
-            return false;
+        return false;
     }
 
     private static function setPassword($password, $salt = false)
@@ -834,16 +764,11 @@ class Member extends BaseModel {
 
     public static function getUsernameType($username)
     {
-        if (preg_match("/^\d{11}$/",$username)) {
-
+        if (preg_match("/^\d{11}$/", $username)) {
             return 'mobile';
-
-        } elseif (preg_match("/^\w+@\w+\.\w+$/",$username)) {
-
+        } elseif (preg_match("/^\w+@\w+\.\w+$/", $username)) {
             return 'email';
-
         } else {
-
             return 'username';
         }
     }
@@ -852,11 +777,11 @@ class Member extends BaseModel {
     {
         $uid = Token::authorization();
 
-        if($member = Member::where('user_id', $uid)->first()){
+        if ($member = Member::where('user_id', $uid)->first()) {
             $rule = ShopConfig::findByCode('integral_scale');
-            if(isset($rule)){
+            if (isset($rule)) {
                 return self::formatBody(['score' => $member->pay_points, 'rule' => $rule/100]);
-           }
+            }
         }
     }
 
@@ -867,18 +792,16 @@ class Member extends BaseModel {
      */
     public static function user_info($user_id)
     {
-
         $user = Member::where('user_id', $user_id)->first();
         unset($user['question']);
         unset($user['answer']);
 
         /* 格式化帐户余额 */
-        if ($user)
-        {
-    //        if ($user['user_money'] < 0)
-    //        {
-    //            $user['user_money'] = 0;
-    //        }
+        if ($user) {
+            //        if ($user['user_money'] < 0)
+            //        {
+            //            $user['user_money'] = 0;
+            //        }
             $user['formated_user_money'] = Goods::price_format($user['user_money'], false);
             $user['formated_frozen_money'] = Goods::price_format($user['frozen_money'], false);
         }
@@ -896,10 +819,10 @@ class Member extends BaseModel {
     public static function flow_available_points()
     {
         $val = 0;
-        $res = Cart::join('goods','cart.goods_id','=','goods.goods_id')
-                ->where('goods.integral','>',0)
-                ->where('cart.is_gift','=',0)
-                ->where('cart.rec_type','=',Cart::CART_GENERAL_GOODS)
+        $res = Cart::join('goods', 'cart.goods_id', '=', 'goods.goods_id')
+                ->where('goods.integral', '>', 0)
+                ->where('cart.is_gift', '=', 0)
+                ->where('cart.rec_type', '=', Cart::CART_GENERAL_GOODS)
                 // ->sum(DB::raw('integral * (cart.goods_number)'));
                 // ->select('sum('goods.integral' * 'cart.goods_number') AS total')
                 ->first(['goods.integral','cart.goods_number']);
@@ -914,7 +837,7 @@ class Member extends BaseModel {
     {
         $score = ShopConfig::findByCode('register_points');
 
-        if( $score > 0 && AccountLog::logAccountChange(0, 0, $score, $score, trans('message.score.register'))){
+        if ($score > 0 && AccountLog::logAccountChange(0, 0, $score, $score, trans('message.score.register'))) {
             return true;
         }
         return false;
@@ -946,17 +869,17 @@ class Member extends BaseModel {
         );
         AccountLog::insert($account_log);
         // /* 更新用户信息 */
-        self::where('user_id',$user_id)
+        self::where('user_id', $user_id)
                 ->limit(1)
-                ->increment('user_money',$user_money)
-                ->increment('frozen_money',$frozen_money)
-                ->increment('rank_points',$rank_points)
-                ->increment('pay_points',$pay_points);
+                ->increment('user_money', $user_money)
+                ->increment('frozen_money', $frozen_money)
+                ->increment('rank_points', $rank_points)
+                ->increment('pay_points', $pay_points);
     }
 
     private static function verifyCode($mobile, $code)
     {
-    	$res = Sms::verifySmsCode($mobile, $code);
+        $res = Sms::verifySmsCode($mobile, $code);
         if ($res === true) { // !isset($res['error']
             return true;
         }
@@ -977,7 +900,7 @@ class Member extends BaseModel {
     {
         if ($model = UserRank::findRankByUid($this->user_id)) {
             return $model->toArray();
-        }else{
+        } else {
             //如果没有等级　默认返回注册用户
             return null;
         }
@@ -1020,7 +943,7 @@ class Member extends BaseModel {
 
     public function getIsAuthAttribute()
     {
-        if(strpos($this->attributes['email'], '@sns.user') === false){
+        if (strpos($this->attributes['email'], '@sns.user') === false) {
             return false;
         }
         return true;

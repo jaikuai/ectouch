@@ -396,9 +396,23 @@ function get_shop_help()
  * @param   string $price_max 最高价格
  * @return  void
  */
-function assign_pager($app, $cat, $record_count, $size, $sort, $order, $page = 1,
-                      $keywords = '', $brand = 0, $price_min = 0, $price_max = 0, $display_type = 'list', $filter_attr = '', $url_format = '', $sch_array = '')
-{
+function assign_pager(
+    $app,
+    $cat,
+    $record_count,
+    $size,
+    $sort,
+    $order,
+    $page = 1,
+                      $keywords = '',
+    $brand = 0,
+    $price_min = 0,
+    $price_max = 0,
+    $display_type = 'list',
+    $filter_attr = '',
+    $url_format = '',
+    $sch_array = ''
+) {
     $sch = ['keywords' => $keywords,
         'sort' => $sort,
         'order' => $order,

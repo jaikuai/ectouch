@@ -49,6 +49,4 @@ class BackOrder extends Model
     ];
 
     protected $guarded = [];
-
-        
 }

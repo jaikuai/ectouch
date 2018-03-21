@@ -5,11 +5,11 @@ namespace app\api\model\v2;
 use app\api\model\BaseModel;
 use app\api\classes\Header;
 
-class ShopConfig extends BaseModel {
-
+class ShopConfig extends BaseModel
+{
     protected $connection = 'shop';
     protected $table      = 'shop_config';
-    public    $timestamps = true;
+    public $timestamps = true;
 
     public static function findByCode($code)
     {

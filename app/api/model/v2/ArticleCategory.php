@@ -10,7 +10,7 @@ class ArticleCategory extends BaseModel
 
     protected $table      = 'article_cat';
 
-    public    $timestamps = false;
+    public $timestamps = false;
 
     protected $hidden = [];
 
@@ -24,9 +24,9 @@ class ArticleCategory extends BaseModel
     {
         extract($attributes);
 
-        if(self::where('parent_id', $id)->count() > 0){
+        if (self::where('parent_id', $id)->count() > 0) {
             $model = self::where('parent_id', $id);
-        }else{
+        } else {
             $model = Article::where('cat_id', $id);
         }
 
@@ -71,5 +71,4 @@ class ArticleCategory extends BaseModel
     {
         return true;
     }
-
 }

@@ -23,6 +23,4 @@ class AuctionLog extends Model
     ];
 
     protected $guarded = [];
-
-        
 }

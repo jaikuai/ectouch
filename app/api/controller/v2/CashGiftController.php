@@ -7,7 +7,8 @@ use app\api\model\v2\BonusType;
 use app\api\model\v2\Features;
 use app\api\classes\Token;
 
-class CashGiftController extends Controller {
+class CashGiftController extends Controller
+{
 
     /**
     * POST ecapi.cashgift.list
@@ -20,8 +21,7 @@ class CashGiftController extends Controller {
             'status'    => 'required|integer',
         ];
 
-        if($res = Features::check('cashgift'))
-        {
+        if ($res = Features::check('cashgift')) {
             return $this->json($res);
         }
 
@@ -45,8 +45,7 @@ class CashGiftController extends Controller {
             'total_price'   => 'required|numeric|min:0',
         ];
 
-        if($res = Features::check('cashgift'))
-        {
+        if ($res = Features::check('cashgift')) {
             return $this->json($res);
         }
 
@@ -58,5 +57,4 @@ class CashGiftController extends Controller {
 
         return $this->json($model);
     }
-
 }

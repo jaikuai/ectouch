@@ -18,7 +18,7 @@ class Configs extends BaseModel
 
     protected $guarded = [];
 
-    public  $timestamps   = true;
+    public $timestamps   = true;
 
     public static function getList()
     {
@@ -96,8 +96,8 @@ class Configs extends BaseModel
         foreach ($data as $value) {
             $arr = json_decode($value->config, true);
 
-	        //qiniu格式化
-            if( $value->code == 'qiniu'){
+            //qiniu格式化
+            if ($value->code == 'qiniu') {
                 if (!empty($value->config)) {
                     $qiniu = new QiNiu($arr['app_key'], $arr['secret_key']);
                     unset($arr['app_key']);
@@ -107,29 +107,27 @@ class Configs extends BaseModel
             }
 
             //wxpay.web jssdk
-            if( $value->code == 'wxpay.web' && $value->status){
+            if ($value->code == 'wxpay.web' && $value->status) {
                 if (!empty($value->config)) {
                     $jssdk = new JSSDK($arr['app_id'], $arr['app_secret']);
                     $arr = $jssdk->GetSignPackage();
                 }
             }
 
-            if(is_array($arr)){
+            if (is_array($arr)) {
                 $body[$value->code] = $arr;
             }
-        } 
+        }
 
         $body['authorize'] = false;
 
-        $response = Authorize::info();    
-        if ($response['result'] == 'success') 
-        {
+        $response = Authorize::info();
+        if ($response['result'] == 'success') {
             // 旗舰版授权...
-            if ($response['info']['authorize_code'] == 'NDE') 
-            {
+            if ($response['info']['authorize_code'] == 'NDE') {
                 $body['authorize'] = true;
             }
-        }       
+        }
 
         //安全处理
         unset($body['alipay.app']);
@@ -139,5 +137,4 @@ class Configs extends BaseModel
 
         return $body;
     }
-
 }

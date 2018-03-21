@@ -10,6 +10,5 @@ class ShippingArea extends BaseModel
 
     protected $table      = 'shipping_area';
 
-    public    $timestamps = false;
-    
+    public $timestamps = false;
 }

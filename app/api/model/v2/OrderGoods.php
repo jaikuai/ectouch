@@ -5,12 +5,12 @@ namespace app\api\model\v2;
 use app\api\model\BaseModel;
 use app\api\classes\Token;
 
-class OrderGoods extends BaseModel {
-
+class OrderGoods extends BaseModel
+{
     protected $connection = 'shop';
     protected $table      = 'order_goods';
     protected $primaryKey = 'rec_id';
-    public    $timestamps = false;
+    public $timestamps = false;
 
     protected $guarded = [];
     protected $appends = ['id', 'product', 'property', 'attachment', 'total_amount', 'total_price', 'product_price', 'is_reviewed'];
@@ -33,7 +33,7 @@ class OrderGoods extends BaseModel {
         return self::leftJoin('order_info', 'order_info.order_id', '=', 'order_goods.order_id')
             ->where('goods_id', $goods_id)
             ->where('order_status', 5)
-	    ->sum('goods_number');
+        ->sum('goods_number');
     }
 
     /**
@@ -51,14 +51,13 @@ class OrderGoods extends BaseModel {
                 ->where('order_goods.extension_code', '<>', 'package_buy')
                 ->get();
 
-        if(count($model)>0)
-        {
+        if (count($model)>0) {
             $integral = 0;
             $sum = 0;
 
             foreach ($model as $order_goods) {
                 $integral = $order_goods->goods_price;
-                if($order_goods->give_integral > -1){
+                if ($order_goods->give_integral > -1) {
                     $integral = $order_goods->give_integral;
                 }
                 $sum += $order_goods->goods_number *$integral;
@@ -72,7 +71,7 @@ class OrderGoods extends BaseModel {
 
     public function orderinfo()
     {
-        return $this->belongsTo('app\api\model\v2\OrderInfo','order_id','order_id');
+        return $this->belongsTo('app\api\model\v2\OrderInfo', 'order_id', 'order_id');
     }
 
     public function getIdAttribute()

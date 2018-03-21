@@ -9,7 +9,7 @@ class OrderRepository
      *
      *
      */
-    function deleteRepeat($array)
+    public function deleteRepeat($array)
     {
         $_card_sn_record = [];
         foreach ($array as $_k => $_v) {

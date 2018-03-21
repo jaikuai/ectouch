@@ -23,5 +23,4 @@ class DrpAccountChecked
 
         return $this;
     }
-
 }

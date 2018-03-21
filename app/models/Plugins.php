@@ -23,6 +23,4 @@ class Plugins extends Model
     ];
 
     protected $guarded = [];
-
-        
 }

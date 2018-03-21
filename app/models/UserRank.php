@@ -25,6 +25,4 @@ class UserRank extends Model
     ];
 
     protected $guarded = [];
-
-        
 }

@@ -21,41 +21,44 @@
  */
 namespace App\Services\Payment\wxpay;
 
-class TenpayHttpClient {
+class TenpayHttpClient
+{
     //请求链接
-    var $reqContent;
+    public $reqContent;
     //请求内容
-    var $reqBody;
+    public $reqBody;
     //应答内容
-    var $resContent;
+    public $resContent;
     //请求方法
-    var $method;
+    public $method;
 
     //证书文件
-    var $certFile;
+    public $certFile;
     //证书密码
-    var $certPasswd;
+    public $certPasswd;
     //证书类型PEM
-    var	$certType;
+    public $certType;
 
     //CA文件
-    var $caFile;
+    public $caFile;
 
     //错误信息
-    var $errInfo;
+    public $errInfo;
 
     //超时时间
-    var $timeOut;
+    public $timeOut;
 
     //http状态码
-    var $responseCode;
+    public $responseCode;
 
-    function __construct() {
+    public function __construct()
+    {
         $this->TenpayHttpClient();
     }
 
 
-    function TenpayHttpClient() {
+    public function TenpayHttpClient()
+    {
         $this->reqContent = "";
         $this->resContent = "";
         $this->method = "post";
@@ -71,53 +74,61 @@ class TenpayHttpClient {
         $this->timeOut = 120;
 
         $this->responseCode = 0;
-
     }
 
 
     //设置请求链接
-    function setReqContent($reqContent) {
+    public function setReqContent($reqContent)
+    {
         $this->reqContent = $reqContent;
     }
     //设置请求内容
-    function setReqBody($body) {
+    public function setReqBody($body)
+    {
         $this->reqBody = $body;
     }
     //获取结果内容
-    function getResContent() {
+    public function getResContent()
+    {
         return $this->resContent;
     }
 
     //设置请求方法post或者get
-    function setMethod($method) {
+    public function setMethod($method)
+    {
         $this->method = $method;
     }
 
     //获取错误信息
-    function getErrInfo() {
+    public function getErrInfo()
+    {
         return $this->errInfo;
     }
 
     //设置证书信息
-    function setCertInfo($certFile, $certPasswd, $certType="PEM") {
+    public function setCertInfo($certFile, $certPasswd, $certType="PEM")
+    {
         $this->certFile = $certFile;
         $this->certPasswd = $certPasswd;
         $this->certType = $certType;
     }
 
     //设置Ca
-    function setCaInfo($caFile) {
+    public function setCaInfo($caFile)
+    {
         $this->caFile = $caFile;
     }
 
     //设置超时时间,单位秒
-    function setTimeOut($timeOut) {
+    public function setTimeOut($timeOut)
+    {
         $this->timeOut = $timeOut;
     }
 
 
     //执行http调用
-    function call() {
+    public function call()
+    {
         //启动一个CURL会话
         $ch = curl_init();
 
@@ -127,14 +138,14 @@ class TenpayHttpClient {
 
 
         // 获取的信息以文件流的形式返回，而不是直接输出。
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER,true);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
         // 从证书中检查SSL加密算法是否存在
-        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, FALSE);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
 
 
         //$arr = explode("?", $this->reqContent);
-        if(strtolower($this->method) == "post") {
+        if (strtolower($this->method) == "post") {
             //发送一个常规的POST请求
             curl_setopt($ch, CURLOPT_URL, $this->reqContent);
             curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
@@ -144,43 +155,38 @@ class TenpayHttpClient {
             curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/5.0 (compatible; MSIE 5.01; Windows NT 5.0)');
             //要传送的所有数据
             curl_setopt($ch, CURLOPT_POSTFIELDS, $this->reqBody);
-
-        }else{
-
+        } else {
             curl_setopt($ch, CURLOPT_URL, $this->reqContent);
         }
 
 
         //设置证书信息
-        if($this->certFile != "") {
+        if ($this->certFile != "") {
             curl_setopt($ch, CURLOPT_SSLCERT, $this->certFile);
             curl_setopt($ch, CURLOPT_SSLCERTPASSWD, $this->certPasswd);
             curl_setopt($ch, CURLOPT_SSLCERTTYPE, $this->certType);
         }
 
         //设置CA
-        if($this->caFile != "") {
+        if ($this->caFile != "") {
             // 对认证证书来源的检查，0表示阻止对证书的合法性的检查。1需要设置CURLOPT_CAINFO
             curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 1);
             curl_setopt($ch, CURLOPT_CAINFO, $this->caFile);
-
         } else {
             // 对认证证书来源的检查，0表示阻止对证书的合法性的检查。1需要设置CURLOPT_CAINFO
-            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
-
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
         }
 
         // 执行操作
         $res = curl_exec($ch);
 
         $this->responseCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-        if ($res == NULL) {
+        if ($res == null) {
             $this->errInfo = "call http err :" . curl_errno($ch) . " - " . curl_error($ch) ;
             curl_close($ch);
 
             return false;
-
-        } else if($this->responseCode != "200") {
+        } elseif ($this->responseCode != "200") {
             $this->errInfo = "call http err httpcode=" . $this->responseCode;
             curl_close($ch);
             return false;
@@ -192,9 +198,8 @@ class TenpayHttpClient {
         return true;
     }
 
-    function getResponseCode() {
+    public function getResponseCode()
+    {
         return $this->responseCode;
     }
-
 }
-?>

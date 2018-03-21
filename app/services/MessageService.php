@@ -2,7 +2,6 @@
 
 namespace App\Services;
 
-
 class MessageService
 {
 
@@ -17,7 +16,7 @@ class MessageService
      * @return  array   $msg            留言及回复列表
      * @return  string  $order_id       订单ID
      */
-    function get_message_list($user_id, $user_name, $num, $start, $order_id = 0)
+    public function get_message_list($user_id, $user_name, $num, $start, $order_id = 0)
     {
         // 获取留言数据
         $msg = [];
@@ -67,7 +66,7 @@ class MessageService
      *
      * @return  boolen      $bool
      */
-    function add_message($message)
+    public function add_message($message)
     {
         $upload_size_limit = $GLOBALS['_CFG']['upload_size_limit'] == '-1' ? ini_get('upload_max_filesize') : $GLOBALS['_CFG']['upload_size_limit'];
         $status = 1 - $GLOBALS['_CFG']['message_check'];
@@ -112,5 +111,4 @@ class MessageService
 
         return true;
     }
-
 }

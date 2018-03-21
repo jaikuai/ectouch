@@ -294,8 +294,11 @@ class BrandController extends InitController
             $this->smarty->assign('record_count', $brand_list['record_count']);
             $this->smarty->assign('page_count', $brand_list['page_count']);
 
-            return make_json_result($this->smarty->fetch('brand_list.htm'), '',
-                ['filter' => $brand_list['filter'], 'page_count' => $brand_list['page_count']]);
+            return make_json_result(
+                $this->smarty->fetch('brand_list.htm'),
+                '',
+                ['filter' => $brand_list['filter'], 'page_count' => $brand_list['page_count']]
+            );
         }
     }
 

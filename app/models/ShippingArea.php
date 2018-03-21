@@ -22,6 +22,4 @@ class ShippingArea extends Model
     ];
 
     protected $guarded = [];
-
-        
 }

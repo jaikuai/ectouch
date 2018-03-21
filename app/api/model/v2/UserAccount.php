@@ -13,7 +13,7 @@ class UserAccount extends BaseModel
 
     protected $table      = 'user_account';
 
-    public    $timestamps = false;
+    public $timestamps = false;
 
     protected $appends = ['id', 'cash', 'member_memo', 'admin_memo', 'update_at', 'create_at', 'status'];
 
@@ -77,8 +77,7 @@ class UserAccount extends BaseModel
 
         /* 判断是否有足够的余额的进行退款的操作 */
         $sur_amount = self::getUserSurplus($user_id);
-        if ($cash > $sur_amount['amount'])
-        {
+        if ($cash > $sur_amount['amount']) {
             return self::formatError(self::BAD_REQUEST, trans('message.account.amount'));
         }
 
@@ -147,7 +146,7 @@ class UserAccount extends BaseModel
      */
     public static function getUserSurplus($user_id)
     {
-        $money = AccountLog::where('user_id',$user_id)->sum('user_money');
+        $money = AccountLog::where('user_id', $user_id)->sum('user_money');
         return self::formatBody(['amount' => $money]);
     }
 

@@ -27,6 +27,4 @@ class OrderAction extends Model
     ];
 
     protected $guarded = [];
-
-        
 }

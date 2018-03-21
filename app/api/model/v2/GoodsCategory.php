@@ -4,11 +4,11 @@ namespace app\api\model\v2;
 
 use app\api\model\BaseModel;
 
-class GoodsCategory extends BaseModel {
-
+class GoodsCategory extends BaseModel
+{
     protected $connection = 'shop';
     protected $table      = 'category';
-    public    $timestamps = false;
+    public $timestamps = false;
 
     protected $with = [];
     
@@ -26,17 +26,16 @@ class GoodsCategory extends BaseModel {
 
         if (isset($category) && $category) {
             //指定分类
-            $model->where(function($query) use ($category){
+            $model->where(function ($query) use ($category) {
                 $query->where('cat_id', $category)->orWhere('parent_id', $category);
             });
-
         } else {
             $model->where('parent_id', 0);
         }
 
         if (isset($keyword) && $keyword) {
             $model->where(function ($query) use ($keyword) {
-                 $query->where('cat_name', 'like', '%'.strip_tags($keyword).'%')->orWhere('cat_id', strip_tags($keyword));
+                $query->where('cat_name', 'like', '%'.strip_tags($keyword).'%')->orWhere('cat_id', strip_tags($keyword));
             });
         }
 
@@ -47,14 +46,12 @@ class GoodsCategory extends BaseModel {
             ->paginate($per_page)->toArray();
 
         return self::formatBody(['categories' => $data['data'],'paged' => self::formatPaged($page, $per_page, $total)]);
-
     }
 
 
     public static function getCategoryIds($id)
     {
-        if($model = GoodsCategory::where('cat_id', $id)->where('is_show', 1)->orderBy('cat_id', 'ASC')->first())
-        {
+        if ($model = GoodsCategory::where('cat_id', $id)->where('is_show', 1)->orderBy('cat_id', 'ASC')->first()) {
             $ids = GoodsCategory::where('parent_id', $id)->where('is_show', 1)->orderBy('cat_id', 'ASC')->lists('cat_id')->toArray();
             if (is_array($ids)) {
                 $moreids = GoodsCategory::whereIn('parent_id', $ids)->where('is_show', 1)->orderBy('cat_id', 'ASC')->lists('cat_id')->toArray();
@@ -116,5 +113,4 @@ class GoodsCategory extends BaseModel {
     {
         return $this->hasMany('app\api\model\v2\GoodsCategory', 'parent_id', 'id');
     }
-
 }

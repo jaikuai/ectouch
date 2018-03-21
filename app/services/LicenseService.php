@@ -13,7 +13,7 @@ class LicenseService
      *
      * @return  str
      */
-    function license_info()
+    public function license_info()
     {
         if ($GLOBALS['_CFG']['licensed'] > 0) {
             // 获取HOST
@@ -36,7 +36,7 @@ class LicenseService
      * 获得网店 license 信息
      * @return array
      */
-    function get_shop_license()
+    public function get_shop_license()
     {
         // 取出网店 license
         $sql = "SELECT code, value
@@ -59,7 +59,7 @@ class LicenseService
      * @param   string     证书token
      * @return  string
      */
-    function make_shop_ac($post_params, $token)
+    public function make_shop_ac($post_params, $token)
     {
         if (!is_array($post_params)) {
             return;
@@ -85,7 +85,7 @@ class LicenseService
      * @param   bool $use_lib 使用哪一个json库，0为ec，1为shopex
      * @return  array
      */
-    function exchange_shop_license($certi, $license, $use_lib = 0)
+    public function exchange_shop_license($certi, $license, $use_lib = 0)
     {
         if (!is_array($certi)) {
             return [];
@@ -118,7 +118,7 @@ class LicenseService
      * @param   array $cert_auth 登录返回的用户信息
      * @return  array
      */
-    function process_login_license($cert_auth)
+    public function process_login_license($cert_auth)
     {
         if (!is_array($cert_auth)) {
             return [];
@@ -144,7 +144,7 @@ class LicenseService
      * @return  array     $return_array['flag'] = login_succ、login_fail、login_ping_fail、login_param_fail；
      *                    $return_array['request']；
      */
-    function license_login($certi_added = '')
+    public function license_login($certi_added = '')
     {
         // 登录信息配置
         $certi['certi_app'] = ''; // 证书方法
@@ -206,7 +206,7 @@ class LicenseService
      * @return  array     $return_array['flag'] = reg_succ、reg_fail、reg_ping_fail；
      *                    $return_array['request']；
      */
-    function license_reg($certi_added = '')
+    public function license_reg($certi_added = '')
     {
         // 登录信息配置
         $certi['certi_app'] = ''; // 证书方法
@@ -262,5 +262,4 @@ class LicenseService
 
         return $return_array;
     }
-
 }

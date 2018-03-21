@@ -223,7 +223,6 @@ class TopicController extends InitController
         }
 
         if ($_REQUEST['act'] == 'get_goods_list') {
-
             $json = new Json();
 
             $filters = $json->decode($_GET['JSON']);

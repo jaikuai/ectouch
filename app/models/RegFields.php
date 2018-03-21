@@ -22,6 +22,4 @@ class RegFields extends Model
     ];
 
     protected $guarded = [];
-
-        
 }

@@ -31,6 +31,4 @@ class DeliveryGoods extends Model
     ];
 
     protected $guarded = [];
-
-        
 }

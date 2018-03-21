@@ -13,7 +13,7 @@ class CollectGoods extends BaseModel
 
     protected $primaryKey = 'rec_id';
 
-    public    $timestamps = false;
+    public $timestamps = false;
 
     protected $guarded = [];
 
@@ -63,22 +63,21 @@ class CollectGoods extends BaseModel
         $num = CollectGoods::where(['user_id' => $uid, 'goods_id' => $product])->count();
 
         //因为有网站和手机 所以可能$num大于1
-        if($num == 0){
+        if ($num == 0) {
             $model = new CollectGoods;
             $model->user_id             = $uid;
             $model->goods_id            = $product;
             $model->add_time            = time();
             $model->is_attention        = 1;
 
-            if ($model->save()){
+            if ($model->save()) {
                 return self::formatBody(['is_liked' =>true ]);
-            }else{
+            } else {
                 return self::formatError(self::UNKNOWN_ERROR);
             }
-        }elseif ($num >0 ) {
+        } elseif ($num >0) {
             return self::formatBody(['is_liked' =>true ]);
         }
-
     }
 
     public static function setUnlike(array $attributes)
@@ -89,25 +88,21 @@ class CollectGoods extends BaseModel
         $model = self::where(['user_id' => $uid, 'goods_id' => $product]);
         $num = $model->count();
 
-        if ($num == 1)
-        {
+        if ($num == 1) {
             $model->delete();
-        }
-        else if ($num > 1)
-        {
+        } elseif ($num > 1) {
             for ($i=0; $i < $num; $i++) {
                 $model = $model->first();
                 $model->delete();
             }
         }
-        if($model->count() == 0){
+        if ($model->count() == 0) {
             return self::formatBody(['is_liked' =>false ]);
         }
     }
 
     public function goods()
     {
-      return $this->hasOne('app\api\model\v2\Goods', 'goods_id', 'goods_id');
+        return $this->hasOne('app\api\model\v2\Goods', 'goods_id', 'goods_id');
     }
-
 }

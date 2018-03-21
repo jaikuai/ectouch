@@ -19,6 +19,4 @@ class GoodsCat extends Model
     ];
 
     protected $guarded = [];
-
-        
 }

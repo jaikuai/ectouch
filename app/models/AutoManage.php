@@ -21,6 +21,4 @@ class AutoManage extends Model
     ];
 
     protected $guarded = [];
-
-        
 }

@@ -21,6 +21,4 @@ class VolumePrice extends Model
     ];
 
     protected $guarded = [];
-
-        
 }

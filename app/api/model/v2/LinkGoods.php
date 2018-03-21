@@ -10,7 +10,7 @@ class LinkGoods extends BaseModel
 
     protected $table      = 'link_goods';
 
-    public    $timestamps = false;
+    public $timestamps = false;
 
     protected $visible = [];
 
@@ -30,12 +30,10 @@ class LinkGoods extends BaseModel
     // }
     
     public static function getLinkGoodIds($id)
-    {	
-        if($model = self::where('goods_id', $id)->get(['link_goods_id']))
-        {
-        	return $model;
+    {
+        if ($model = self::where('goods_id', $id)->get(['link_goods_id'])) {
+            return $model;
         }
         return [0];
-       
     }
 }

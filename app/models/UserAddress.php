@@ -33,6 +33,4 @@ class UserAddress extends Model
     ];
 
     protected $guarded = [];
-
-        
 }

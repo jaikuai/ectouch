@@ -25,6 +25,4 @@ class Template extends Model
     ];
 
     protected $guarded = [];
-
-        
 }

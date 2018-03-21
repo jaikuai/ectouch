@@ -20,8 +20,7 @@ class CouponController extends Controller
             'goods'         => 'json',
         ];
 
-        if($res = Features::check('coupon'))
-        {
+        if ($res = Features::check('coupon')) {
             return $this->json($res);
         }
 
@@ -31,7 +30,7 @@ class CouponController extends Controller
 
         $model = Coupon::getList($this->validated);
 
-       return $this->json($model);
+        return $this->json($model);
     }
 
     //POST  ecapi.coupon.available
@@ -44,8 +43,7 @@ class CouponController extends Controller
             'shop'          => 'integer',
         ];
 
-        if($res = Features::check('coupon'))
-        {
+        if ($res = Features::check('coupon')) {
             return $this->json($res);
         }
 
@@ -55,6 +53,6 @@ class CouponController extends Controller
 
         $model = Coupon::getAvailable($this->validated);
 
-       return $this->json($model);
+        return $this->json($model);
     }
 }

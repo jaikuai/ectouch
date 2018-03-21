@@ -24,6 +24,4 @@ class Wholesale extends Model
     ];
 
     protected $guarded = [];
-
-        
 }

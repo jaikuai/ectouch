@@ -10,7 +10,7 @@ class Tags extends BaseModel
 
     protected $table      = 'tag';
 
-    public    $timestamps = false;
+    public $timestamps = false;
 
     protected $visible = ['id', 'name','created_at','updated_at'];
 
@@ -38,5 +38,4 @@ class Tags extends BaseModel
     {
         return time();
     }
-
 }

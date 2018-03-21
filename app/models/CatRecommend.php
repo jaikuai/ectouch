@@ -19,6 +19,4 @@ class CatRecommend extends Model
     ];
 
     protected $guarded = [];
-
-        
 }

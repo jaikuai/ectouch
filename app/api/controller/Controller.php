@@ -13,7 +13,8 @@ class Controller extends BaseController
     public $validated;
     public $request;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->request = app('request');
     }
 
@@ -65,10 +66,9 @@ class Controller extends BaseController
 
         // 写入日志
         if (config('app.debug')) {
-
             $debug_id = uniqid();
 
-            Log::debug($debug_id,[
+            Log::debug($debug_id, [
                 'LOG_ID'         => $debug_id,
                 'IP_ADDRESS'     => $this->request->ip(),
                 'REQUEST_URL'    => $this->request->fullUrl(),
@@ -100,5 +100,4 @@ class Controller extends BaseController
 
         return $response;
     }
-
 }

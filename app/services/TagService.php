@@ -2,7 +2,6 @@
 
 namespace App\Services;
 
-
 class TagService
 {
 
@@ -14,7 +13,7 @@ class TagService
      * @param   string $tag
      * @return  void
      */
-    function add_tag($id, $tag)
+    public function add_tag($id, $tag)
     {
         if (empty($tag)) {
             return;
@@ -44,7 +43,7 @@ class TagService
      *
      * @return   none
      */
-    function color_tag(&$tags)
+    public function color_tag(&$tags)
     {
         $tagmark = [
             ['color' => '#666666', 'size' => '0.8em', 'ifbold' => 1],
@@ -106,7 +105,7 @@ class TagService
      *
      * @return array        $arr            tags列表
      */
-    function get_user_tags($user_id = 0)
+    public function get_user_tags($user_id = 0)
     {
         if (empty($user_id)) {
             $GLOBALS['error_no'] = 1;
@@ -132,7 +131,7 @@ class TagService
      *
      * @return  boolen      bool
      */
-    function delete_tag($tag_words, $user_id)
+    public function delete_tag($tag_words, $user_id)
     {
         $sql = "DELETE FROM " . $GLOBALS['ecs']->table('tag') .
             " WHERE tag_words = '$tag_words' AND user_id = '$user_id'";
@@ -149,7 +148,7 @@ class TagService
      * @param   integer $user_id
      * @return  array
      */
-    function get_tags($goods_id = 0, $user_id = 0)
+    public function get_tags($goods_id = 0, $user_id = 0)
     {
         $where = '';
         if ($goods_id > 0) {
@@ -174,5 +173,4 @@ class TagService
 
         return $arr;
     }
-
 }

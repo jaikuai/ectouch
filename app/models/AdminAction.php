@@ -22,6 +22,4 @@ class AdminAction extends Model
     ];
 
     protected $guarded = [];
-
-        
 }

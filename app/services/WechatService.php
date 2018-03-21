@@ -28,7 +28,6 @@ class WechatService
      */
     public function create($data)
     {
-
     }
 
     /**
@@ -38,7 +37,6 @@ class WechatService
     public function detail($id)
     {
         return $this->article->show($id);
-
     }
 
     /**
@@ -47,7 +45,6 @@ class WechatService
      */
     public function update($data)
     {
-
     }
 
     /**
@@ -56,6 +53,5 @@ class WechatService
      */
     public function delete($id)
     {
-
     }
 }

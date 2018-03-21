@@ -6,7 +6,8 @@ use app\api\controller\Controller;
 use app\api\model\v2\Card;
 use app\api\model\v2\Notice;
 
-class NoticeController extends Controller {
+class NoticeController extends Controller
+{
 
     /**
     * POST ecapi.notice.list

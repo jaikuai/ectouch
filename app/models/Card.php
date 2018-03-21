@@ -24,6 +24,4 @@ class Card extends Model
     ];
 
     protected $guarded = [];
-
-        
 }

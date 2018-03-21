@@ -9,7 +9,6 @@ class Header
         $arr = [];
 
         if ($ua = app('request')->header('X-' . config('app.name') . '-UserAgent')) {
-
             $items = @explode(', ', $ua);
             if (is_array($items)) {
                 foreach ($items as $property) {
@@ -31,7 +30,6 @@ class Header
     public static function getVer()
     {
         if ($ver = app('request')->header('X-' . config('app.name') . '-Ver')) {
-
             $rule = '/^[(\d)+.(\d)+.(\d)+]+$/';
             if (preg_match($rule, $ver)) {
                 return $ver;
@@ -49,5 +47,4 @@ class Header
 
         return null;
     }
-
 }

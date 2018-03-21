@@ -26,6 +26,4 @@ class AffiliateLog extends Model
     ];
 
     protected $guarded = [];
-
-        
 }

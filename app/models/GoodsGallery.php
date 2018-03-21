@@ -24,6 +24,4 @@ class GoodsGallery extends Model
     ];
 
     protected $guarded = [];
-
-        
 }

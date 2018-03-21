@@ -147,6 +147,5 @@ class InitController extends Controller
         if (isset($_GET['u'])) {
             set_affiliate();
         }
-
     }
 }

@@ -28,6 +28,4 @@ class Sessions extends Model
     ];
 
     protected $guarded = [];
-
-        
 }

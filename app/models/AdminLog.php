@@ -23,6 +23,4 @@ class AdminLog extends Model
     ];
 
     protected $guarded = [];
-
-        
 }

@@ -36,6 +36,4 @@ class AdminUser extends Authenticatable
     ];
 
     protected $guarded = [];
-
-        
 }

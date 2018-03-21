@@ -22,6 +22,4 @@ class VoteLog extends Model
     ];
 
     protected $guarded = [];
-
-        
 }

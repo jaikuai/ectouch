@@ -4,10 +4,11 @@ namespace app\api\model\v2;
 
 use app\api\model\BaseModel;
 
-class RegFields extends BaseModel {
+class RegFields extends BaseModel
+{
     protected $connection = 'shop';
     protected $table      = 'reg_fields';
-    public    $timestamps = false;
+    public $timestamps = false;
 
     protected $guarded = [];
     protected $appends = ['name', 'value', 'is_hidden', 'is_required'];

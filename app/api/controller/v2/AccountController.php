@@ -7,7 +7,8 @@ use app\api\model\v2\UserAccount;
 use app\api\classes\Token;
 use app\api\model\v2\Account;
 
-class AccountController extends Controller {
+class AccountController extends Controller
+{
 
     /**
     * POST ecapi.withdraw.list

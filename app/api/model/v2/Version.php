@@ -5,13 +5,13 @@ namespace app\api\model\v2;
 use app\api\model\BaseModel;
 use app\api\classes\Header;
 
-class Version extends BaseModel {
-
+class Version extends BaseModel
+{
     protected $connection = 'shop';
     
     protected $table      = 'version';
 
-    public  $timestamps   = true;
+    public $timestamps   = true;
 
     protected $appends = ['download_url'];
 
@@ -36,9 +36,9 @@ class Version extends BaseModel {
         }
 
         if (is_array($arr) && isset($arr['Platform']) && !empty($ver)) {
-            $model = Version::where('platform',  $platform)->orderBy('version', 'DESC')->first();
+            $model = Version::where('platform', $platform)->orderBy('version', 'DESC')->first();
 
-            if(isset($model->version) && version_compare($ver, $model->version) < 0){
+            if (isset($model->version) && version_compare($ver, $model->version) < 0) {
                 return self::formatBody(['version_info' => $model]);
             }
         }
@@ -50,5 +50,4 @@ class Version extends BaseModel {
     {
         return $this->attributes['url'];
     }
-
 }

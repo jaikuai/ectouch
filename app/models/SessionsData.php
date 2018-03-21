@@ -21,6 +21,4 @@ class SessionsData extends Model
     ];
 
     protected $guarded = [];
-
-        
 }

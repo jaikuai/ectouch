@@ -12,10 +12,8 @@ class AreaCodeController extends Controller
     */
     public function index()
     {
-
         $model = AreaCode::getList();
 
         return $this->json($model);
     }
-
 }

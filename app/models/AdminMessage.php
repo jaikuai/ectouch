@@ -27,6 +27,4 @@ class AdminMessage extends Model
     ];
 
     protected $guarded = [];
-
-        
 }
