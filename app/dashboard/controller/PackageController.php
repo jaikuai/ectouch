@@ -1,15 +1,15 @@
 <?php
 
-namespace app\admin\controller;
+namespace app\dashboard\controller;
 
 use app\libraries\Exchange;
 
 /**
  * 超值礼包管理
  * Class PackageController
- * @package app\admin\controller
+ * @package app\dashboard\controller
  */
-class PackageController extends BaseController
+class PackageController extends InitController
 {
     public function index()
     {
@@ -155,7 +155,7 @@ class PackageController extends BaseController
 
             $url = 'package.php?act=query&' . str_replace('act=remove', '', $_SERVER['QUERY_STRING']);
 
-            return $this->redirect($url);
+            $this->redirect($url);
         }
 
         /**

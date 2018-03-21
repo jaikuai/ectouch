@@ -1,6 +1,6 @@
 <?php
 
-namespace app\admin\controller;
+namespace app\dashboard\controller;
 
 use app\libraries\Image;
 use app\libraries\Exchange;
@@ -8,9 +8,9 @@ use app\libraries\Exchange;
 /**
  * 友情链接管理
  * Class FriendLinkController
- * @package app\admin\controller
+ * @package app\dashboard\controller
  */
-class FriendLinkController extends BaseController
+class FriendLinkController extends InitController
 {
     public function index()
     {
@@ -276,7 +276,7 @@ class FriendLinkController extends BaseController
 
             $url = 'friend_link.php?act=query&' . str_replace('act=remove', '', $_SERVER['QUERY_STRING']);
 
-            return $this->redirect($url);
+            $this->redirect($url);
         }
 
         /**

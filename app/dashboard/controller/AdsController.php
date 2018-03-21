@@ -1,6 +1,6 @@
 <?php
 
-namespace app\admin\controller;
+namespace app\dashboard\controller;
 
 use app\libraries\Image;
 use app\libraries\Exchange;
@@ -8,9 +8,9 @@ use app\libraries\Exchange;
 /**
  * 广告管理程序
  * Class AdsController
- * @package app\admin\controller
+ * @package app\dashboard\controller
  */
-class AdsController extends BaseController
+class AdsController extends InitController
 {
     public function index()
     {
@@ -439,7 +439,7 @@ class AdsController extends BaseController
 
             $url = 'ads.php?act=query&' . str_replace('act=remove', '', $_SERVER['QUERY_STRING']);
 
-            return $this->redirect($url);
+            $this->redirect($url);
         }
     }
 

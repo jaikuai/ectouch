@@ -1,13 +1,13 @@
 <?php
 
-namespace app\admin\controller;
+namespace app\dashboard\controller;
 
 /**
  * 搜索引擎关键字统计
  * Class SearchengineStatsController
- * @package app\admin\controller
+ * @package app\dashboard\controller
  */
-class SearchengineStatsController extends BaseController
+class SearchengineStatsController extends InitController
 {
     public function index()
     {

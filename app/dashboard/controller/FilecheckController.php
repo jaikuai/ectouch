@@ -1,13 +1,13 @@
 <?php
 
-namespace app\admin\controller;
+namespace app\dashboard\controller;
 
 /**
  * 文件校验
  * Class FilecheckController
- * @package app\admin\controller
+ * @package app\dashboard\controller
  */
-class FilecheckController extends BaseController
+class FilecheckController extends InitController
 {
     public function index()
     {

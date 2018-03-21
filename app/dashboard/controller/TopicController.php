@@ -1,13 +1,13 @@
 <?php
 
-namespace app\admin\controller;
+namespace app\dashboard\controller;
 
 /**
  * 专题管理
  * Class TopicController
- * @package app\admin\controller
+ * @package app\dashboard\controller
  */
-class TopicController extends BaseController
+class TopicController extends InitController
 {
     public function index()
     {
@@ -259,7 +259,7 @@ class TopicController extends BaseController
 
             if (!empty($_REQUEST['is_ajax'])) {
                 $url = 'topic.php?act=query&' . str_replace('act=delete', '', $_SERVER['QUERY_STRING']);
-                return $this->redirect($url);
+                $this->redirect($url);
             }
 
             $links[] = ['href' => 'topic.php', 'text' => $GLOBALS['_LANG']['back_list']];

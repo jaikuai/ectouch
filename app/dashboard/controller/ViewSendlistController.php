@@ -1,12 +1,12 @@
 <?php
 
-namespace app\admin\controller;
+namespace app\dashboard\controller;
 
 /**
  * Class ViewSendlistController
- * @package app\admin\controller
+ * @package app\dashboard\controller
  */
-class ViewSendlistController extends BaseController
+class ViewSendlistController extends InitController
 {
     public function index()
     {

@@ -1,6 +1,6 @@
 <?php
 
-namespace app\admin\controller;
+namespace app\dashboard\controller;
 
 use app\libraries\Image;
 use app\libraries\Exchange;
@@ -8,9 +8,9 @@ use app\libraries\Exchange;
 /**
  * 包装管理程序
  * Class PackController
- * @package app\admin\controller
+ * @package app\dashboard\controller
  */
-class PackController extends BaseController
+class PackController extends InitController
 {
     public function index()
     {
@@ -257,7 +257,7 @@ class PackController extends BaseController
 
                 $url = 'pack.php?act=query&' . str_replace('act=remove', '', $_SERVER['QUERY_STRING']);
 
-                return $this->redirect($url);
+                $this->redirect($url);
             } else {
                 return make_json_error($GLOBALS['_LANG']['packremove_falure']);
                 return false;

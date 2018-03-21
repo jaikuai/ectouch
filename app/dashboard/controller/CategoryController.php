@@ -1,15 +1,15 @@
 <?php
 
-namespace app\admin\controller;
+namespace app\dashboard\controller;
 
 use app\libraries\Exchange;
 
 /**
  * 商品分类管理
  * Class CategoryController
- * @package app\admin\controller
+ * @package app\dashboard\controller
  */
-class CategoryController extends BaseController
+class CategoryController extends InitController
 {
     public function index()
     {
@@ -484,7 +484,7 @@ class CategoryController extends BaseController
 
             $url = 'category.php?act=query&' . str_replace('act=remove', '', $_SERVER['QUERY_STRING']);
 
-            return $this->redirect($url);
+            $this->redirect($url);
         }
     }
 

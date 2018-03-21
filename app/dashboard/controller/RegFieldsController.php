@@ -1,14 +1,14 @@
 <?php
 
-namespace app\admin\controller;
+namespace app\dashboard\controller;
 
 use app\libraries\Exchange;
 
 /**
  * Class RegFieldsController
- * @package app\admin\controller
+ * @package app\dashboard\controller
  */
-class RegFieldsController extends BaseController
+class RegFieldsController extends InitController
 {
     public function index()
     {
@@ -149,7 +149,7 @@ class RegFieldsController extends BaseController
 
             $url = 'reg_fields.php?act=query&' . str_replace('act=remove', '', $_SERVER['QUERY_STRING']);
 
-            return $this->redirect($url);
+            $this->redirect($url);
         }
 
         /*

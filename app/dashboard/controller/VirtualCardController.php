@@ -1,13 +1,13 @@
 <?php
 
-namespace app\admin\controller;
+namespace app\dashboard\controller;
 
 /**
  * 虚拟卡商品管理
  * Class VirtualCardController
- * @package app\admin\controller
+ * @package app\dashboard\controller
  */
-class VirtualCardController extends BaseController
+class VirtualCardController extends InitController
 {
     public function index()
     {
@@ -368,7 +368,7 @@ class VirtualCardController extends BaseController
 
                 $url = 'virtual_card.php?act=query_card&' . str_replace('act=remove', '', $_SERVER['QUERY_STRING']);
 
-                return $this->redirect($url);
+                $this->redirect($url);
             } else {
                 return make_json_error($this->db->error());
             }

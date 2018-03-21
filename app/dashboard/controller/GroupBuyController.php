@@ -1,13 +1,13 @@
 <?php
 
-namespace app\admin\controller;
+namespace app\dashboard\controller;
 
 /**
  * 团购商品管理
  * Class GroupBuyController
- * @package app\admin\controller
+ * @package app\dashboard\controller
  */
-class GroupBuyController extends BaseController
+class GroupBuyController extends InitController
 {
     public function index()
     {
@@ -592,7 +592,7 @@ class GroupBuyController extends BaseController
 
             $url = 'group_buy.php?act=query&' . str_replace('act=remove', '', $_SERVER['QUERY_STRING']);
 
-            return $this->redirect($url);
+            $this->redirect($url);
         }
     }
 

@@ -1,15 +1,15 @@
 <?php
 
-namespace app\admin\controller;
+namespace app\dashboard\controller;
 
 use app\libraries\Exchange;
 
 /**
  * 配送区域管理
  * Class ShippingAreaController
- * @package app\admin\controller
+ * @package app\dashboard\controller
  */
-class ShippingAreaController extends BaseController
+class ShippingAreaController extends InitController
 {
     public function index()
     {

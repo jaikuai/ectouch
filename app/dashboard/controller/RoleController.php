@@ -1,15 +1,15 @@
 <?php
 
-namespace app\admin\controller;
+namespace app\dashboard\controller;
 
 use app\libraries\Exchange;
 
 /**
  * 角色管理信息以及权限管理
  * Class RoleController
- * @package app\admin\controller
+ * @package app\dashboard\controller
  */
-class RoleController extends BaseController
+class RoleController extends InitController
 {
     public function index()
     {
@@ -234,7 +234,7 @@ class RoleController extends BaseController
                 $url = 'role.php?act=query&' . str_replace('act=remove', '', $_SERVER['QUERY_STRING']);
             }
 
-            return $this->redirect($url);
+            $this->redirect($url);
         }
     }
 

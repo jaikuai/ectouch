@@ -1,13 +1,13 @@
 <?php
 
-namespace app\admin\controller;
+namespace app\dashboard\controller;
 
 /**
  * 系统文件检测
  * Class CheckFilePrivController
- * @package app\admin\controller
+ * @package app\dashboard\controller
  */
-class CheckFilePrivController extends BaseController
+class CheckFilePrivController extends InitController
 {
     public function index()
     {

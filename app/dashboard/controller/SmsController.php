@@ -1,15 +1,15 @@
 <?php
 
-namespace app\admin\controller;
+namespace app\dashboard\controller;
 
 use app\libraries\Sms;
 
 /**
  * 短信模块
  * Class SmsController
- * @package app\admin\controller
+ * @package app\dashboard\controller
  */
-class SmsController extends BaseController
+class SmsController extends InitController
 {
     public function index()
     {

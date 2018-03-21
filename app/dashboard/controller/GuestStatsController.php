@@ -1,13 +1,13 @@
 <?php
 
-namespace app\admin\controller;
+namespace app\dashboard\controller;
 
 /**
  * 客户统计
  * Class GuestStatsController
- * @package app\admin\controller
+ * @package app\dashboard\controller
  */
-class GuestStatsController extends BaseController
+class GuestStatsController extends InitController
 {
     public function index()
     {

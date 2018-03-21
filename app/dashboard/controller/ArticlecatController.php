@@ -1,15 +1,15 @@
 <?php
 
-namespace app\admin\controller;
+namespace app\dashboard\controller;
 
 use app\libraries\Exchange;
 
 /**
  * 文章分类管理程序
  * Class ArticlecatController
- * @package app\admin\controller
+ * @package app\dashboard\controller
  */
-class ArticlecatController extends BaseController
+class ArticlecatController extends InitController
 {
     public function index()
     {
@@ -295,7 +295,7 @@ class ArticlecatController extends BaseController
 
             $url = 'articlecat.php?act=query&' . str_replace('act=remove', '', $_SERVER['QUERY_STRING']);
 
-            return $this->redirect($url);
+            $this->redirect($url);
         }
 
         /**

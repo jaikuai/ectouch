@@ -1,6 +1,6 @@
 <?php
 
-namespace app\admin\controller;
+namespace app\dashboard\controller;
 
 use app\libraries\Image;
 use app\libraries\Exchange;
@@ -8,9 +8,9 @@ use app\libraries\Exchange;
 /**
  * 文章管理
  * Class ArticleController
- * @package app\admin\controller
+ * @package app\dashboard\controller
  */
-class ArticleController extends BaseController
+class ArticleController extends InitController
 {
     public function index()
     {
@@ -345,7 +345,7 @@ class ArticleController extends BaseController
 
             $url = 'article.php?act=query&' . str_replace('act=remove', '', $_SERVER['QUERY_STRING']);
 
-            return $this->redirect($url);
+            $this->redirect($url);
         }
 
         /**

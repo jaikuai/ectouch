@@ -1,13 +1,13 @@
 <?php
 
-namespace app\admin\controller;
+namespace app\dashboard\controller;
 
 /**
  * 访问购买比例
  * Class VisitSoldController
- * @package app\admin\controller
+ * @package app\dashboard\controller
  */
-class VisitSoldController extends BaseController
+class VisitSoldController extends InitController
 {
     public function index()
     {

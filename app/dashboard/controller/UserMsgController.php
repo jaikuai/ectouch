@@ -1,15 +1,15 @@
 <?php
 
-namespace app\admin\controller;
+namespace app\dashboard\controller;
 
 use app\libraries\Exchange;
 
 /**
  * 客户留言
  * Class UserMsgController
- * @package app\admin\controller
+ * @package app\dashboard\controller
  */
-class UserMsgController extends BaseController
+class UserMsgController extends InitController
 {
     public function index()
     {
@@ -52,7 +52,7 @@ class UserMsgController extends BaseController
 
             $this->db->query($sql);
 
-            return $this->redirect("user_msg.php?act=add&order_id=$_POST[order_id]&user_id=$_POST[user_id]");
+            $this->redirect("user_msg.php?act=add&order_id=$_POST[order_id]&user_id=$_POST[user_id]");
         }
 
         if ($_REQUEST['act'] == 'remove_msg') {
@@ -71,7 +71,7 @@ class UserMsgController extends BaseController
                 }
             }
 
-            return $this->redirect("user_msg.php?act=add&order_id=$_GET[order_id]&user_id=$_GET[user_id]");
+            $this->redirect("user_msg.php?act=add&order_id=$_GET[order_id]&user_id=$_GET[user_id]");
         }
 
         /**
@@ -86,7 +86,7 @@ class UserMsgController extends BaseController
                 // 清除缓存
                 clear_cache_files();
 
-                return $this->redirect("user_msg.php?act=view&id=$_REQUEST[id]");
+                $this->redirect("user_msg.php?act=view&id=$_REQUEST[id]");
             } else {
                 // 禁止留言显示
                 $sql = "UPDATE " . $this->ecs->table('feedback') . " SET msg_status = 0 WHERE msg_id = '$_REQUEST[id]'";
@@ -95,7 +95,7 @@ class UserMsgController extends BaseController
                 // 清除缓存
                 clear_cache_files();
 
-                return $this->redirect("user_msg.php?act=view&id=$_REQUEST[id]");
+                $this->redirect("user_msg.php?act=view&id=$_REQUEST[id]");
             }
         }
 
@@ -156,7 +156,7 @@ class UserMsgController extends BaseController
 
                 admin_log(addslashes($msg_title), 'remove', 'message');
                 $url = 'user_msg.php?act=query&' . str_replace('act=remove', '', $_SERVER['QUERY_STRING']);
-                return $this->redirect($url);
+                $this->redirect($url);
             } else {
                 return make_json_error($GLOBALS['db']->error());
             }
@@ -254,7 +254,7 @@ class UserMsgController extends BaseController
                 }
             }
 
-            return $this->redirect("?act=view&id=" . $_REQUEST['msg_id'] . "&send_ok=$send_ok");
+            $this->redirect("?act=view&id=" . $_REQUEST['msg_id'] . "&send_ok=$send_ok");
         }
 
         /**
@@ -269,7 +269,7 @@ class UserMsgController extends BaseController
             // 更新数据库
             $this->db->query("UPDATE " . $this->ecs->table('feedback') . " SET message_img = '' WHERE msg_id = '$_GET[id]'");
 
-            return $this->redirect("user_msg.php?act=view&id=" . $_GET['id']);
+            $this->redirect("user_msg.php?act=view&id=" . $_GET['id']);
         }
     }
 

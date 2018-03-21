@@ -1,6 +1,6 @@
 <?php
 
-namespace app\admin\controller;
+namespace app\dashboard\controller;
 
 use app\libraries\Captcha;
 use app\libraries\Exchange;
@@ -8,9 +8,9 @@ use app\libraries\Exchange;
 /**
  * 管理员信息以及权限管理程序
  * Class PrivilegeController
- * @package app\admin\controller
+ * @package app\dashboard\controller
  */
-class PrivilegeController extends BaseController
+class PrivilegeController extends InitController
 {
     public function index()
     {
@@ -117,7 +117,7 @@ class PrivilegeController extends BaseController
                 // 清除购物车中过期的数据
                 $this->clear_cart();
 
-                return $this->redirect("index.php");
+                $this->redirect("index.php");
             } else {
                 return sys_msg($GLOBALS['_LANG']['login_faild'], 1);
             }
@@ -593,7 +593,7 @@ class PrivilegeController extends BaseController
 
             $url = 'privilege.php?act=query&' . str_replace('act=remove', '', $_SERVER['QUERY_STRING']);
 
-            return $this->redirect($url);
+            $this->redirect($url);
             exit;
         }
     }

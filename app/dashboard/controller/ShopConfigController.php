@@ -1,13 +1,13 @@
 <?php
 
-namespace app\admin\controller;
+namespace app\dashboard\controller;
 
 /**
  * 管理中心商店设置
  * Class ShopConfigController
- * @package app\admin\controller
+ * @package app\dashboard\controller
  */
-class ShopConfigController extends BaseController
+class ShopConfigController extends InitController
 {
     public function index()
     {

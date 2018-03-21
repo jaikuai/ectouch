@@ -1,28 +1,27 @@
 <?php
 
-namespace app\admin\controller;
+namespace app\dashboard\controller;
 
 use app\libraries\Shop;
 use app\libraries\Error;
 use app\libraries\Mysql;
 use app\libraries\Captcha;
 use app\libraries\Template;
-use Think\Controller;
+use think\Controller;
 
 /**
  * Class InitController
- * @package app\admin\controller
+ * @package app\dashboard\controller
  */
 class InitController extends Controller
 {
     protected $ecs;
     protected $db;
     protected $err;
-    protected $sess;
     protected $smarty;
     protected $_CFG;
 
-    public function __construct()
+    protected function initialize()
     {
         define('ECS_ADMIN', true);
         $urls = parse_url($_SERVER['REQUEST_URI']);
@@ -31,8 +30,8 @@ class InitController extends Controller
         /**
          * 重新获取 REQUEST 参数
          */
-        $_GET = I('get.');
-        $_POST = $request->post();
+        $_GET = input('get.') + request()->route();
+        $_POST = input('post.');
         $_REQUEST = $_GET + $_POST;
         $_REQUEST['act'] = isset($_REQUEST['act']) ? $_REQUEST['act'] : 'list';
 
@@ -71,8 +70,8 @@ class InitController extends Controller
 
         // 创建 Smarty 对象。
         $this->smarty = $GLOBALS['smarty'] = new Template();
-        $this->smarty->template_dir = dirname(__DIR__) . '/views';
-        $this->smarty->compile_dir = storage_path('framework/temp/compiled/admin');
+        $this->smarty->template_dir = dirname(__DIR__) . '/view';
+        $this->smarty->compile_dir = storage_path('temp/compiled/admin');
         if (config('app.debug')) {
             $this->smarty->force_compile = true;
         }
@@ -122,7 +121,7 @@ class InitController extends Controller
                         if (!empty($_REQUEST['is_ajax'])) {
                             return make_json_error($GLOBALS['_LANG']['priv_error']);
                         } else {
-                            return $this->redirect('privilege.php?act=login');
+                            $this->redirect('privilege.php?act=login');
                         }
                     }
                 }
@@ -130,7 +129,7 @@ class InitController extends Controller
                 if (!empty($_REQUEST['is_ajax'])) {
                     return make_json_error($GLOBALS['_LANG']['priv_error']);
                 } else {
-                    return $this->redirect('privilege.php?act=login');
+                    $this->redirect('privilege.php?act=login');
                 }
             }
         }
@@ -139,12 +138,15 @@ class InitController extends Controller
 
     /**
      * URL重定向
-     * @param $url
-     * @param int $statusCode
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     * @access protected
+     * @param  string $url 跳转的URL表达式
+     * @param  array|integer $params 其它URL参数
+     * @param  integer $code http code
+     * @param  array $with 隐式传参
+     * @return void
      */
-    public function redirect($url, $statusCode = 302)
+    protected function redirect($url, $params = [], $code = 302, $with = [])
     {
-        return redirect('/' . ADMIN_PATH . '/' . $url, $statusCode);
+        parent::redirect('/' . ADMIN_PATH . '/' . $url);
     }
 }

@@ -1,12 +1,12 @@
 <?php
 
-namespace app\admin\controller;
+namespace app\dashboard\controller;
 
 /**
  * Class AffiliateController
- * @package app\admin\controller
+ * @package app\dashboard\controller
  */
-class AffiliateController extends BaseController
+class AffiliateController extends InitController
 {
     public function index()
     {
@@ -63,7 +63,7 @@ class AffiliateController extends BaseController
                 return make_json_error($GLOBALS['_LANG']['level_error']);
             }
 
-            return $this->redirect("affiliate.php?act=query");
+            $this->redirect("affiliate.php?act=query");
         }
 
         /**
@@ -173,7 +173,7 @@ class AffiliateController extends BaseController
             $config['on'] = 1;
             $config['config']['separate_by'] = 0;
             $this->put_affiliate($config);
-            return $this->redirect("affiliate.php?act=list");
+            $this->redirect("affiliate.php?act=list");
         }
     }
 

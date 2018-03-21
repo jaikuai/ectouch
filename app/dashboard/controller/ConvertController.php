@@ -1,15 +1,15 @@
 <?php
 
-namespace app\admin\controller;
+namespace app\dashboard\controller;
 
 use app\libraries\Mysql;
 
 /**
  * 转换程序
  * Class ConvertController
- * @package app\admin\controller
+ * @package app\dashboard\controller
  */
-class ConvertController extends BaseController
+class ConvertController extends InitController
 {
     public function index()
     {

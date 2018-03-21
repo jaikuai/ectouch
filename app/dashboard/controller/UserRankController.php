@@ -1,15 +1,15 @@
 <?php
 
-namespace app\admin\controller;
+namespace app\dashboard\controller;
 
 use app\libraries\Exchange;
 
 /**
  * 会员等级管理
  * Class UserRankController
- * @package app\admin\controller
+ * @package app\dashboard\controller
  */
-class UserRankController extends BaseController
+class UserRankController extends InitController
 {
     public function index()
     {
@@ -137,7 +137,7 @@ class UserRankController extends BaseController
 
             $url = 'user_rank.php?act=query&' . str_replace('act=remove', '', $_SERVER['QUERY_STRING']);
 
-            return $this->redirect($url);
+            $this->redirect($url);
         }
         /*
          *  编辑会员等级名称

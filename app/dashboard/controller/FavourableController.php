@@ -1,15 +1,15 @@
 <?php
 
-namespace app\admin\controller;
+namespace app\dashboard\controller;
 
 use app\libraries\Exchange;
 
 /**
  * 优惠活动管理
  * Class FavourableController
- * @package app\admin\controller
+ * @package app\dashboard\controller
  */
-class FavourableController extends BaseController
+class FavourableController extends InitController
 {
     public function index()
     {
@@ -81,7 +81,7 @@ class FavourableController extends BaseController
 
             $url = 'favourable.php?act=query&' . str_replace('act=remove', '', $_SERVER['QUERY_STRING']);
 
-            return $this->redirect($url);
+            $this->redirect($url);
         }
 
         /**

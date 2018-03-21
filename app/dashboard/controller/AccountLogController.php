@@ -1,13 +1,13 @@
 <?php
 
-namespace app\admin\controller;
+namespace app\dashboard\controller;
 
 /**
  * 管理中心帐户变动记录
  * Class AccountLogController
- * @package app\admin\controller
+ * @package app\dashboard\controller
  */
-class AccountLogController extends BaseController
+class AccountLogController extends InitController
 {
     public function index()
     {

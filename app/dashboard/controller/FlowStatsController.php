@@ -1,13 +1,13 @@
 <?php
 
-namespace app\admin\controller;
+namespace app\dashboard\controller;
 
 /**
  * 综合流量统计
  * Class FlowStatsController
- * @package app\admin\controller
+ * @package app\dashboard\controller
  */
-class FlowStatsController extends BaseController
+class FlowStatsController extends InitController
 {
     public function index()
     {

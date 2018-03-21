@@ -1,15 +1,15 @@
 <?php
 
-namespace app\admin\controller;
+namespace app\dashboard\controller;
 
 use app\libraries\Exchange;
 
 /**
  * 夺宝奇兵管理
  * Class SnatchController
- * @package app\admin\controller
+ * @package app\dashboard\controller
  */
-class SnatchController extends BaseController
+class SnatchController extends InitController
 {
     public function index()
     {
@@ -167,7 +167,7 @@ class SnatchController extends BaseController
 
             $url = 'snatch.php?act=query&' . str_replace('act=remove', '', $_SERVER['QUERY_STRING']);
 
-            return $this->redirect($url);
+            $this->redirect($url);
         }
 
         /**

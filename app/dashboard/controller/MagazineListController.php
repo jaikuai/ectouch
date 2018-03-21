@@ -1,12 +1,12 @@
 <?php
 
-namespace app\admin\controller;
+namespace app\dashboard\controller;
 
 /**
  * Class MagazineListController
- * @package app\admin\controller
+ * @package app\dashboard\controller
  */
-class MagazineListController extends BaseController
+class MagazineListController extends InitController
 {
     public function index()
     {

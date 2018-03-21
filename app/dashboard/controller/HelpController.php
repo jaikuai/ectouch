@@ -1,13 +1,13 @@
 <?php
 
-namespace app\admin\controller;
+namespace app\dashboard\controller;
 
 /**
  * 帮助信息接口
  * Class HelpController
- * @package app\admin\controller
+ * @package app\dashboard\controller
  */
-class HelpController extends BaseController
+class HelpController extends InitController
 {
     public function index()
     {

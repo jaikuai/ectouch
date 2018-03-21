@@ -1,12 +1,12 @@
 <?php
 
-namespace app\admin\controller;
+namespace app\dashboard\controller;
 
 /**
  * Class ArticleAutoController
- * @package app\admin\controller
+ * @package app\dashboard\controller
  */
-class ArticleAutoController extends BaseController
+class ArticleAutoController extends InitController
 {
     public function index()
     {

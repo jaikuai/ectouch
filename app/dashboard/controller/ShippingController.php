@@ -1,15 +1,15 @@
 <?php
 
-namespace app\admin\controller;
+namespace app\dashboard\controller;
 
 use app\libraries\Exchange;
 
 /**
  * 配送方式管理
  * Class ShippingController
- * @package app\admin\controller
+ * @package app\dashboard\controller
  */
-class ShippingController extends BaseController
+class ShippingController extends InitController
 {
     public function index()
     {
@@ -173,7 +173,7 @@ class ShippingController extends BaseController
             $this->db->query("UPDATE " . $this->ecs->table('shipping') . " SET print_bg = '" . addslashes($modules[0]['print_bg']) . "',  config_lable = '" . addslashes($modules[0]['config_lable']) . "' WHERE shipping_code = '$code' LIMIT 1");
 
             $url = "shipping.php?act=edit_print_template&shipping=$shipping_id";
-            return $this->redirect($url);
+            $this->redirect($url);
         }
 
         /**

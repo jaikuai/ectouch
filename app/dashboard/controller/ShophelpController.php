@@ -1,15 +1,15 @@
 <?php
 
-namespace app\admin\controller;
+namespace app\dashboard\controller;
 
 use app\libraries\Exchange;
 
 /**
  * 帮助信息管理
  * Class ShophelpController
- * @package app\admin\controller
+ * @package app\dashboard\controller
  */
-class ShophelpController extends BaseController
+class ShophelpController extends InitController
 {
     public function index()
     {
@@ -216,7 +216,7 @@ class ShophelpController extends BaseController
 
             $url = 'shophelp.php?act=query&' . str_replace('act=remove', '', $_SERVER['QUERY_STRING']);
 
-            return $this->redirect($url);
+            $this->redirect($url);
         }
 
         /**
@@ -238,7 +238,7 @@ class ShophelpController extends BaseController
 
             $url = 'shophelp.php?act=query_art&cat=' . $cat_id . '&' . str_replace('act=remove_art', '', $_SERVER['QUERY_STRING']);
 
-            return $this->redirect($url);
+            $this->redirect($url);
         }
 
         /**
@@ -258,13 +258,13 @@ class ShophelpController extends BaseController
 
                     admin_log($cat_name, 'add', 'shophelpcat');
 
-                    return $this->redirect("shophelp.php?act=query");
+                    $this->redirect("shophelp.php?act=query");
                 }
             } else {
                 return make_json_error($GLOBALS['_LANG']['js_languages']['no_catname']);
             }
 
-            return $this->redirect("shophelp.php?act=list_cat");
+            $this->redirect("shophelp.php?act=list_cat");
         }
 
         /**

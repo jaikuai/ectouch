@@ -1,13 +1,13 @@
 <?php
 
-namespace app\admin\controller;
+namespace app\dashboard\controller;
 
 /**
  * 批发管理
  * Class WholesaleController
- * @package app\admin\controller
+ * @package app\dashboard\controller
  */
-class WholesaleController extends BaseController
+class WholesaleController extends InitController
 {
     public function index()
     {
@@ -82,7 +82,7 @@ class WholesaleController extends BaseController
 
             $url = 'wholesale.php?act=query&' . str_replace('act=remove', '', $_SERVER['QUERY_STRING']);
 
-            return $this->redirect($url);
+            $this->redirect($url);
         }
 
         /**

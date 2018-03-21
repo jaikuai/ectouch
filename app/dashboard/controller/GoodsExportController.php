@@ -1,12 +1,12 @@
 <?php
 
-namespace app\admin\controller;
+namespace app\dashboard\controller;
 
 /**
  * Class GoodsExportController
- * @package app\admin\controller
+ * @package app\dashboard\controller
  */
-class GoodsExportController extends BaseController
+class GoodsExportController extends InitController
 {
     public function index()
     {

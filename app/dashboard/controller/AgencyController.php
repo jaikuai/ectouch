@@ -1,15 +1,15 @@
 <?php
 
-namespace app\admin\controller;
+namespace app\dashboard\controller;
 
 use app\libraries\Exchange;
 
 /**
  * 管理中心办事处管理
  * Class AgencyController
- * @package app\admin\controller
+ * @package app\dashboard\controller
  */
-class AgencyController extends BaseController
+class AgencyController extends InitController
 {
     public function index()
     {
@@ -102,7 +102,7 @@ class AgencyController extends BaseController
 
             $url = 'agency.php?act=query&' . str_replace('act=remove', '', $_SERVER['QUERY_STRING']);
 
-            return $this->redirect($url);
+            $this->redirect($url);
         }
 
         /**

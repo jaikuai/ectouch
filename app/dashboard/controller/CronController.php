@@ -1,15 +1,15 @@
 <?php
 
-namespace app\admin\controller;
+namespace app\dashboard\controller;
 
 use app\libraries\Exchange;
 
 /**
  * 计划任务
  * Class CronController
- * @package app\admin\controller
+ * @package app\dashboard\controller
  */
-class CronController extends BaseController
+class CronController extends InitController
 {
     public function index()
     {

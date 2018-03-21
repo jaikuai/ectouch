@@ -1,15 +1,15 @@
 <?php
 
-namespace app\admin\controller;
+namespace app\dashboard\controller;
 
 use app\libraries\Image;
 
 /**
  * 图片批量处理程序
  * Class PictureBatchController
- * @package app\admin\controller
+ * @package app\dashboard\controller
  */
-class PictureBatchController extends BaseController
+class PictureBatchController extends InitController
 {
     private function actionIndex()
     {

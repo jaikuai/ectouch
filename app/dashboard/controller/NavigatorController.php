@@ -1,14 +1,14 @@
 <?php
 
-namespace app\admin\controller;
+namespace app\dashboard\controller;
 
 use app\libraries\Exchange;
 
 /**
  * Class NavigatorController
- * @package app\admin\controller
+ * @package app\dashboard\controller
  */
-class NavigatorController extends BaseController
+class NavigatorController extends InitController
 {
     public function index()
     {
@@ -189,7 +189,7 @@ class NavigatorController extends BaseController
             $sql = " DELETE FROM " . $GLOBALS['ecs']->table('nav') . " WHERE id='$id' LIMIT 1";
             $this->db->query($sql);
             clear_cache_files();
-            return $this->redirect("navigator.php?act=list");
+            $this->redirect("navigator.php?act=list");
         }
 
         /**

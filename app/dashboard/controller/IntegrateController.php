@@ -1,15 +1,15 @@
 <?php
 
-namespace app\admin\controller;
+namespace app\dashboard\controller;
 
 use app\libraries\Mysql;
 
 /**
  * 第三方程序会员数据整合插件管理
  * Class IntegrateController
- * @package app\admin\controller
+ * @package app\dashboard\controller
  */
-class IntegrateController extends BaseController
+class IntegrateController extends InitController
 {
     public function index()
     {
@@ -207,7 +207,7 @@ class IntegrateController extends BaseController
             if ($total == 0) {
                 // 商城没有用户时，直接保存完成整合
                 $this->save_integrate_config($_POST['code'], $_POST['cfg']);
-                return $this->redirect("integrate.php?act=complete");
+                $this->redirect("integrate.php?act=complete");
             }
 
             // 检测成功临时保存论坛配置参数
@@ -599,7 +599,7 @@ class IntegrateController extends BaseController
             }
 
             // 跳转
-            return $this->redirect("integrate.php?act=modify");
+            $this->redirect("integrate.php?act=modify");
         }
 
         /**
@@ -957,7 +957,7 @@ class IntegrateController extends BaseController
 
             clear_cache_files();
 
-            return $this->redirect("integrate.php?act=points_set");
+            $this->redirect("integrate.php?act=points_set");
         }
 
         if ($_REQUEST['act'] == 'save_points') {

@@ -1,13 +1,13 @@
 <?php
 
-namespace app\admin\controller;
+namespace app\dashboard\controller;
 
 /**
  * 证书编辑页
  * Class LicenseController
- * @package app\admin\controller
+ * @package app\dashboard\controller
  */
-class LicenseController extends BaseController
+class LicenseController extends InitController
 {
     public function index()
     {

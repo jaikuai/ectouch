@@ -1,13 +1,13 @@
 <?php
 
-namespace app\admin\controller;
+namespace app\dashboard\controller;
 
 /**
  * 模版管理
  * Class TemplateController
- * @package app\admin\controller
+ * @package app\dashboard\controller
  */
-class TemplateController extends BaseController
+class TemplateController extends InitController
 {
     public function index()
     {

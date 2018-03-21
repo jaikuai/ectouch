@@ -1,6 +1,6 @@
 <?php
 
-namespace app\admin\controller;
+namespace app\dashboard\controller;
 
 use app\libraries\Json;
 use app\libraries\Transport;
@@ -8,9 +8,9 @@ use app\libraries\Transport;
 /**
  * 云服务接口
  * Class CloudController
- * @package app\admin\controller
+ * @package app\dashboard\controller
  */
-class CloudController extends BaseController
+class CloudController extends InitController
 {
     public function index()
     {
@@ -166,14 +166,14 @@ class CloudController extends BaseController
             if (!empty($_GET['link'])) {
                 $url = parse_url($_GET['link']);
                 if (!empty($url['host'])) {
-                    return $this->redirect($url['scheme'] . "://" . $url['host'] . $url['path'] . "?" . $url['query'] . $query);
+                    $this->redirect($url['scheme'] . "://" . $url['host'] . $url['path'] . "?" . $url['query'] . $query);
                 }
             }
 
             foreach ($must as $v) {
                 $query .= '&' . $v . '=' . $data[$v];
             }
-            return $this->redirect("http://cloud.ecmoban.com/api.php?act=" . $act . $query);
+            $this->redirect("http://cloud.ecmoban.com/api.php?act=" . $act . $query);
         }
     }
 }

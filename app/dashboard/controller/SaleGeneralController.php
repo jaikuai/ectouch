@@ -1,13 +1,13 @@
 <?php
 
-namespace app\admin\controller;
+namespace app\dashboard\controller;
 
 /**
  * 销售概况
  * Class SaleGeneralController
- * @package app\admin\controller
+ * @package app\dashboard\controller
  */
-class SaleGeneralController extends BaseController
+class SaleGeneralController extends InitController
 {
     public function index()
     {

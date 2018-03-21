@@ -1,12 +1,12 @@
 <?php
 
-namespace app\admin\controller;
+namespace app\dashboard\controller;
 
 /**
  * Class AffiliateCkController
- * @package app\admin\controller
+ * @package app\dashboard\controller
  */
-class AffiliateCkController extends BaseController
+class AffiliateCkController extends InitController
 {
     public function index()
     {

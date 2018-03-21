@@ -1,14 +1,14 @@
 <?php
 
-namespace app\admin\controller;
+namespace app\dashboard\controller;
 
 use app\libraries\Image;
 
 /**
  * Class IndexController
- * @package app\admin\controller
+ * @package app\dashboard\controller
  */
-class IndexController extends BaseController
+class IndexController extends InitController
 {
 
     public function index()
@@ -20,9 +20,9 @@ class IndexController extends BaseController
          */
         if ($_REQUEST['act'] == 'list') {
             // 强制访问index.php，避免url异常
-            $absolute_url = request()->fullUrl();
+            $absolute_url = request()->url();
             if (stripos($absolute_url, 'index.php') === false) {
-                return $this->redirect('index.php');
+                $this->redirect('index.php');
             }
 
             load_helper(['menu', 'priv'], 'admin');
@@ -115,7 +115,7 @@ class IndexController extends BaseController
             //寮€搴楀悜瀵肩?涓€姝
             if (session('?shop_guide') && session('shop_guide') === true) {
                 session('shop_guide', null);
-                return $this->redirect("index.php?act=first");
+                $this->redirect("index.php?act=first");
             }
 
             $gd = gd_version();

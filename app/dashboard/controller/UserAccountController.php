@@ -1,13 +1,13 @@
 <?php
 
-namespace app\admin\controller;
+namespace app\dashboard\controller;
 
 /**
  * 会员帐目管理(包括预付款，余额)
  * Class UserAccountController
- * @package app\admin\controller
+ * @package app\dashboard\controller
  */
-class UserAccountController extends BaseController
+class UserAccountController extends InitController
 {
     public function index()
     {
@@ -220,7 +220,7 @@ class UserAccountController extends BaseController
 
             // 如果参数不合法，返回
             if ($id == 0) {
-                return $this->redirect("user_account.php?act=list");
+                $this->redirect("user_account.php?act=list");
             }
 
             // 查询当前的预付款信息
@@ -269,7 +269,7 @@ class UserAccountController extends BaseController
 
             // 如果参数不合法，返回
             if ($id == 0 || empty($admin_note)) {
-                return $this->redirect("user_account.php?act=list");
+                $this->redirect("user_account.php?act=list");
             }
 
             // 查询当前的预付款信息
@@ -351,7 +351,7 @@ class UserAccountController extends BaseController
             if ($this->db->query($sql, 'SILENT')) {
                 admin_log(addslashes($user_name), 'remove', 'user_surplus');
                 $url = 'user_account.php?act=query&' . str_replace('act=remove', '', $_SERVER['QUERY_STRING']);
-                return $this->redirect($url);
+                $this->redirect($url);
             } else {
                 return make_json_error($this->db->error());
             }

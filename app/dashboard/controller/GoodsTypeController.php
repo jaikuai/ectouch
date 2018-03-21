@@ -1,15 +1,15 @@
 <?php
 
-namespace app\admin\controller;
+namespace app\dashboard\controller;
 
 use app\libraries\Exchange;
 
 /**
  * 商品类型管理
  * Class GoodsTypeController
- * @package app\admin\controller
+ * @package app\dashboard\controller
  */
-class GoodsTypeController extends BaseController
+class GoodsTypeController extends InitController
 {
     public function index()
     {
@@ -200,7 +200,7 @@ class GoodsTypeController extends BaseController
 
                 $url = 'goods_type.php?act=query&' . str_replace('act=remove', '', $_SERVER['QUERY_STRING']);
 
-                return $this->redirect($url);
+                $this->redirect($url);
             } else {
                 return make_json_error($GLOBALS['_LANG']['remove_failed']);
             }

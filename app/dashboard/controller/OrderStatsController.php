@@ -1,13 +1,13 @@
 <?php
 
-namespace app\admin\controller;
+namespace app\dashboard\controller;
 
 /**
  * 订单统计
  * Class OrderStatsController
- * @package app\admin\controller
+ * @package app\dashboard\controller
  */
-class OrderStatsController extends BaseController
+class OrderStatsController extends InitController
 {
     public function index()
     {

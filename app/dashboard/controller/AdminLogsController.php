@@ -1,13 +1,13 @@
 <?php
 
-namespace app\admin\controller;
+namespace app\dashboard\controller;
 
 /**
  * 记录管理员操作日志
  * Class AdminLogsController
- * @package app\admin\controller
+ * @package app\dashboard\controller
  */
-class AdminLogsController extends BaseController
+class AdminLogsController extends InitController
 {
     public function index()
     {
@@ -75,7 +75,7 @@ class AdminLogsController extends BaseController
             // 按日期删除日志
             if ($drop_type_date) {
                 if ($_POST['log_date'] == '0') {
-                    return $this->redirect("admin_logs.php?act=list");
+                    $this->redirect("admin_logs.php?act=list");
                 } elseif ($_POST['log_date'] > '0') {
                     $where = " WHERE 1 ";
                     switch ($_POST['log_date']) {

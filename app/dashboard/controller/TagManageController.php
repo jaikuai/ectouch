@@ -1,12 +1,12 @@
 <?php
 
-namespace app\admin\controller;
+namespace app\dashboard\controller;
 
 /**
  * Class TagManageController
- * @package app\admin\controller
+ * @package app\dashboard\controller
  */
-class TagManageController extends BaseController
+class TagManageController extends InitController
 {
     public function index()
     {
@@ -177,7 +177,7 @@ class TagManageController extends BaseController
                 admin_log(addslashes($tag_name), 'remove', 'tag_manage');
 
                 $url = 'tag_manage.php?act=query&' . str_replace('act=remove', '', $_SERVER['QUERY_STRING']);
-                return $this->redirect($url);
+                $this->redirect($url);
             } else {
                 return make_json_error($this->db->error());
             }

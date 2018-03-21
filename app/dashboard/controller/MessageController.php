@@ -1,13 +1,13 @@
 <?php
 
-namespace app\admin\controller;
+namespace app\dashboard\controller;
 
 /**
  * 管理员留言
  * Class MessageController
- * @package app\admin\controller
+ * @package app\dashboard\controller
  */
-class MessageController extends BaseController
+class MessageController extends InitController
 {
     public function index()
     {
@@ -273,7 +273,7 @@ class MessageController extends BaseController
 
             $url = 'message.php?act=query&' . str_replace('act=remove', '', $_SERVER['QUERY_STRING']);
 
-            return $this->redirect($url);
+            $this->redirect($url);
         }
     }
 

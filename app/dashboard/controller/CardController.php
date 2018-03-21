@@ -1,6 +1,6 @@
 <?php
 
-namespace app\admin\controller;
+namespace app\dashboard\controller;
 
 use app\libraries\Image;
 use app\libraries\Exchange;
@@ -8,9 +8,9 @@ use app\libraries\Exchange;
 /**
  * 贺卡管理
  * Class CardController
- * @package app\admin\controller
+ * @package app\dashboard\controller
  */
-class CardController extends BaseController
+class CardController extends InitController
 {
     public function index()
     {
@@ -73,7 +73,7 @@ class CardController extends BaseController
 
                 $url = 'card.php?act=query&' . str_replace('act=remove', '', $_SERVER['QUERY_STRING']);
 
-                return $this->redirect($url);
+                $this->redirect($url);
             } else {
                 return make_json_error($this->db->error());
             }

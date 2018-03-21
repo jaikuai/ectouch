@@ -1,12 +1,12 @@
 <?php
 
-namespace app\admin\controller;
+namespace app\dashboard\controller;
 
 /**
  * Class SearchLogController
- * @package app\admin\controller
+ * @package app\dashboard\controller
  */
-class SearchLogController extends BaseController
+class SearchLogController extends InitController
 {
     public function index()
     {

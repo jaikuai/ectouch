@@ -1,13 +1,13 @@
 <?php
 
-namespace app\admin\controller;
+namespace app\dashboard\controller;
 
 /**
  * 模版管理
  * Class MailTemplateController
- * @package app\admin\controller
+ * @package app\dashboard\controller
  */
-class MailTemplateController extends BaseController
+class MailTemplateController extends InitController
 {
     public function index()
     {

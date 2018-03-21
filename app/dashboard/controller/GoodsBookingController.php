@@ -1,13 +1,13 @@
 <?php
 
-namespace app\admin\controller;
+namespace app\dashboard\controller;
 
 /**
  * 缺货处理管理
  * Class GoodsBookingController
- * @package app\admin\controller
+ * @package app\dashboard\controller
  */
-class GoodsBookingController extends BaseController
+class GoodsBookingController extends InitController
 {
     public function index()
     {
@@ -63,7 +63,7 @@ class GoodsBookingController extends BaseController
 
             $url = 'goods_booking.php?act=query&' . str_replace('act=remove', '', $_SERVER['QUERY_STRING']);
 
-            return $this->redirect($url);
+            $this->redirect($url);
         }
 
         /**
@@ -124,7 +124,7 @@ class GoodsBookingController extends BaseController
                 }
             }
 
-            return $this->redirect("goods_booking.php?act=detail&id=" . $_REQUEST['rec_id'] . "&send_ok=$send_ok");
+            $this->redirect("goods_booking.php?act=detail&id=" . $_REQUEST['rec_id'] . "&send_ok=$send_ok");
         }
     }
 

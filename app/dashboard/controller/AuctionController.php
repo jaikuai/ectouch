@@ -1,15 +1,15 @@
 <?php
 
-namespace app\admin\controller;
+namespace app\dashboard\controller;
 
 use app\libraries\Exchange;
 
 /**
  * 拍卖活动管理
  * Class AuctionController
- * @package app\admin\controller
+ * @package app\dashboard\controller
  */
-class AuctionController extends BaseController
+class AuctionController extends InitController
 {
     public function index()
     {
@@ -87,7 +87,7 @@ class AuctionController extends BaseController
 
             $url = 'auction.php?act=query&' . str_replace('act=remove', '', $_SERVER['QUERY_STRING']);
 
-            return $this->redirect($url);
+            $this->redirect($url);
         }
 
         /**

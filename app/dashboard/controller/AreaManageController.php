@@ -1,15 +1,15 @@
 <?php
 
-namespace app\admin\controller;
+namespace app\dashboard\controller;
 
 use app\libraries\Exchange;
 
 /**
  * 地区列表管理
  * Class AreaManageController
- * @package app\admin\controller
+ * @package app\dashboard\controller
  */
-class AreaManageController extends BaseController
+class AreaManageController extends InitController
 {
     public function index()
     {
