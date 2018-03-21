@@ -2,7 +2,7 @@
 
 namespace app\admin\controller;
 
-use App\Libraries\Image;
+use app\libraries\Image;
 
 /**
  * 图片批量处理程序

@@ -3,7 +3,7 @@
 namespace app\shop\controller;
 
 use DOMDocument;
-use App\Libraries\Json;
+use app\libraries\Json;
 
 /**
  * OPEN API统一接口

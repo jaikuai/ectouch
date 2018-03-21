@@ -2,7 +2,7 @@
 
 namespace app\admin\controller;
 
-use App\Libraries\Exchange;
+use app\libraries\Exchange;
 
 /**
  * 管理中心办事处管理

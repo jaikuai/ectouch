@@ -1,6 +1,5 @@
 <?php
 
-
 /**
  * 应用根目录
  * @param string $path

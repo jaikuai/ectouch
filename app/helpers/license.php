@@ -1,7 +1,7 @@
 <?php
 
-use App\Libraries\Json;
-use App\Libraries\Transport;
+use app\libraries\Json;
+use app\libraries\Transport;
 
 /**
  * 获得网店 license 信息

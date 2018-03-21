@@ -3,8 +3,8 @@
 namespace app\shop\controller;
 
 
-use App\Libraries\Json;
-use App\Libraries\Captcha;
+use app\libraries\Json;
+use app\libraries\Captcha;
 
 /**
  * 会员中心

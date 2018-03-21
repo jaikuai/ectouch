@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Libraries;
+namespace app\libraries;
 
 /**
  * 基础类
  * Class Shop
- * @package App\Libraries
+ * @package app\libraries
  */
 class Shop
 {
@@ -17,8 +17,8 @@ class Shop
      */
     public function __construct()
     {
-        $this->db_name = config('database.connections.mysql.database');
-        $this->prefix = config('database.connections.mysql.prefix');
+        $this->db_name = config('database.database');
+        $this->prefix = config('database.prefix');
     }
 
     /**

@@ -2,7 +2,7 @@
 
 namespace app\admin\controller;
 
-use App\Libraries\Exchange;
+use app\libraries\Exchange;
 
 /**
  * 拍卖活动管理

@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Libraries;
+namespace app\libraries;
 
 /**
  * 验证码图片类
  * Class Captcha
- * @package App\Libraries
+ * @package app\libraries
  */
 class Captcha
 {

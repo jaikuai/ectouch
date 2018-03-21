@@ -2,7 +2,7 @@
 
 namespace app\admin\controller;
 
-use App\Libraries\Mysql;
+use app\libraries\Mysql;
 
 /**
  * 转换程序

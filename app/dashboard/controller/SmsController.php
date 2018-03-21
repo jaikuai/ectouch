@@ -2,7 +2,7 @@
 
 namespace app\admin\controller;
 
-use App\Libraries\Sms;
+use app\libraries\Sms;
 
 /**
  * 短信模块

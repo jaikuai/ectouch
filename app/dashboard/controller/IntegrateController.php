@@ -2,7 +2,7 @@
 
 namespace app\admin\controller;
 
-use App\Libraries\Mysql;
+use app\libraries\Mysql;
 
 /**
  * 第三方程序会员数据整合插件管理

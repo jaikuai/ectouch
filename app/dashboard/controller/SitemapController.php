@@ -2,8 +2,8 @@
 
 namespace app\admin\controller;
 
-use App\Libraries\Sitemap\GoogleSitemap;
-use App\Libraries\Sitemap\GoogleSitemapItem;
+use app\libraries\sitemap\GoogleSitemap;
+use app\libraries\sitemap\GoogleSitemapItem;
 
 /**
  * 站点地图生成程序

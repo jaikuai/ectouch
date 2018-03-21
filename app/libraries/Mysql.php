@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Libraries;
+namespace app\libraries;
 
-use Illuminate\Support\Facades\DB;
+use think\Db as DB;
 
 /**
  * MYSQL 公用类库
  * Class Mysql
- * @package App\Libraries
+ * @package app\libraries
  */
 class Mysql
 {
@@ -40,22 +40,9 @@ class Mysql
     {
         $m = strtolower(substr(ltrim(trim($sql), '('), 0, 6));
         if ($m == 'select' || substr($m, 0, 4) == 'desc' || substr($m, 0, 4) == 'show') {
-            $result = DB::select($sql);
-            if (empty($result)) {
-                $res = $result;
-            } else {
-                foreach ($result as $vo) {
-                    $res[] = get_object_vars($vo);
-                }
-            }
-        } elseif ($m == 'update') {
-            $res = DB::update($sql);
-        } elseif ($m == 'insert') {
-            $res = DB::insert($sql);
-        } elseif ($m == 'delete') {
-            $res = DB::delete($sql);
+            $res = DB::query($sql);
         } else {
-            $res = DB::statement($sql);
+            $res = DB::execute($sql);
         }
 
         return $res;

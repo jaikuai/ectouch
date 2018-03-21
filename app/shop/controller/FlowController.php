@@ -2,9 +2,9 @@
 
 namespace app\shop\controller;
 
-use App\Libraries\Sms;
-use App\Libraries\Json;
-use App\Libraries\Captcha;
+use app\libraries\Sms;
+use app\libraries\Json;
+use app\libraries\Captcha;
 
 /**
  * 购物流程

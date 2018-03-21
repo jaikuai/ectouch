@@ -2,8 +2,8 @@
 
 namespace app\admin\controller;
 
-use App\Libraries\Captcha;
-use App\Libraries\Exchange;
+use app\libraries\Captcha;
+use app\libraries\Exchange;
 
 /**
  * 管理员信息以及权限管理程序

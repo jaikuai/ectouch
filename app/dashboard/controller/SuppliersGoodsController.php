@@ -3,8 +3,8 @@
 namespace app\admin\controller;
 
 
-use App\Libraries\Image;
-use App\Libraries\Exchange;
+use app\libraries\Image;
+use app\libraries\Exchange;
 
 /**
  * 供货商商品

@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Libraries;
+namespace app\libraries;
 
 /**
  * 数据库数据进行交换
  * Class Exchange
- * @package App\Libraries
+ * @package app\libraries
  */
 class Exchange
 {

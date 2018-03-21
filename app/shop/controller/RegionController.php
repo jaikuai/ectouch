@@ -2,7 +2,7 @@
 
 namespace app\shop\controller;
 
-use App\Libraries\Json;
+use app\libraries\Json;
 
 /**
  * Class RegionController

@@ -2,7 +2,7 @@
 
 namespace app\admin\controller;
 
-use App\Libraries\Image;
+use app\libraries\Image;
 
 /**
  * Class IndexController
