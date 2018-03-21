@@ -80,14 +80,19 @@ function plugin_path($path = '')
     return app_path('plugins' . ($path ? DIRECTORY_SEPARATOR . $path : $path));
 }
 
+function asset($url = null)
+{
+    $url = is_null($url) ? '' : '/' . ltrim($url, '/');
+    return request()->root() . $url;
+}
+
 /**
  * 是否为移动设备
  * @return mixed
  */
 function is_mobile_device()
 {
-    $detect = new \Mobile_Detect();
-    return $detect->isMobile();
+    return request()->isMobile();
 }
 
 /**
