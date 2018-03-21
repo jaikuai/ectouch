@@ -12,7 +12,7 @@
         "source": "https://github.com/ectouch/ectouch"
     },
     "require": {
-        "php": ">=5.6.0",
+        "php": ">=7.2",
         "endroid/qr-code": "^3.2",
         "jellybool/translug": "^2.0",
         "jenssegers/agent": "^2.6",
