@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Admin\Controller;
+namespace app\admin\controller;
 
 /**
  * 团购商品管理
  * Class GroupBuyController
- * @package App\Admin\Controller
+ * @package app\admin\controller
  */
 class GroupBuyController extends BaseController
 {
-    public function actionIndex()
+    public function index()
     {
         load_helper(['goods', 'order']);
 

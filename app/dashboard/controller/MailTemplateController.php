@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Admin\Controller;
+namespace app\admin\controller;
 
 /**
  * 模版管理
  * Class MailTemplateController
- * @package App\Admin\Controller
+ * @package app\admin\controller
  */
 class MailTemplateController extends BaseController
 {
-    public function actionIndex()
+    public function index()
     {
         admin_priv('mail_template');
 

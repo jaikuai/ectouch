@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Shop\Controller;
+namespace app\shop\controller;
 
 use App\Libraries\Sms;
 use App\Libraries\Json;
@@ -9,11 +9,11 @@ use App\Libraries\Captcha;
 /**
  * 购物流程
  * Class FlowController
- * @package App\Shop\Controller
+ * @package app\shop\controller
  */
 class FlowController extends InitController
 {
-    public function actionIndex()
+    public function index()
     {
         load_helper('order');
         load_lang(['user', 'flow']);

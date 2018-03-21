@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Admin\Controller;
+namespace app\admin\controller;
 
 /**
  * 文件校验
  * Class FilecheckController
- * @package App\Admin\Controller
+ * @package app\admin\controller
  */
 class FilecheckController extends BaseController
 {
-    public function actionIndex()
+    public function index()
     {
         // 检查权限
         admin_priv('file_check');

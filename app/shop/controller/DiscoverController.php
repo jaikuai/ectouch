@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Shop\Controller;
+namespace app\shop\controller;
 
 /**
  * Class DiscoverController
- * @package App\Shop\Controller
+ * @package app\shop\controller
  */
 class DiscoverController extends InitController
 {
-    public function actionIndex()
+    public function index()
     {
         return 'discover page.';
     }

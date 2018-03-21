@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Admin\Controller;
+namespace app\admin\controller;
 
 use App\Libraries\Exchange;
 
 /**
  * 计划任务
  * Class CronController
- * @package App\Admin\Controller
+ * @package app\admin\controller
  */
 class CronController extends BaseController
 {
-    public function actionIndex()
+    public function index()
     {
         admin_priv('cron');
         $exc = new Exchange($this->ecs->table('crons'), $this->db, 'cron_code', 'cron_name');

@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Shop\Controller;
+namespace app\shop\controller;
 
 /**
  * 优惠活动
  * Class ActivityController
- * @package App\Shop\Controller
+ * @package app\shop\controller
  */
 class ActivityController extends InitController
 {
-    public function actionIndex()
+    public function index()
     {
         load_helper(['order', 'transaction']);
         load_lang(['flow', 'user']);

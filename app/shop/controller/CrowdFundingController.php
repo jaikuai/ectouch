@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Shop\Controller;
+namespace app\shop\controller;
 
 /**
  * Class CrowdFundingController
- * @package App\Shop\Controller
+ * @package app\shop\controller
  */
 class CrowdFundingController extends InitController
 {
-    public function actionIndex()
+    public function index()
     {
         return 'CrowdFundingController.';
     }

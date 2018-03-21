@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Admin\Controller;
+namespace app\admin\controller;
 
 use App\Libraries\Exchange;
 
 /**
  * 积分兑换商品
  * Class ExchangeGoodsController
- * @package App\Admin\Controller
+ * @package app\admin\controller
  */
 class ExchangeGoodsController extends BaseController
 {
-    public function actionIndex()
+    public function index()
     {
         /*初始化数据交换对象 */
         $exc = new Exchange($this->ecs->table("exchange_goods"), $this->db, 'goods_id', 'exchange_integral');

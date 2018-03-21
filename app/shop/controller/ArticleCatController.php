@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Shop\Controller;
+namespace app\shop\controller;
 
 /**
  * 文章分类
  * Class ArticleCatController
- * @package App\Shop\Controller
+ * @package app\shop\controller
  */
 class ArticleCatController extends InitController
 {
-    public function actionIndex()
+    public function index()
     {
         // 获得指定的分类ID
         if (!empty($_GET['id'])) {

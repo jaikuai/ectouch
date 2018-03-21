@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Admin\Controller;
+namespace app\admin\controller;
 
 /**
  * 找回管理员密码
  * Class GetPasswordController
- * @package App\Admin\Controller
+ * @package app\admin\controller
  */
 class GetPasswordController extends BaseController
 {
-    public function actionIndex()
+    public function index()
     {
         // 操作项的初始化
         if (empty($_SERVER['REQUEST_METHOD'])) {

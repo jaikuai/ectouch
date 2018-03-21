@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Admin\Controller;
+namespace app\admin\controller;
 
 use App\Libraries\Sms;
 
 /**
  * 短信模块
  * Class SmsController
- * @package App\Admin\Controller
+ * @package app\admin\controller
  */
 class SmsController extends BaseController
 {
-    public function actionIndex()
+    public function index()
     {
         $action = isset($_REQUEST['act']) ? $_REQUEST['act'] : 'display_my_info';
         if (isset($_POST['sms_sign_update'])) {

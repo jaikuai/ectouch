@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Admin\Controller;
+namespace app\admin\controller;
 
 use App\Libraries\Exchange;
 
 /**
  * 优惠活动管理
  * Class FavourableController
- * @package App\Admin\Controller
+ * @package app\admin\controller
  */
 class FavourableController extends BaseController
 {
-    public function actionIndex()
+    public function index()
     {
         load_helper('goods');
 

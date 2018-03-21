@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Admin\Controller;
+namespace app\admin\controller;
 
 /**
  * 记录管理员操作日志
  * Class AdminLogsController
- * @package App\Admin\Controller
+ * @package app\admin\controller
  */
 class AdminLogsController extends BaseController
 {
-    public function actionIndex()
+    public function index()
     {
         /**
          * 获取所有日志列表

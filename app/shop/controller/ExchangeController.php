@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Shop\Controller;
+namespace app\shop\controller;
 
 
 
 /**
  * 积分商城
  * Class ExchangeController
- * @package App\Shop\Controller
+ * @package app\shop\controller
  */
 class ExchangeController extends InitController
 {
-    public function actionIndex()
+    public function index()
     {
         $_REQUEST['act'] = empty($_REQUEST['act']) ? 'list' : $_REQUEST['act'];
 

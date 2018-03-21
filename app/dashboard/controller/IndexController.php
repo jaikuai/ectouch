@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Admin\Controller;
+namespace app\admin\controller;
 
 use App\Libraries\Image;
 
 /**
  * Class IndexController
- * @package App\Admin\Controller
+ * @package app\admin\controller
  */
 class IndexController extends BaseController
 {
 
-    public function actionIndex()
+    public function index()
     {
         load_helper('order');
 

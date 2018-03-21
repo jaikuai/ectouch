@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Shop\Controller;
+namespace app\shop\controller;
 
 /**
  * 所有分类及品牌
  * Class CatalogController
- * @package App\Shop\Controller
+ * @package app\shop\controller
  */
 class CatalogController extends InitController
 {
-    public function actionIndex()
+    public function index()
     {
         if (!$this->smarty->is_cached('catalog.dwt')) {
             // 取出所有分类

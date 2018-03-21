@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Shop\Controller;
+namespace app\shop\controller;
 
 use App\Libraries\Shop;
 use App\Libraries\Error;

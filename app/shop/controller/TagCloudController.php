@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Shop\Controller;
+namespace app\shop\controller;
 
 /**
  * 标签云
  * Class TagCloudController
- * @package App\Shop\Controller
+ * @package app\shop\controller
  */
 class TagCloudController extends InitController
 {
-    public function actionIndex()
+    public function index()
     {
         assign_template();
         $position = assign_ur_here(0, $GLOBALS['_LANG']['tag_cloud']);

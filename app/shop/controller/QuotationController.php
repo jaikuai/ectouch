@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Shop\Controller;
+namespace app\shop\controller;
 
 /**
  * 报价单
  * Class QuotationController
- * @package App\Shop\Controller
+ * @package app\shop\controller
  */
 class QuotationController extends InitController
 {
-    public function actionIndex()
+    public function index()
     {
         $action = empty($_REQUEST['act']) ? 'default' : trim($_REQUEST['act']);
         if ($action == 'print_quotation') {

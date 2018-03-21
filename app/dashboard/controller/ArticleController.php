@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Admin\Controller;
+namespace app\admin\controller;
 
 use App\Libraries\Image;
 use App\Libraries\Exchange;
@@ -8,11 +8,11 @@ use App\Libraries\Exchange;
 /**
  * 文章管理
  * Class ArticleController
- * @package App\Admin\Controller
+ * @package app\admin\controller
  */
 class ArticleController extends BaseController
 {
-    public function actionIndex()
+    public function index()
     {
         /*初始化数据交换对象 */
         $exc = new Exchange($this->ecs->table("article"), $this->db, 'article_id', 'title');

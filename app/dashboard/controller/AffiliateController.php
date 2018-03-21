@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Admin\Controller;
+namespace app\admin\controller;
 
 /**
  * Class AffiliateController
- * @package App\Admin\Controller
+ * @package app\admin\controller
  */
 class AffiliateController extends BaseController
 {
-    public function actionIndex()
+    public function index()
     {
         admin_priv('affiliate');
         $config = $this->get_affiliate();

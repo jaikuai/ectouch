@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Shop\Controller;
+namespace app\shop\controller;
 
 /**
  * Class SalesController
- * @package App\Shop\Controller
+ * @package app\shop\controller
  */
 class SalesController extends InitController
 {
-    public function actionIndex()
+    public function index()
     {
         return 'SalesController.';
     }

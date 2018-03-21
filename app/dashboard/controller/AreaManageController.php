@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Admin\Controller;
+namespace app\admin\controller;
 
 use App\Libraries\Exchange;
 
 /**
  * 地区列表管理
  * Class AreaManageController
- * @package App\Admin\Controller
+ * @package app\admin\controller
  */
 class AreaManageController extends BaseController
 {
-    public function actionIndex()
+    public function index()
     {
         $exc = new Exchange($this->ecs->table('region'), $this->db, 'region_id', 'region_name');
 

@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Admin\Controller;
+namespace app\admin\controller;
 
 /**
  * Class CaptchaManageController
- * @package App\Admin\Controller
+ * @package app\admin\controller
  */
 class CaptchaManageController extends BaseController
 {
-    public function actionIndex()
+    public function index()
     {
         // 检查权限
         admin_priv('shop_config');

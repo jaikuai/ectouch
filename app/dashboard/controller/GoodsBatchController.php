@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Admin\Controller;
+namespace app\admin\controller;
 
 use App\Libraries\Image;
 
 /**
  * 商品批量上传、修改
  * Class GoodsBatchController
- * @package App\Admin\Controller
+ * @package app\admin\controller
  */
 class GoodsBatchController extends BaseController
 {
-    public function actionIndex()
+    public function index()
     {
         load_helper('goods', 'admin');
 

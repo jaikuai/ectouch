@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Admin\Controller;
+namespace app\admin\controller;
 
 use App\Libraries\Exchange;
 
 /**
  * 角色管理信息以及权限管理
  * Class RoleController
- * @package App\Admin\Controller
+ * @package app\admin\controller
  */
 class RoleController extends BaseController
 {
-    public function actionIndex()
+    public function index()
     {
         // act操作项的初始化
         if (empty($_REQUEST['act'])) {

@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Admin\Controller;
+namespace app\admin\controller;
 
 /**
  * 管理中心商店设置
  * Class ShopConfigController
- * @package App\Admin\Controller
+ * @package app\admin\controller
  */
 class ShopConfigController extends BaseController
 {
-    public function actionIndex()
+    public function index()
     {
         /**
          * 列表编辑 ?act=list_edit

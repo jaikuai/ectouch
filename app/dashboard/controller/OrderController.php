@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Admin\Controller;
+namespace app\admin\controller;
 
 /**
  * 订单管理
  * Class OrderController
- * @package App\Admin\Controller
+ * @package app\admin\controller
  */
 class OrderController extends BaseController
 {
-    public function actionIndex()
+    public function index()
     {
         load_helper(['order', 'goods']);
 

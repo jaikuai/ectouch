@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Shop\Controller;
+namespace app\shop\controller;
 
 /**
  * Class RespondController
- * @package App\Shop\Controller
+ * @package app\shop\controller
  */
 class RespondController extends InitController
 {
-    public function actionIndex()
+    public function index()
     {
         load_helper(['payment', 'order']);
 

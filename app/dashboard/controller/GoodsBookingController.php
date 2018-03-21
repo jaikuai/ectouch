@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Admin\Controller;
+namespace app\admin\controller;
 
 /**
  * 缺货处理管理
  * Class GoodsBookingController
- * @package App\Admin\Controller
+ * @package app\admin\controller
  */
 class GoodsBookingController extends BaseController
 {
-    public function actionIndex()
+    public function index()
     {
         admin_priv('booking');
 

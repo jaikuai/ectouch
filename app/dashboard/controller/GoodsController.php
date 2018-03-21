@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Admin\Controller;
+namespace app\admin\controller;
 
 use App\Libraries\Image;
 use App\Libraries\Exchange;
@@ -8,11 +8,11 @@ use App\Libraries\Exchange;
 /**
  * 商品管理程序
  * Class GoodsController
- * @package App\Admin\Controller
+ * @package app\admin\controller
  */
 class GoodsController extends BaseController
 {
-    public function actionIndex()
+    public function index()
     {
         load_helper('goods', 'admin');
 

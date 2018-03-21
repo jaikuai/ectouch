@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Admin\Controller;
+namespace app\admin\controller;
 
 use App\Libraries\Mysql;
 
 /**
  * 转换程序
  * Class ConvertController
- * @package App\Admin\Controller
+ * @package app\admin\controller
  */
 class ConvertController extends BaseController
 {
-    public function actionIndex()
+    public function index()
     {
         /**
          * 转换程序主页面

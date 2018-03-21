@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Admin\Controller;
+namespace app\admin\controller;
 
 use App\Libraries\Exchange;
 
 /**
  * 广告位置管理程序
  * Class AdPositionController
- * @package App\Admin\Controller
+ * @package app\admin\controller
  */
 class AdPositionController extends BaseController
 {
-    public function actionIndex()
+    public function index()
     {
         load_helper('ads', 'admin');
 

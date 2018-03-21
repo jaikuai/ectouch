@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Admin\Controller;
+namespace app\admin\controller;
 
 /**
  * 用户评论管理
  * Class CommentManageController
- * @package App\Admin\Controller
+ * @package app\admin\controller
  */
 class CommentManageController extends BaseController
 {
-    public function actionIndex()
+    public function index()
     {
         /**
          * 获取没有回复的评论列表

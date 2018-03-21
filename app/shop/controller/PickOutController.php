@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Shop\Controller;
+namespace app\shop\controller;
 
 /**
  * 选购中心
  * Class PickOutController
- * @package App\Shop\Controller
+ * @package app\shop\controller
  */
 class PickOutController extends InitController
 {
-    public function actionIndex()
+    public function index()
     {
         $condition = [];
         $picks = [];

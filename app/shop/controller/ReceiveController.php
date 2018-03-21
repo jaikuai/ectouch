@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Shop\Controller;
+namespace app\shop\controller;
 
 /**
  * 处理收回确认的页面
  * Class ReceiveController
- * @package App\Shop\Controller
+ * @package app\shop\controller
  */
 class ReceiveController extends InitController
 {
-    public function actionIndex()
+    public function index()
     {
         // 取得参数
         $order_id = !empty($_REQUEST['id']) ? intval($_REQUEST['id']) : 0;  // 订单号

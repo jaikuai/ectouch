@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Admin\Controller;
+namespace app\admin\controller;
 
 /**
  * Class TagManageController
- * @package App\Admin\Controller
+ * @package app\admin\controller
  */
 class TagManageController extends BaseController
 {
-    public function actionIndex()
+    public function index()
     {
         if ($_REQUEST['act'] == 'list') {
             // 鏉冮檺鍒ゆ柇

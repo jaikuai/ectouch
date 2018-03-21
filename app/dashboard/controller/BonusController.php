@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Admin\Controller;
+namespace app\admin\controller;
 
 use App\Libraries\Exchange;
 
 /**
  * 红包类型的处理
  * Class BonusController
- * @package App\Admin\Controller
+ * @package app\admin\controller
  */
 class BonusController extends BaseController
 {
-    public function actionIndex()
+    public function index()
     {
         // 初始化$exc对象
         $exc = new Exchange($this->ecs->table('bonus_type'), $this->db, 'type_id', 'type_name');

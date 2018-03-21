@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Shop\Controller;
+namespace app\shop\controller;
 
 /**
  * Class PmController
- * @package App\Shop\Controller
+ * @package app\shop\controller
  */
 class PmController extends InitController
 {
-    public function actionIndex()
+    public function index()
     {
         if (empty(session('user_id')) || $GLOBALS['_CFG']['integrate_code'] == 'ecshop') {
             return redirect('./');

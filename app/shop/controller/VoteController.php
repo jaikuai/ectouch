@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Shop\Controller;
+namespace app\shop\controller;
 
 /**
  * 调查程序
  * Class VoteController
- * @package App\Shop\Controller
+ * @package app\shop\controller
  */
 class VoteController extends InitController
 {
-    public function actionIndex()
+    public function index()
     {
         if (!isset($_REQUEST['vote']) || !isset($_REQUEST['options']) || !isset($_REQUEST['type'])) {
             return redirect('/');

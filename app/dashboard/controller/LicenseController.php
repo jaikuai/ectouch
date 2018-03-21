@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Admin\Controller;
+namespace app\admin\controller;
 
 /**
  * 证书编辑页
  * Class LicenseController
- * @package App\Admin\Controller
+ * @package app\admin\controller
  */
 class LicenseController extends BaseController
 {
-    public function actionIndex()
+    public function index()
     {
         if ($_REQUEST['act'] == 'list_edit') {
             // 检查权限

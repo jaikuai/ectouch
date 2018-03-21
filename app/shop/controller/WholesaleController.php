@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Shop\Controller;
+namespace app\shop\controller;
 
 
 use App\Libraries\Sms;
@@ -8,11 +8,11 @@ use App\Libraries\Sms;
 /**
  * 批发
  * Class WholesaleController
- * @package App\Shop\Controller
+ * @package app\shop\controller
  */
 class WholesaleController extends InitController
 {
-    public function actionIndex()
+    public function index()
     {
         // 如果没登录，提示登录
         if (session('user_rank') <= 0) {

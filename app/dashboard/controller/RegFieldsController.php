@@ -1,16 +1,16 @@
 <?php
 
-namespace App\Admin\Controller;
+namespace app\admin\controller;
 
 use App\Libraries\Exchange;
 
 /**
  * Class RegFieldsController
- * @package App\Admin\Controller
+ * @package app\admin\controller
  */
 class RegFieldsController extends BaseController
 {
-    public function actionIndex()
+    public function index()
     {
         $exc = new Exchange($this->ecs->table("reg_fields"), $this->db, 'id', 'reg_field_name');
 

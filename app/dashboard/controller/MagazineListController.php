@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Admin\Controller;
+namespace app\admin\controller;
 
 /**
  * Class MagazineListController
- * @package App\Admin\Controller
+ * @package app\admin\controller
  */
 class MagazineListController extends BaseController
 {
-    public function actionIndex()
+    public function index()
     {
         admin_priv('magazine_list');
         if ($_REQUEST['act'] == 'list') {

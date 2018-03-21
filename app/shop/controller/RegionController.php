@@ -1,16 +1,16 @@
 <?php
 
-namespace App\Shop\Controller;
+namespace app\shop\controller;
 
 use App\Libraries\Json;
 
 /**
  * Class RegionController
- * @package App\Shop\Controller
+ * @package app\shop\controller
  */
 class RegionController extends InitController
 {
-    public function actionIndex()
+    public function index()
     {
         header('Content-type: text/html; charset=' . CHARSET);
 

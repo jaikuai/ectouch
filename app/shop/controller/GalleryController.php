@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Shop\Controller;
+namespace app\shop\controller;
 
 /**
  * 商品相册
  * Class GalleryController
- * @package App\Shop\Controller
+ * @package app\shop\controller
  */
 class GalleryController extends InitController
 {
-    public function actionIndex()
+    public function index()
     {
         // 参数
         $_REQUEST['id'] = isset($_REQUEST['id']) ? intval($_REQUEST['id']) : 0; // 商品编号

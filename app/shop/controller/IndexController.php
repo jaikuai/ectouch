@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Shop\Controller;
+namespace app\shop\controller;
 
 use App\Libraries\Json;
 
 /**
  * Class IndexController
- * @package App\Shop\Controller
+ * @package app\shop\controller
  */
 class IndexController extends InitController
 {
@@ -16,7 +16,7 @@ class IndexController extends InitController
      *
      * @return string
      */
-    public function actionIndex()
+    public function index()
     {
         /**
          * 判断是否有ajax请求

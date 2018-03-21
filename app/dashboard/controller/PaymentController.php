@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Admin\Controller;
+namespace app\admin\controller;
 
 use App\Libraries\Exchange;
 
 /**
  * 支付方式管理
  * Class PaymentController
- * @package App\Admin\Controller
+ * @package app\admin\controller
  */
 class PaymentController extends BaseController
 {
-    public function actionIndex()
+    public function index()
     {
         $exc = new Exchange($this->ecs->table('payment'), $this->db, 'pay_code', 'pay_name');
 

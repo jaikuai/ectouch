@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Shop\Controller;
+namespace app\shop\controller;
 
 /**
  * Class GrouponController
- * @package App\Shop\Controller
+ * @package app\shop\controller
  */
 class GrouponController extends InitController
 {
-    public function actionIndex()
+    public function index()
     {
         return 'GrouponController.';
     }

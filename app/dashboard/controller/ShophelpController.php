@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Admin\Controller;
+namespace app\admin\controller;
 
 use App\Libraries\Exchange;
 
 /**
  * 帮助信息管理
  * Class ShophelpController
- * @package App\Admin\Controller
+ * @package app\admin\controller
  */
 class ShophelpController extends BaseController
 {
-    public function actionIndex()
+    public function index()
     {
         /*初始化数据交换对象 */
         $exc_article = new Exchange($this->ecs->table("article"), $this->db, 'article_id', 'title');

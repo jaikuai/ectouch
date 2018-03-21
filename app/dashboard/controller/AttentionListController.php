@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Admin\Controller;
+namespace app\admin\controller;
 
 /**
  * Class AttentionListController
- * @package App\Admin\Controller
+ * @package app\admin\controller
  */
 class AttentionListController extends BaseController
 {
-    public function actionIndex()
+    public function index()
     {
         admin_priv('attention_list');
 

@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Admin\Controller;
+namespace app\admin\controller;
 
 /**
  * 会员管理程序
  * Class UsersController
- * @package App\Admin\Controller
+ * @package app\admin\controller
  */
 class UsersController extends BaseController
 {
-    public function actionIndex()
+    public function index()
     {
         /**
          * 用户帐号列表

@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Admin\Controller;
+namespace app\admin\controller;
 
 /**
  * 搜索引擎关键字统计
  * Class SearchengineStatsController
- * @package App\Admin\Controller
+ * @package app\admin\controller
  */
 class SearchengineStatsController extends BaseController
 {
-    public function actionIndex()
+    public function index()
     {
         load_lang('statistic', 'admin');
 

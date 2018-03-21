@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Admin\Controller;
+namespace app\admin\controller;
 
 /**
  * 专题管理
  * Class TopicController
- * @package App\Admin\Controller
+ * @package app\admin\controller
  */
 class TopicController extends BaseController
 {
-    public function actionIndex()
+    public function index()
     {
         // 配置风格颜色选项
         $topic_style_color = [

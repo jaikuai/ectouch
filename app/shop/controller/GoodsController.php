@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Shop\Controller;
+namespace app\shop\controller;
 
 
 use App\Libraries\Json;
@@ -8,11 +8,11 @@ use App\Libraries\Json;
 /**
  * 商品详情
  * Class GoodsController
- * @package App\Shop\Controller
+ * @package app\shop\controller
  */
 class GoodsController extends InitController
 {
-    public function actionIndex()
+    public function index()
     {
         $affiliate = unserialize($GLOBALS['_CFG']['affiliate']);
         $this->smarty->assign('affiliate', $affiliate);

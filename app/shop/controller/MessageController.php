@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Shop\Controller;
+namespace app\shop\controller;
 
 use App\Libraries\Captcha;
 
 /**
  * 留言板
  * Class MessageController
- * @package App\Shop\Controller
+ * @package app\shop\controller
  */
 class MessageController extends InitController
 {
-    public function actionIndex()
+    public function index()
     {
         if (empty($GLOBALS['_CFG']['message_board'])) {
             return show_message($GLOBALS['_LANG']['message_board_close']);

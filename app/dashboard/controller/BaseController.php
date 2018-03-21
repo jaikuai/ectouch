@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Admin\Controller;
+namespace app\admin\controller;
 
 use App\Libraries\Shop;
 use App\Libraries\Error;
@@ -11,7 +11,7 @@ use Think\Controller;
 
 /**
  * Class InitController
- * @package App\Admin\Controller
+ * @package app\admin\controller
  */
 class InitController extends Controller
 {

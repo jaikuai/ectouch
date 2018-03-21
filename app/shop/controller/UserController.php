@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Shop\Controller;
+namespace app\shop\controller;
 
 
 use App\Libraries\Json;
@@ -9,11 +9,11 @@ use App\Libraries\Captcha;
 /**
  * 会员中心
  * Class UserController
- * @package App\Shop\Controller
+ * @package app\shop\controller
  */
 class UserController extends InitController
 {
-    public function actionIndex()
+    public function index()
     {
         /**
          * 载入语言文件

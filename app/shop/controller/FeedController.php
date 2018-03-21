@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Shop\Controller;
+namespace app\shop\controller;
 
 use App\Libraries\Rss\RSSBuilder;
 
 /**
  * RSS Feed 生成程序
  * Class FeedController
- * @package App\Shop\Controller
+ * @package app\shop\controller
  */
 class FeedController extends InitController
 {
-    public function actionIndex()
+    public function index()
     {
         header('Content-Type: application/xml; charset=' . CHARSET);
         header('Cache-Control: no-cache, must-revalidate');

@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Shop\Controller;
+namespace app\shop\controller;
 
 /**
  * 品牌列表
  * Class BrandController
- * @package App\Shop\Controller
+ * @package app\shop\controller
  */
 class BrandController extends InitController
 {
-    public function actionIndex()
+    public function index()
     {
         // 获得请求的分类 ID
         if (!empty($_REQUEST['id'])) {

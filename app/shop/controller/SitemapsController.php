@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Shop\Controller;
+namespace app\shop\controller;
 
 use App\Libraries\Sitemap;
 
 /**
  * 网站地图
  * Class SitemapsController
- * @package App\Shop\Controller
+ * @package app\shop\controller
  */
 class SitemapsController extends InitController
 {
-    public function actionIndex()
+    public function index()
     {
         if (file_exists(ROOT_PATH . DATA_DIR . '/sitemap.dat') && time() - filemtime(ROOT_PATH . DATA_DIR . '/sitemap.dat') < 86400) {
             $out = file_get_contents(ROOT_PATH . DATA_DIR . '/sitemap.dat');

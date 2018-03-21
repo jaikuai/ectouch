@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Shop\Controller;
+namespace app\shop\controller;
 
 /**
  * 支付配送DEMO
  * Class MyshipController
- * @package App\Shop\Controller
+ * @package app\shop\controller
  */
 class MyshipController extends InitController
 {
-    public function actionIndex()
+    public function index()
     {
         load_helper(['order', 'transaction']);
         load_lang(['flow', 'user']);

@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Admin\Controller;
+namespace app\admin\controller;
 
 /**
  * 访问购买比例
  * Class VisitSoldController
- * @package App\Admin\Controller
+ * @package app\admin\controller
  */
 class VisitSoldController extends BaseController
 {
-    public function actionIndex()
+    public function index()
     {
         load_helper('order');
         load_lang('statistic', 'admin');

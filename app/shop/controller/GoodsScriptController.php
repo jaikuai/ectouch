@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Shop\Controller;
+namespace app\shop\controller;
 
 /**
  * 生成商品列表
  * Class GoodsScriptController
- * @package App\Shop\Controller
+ * @package app\shop\controller
  */
 class GoodsScriptController extends InitController
 {
-    public function actionIndex()
+    public function index()
     {
         $charset = empty($_GET['charset']) ? CHARSET : $_GET['charset'];
         $type = empty($_GET['type']) ? '' : 'collection';

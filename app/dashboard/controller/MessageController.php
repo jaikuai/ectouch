@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Admin\Controller;
+namespace app\admin\controller;
 
 /**
  * 管理员留言
  * Class MessageController
- * @package App\Admin\Controller
+ * @package app\admin\controller
  */
 class MessageController extends BaseController
 {
-    public function actionIndex()
+    public function index()
     {
         /**
          * 留言列表页面

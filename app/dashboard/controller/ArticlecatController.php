@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Admin\Controller;
+namespace app\admin\controller;
 
 use App\Libraries\Exchange;
 
 /**
  * 文章分类管理程序
  * Class ArticlecatController
- * @package App\Admin\Controller
+ * @package app\admin\controller
  */
 class ArticlecatController extends BaseController
 {
-    public function actionIndex()
+    public function index()
     {
         $exc = new Exchange($this->ecs->table("article_cat"), $this->db, 'cat_id', 'cat_name');
 

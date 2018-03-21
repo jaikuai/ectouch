@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Admin\Controller;
+namespace app\admin\controller;
 
 /**
  * 会员帐目管理(包括预付款，余额)
  * Class UserAccountController
- * @package App\Admin\Controller
+ * @package app\admin\controller
  */
 class UserAccountController extends BaseController
 {
-    public function actionIndex()
+    public function index()
     {
         /**
          * 会员余额记录列表

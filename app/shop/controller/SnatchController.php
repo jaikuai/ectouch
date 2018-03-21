@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Shop\Controller;
+namespace app\shop\controller;
 
 /**
  * 夺宝奇兵
  * Class SnatchController
- * @package App\Shop\Controller
+ * @package app\shop\controller
  */
 class SnatchController extends InitController
 {
-    public function actionIndex()
+    public function index()
     {
         $_REQUEST['act'] = !empty($_REQUEST['act']) ? $_REQUEST['act'] : 'main';
 

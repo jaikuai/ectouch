@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Shop\Controller;
+namespace app\shop\controller;
 
 /**
  * Class AffiliateController
- * @package App\Shop\Controller
+ * @package app\shop\controller
  */
 class AffiliateController extends InitController
 {
-    public function actionIndex()
+    public function index()
     {
         $charset = empty($_GET['charset']) ? 'UTF8' : $_GET['charset'];
         $display_mode = empty($_GET['display_mode']) ? 'javascript' : $_GET['display_mode'];

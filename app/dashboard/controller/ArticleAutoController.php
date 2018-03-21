@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Admin\Controller;
+namespace app\admin\controller;
 
 /**
  * Class ArticleAutoController
- * @package App\Admin\Controller
+ * @package app\admin\controller
  */
 class ArticleAutoController extends BaseController
 {
-    public function actionIndex()
+    public function index()
     {
         admin_priv('article_auto');
         $this->smarty->assign('thisfile', 'article_auto.php');

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Shop\Controller;
+namespace app\shop\controller;
 
 use DOMDocument;
 use App\Libraries\Json;
@@ -8,11 +8,11 @@ use App\Libraries\Json;
 /**
  * OPEN API统一接口
  * Class ApiController
- * @package App\Shop\Controller
+ * @package app\shop\controller
  */
 class ApiController extends InitController
 {
-    public function actionIndex()
+    public function index()
     {
         load_helper('license');
 

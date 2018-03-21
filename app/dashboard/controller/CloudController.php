@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Admin\Controller;
+namespace app\admin\controller;
 
 use App\Libraries\Json;
 use App\Libraries\Transport;
@@ -8,11 +8,11 @@ use App\Libraries\Transport;
 /**
  * 云服务接口
  * Class CloudController
- * @package App\Admin\Controller
+ * @package app\admin\controller
  */
 class CloudController extends BaseController
 {
-    public function actionIndex()
+    public function index()
     {
         $data['api_ver'] = '1.0';
         $data['version'] = VERSION;

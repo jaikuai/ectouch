@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Admin\Controller;
+namespace app\admin\controller;
 
 /**
  * 站外JS投放的统计程序
  * Class AdsenseController
- * @package App\Admin\Controller
+ * @package app\admin\controller
  */
 class AdsenseController extends BaseController
 {
-    public function actionIndex()
+    public function index()
     {
         load_helper('order');
         load_lang('ads', 'admin');

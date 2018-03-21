@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Admin\Controller;
+namespace app\admin\controller;
 
 /**
  * Class AffiliateCkController
- * @package App\Admin\Controller
+ * @package app\admin\controller
  */
 class AffiliateCkController extends BaseController
 {
-    public function actionIndex()
+    public function index()
     {
         admin_priv('affiliate_ck');
         $timestamp = time();

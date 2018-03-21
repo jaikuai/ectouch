@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Admin\Controller;
+namespace app\admin\controller;
 
 use App\Libraries\Exchange;
 
 /**
  * 超值礼包管理
  * Class PackageController
- * @package App\Admin\Controller
+ * @package app\admin\controller
  */
 class PackageController extends BaseController
 {
-    public function actionIndex()
+    public function index()
     {
         $exc = new Exchange($this->ecs->table("goods_activity"), $this->db, 'act_id', 'act_name');
 

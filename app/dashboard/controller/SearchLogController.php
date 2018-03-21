@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Admin\Controller;
+namespace app\admin\controller;
 
 /**
  * Class SearchLogController
- * @package App\Admin\Controller
+ * @package app\admin\controller
  */
 class SearchLogController extends BaseController
 {
-    public function actionIndex()
+    public function index()
     {
         admin_priv('search_log');
         if ($_REQUEST['act'] == 'list') {

@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Admin\Controller;
+namespace app\admin\controller;
 
 use App\Libraries\Exchange;
 
 /**
  * 属性规格管理
  * Class AttributeController
- * @package App\Admin\Controller
+ * @package app\admin\controller
  */
 class AttributeController extends BaseController
 {
-    public function actionIndex()
+    public function index()
     {
         $exc = new Exchange($this->ecs->table("attribute"), $this->db, 'attr_id', 'attr_name');
 

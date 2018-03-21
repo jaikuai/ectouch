@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Shop\Controller;
+namespace app\shop\controller;
 
 /**
  * 文章内容
  * Class ArticleController
- * @package App\Shop\Controller
+ * @package app\shop\controller
  */
 class ArticleController extends InitController
 {
-    public function actionIndex()
+    public function index()
     {
         $_REQUEST['id'] = intval($_GET['id']);
         $article_id = $_REQUEST['id'];

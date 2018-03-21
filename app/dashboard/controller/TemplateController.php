@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Admin\Controller;
+namespace app\admin\controller;
 
 /**
  * 模版管理
  * Class TemplateController
- * @package App\Admin\Controller
+ * @package app\admin\controller
  */
 class TemplateController extends BaseController
 {
-    public function actionIndex()
+    public function index()
     {
         load_helper('template', 'admin');
 

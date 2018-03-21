@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Admin\Controller;
+namespace app\admin\controller;
 
 use App\Libraries\Image;
 use App\Libraries\Exchange;
@@ -8,11 +8,11 @@ use App\Libraries\Exchange;
 /**
  * 贺卡管理
  * Class CardController
- * @package App\Admin\Controller
+ * @package app\admin\controller
  */
 class CardController extends BaseController
 {
-    public function actionIndex()
+    public function index()
     {
         $image = new Image($GLOBALS['_CFG']['bgcolor']);
 

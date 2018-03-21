@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Admin\Controller;
+namespace app\admin\controller;
 
 /**
  * 会员资金管理程序
  * Class UserAccountManageController
- * @package App\Admin\Controller
+ * @package app\admin\controller
  */
 class UserAccountManageController extends BaseController
 {
-    public function actionIndex()
+    public function index()
     {
         load_helper('order');
         load_lang('statistic', 'admin');

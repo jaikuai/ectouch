@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Shop\Controller;
+namespace app\shop\controller;
 
 /**
  * 拍卖
  * Class AuctionController
- * @package App\Shop\Controller
+ * @package app\shop\controller
  */
 class AuctionController extends InitController
 {
-    public function actionIndex()
+    public function index()
     {
         $_REQUEST['act'] = !empty($_REQUEST['act']) ? $_REQUEST['act'] : 'list';
 

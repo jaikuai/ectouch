@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Admin\Controller;
+namespace app\admin\controller;
 
 /**
  * 帮助信息接口
  * Class HelpController
- * @package App\Admin\Controller
+ * @package app\admin\controller
  */
 class HelpController extends BaseController
 {
-    public function actionIndex()
+    public function index()
     {
         $get_keyword = trim($_GET['al']); // 获取关键字
         header("location:http://docs.ectouch.com/do.php?k=" . $get_keyword . "&v=" . $GLOBALS['_CFG']['ecs_version'] . "&l=" . $GLOBALS['_CFG']['lang'] . "&c=" . CHARSET);

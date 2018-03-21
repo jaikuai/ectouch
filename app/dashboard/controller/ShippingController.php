@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Admin\Controller;
+namespace app\admin\controller;
 
 use App\Libraries\Exchange;
 
 /**
  * 配送方式管理
  * Class ShippingController
- * @package App\Admin\Controller
+ * @package app\admin\controller
  */
 class ShippingController extends BaseController
 {
-    public function actionIndex()
+    public function index()
     {
         $exc = new Exchange($this->ecs->table('shipping'), $this->db, 'shipping_code', 'shipping_name');
 

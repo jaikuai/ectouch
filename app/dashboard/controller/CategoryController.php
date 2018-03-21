@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Admin\Controller;
+namespace app\admin\controller;
 
 use App\Libraries\Exchange;
 
 /**
  * 商品分类管理
  * Class CategoryController
- * @package App\Admin\Controller
+ * @package app\admin\controller
  */
 class CategoryController extends BaseController
 {
-    public function actionIndex()
+    public function index()
     {
         $exc = new Exchange($this->ecs->table("category"), $this->db, 'cat_id', 'cat_name');
 

@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Shop\Controller;
+namespace app\shop\controller;
 
 /**
  * 搜索
  * Class SearchController
- * @package App\Shop\Controller
+ * @package app\shop\controller
  */
 class SearchController extends InitController
 {
-    public function actionIndex()
+    public function index()
     {
         if (empty($_GET['encode'])) {
             $string = array_merge($_GET, $_POST);

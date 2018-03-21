@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Admin\Controller;
+namespace app\admin\controller;
 
 /**
  * 综合流量统计
  * Class FlowStatsController
- * @package App\Admin\Controller
+ * @package app\admin\controller
  */
 class FlowStatsController extends BaseController
 {
-    public function actionIndex()
+    public function index()
     {
         load_lang('statistic', 'admin');
 

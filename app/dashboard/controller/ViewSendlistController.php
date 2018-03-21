@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Admin\Controller;
+namespace app\admin\controller;
 
 /**
  * Class ViewSendlistController
- * @package App\Admin\Controller
+ * @package app\admin\controller
  */
 class ViewSendlistController extends BaseController
 {
-    public function actionIndex()
+    public function index()
     {
         admin_priv('view_sendlist');
         if ($_REQUEST['act'] == 'list') {

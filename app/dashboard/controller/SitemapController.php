@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Admin\Controller;
+namespace app\admin\controller;
 
 use App\Libraries\Sitemap\GoogleSitemap;
 use App\Libraries\Sitemap\GoogleSitemapItem;
@@ -8,11 +8,11 @@ use App\Libraries\Sitemap\GoogleSitemapItem;
 /**
  * 站点地图生成程序
  * Class SitemapController
- * @package App\Admin\Controller
+ * @package app\admin\controller
  */
 class SitemapController extends BaseController
 {
-    public function actionIndex()
+    public function index()
     {
         // 检查权限
         admin_priv('sitemap');

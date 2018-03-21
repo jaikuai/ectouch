@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Admin\Controller;
+namespace app\admin\controller;
 
 /**
  * 邮件列表管理
  * Class EmailListController
- * @package App\Admin\Controller
+ * @package app\admin\controller
  */
 class EmailListController extends BaseController
 {
-    public function actionIndex()
+    public function index()
     {
         admin_priv('email_list');
 

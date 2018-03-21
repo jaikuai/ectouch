@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Admin\Controller;
+namespace app\admin\controller;
 
 use App\Libraries\Captcha;
 use App\Libraries\Exchange;
@@ -8,11 +8,11 @@ use App\Libraries\Exchange;
 /**
  * 管理员信息以及权限管理程序
  * Class PrivilegeController
- * @package App\Admin\Controller
+ * @package app\admin\controller
  */
 class PrivilegeController extends BaseController
 {
-    public function actionIndex()
+    public function index()
     {
         $_REQUEST['act'] = empty($_REQUEST['act']) ? 'login' : $_REQUEST['act'];
 

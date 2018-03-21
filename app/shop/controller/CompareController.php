@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Shop\Controller;
+namespace app\shop\controller;
 
 /**
  * 商品比较程序
  * Class CompareController
- * @package App\Shop\Controller
+ * @package app\shop\controller
  */
 class CompareController extends InitController
 {
-    public function actionIndex()
+    public function index()
     {
         if (!empty($_REQUEST['goods']) && is_array($_REQUEST['goods']) && count($_REQUEST['goods']) > 1) {
             foreach ($_REQUEST['goods'] as $key => $val) {

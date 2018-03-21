@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Admin\Controller;
+namespace app\admin\controller;
 
 /**
  * 订单统计
  * Class OrderStatsController
- * @package App\Admin\Controller
+ * @package app\admin\controller
  */
 class OrderStatsController extends BaseController
 {
-    public function actionIndex()
+    public function index()
     {
         load_helper('order');
         load_lang('statistic', 'admin');

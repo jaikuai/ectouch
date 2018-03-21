@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Admin\Controller;
+namespace app\admin\controller;
 
 use App\Libraries\Image;
 
 /**
  * 图片批量处理程序
  * Class PictureBatchController
- * @package App\Admin\Controller
+ * @package app\admin\controller
  */
 class PictureBatchController extends BaseController
 {

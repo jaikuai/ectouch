@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Admin\Controller;
+namespace app\admin\controller;
 
 /**
  * Class GoodsExportController
- * @package App\Admin\Controller
+ * @package app\admin\controller
  */
 class GoodsExportController extends BaseController
 {
-    public function actionIndex()
+    public function index()
     {
         if ($_REQUEST['act'] == 'goods_export') {
             // 检查权限

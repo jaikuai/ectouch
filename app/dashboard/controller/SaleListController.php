@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Admin\Controller;
+namespace app\admin\controller;
 
 /**
  * 销售明细列表
  * Class SaleListController
- * @package App\Admin\Controller
+ * @package app\admin\controller
  */
 class SaleListController extends BaseController
 {
-    public function actionIndex()
+    public function index()
     {
         load_helper('order');
         load_lang('statistic', 'admin');

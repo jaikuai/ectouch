@@ -1,16 +1,16 @@
 <?php
 
-namespace App\Admin\Controller;
+namespace app\admin\controller;
 
 use App\Libraries\Exchange;
 
 /**
  * Class NavigatorController
- * @package App\Admin\Controller
+ * @package app\admin\controller
  */
 class NavigatorController extends BaseController
 {
-    public function actionIndex()
+    public function index()
     {
         admin_priv('navigator');
 

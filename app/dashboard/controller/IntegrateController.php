@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Admin\Controller;
+namespace app\admin\controller;
 
 use App\Libraries\Mysql;
 
 /**
  * 第三方程序会员数据整合插件管理
  * Class IntegrateController
- * @package App\Admin\Controller
+ * @package app\admin\controller
  */
 class IntegrateController extends BaseController
 {
-    public function actionIndex()
+    public function index()
     {
         /**
          * 会员数据整合插件列表

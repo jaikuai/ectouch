@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Admin\Controller;
+namespace app\admin\controller;
 
 /**
  * 管理中心帐户变动记录
  * Class AccountLogController
- * @package App\Admin\Controller
+ * @package app\admin\controller
  */
 class AccountLogController extends BaseController
 {
-    public function actionIndex()
+    public function index()
     {
         load_helper('order');
 

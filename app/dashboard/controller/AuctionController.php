@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Admin\Controller;
+namespace app\admin\controller;
 
 use App\Libraries\Exchange;
 
 /**
  * 拍卖活动管理
  * Class AuctionController
- * @package App\Admin\Controller
+ * @package app\admin\controller
  */
 class AuctionController extends BaseController
 {
-    public function actionIndex()
+    public function index()
     {
         load_helper('goods');
 

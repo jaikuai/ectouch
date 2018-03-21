@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Admin\Controller;
+namespace app\admin\controller;
 
 /**
  * 供货商管理
  * Class SuppliersController
- * @package App\Admin\Controller
+ * @package app\admin\controller
  */
 class SuppliersController extends BaseController
 {
-    public function actionIndex()
+    public function index()
     {
         define('SUPPLIERS_ACTION_LIST', 'delivery_view,back_view');
 

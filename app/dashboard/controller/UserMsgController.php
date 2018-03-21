@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Admin\Controller;
+namespace app\admin\controller;
 
 use App\Libraries\Exchange;
 
 /**
  * 客户留言
  * Class UserMsgController
- * @package App\Admin\Controller
+ * @package app\admin\controller
  */
 class UserMsgController extends BaseController
 {
-    public function actionIndex()
+    public function index()
     {
         // 权限判断
         admin_priv('feedback_priv');

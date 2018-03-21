@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Admin\Controller;
+namespace app\admin\controller;
 
 /**
  * 批发管理
  * Class WholesaleController
- * @package App\Admin\Controller
+ * @package app\admin\controller
  */
 class WholesaleController extends BaseController
 {
-    public function actionIndex()
+    public function index()
     {
         load_helper('goods');
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Admin\Controller;
+namespace app\admin\controller;
 
 use App\Libraries\Image;
 use App\Libraries\Exchange;
@@ -8,11 +8,11 @@ use App\Libraries\Exchange;
 /**
  * 广告管理程序
  * Class AdsController
- * @package App\Admin\Controller
+ * @package app\admin\controller
  */
 class AdsController extends BaseController
 {
-    public function actionIndex()
+    public function index()
     {
         $image = new Image($GLOBALS['_CFG']['bgcolor']);
         $exc = new Exchange($this->ecs->table("ad"), $this->db, 'ad_id', 'ad_name');

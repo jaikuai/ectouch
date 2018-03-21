@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Admin\Controller;
+namespace app\admin\controller;
 
 use App\Libraries\Exchange;
 
 /**
  * 调查管理程序
  * Class VoteController
- * @package App\Admin\Controller
+ * @package app\admin\controller
  */
 class VoteController extends BaseController
 {
-    public function actionIndex()
+    public function index()
     {
         $exc = new Exchange($this->ecs->table("vote"), $this->db, 'vote_id', 'vote_name');
         $exc_opn = new Exchange($this->ecs->table("vote_option"), $this->db, 'option_id', 'option_name');
