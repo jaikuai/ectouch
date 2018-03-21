@@ -613,7 +613,7 @@ class IntegrateController extends InitController
             $task_ignore = $this->db->getOne("SELECT COUNT(*) FROM " . $this->ecs->table("users") . " WHERE flag = 4");
             $task_sync = $total - $task_del - $task_ignore;
 
-            session('task' => ['del' => ['total' => $task_del, 'start' => 0], 'rename' => ['total' => $task_rename, 'start' => 0], 'sync' => ['total' => $task_sync, 'start', 0]]);
+            session('task', ['del' => ['total' => $task_del, 'start' => 0], 'rename' => ['total' => $task_rename, 'start' => 0], 'sync' => ['total' => $task_sync, 'start', 0]]);
 
             $del_list = "";
             $rename_list = "";
