@@ -4,11 +4,9 @@
  * 设置自定义后台入口路由
  */
 
+Route::get(ADMIN_PATH, '/' . ADMIN_PATH . '/index.php');
 Route::group(ADMIN_PATH, function () {
-    Route::any('/', function () {
-        return redirect()->route('dashboard');
-    });
-    Route::any('index.php', 'dashboard/Index/index')->name('dashboard');
+    Route::any('index.php', 'dashboard/Index/index');
     Route::any('account_log.php', 'dashboard/AccountLog/index');
     Route::any('ad_position.php', 'dashboard/AdPosition/index');
     Route::any('admin_logs.php', 'dashboard/AdminLogs/index');

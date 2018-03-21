@@ -17,7 +17,7 @@ class InitController extends Controller
     protected $_CFG;
     protected $user;
 
-    public function __construct()
+    protected function initialize()
     {
         define('PHP_SELF', basename(substr(basename($_SERVER['REQUEST_URI']), 0, stripos(basename($_SERVER['REQUEST_URI']), '?')), '.php'));
 

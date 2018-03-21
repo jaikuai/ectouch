@@ -148,6 +148,7 @@ function load_helper($files = [], $module = '')
     if (empty($module)) {
         $base_path = app_path('helpers/');
     } else {
+        $module = ($module == 'admin') ? 'dashboard' : $module;
         $base_path = app_path(ucfirst($module) . '/common/');
     }
     foreach ($files as $vo) {
@@ -172,6 +173,7 @@ function load_lang($files = [], $module = '')
     if (empty($module)) {
         $base_path = resource_path('lang/' . $GLOBALS['_CFG']['lang'] . '/');
     } else {
+        $module = ($module == 'admin') ? 'dashboard' : $module;
         $base_path = app_path(ucfirst($module) . '/lang/' . $GLOBALS['_CFG']['lang'] . '/');
     }
     foreach ($files as $vo) {
