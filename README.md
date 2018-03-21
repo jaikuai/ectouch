@@ -1,5 +1,5 @@
-ECTouch v3
-============================
+ECTouch v3（开发版本仅用于测试，切勿商用）
+==========================
 
 <p align="center"><img src="https://www.ectouch.cn/assets/images/common/logo.png"></p>
 
