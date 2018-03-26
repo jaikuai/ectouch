@@ -1,11 +1,11 @@
 <?php
 
-namespace app\api\model\v2;
+namespace App\Api\Models;
 
-use app\api\model\BaseModel;
+use App\Api\Models\BaseModel;
 use app\api\classes\Token;
 use \DB;
-use App\Services\Shopex\Erp;
+use App\Api\Services\Foundation\Erp;
 
 class Goods extends BaseModel
 {
@@ -318,33 +318,33 @@ class Goods extends BaseModel
 
     public function tags()
     {
-        return $this->hasMany('app\api\model\v2\Tags', 'goods_id', 'goods_id');
+        return $this->hasMany('App\Api\Models\Tags', 'goods_id', 'goods_id');
     }
 
     // public function promos()
     // {
-    //     return $this->hasMany('app\api\model\v2\GoodsActivity', 'goods_id', 'goods_id');
+    //     return $this->hasMany('App\Api\Models\GoodsActivity', 'goods_id', 'goods_id');
 
     // }
 
     public function properties()
     {
-        return $this->belongsToMany('app\api\model\v2\Attribute', 'goods_attr', 'goods_id', 'attr_id')->where('attribute.attr_type', '!=', 0)->groupBy('attr_id');
+        return $this->belongsToMany('App\Api\Models\Attribute', 'goods_attr', 'goods_id', 'attr_id')->where('attribute.attr_type', '!=', 0)->groupBy('attr_id');
     }
 
     public function attachments()
     {
-        return $this->hasMany('app\api\model\v2\GoodsGroup', 'parent_id', 'goods_id');
+        return $this->hasMany('App\Api\Models\GoodsGroup', 'parent_id', 'goods_id');
     }
 
     public function stock()
     {
-        return $this->hasMany('app\api\model\v2\Products', 'goods_id', 'goods_id');
+        return $this->hasMany('App\Api\Models\Products', 'goods_id', 'goods_id');
     }
 
     public function comments()
     {
-        return $this->hasMany('app\api\model\v2\Comment', 'id_value', 'goods_id')->where('comment.comment_type', 0)->where('comment_rank', '>', 3); //商品
+        return $this->hasMany('App\Api\Models\Comment', 'id_value', 'goods_id')->where('comment.comment_type', 0)->where('comment_rank', '>', 3); //商品
     }
 
     public function getSkuAttribute()

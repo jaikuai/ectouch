@@ -1,11 +1,11 @@
 <?php
 
-namespace app\api\controller\v2;
+namespace App\Api\Controllers;
 
-use app\api\controller\Controller;
-use app\api\model\v2\UserAccount;
+use App\Api\Controllers\Controller;
+use App\Api\Models\UserAccount;
 use app\api\classes\Token;
-use app\api\model\v2\Account;
+use App\Api\Models\Account;
 
 class AccountController extends Controller
 {

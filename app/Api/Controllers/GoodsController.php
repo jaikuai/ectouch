@@ -1,15 +1,15 @@
 <?php
 
-namespace app\api\controller\v2;
+namespace App\Api\Controllers;
 
-use app\api\controller\Controller;
+use App\Api\Controllers\Controller;
 use app\api\classes\Token;
-use app\api\model\v2\Shipping;
-use app\api\model\v2\Goods;
-use app\api\model\v2\Comment;
-use app\api\model\v2\GoodsCategory;
-use app\api\model\v2\CollectGoods;
-use app\api\model\v2\Products;
+use App\Api\Models\Shipping;
+use App\Api\Models\Goods;
+use App\Api\Models\Comment;
+use App\Api\Models\GoodsCategory;
+use App\Api\Models\CollectGoods;
+use App\Api\Models\Products;
 
 class GoodsController extends Controller
 {

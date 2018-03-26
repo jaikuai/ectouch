@@ -1,8 +1,8 @@
 <?php
 
-namespace app\api\model\v2;
+namespace App\Api\Models;
 
-use app\api\model\BaseModel;
+use App\Api\Models\BaseModel;
 use Cache;
 
 class Region extends BaseModel
@@ -91,7 +91,7 @@ class Region extends BaseModel
 
     public function regions()
     {
-        return $this->hasMany('app\api\model\v2\Region', 'parent_id')->with('regions');
+        return $this->hasMany('App\Api\Models\Region', 'parent_id')->with('regions');
     }
 
     public function getIdAttribute()

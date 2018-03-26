@@ -2,8 +2,8 @@
 
 namespace App\Services;
 
-use app\libraries\Json;
-use app\libraries\Transport;
+use App\Libraries\Json;
+use App\Libraries\Transport;
 
 class LicenseService
 {

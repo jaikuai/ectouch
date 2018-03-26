@@ -1,12 +1,12 @@
 <?php
 
-namespace app\api\controller;
+namespace App\Api\Controllers;
 
 use Validator;
 use Log;
 use app\api\classes\Token;
 use app\api\classes\XXTEA;
-use app\api\model\BaseModel;
+use App\Api\Models\BaseModel;
 
 class Controller extends BaseController
 {

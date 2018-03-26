@@ -1,9 +1,9 @@
 <?php
 
-namespace app\api\controller\v2;
+namespace App\Api\Controllers;
 
-use app\api\controller\Controller;
-use app\api\model\BaseModel;
+use App\Api\Controllers\Controller;
+use App\Api\Models\BaseModel;
 
 class AccessController extends Controller
 {

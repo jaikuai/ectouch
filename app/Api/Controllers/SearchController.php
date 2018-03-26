@@ -1,10 +1,10 @@
 <?php
 
-namespace app\api\controller\v2;
+namespace App\Api\Controllers;
 
-use app\api\controller\Controller;
+use App\Api\Controllers\Controller;
 use app\api\classes\Token;
-use app\api\model\v2\Keywords;
+use App\Api\Models\Keywords;
 
 class SearchController extends Controller
 {

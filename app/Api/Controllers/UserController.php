@@ -1,13 +1,13 @@
 <?php
 
-namespace app\api\controller\v2;
+namespace App\Api\Controllers;
 
-use app\api\controller\Controller;
+use App\Api\Controllers\Controller;
 use app\api\classes\Token;
-use app\api\model\v2\Member;
-use app\api\model\v2\RegFields;
-use app\api\model\v2\Configs;
-use app\api\model\v2\Features;
+use App\Api\Models\Member;
+use App\Api\Models\RegFields;
+use App\Api\Models\Configs;
+use App\Api\Models\Features;
 
 class UserController extends Controller
 {

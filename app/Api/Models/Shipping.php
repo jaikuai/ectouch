@@ -1,10 +1,10 @@
 <?php
 
-namespace app\api\model\v2;
+namespace App\Api\Models;
 
-use app\api\model\BaseModel;
+use App\Api\Models\BaseModel;
 use app\api\classes\Token;
-use App\Services\Shopex\Logistics;
+use App\Api\Services\Foundation\Logistics;
 use Log;
 
 class Shipping extends BaseModel
@@ -239,7 +239,7 @@ class Shipping extends BaseModel
 
     public function shippingArea()
     {
-        return  $this->hasMany('app\api\model\v2\ShippingArea', 'shipping_id', 'shipping_id');
+        return  $this->hasMany('App\Api\Models\ShippingArea', 'shipping_id', 'shipping_id');
     }
 
     /**

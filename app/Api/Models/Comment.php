@@ -1,8 +1,8 @@
 <?php
 
-namespace app\api\model\v2;
+namespace App\Api\Models;
 
-use app\api\model\BaseModel;
+use App\Api\Models\BaseModel;
 use app\api\classes\Token;
 use DB;
 
@@ -129,7 +129,7 @@ class Comment extends BaseModel
 
     public function author()
     {
-        return $this->belongsTo('app\api\model\v2\Member', 'user_id', 'user_id');
+        return $this->belongsTo('App\Api\Models\Member', 'user_id', 'user_id');
     }
 
 

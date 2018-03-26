@@ -1,8 +1,8 @@
 <?php
 
-namespace app\api\model\v2;
+namespace App\Api\Models;
 
-use app\api\model\BaseModel;
+use App\Api\Models\BaseModel;
 
 class GoodsCategory extends BaseModel
 {
@@ -106,11 +106,11 @@ class GoodsCategory extends BaseModel
 
     public function parentCategory()
     {
-        return $this->belongsTo('app\api\model\v2\GoodsCategory', 'parent_id', 'id');
+        return $this->belongsTo('App\Api\Models\GoodsCategory', 'parent_id', 'id');
     }
 
     public function categories()
     {
-        return $this->hasMany('app\api\model\v2\GoodsCategory', 'parent_id', 'id');
+        return $this->hasMany('App\Api\Models\GoodsCategory', 'parent_id', 'id');
     }
 }

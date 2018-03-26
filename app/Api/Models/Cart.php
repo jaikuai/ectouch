@@ -1,11 +1,11 @@
 <?php
 
-namespace app\api\model\v2;
+namespace App\Api\Models;
 
-use app\api\model\BaseModel;
+use App\Api\Models\BaseModel;
 use app\api\classes\Token;
 use DB;
-use App\Services\Shopex\Erp;
+use App\Api\Services\Foundation\Erp;
 
 class Cart extends BaseModel
 {
@@ -757,13 +757,13 @@ class Cart extends BaseModel
 
     public function product()
     {
-        return $this->belongsTo('app\api\model\v2\Goods', 'goods_id', 'goods_id')->with('properties');
+        return $this->belongsTo('App\Api\Models\Goods', 'goods_id', 'goods_id')->with('properties');
     }
 
 
     public function properties()
     {
-        return $this->belongsToMany('app\api\model\v2\Attribute', 'goods_attr', 'goods_id', 'attr_id')->where('attribute.attr_type', '!=', 0)->groupBy('attr_id');
+        return $this->belongsToMany('App\Api\Models\Attribute', 'goods_attr', 'goods_id', 'attr_id')->where('attribute.attr_type', '!=', 0)->groupBy('attr_id');
     }
 
 

@@ -19,7 +19,7 @@ class UserService
         }
 
         $cfg = unserialize($GLOBALS['_CFG']['integrate_config']);
-        $cls = new \app\plugins\integrates\Passport($GLOBALS['_CFG']['integrate_code'], $cfg);
+        $cls = new \App\Plugins\Integrates\Passport($GLOBALS['_CFG']['integrate_code'], $cfg);
 
         return $cls;
     }

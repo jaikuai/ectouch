@@ -1,8 +1,8 @@
 <?php
 
-namespace app\api\model\v2;
+namespace App\Api\Models;
 
-use app\api\model\BaseModel;
+use App\Api\Models\BaseModel;
 use app\api\classes\Token;
 
 class BonusType extends BaseModel
@@ -86,7 +86,7 @@ class BonusType extends BaseModel
 
     public function userbonus()
     {
-        return $this->hasOne('app\api\model\v2\UserBonus', 'bonus_type_id', 'type_id');
+        return $this->hasOne('App\Api\Models\UserBonus', 'bonus_type_id', 'type_id');
     }
 
     public function getIdAttribute()

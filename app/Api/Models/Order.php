@@ -1,11 +1,11 @@
 <?php
 
-namespace app\api\model\v2;
+namespace App\Api\Models;
 
-use app\api\model\BaseModel;
+use App\Api\Models\BaseModel;
 use app\api\classes\Token;
 use DB;
-use App\Services\Shopex\Erp;
+use App\Api\Services\Foundation\Erp;
 use Log;
 
 class Order extends BaseModel
@@ -580,7 +580,7 @@ class Order extends BaseModel
 
     public function goods()
     {
-        return $this->hasMany('app\api\model\v2\OrderGoods', 'order_id', 'order_id');
+        return $this->hasMany('App\Api\Models\OrderGoods', 'order_id', 'order_id');
     }
 
     private static function convertOrderStatus($order_id, $order_status, $pay_status, $shipping_status)

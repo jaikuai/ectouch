@@ -1,10 +1,10 @@
 <?php
 
-namespace app\api\controller\v2;
+namespace App\Api\Controllers;
 
-use app\api\controller\Controller;
-use app\api\model\v2\Shipping;
-use app\api\model\v2\Features;
+use App\Api\Controllers\Controller;
+use App\Api\Models\Shipping;
+use App\Api\Models\Features;
 
 class ShippingController extends Controller
 {

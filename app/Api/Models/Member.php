@@ -1,14 +1,14 @@
 <?php
 
-namespace app\api\model\v2;
+namespace App\Api\Models;
 
-use app\api\model\BaseModel;
+use App\Api\Models\BaseModel;
 use app\api\classes\Token;
 use \DB;
 use Log;
 use Cache;
 use Illuminate\Support\Facades\Mail;
-use App\Services\Shopex\Sms;
+use App\Api\Services\Foundation\Sms;
 use App\Services\Oauth\Wechat;
 
 class Member extends BaseModel

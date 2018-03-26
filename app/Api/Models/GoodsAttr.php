@@ -1,8 +1,8 @@
 <?php
 
-namespace app\api\model\v2;
+namespace App\Api\Models;
 
-use app\api\model\BaseModel;
+use App\Api\Models\BaseModel;
 use app\api\classes\Token;
 
 class GoodsAttr extends BaseModel
@@ -79,6 +79,6 @@ class GoodsAttr extends BaseModel
 
     public function attributes()
     {
-        return $this->belongsTo('app\api\model\v2\Attribute', 'attr_id', 'attr_id');
+        return $this->belongsTo('App\Api\Models\Attribute', 'attr_id', 'attr_id');
     }
 }

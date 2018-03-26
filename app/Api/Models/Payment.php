@@ -1,8 +1,8 @@
 <?php
 
-namespace app\api\model\v2;
+namespace App\Api\Models;
 
-use app\api\model\BaseModel;
+use App\Api\Models\BaseModel;
 use app\api\classes\Token;
 use app\api\classes\Header;
 use App\Services\Payment\Alipay\AlipayRSA;
@@ -11,8 +11,8 @@ use App\Services\Payment\wxpay\WxPay;
 use App\Services\Payment\wxpay\WxResponse;
 use App\Services\Payment\Unionpay\Union;
 use Log;
-use App\Services\Shopex\Erp;
-use App\Services\Shopex\Authorize;
+use App\Api\Services\Foundation\Erp;
+use App\Api\Services\Foundation\Authorize;
 use App\Services\Payment\Teegon\TeegonService;
 use App\Services\Payment\AlipayWap\AlipayWapSubmit;
 use App\Services\Payment\AlipayWap\AlipayWapNotify;

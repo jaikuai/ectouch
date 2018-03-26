@@ -1,10 +1,10 @@
 <?php
 
-namespace app\api\model\v2;
+namespace App\Api\Models;
 
-use app\api\model\BaseModel;
+use App\Api\Models\BaseModel;
 use app\api\classes\Token;
-use app\api\model\v2\AccountLog;
+use App\Api\Models\AccountLog;
 use DB;
 
 class UserAccount extends BaseModel

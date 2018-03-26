@@ -1,7 +1,7 @@
 <?php
-namespace App\Services\Shopex;
+namespace App\Api\Services\Foundation;
 
-use app\api\model\v2\ShopConfig;
+use App\Api\Models\ShopConfig;
 
 class WeChatPay
 {

@@ -1,12 +1,12 @@
 <?php
 
-namespace app\shop\controller;
+namespace App\Http\Controllers;
 
-use app\libraries\Json;
+use App\Libraries\Json;
 
 /**
  * Class IndexController
- * @package app\shop\controller
+ * @package App\Http\Controllers
  */
 class IndexController extends InitController
 {
@@ -119,7 +119,7 @@ class IndexController extends InitController
         $all = $GLOBALS['db']->getAll($sql);
 
         foreach ($all as $key => $row) {
-            $plugin = '\\app\\plugins\\shipping\\' . camel_case($row['shipping_code'], true);
+            $plugin = '\\App\\Plugins\\Shipping\\' . camel_case($row['shipping_code'], true);
 
             if (class_exists($plugin)) {
                 $shipping = new $plugin;

@@ -1,9 +1,9 @@
 <?php
 
-namespace app\api\model\v2;
+namespace App\Api\Models;
 
-use app\api\model\v2\ShopConfig;
-use app\api\model\BaseModel;
+use App\Api\Models\ShopConfig;
+use App\Api\Models\BaseModel;
 
 class Invoice
 {

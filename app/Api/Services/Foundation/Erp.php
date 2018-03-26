@@ -1,8 +1,9 @@
-<?php 
-namespace App\Services\Shopex;
+<?php
+
+namespace App\Api\Services\Foundation;
 
 use Log;
-use app\api\model\v2\ShopConfig;
+use App\Api\Models\ShopConfig;
 
 class Erp
 {

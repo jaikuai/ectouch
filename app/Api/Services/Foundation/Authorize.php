@@ -1,7 +1,8 @@
 <?php
-namespace App\Services\Shopex;
 
-use app\api\model\v2\ShopConfig;
+namespace App\Api\Services\Foundation;
+
+use App\Api\Models\ShopConfig;
 
 class Authorize
 {
