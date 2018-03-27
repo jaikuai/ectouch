@@ -6,7 +6,7 @@
  */
 function is_mobile_device()
 {
-    return request()->isMobile();
+    return false;
 }
 
 /**

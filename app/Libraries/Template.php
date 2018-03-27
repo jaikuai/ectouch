@@ -79,7 +79,7 @@ class Template
         /**
          * 自动返回ajax对象
          */
-        if (!defined('ECS_ADMIN') && (request()->isAjax() || isset($_GET['_ajax']))) {
+        if (!defined('ECS_ADMIN') && (request()->ajax() || isset($_GET['_ajax']))) {
             // 过滤语言包
             unset($this->_var['lang']);
             // 过滤敏感配置
@@ -116,9 +116,9 @@ class Template
         error_reporting($this->_errorlevel);
         $this->_seterror--;
 
-        $csrf_token = '<meta name="csrf-token" content="' . request()->token() . '">';
+        $csrf_token = '<meta name="csrf-token" content="' . csrf_token() . '">';
         $out = preg_replace('/<head>/i', "<head>\n\r" . $csrf_token, $out);
-        $out = preg_replace('/<\/form>/i', token() . "\r\n</form>", $out);
+        $out = preg_replace('/<\/form>/i', csrf_field() . "</form>", $out);
 
         return $out;
     }
@@ -263,7 +263,7 @@ class Template
         if (!defined('ECS_ADMIN')) {
             $source = $this->smarty_prefilter_preCompile($source);
         } else {
-            $tmp_dir = asset('static/admin') . '/';
+            $tmp_dir = asset('assets/admin') . '/';
             $pattern = [
                 '/(href=["|\'])(styles\/.*?)(["|\'])/i',  // 替换相对链接
                 '/((?:background|src)\s*=\s*["|\'])(?:\.\/|\.\.\/)?(images\/.*?["|\'])/is', // 在images前加上 $tmp_dir
@@ -457,8 +457,8 @@ class Template
                     $t = $this->get_para(substr($tag, 7), false);
 
                     $out = "<?php \n" . '$k = ' . preg_replace_callback("/(\'\\$[^,]+)/", function ($r) {
-                        return stripcslashes(trim($r[1], '\''));
-                    }, var_export($t, true)) . ";\n";
+                            return stripcslashes(trim($r[1], '\''));
+                        }, var_export($t, true)) . ";\n";
                     $out .= 'echo $this->_echash . $k[\'name\'] . \'|\' . serialize($k) . $this->_echash;' . "\n?>";
                     return $out;
                     break;
@@ -941,7 +941,7 @@ class Template
                 if ($val{0} == '.') {
                     $str .= '<script src="' . asset(str_replace('../', '', $val)) . '" type="text/javascript"></script>' . "\n";
                 } else {
-                    $str .= '<script src="' . asset((defined('ECS_ADMIN') ? 'static/admin/' : '') . 'js/' . $val) . '" type="text/javascript"></script>' . "\n";
+                    $str .= '<script src="' . asset((defined('ECS_ADMIN') ? 'assets/admin/' : '') . 'js/' . $val) . '" type="text/javascript"></script>' . "\n";
                 }
             }
         }
