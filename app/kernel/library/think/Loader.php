@@ -60,7 +60,7 @@ class Loader
 
         $path = realpath(dirname($_SERVER['SCRIPT_FILENAME']));
 
-        if ('cli-server' == PHP_SAPI || !is_file('./think')) {
+        if ('cli-server' == PHP_SAPI || !is_file('./artisan')) {
             $rootPath = dirname($path) . DIRECTORY_SEPARATOR;
         } else {
             $rootPath = $path . DIRECTORY_SEPARATOR;
