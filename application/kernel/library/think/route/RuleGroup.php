@@ -12,6 +12,7 @@
 namespace think\route;
 
 use think\Container;
+use think\Exception;
 use think\Request;
 use think\Response;
 use think\Route;
@@ -127,7 +128,9 @@ class RuleGroup extends Rule
         }
 
         // 解析分组路由
-        if ($this->rule) {
+        if ($this instanceof Resource) {
+            $this->buildResourceRule($this->resource, $this->option);
+        } elseif ($this->rule) {
             if ($this->rule instanceof Response) {
                 return new ResponseDispatch($this->rule);
             }
@@ -138,6 +141,10 @@ class RuleGroup extends Rule
         // 获取当前路由规则
         $method = strtolower($request->method());
         $rules  = $this->getMethodRules($method);
+
+        if (count($rules) == 0) {
+            return false;
+        }
 
         if ($this->parent) {
             // 合并分组参数
@@ -189,7 +196,7 @@ class RuleGroup extends Rule
      */
     protected function getMethodRules($method)
     {
-        return array_merge($this->rules['*'], $this->rules[$method]);
+        return array_merge($this->rules[$method], $this->rules['*']);
     }
 
     /**
@@ -281,7 +288,7 @@ class RuleGroup extends Rule
 
                 if (false === strpos($rule, '<')) {
                     if (0 === strcasecmp($rule, $url) || (!$complete && 0 === strncasecmp($rule, $url, strlen($rule)))) {
-                        return $item->checkMatchRule($request, $url);
+                        return $item->checkRule($request, $url, []);
                     }
 
                     unset($rules[$key]);
@@ -328,7 +335,7 @@ class RuleGroup extends Rule
                     }
                 }
 
-                return $items[$pos]->checkMatchRule($request, $url, $var);
+                return $items[$pos]->checkRule($request, $url, $var);
             }
 
             return false;

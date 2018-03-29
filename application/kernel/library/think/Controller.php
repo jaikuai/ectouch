@@ -116,13 +116,10 @@ class Controller
      * @param  array  $config   模板参数
      * @return mixed
      */
-    final protected function fetch($template = '', $vars = [], $config = [])
+    protected function fetch($template = '', $vars = [], $config = [])
     {
         if ('' === $template) {
-            $trace    = debug_backtrace(false, 2);
-            $suffix   = $this->app['config']->get('app.action_suffix');
-            $action   = $suffix ? substr($trace[1]['function'], 0, -strlen($suffix)) : $trace[1]['function'];
-            $template = Loader::parseName($action);
+            $template = Loader::parseName($this->request->action(true));
         }
 
         return $this->view->fetch($template, $vars, $config);

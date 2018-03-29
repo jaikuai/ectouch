@@ -282,18 +282,18 @@ abstract class Rule
     /**
      * 指定路由中间件
      * @access public
-     * @param  string|\Closure     $middleware
-     * @param  bool                $first
+     * @param  string|array|\Closure    $middleware
+     * @param  mixed                    $param
      * @return $this
      */
-    public function middleware($middleware, $first = false)
+    public function middleware($middleware, $param = null)
     {
-        if (is_array($middleware)) {
+        if (is_null($param) && is_array($middleware)) {
             $this->option['middleware'] = $middleware;
-        } elseif ($first && isset($this->option['middleware'])) {
-            array_unshift($this->option['middleware'], $middleware);
         } else {
-            $this->option['middleware'][] = $middleware;
+            foreach ((array) $middleware as $item) {
+                $this->option['middleware'][] = [$item, $param];
+            }
         }
 
         return $this;
@@ -615,7 +615,6 @@ abstract class Rule
 
         // 检测路由after行为
         if (!empty($option['after'])) {
-            trigger_error('route behavior will not support');
             $dispatch = $this->checkAfter($option['after']);
 
             if (false !== $dispatch) {
@@ -637,7 +636,7 @@ abstract class Rule
         // 添加中间件
         if (!empty($option['middleware'])) {
             foreach ($option['middleware'] as $middleware) {
-                Container::get('middlewareDispatcher')->add($middleware);
+                Container::get('middleware')->add($middleware);
             }
         }
 
@@ -715,7 +714,6 @@ abstract class Rule
      */
     protected function checkBefore($before)
     {
-        trigger_error('route behavior will not support');
         $hook = Container::get('hook');
 
         foreach ((array) $before as $behavior) {
@@ -735,6 +733,8 @@ abstract class Rule
      */
     protected function checkAfter($after)
     {
+        Container::get('log')->notice('路由后置行为建议使用中间件替代！');
+
         $hook = Container::get('hook');
 
         $result = null;
@@ -1019,7 +1019,14 @@ abstract class Rule
             $name = substr($name, 1, -1);
         }
 
-        $nameRule = isset($pattern[$name]) ? $pattern[$name] : '\w+';
+        if (isset($pattern[$name])) {
+            $nameRule = $pattern[$name];
+            if (0 === strpos($nameRule, '/') && '/' == substr($nameRule, -1)) {
+                $nameRule = substr($nameRule, 1, -1);
+            }
+        } else {
+            $nameRule = '\w+';
+        }
 
         return '(' . $prefix . '(?<' . $name . $suffix . '>' . $nameRule . '))' . $optional;
     }

@@ -9,18 +9,19 @@
 // | Author: liu21st <liu21st@gmail.com>
 // +----------------------------------------------------------------------
 
-namespace think\route\dispatch;
+namespace think\facade;
 
-use think\Response;
-use think\route\Dispatch;
+use think\Facade;
 
-class View extends Dispatch
+/**
+ * @see \think\Middleware
+ * @mixin \think\Middleware
+ * @method void import(array $middlewares = []) static 批量设置中间件
+ * @method void add(mixed $middleware) static 添加中间件到队列
+ * @method void unshift(mixed $middleware) static 添加中间件到队列开头
+ * @method array all() static 获取中间件队列
+ * @method \think\Response dispatch(\think\Request $request) static 执行中间件调度
+ */
+class Middleware extends Facade
 {
-    public function run()
-    {
-        // 渲染模板输出
-        $vars = array_merge($this->app['request']->param(), $this->param);
-
-        return Response::create($this->dispatch, 'view')->assign($vars);
-    }
 }
