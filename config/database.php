@@ -1,13 +1,4 @@
 <?php
-// +----------------------------------------------------------------------
-// | ThinkPHP [ WE CAN DO IT JUST THINK ]
-// +----------------------------------------------------------------------
-// | Copyright (c) 2006~2018 http://thinkphp.cn All rights reserved.
-// +----------------------------------------------------------------------
-// | Licensed ( http://www.apache.org/licenses/LICENSE-2.0 )
-// +----------------------------------------------------------------------
-// | Author: liu21st <liu21st@gmail.com>
-// +----------------------------------------------------------------------
 
 return [
     // 数据库类型
@@ -15,11 +6,11 @@ return [
     // 服务器地址
     'hostname'        => '127.0.0.1',
     // 数据库名
-    'database'        => '',
+    'database'        => 'ectouch',
     // 用户名
-    'username'        => 'root',
+    'username'        => 'homestead',
     // 密码
-    'password'        => '',
+    'password'        => 'secret',
     // 端口
     'hostport'        => '',
     // 连接dsn
@@ -29,7 +20,7 @@ return [
     // 数据库编码默认采用utf8
     'charset'         => 'utf8',
     // 数据库表前缀
-    'prefix'          => '',
+    'prefix'          => 'ecs_',
     // 数据库调试模式
     'debug'           => true,
     // 数据库部署方式:0 集中式(单一服务器),1 分布式(主从服务器)
@@ -42,6 +33,8 @@ return [
     'slave_no'        => '',
     // 是否严格检查字段是否存在
     'fields_strict'   => true,
+    // 是否启用严格模式
+    'strict'          => false,
     // 数据集返回类型
     'resultset_type'  => 'array',
     // 自动写入时间戳字段
