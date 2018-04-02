@@ -4,8 +4,6 @@
  * 设置自定义后台入口路由
  */
 
-Route::get(ADMIN_PATH, '/' . ADMIN_PATH . '/index.php');
-
 Route::group(ADMIN_PATH, function () {
 
     Route::any('index.php', 'dashboard/Index/index');
