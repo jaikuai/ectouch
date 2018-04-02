@@ -7,8 +7,6 @@
  * @homepage https://www.ectouch.cn
  */
 
-namespace think;
-
 /*
 |--------------------------------------------------------------------------
 | 运行环境
@@ -106,7 +104,7 @@ require dirname(__DIR__) . '/app/kernel/base.php';
 |
 */
 
-$app = Container::get('app');
+$app = think\Container::get('app');
 
 /*
 |--------------------------------------------------------------------------
