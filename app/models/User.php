@@ -2,66 +2,50 @@
 
 namespace app\models;
 
-use Illuminate\Notifications\Notifiable;
-use Illuminate\Foundation\Auth\User as Authenticatable;
+use think\Model;
 
-class User extends Authenticatable
+/**
+ * Class User
+ * @package app\models
+ * @package app\models
+ * @property $email
+ * @property $user_name
+ * @property $password
+ * @property $question
+ * @property $answer
+ * @property $sex
+ * @property $birthday
+ * @property $user_money
+ * @property $frozen_money
+ * @property $pay_points
+ * @property $rank_points
+ * @property $address_id
+ * @property $reg_time
+ * @property $last_login
+ * @property $last_time
+ * @property $last_ip
+ * @property $visit_count
+ * @property $user_rank
+ * @property $is_special
+ * @property $ec_salt
+ * @property $salt
+ * @property $parent_id
+ * @property $flag
+ * @property $alias
+ * @property $msn
+ * @property $qq
+ * @property $office_phone
+ * @property $home_phone
+ * @property $mobile_phone
+ * @property $is_validated
+ * @property $credit_line
+ * @property $passwd_question
+ * @property $passwd_answer
+ */
+class User extends Model
 {
-    use Notifiable;
-
     protected $table = 'users';
 
-    protected $primaryKey = 'user_id';
+    protected $pk = 'user_id';
 
-    public $timestamps = false;
-
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-    protected $fillable = [
-        'email',
-        'user_name',
-        'password',
-        'question',
-        'answer',
-        'sex',
-        'birthday',
-        'user_money',
-        'frozen_money',
-        'pay_points',
-        'rank_points',
-        'address_id',
-        'reg_time',
-        'last_login',
-        'last_time',
-        'last_ip',
-        'visit_count',
-        'user_rank',
-        'is_special',
-        'ec_salt',
-        'salt',
-        'parent_id',
-        'flag',
-        'alias',
-        'msn',
-        'qq',
-        'office_phone',
-        'home_phone',
-        'mobile_phone',
-        'is_validated',
-        'credit_line',
-        'passwd_question',
-        'passwd_answer'
-    ];
-
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
-    protected $hidden = [
-        'password', 'ec_salt', 'remember_token'
-    ];
 }

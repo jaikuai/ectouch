@@ -6,28 +6,23 @@ use think\Model;
 
 /**
  * Class Shipping
+ * @package app\models
+ * @property $shipping_code
+ * @property $shipping_name
+ * @property $shipping_desc
+ * @property $insure
+ * @property $support_cod
+ * @property $enabled
+ * @property $shipping_print
+ * @property $print_bg
+ * @property $config_lable
+ * @property $print_model
+ * @property $shipping_order
  */
 class Shipping extends Model
 {
     protected $table = 'shipping';
 
-    protected $primaryKey = 'shipping_id';
+    protected $pk = 'shipping_id';
 
-    public $timestamps = false;
-
-    protected $fillable = [
-        'shipping_code',
-        'shipping_name',
-        'shipping_desc',
-        'insure',
-        'support_cod',
-        'enabled',
-        'shipping_print',
-        'print_bg',
-        'config_lable',
-        'print_model',
-        'shipping_order'
-    ];
-
-    protected $guarded = [];
 }

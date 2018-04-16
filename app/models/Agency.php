@@ -6,19 +6,14 @@ use think\Model;
 
 /**
  * Class Agency
+ * @package app\models
+ * @property $agency_name
+ * @property $agency_desc
  */
 class Agency extends Model
 {
     protected $table = 'agency';
 
-    protected $primaryKey = 'agency_id';
+    protected $pk = 'agency_id';
 
-    public $timestamps = false;
-
-    protected $fillable = [
-        'agency_name',
-        'agency_desc'
-    ];
-
-    protected $guarded = [];
 }

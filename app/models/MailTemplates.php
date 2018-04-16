@@ -6,24 +6,19 @@ use think\Model;
 
 /**
  * Class MailTemplates
+ * @package app\models
+ * @property $template_code
+ * @property $is_html
+ * @property $template_subject
+ * @property $template_content
+ * @property $last_modify
+ * @property $last_send
+ * @property $type
  */
 class MailTemplates extends Model
 {
     protected $table = 'mail_templates';
 
-    protected $primaryKey = 'template_id';
+    protected $pk = 'template_id';
 
-    public $timestamps = false;
-
-    protected $fillable = [
-        'template_code',
-        'is_html',
-        'template_subject',
-        'template_content',
-        'last_modify',
-        'last_send',
-        'type'
-    ];
-
-    protected $guarded = [];
 }

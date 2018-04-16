@@ -6,21 +6,16 @@ use think\Model;
 
 /**
  * Class VoteOption
+ * @package app\models
+ * @property $vote_id
+ * @property $option_name
+ * @property $option_count
+ * @property $option_order
  */
 class VoteOption extends Model
 {
     protected $table = 'vote_option';
 
-    protected $primaryKey = 'option_id';
+    protected $pk = 'option_id';
 
-    public $timestamps = false;
-
-    protected $fillable = [
-        'vote_id',
-        'option_name',
-        'option_count',
-        'option_order'
-    ];
-
-    protected $guarded = [];
 }

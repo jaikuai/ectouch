@@ -6,29 +6,24 @@ use think\Model;
 
 /**
  * Class FavourableActivity
+ * @package app\models
+ * @property $act_name
+ * @property $start_time
+ * @property $end_time
+ * @property $user_rank
+ * @property $act_range
+ * @property $act_range_ext
+ * @property $min_amount
+ * @property $max_amount
+ * @property $act_type
+ * @property $act_type_ext
+ * @property $gift
+ * @property $sort_order
  */
 class FavourableActivity extends Model
 {
     protected $table = 'favourable_activity';
 
-    protected $primaryKey = 'act_id';
+    protected $pk = 'act_id';
 
-    public $timestamps = false;
-
-    protected $fillable = [
-        'act_name',
-        'start_time',
-        'end_time',
-        'user_rank',
-        'act_range',
-        'act_range_ext',
-        'min_amount',
-        'max_amount',
-        'act_type',
-        'act_type_ext',
-        'gift',
-        'sort_order'
-    ];
-
-    protected $guarded = [];
 }

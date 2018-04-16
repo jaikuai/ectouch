@@ -6,20 +6,15 @@ use think\Model;
 
 /**
  * Class Role
+ * @package app\models
+ * @property $role_name
+ * @property $action_list
+ * @property $role_describe
  */
 class Role extends Model
 {
     protected $table = 'role';
 
-    protected $primaryKey = 'role_id';
+    protected $pk = 'role_id';
 
-    public $timestamps = false;
-
-    protected $fillable = [
-        'role_name',
-        'action_list',
-        'role_describe'
-    ];
-
-    protected $guarded = [];
 }

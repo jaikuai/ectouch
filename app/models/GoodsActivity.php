@@ -6,27 +6,22 @@ use think\Model;
 
 /**
  * Class GoodsActivity
+ * @package app\models
+ * @property $act_name
+ * @property $act_desc
+ * @property $act_type
+ * @property $goods_id
+ * @property $product_id
+ * @property $goods_name
+ * @property $start_time
+ * @property $end_time
+ * @property $is_finished
+ * @property $ext_info
  */
 class GoodsActivity extends Model
 {
     protected $table = 'goods_activity';
 
-    protected $primaryKey = 'act_id';
+    protected $pk = 'act_id';
 
-    public $timestamps = false;
-
-    protected $fillable = [
-        'act_name',
-        'act_desc',
-        'act_type',
-        'goods_id',
-        'product_id',
-        'goods_name',
-        'start_time',
-        'end_time',
-        'is_finished',
-        'ext_info'
-    ];
-
-    protected $guarded = [];
 }

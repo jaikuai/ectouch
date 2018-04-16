@@ -6,22 +6,17 @@ use think\Model;
 
 /**
  * Class Wholesale
+ * @package app\models
+ * @property $goods_id
+ * @property $goods_name
+ * @property $rank_ids
+ * @property $prices
+ * @property $enabled
  */
 class Wholesale extends Model
 {
     protected $table = 'wholesale';
 
-    protected $primaryKey = 'act_id';
+    protected $pk = 'act_id';
 
-    public $timestamps = false;
-
-    protected $fillable = [
-        'goods_id',
-        'goods_name',
-        'rank_ids',
-        'prices',
-        'enabled'
-    ];
-
-    protected $guarded = [];
 }

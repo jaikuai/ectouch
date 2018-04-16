@@ -6,21 +6,16 @@ use think\Model;
 
 /**
  * Class EmailSendlist
+ * @package app\models
+ * @property $email
+ * @property $template_id
+ * @property $email_content
+ * @property $error
+ * @property $pri
+ * @property $last_send
  */
 class EmailSendlist extends Model
 {
     protected $table = 'email_sendlist';
 
-    public $timestamps = false;
-
-    protected $fillable = [
-        'email',
-        'template_id',
-        'email_content',
-        'error',
-        'pri',
-        'last_send'
-    ];
-
-    protected $guarded = [];
 }

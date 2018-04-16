@@ -6,22 +6,17 @@ use think\Model;
 
 /**
  * Class ShopConfig
+ * @package app\models
+ * @property $parent_id
+ * @property $code
+ * @property $type
+ * @property $store_range
+ * @property $store_dir
+ * @property $value
+ * @property $sort_order
  */
 class ShopConfig extends Model
 {
     protected $table = 'shop_config';
 
-    public $timestamps = false;
-
-    protected $fillable = [
-        'parent_id',
-        'code',
-        'type',
-        'store_range',
-        'store_dir',
-        'value',
-        'sort_order'
-    ];
-
-    protected $guarded = [];
 }

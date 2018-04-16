@@ -6,21 +6,16 @@ use think\Model;
 
 /**
  * Class PayLog
+ * @package app\models
+ * @property $order_id
+ * @property $order_amount
+ * @property $order_type
+ * @property $is_paid
  */
 class PayLog extends Model
 {
     protected $table = 'pay_log';
 
-    protected $primaryKey = 'log_id';
+    protected $pk = 'log_id';
 
-    public $timestamps = false;
-
-    protected $fillable = [
-        'order_id',
-        'order_amount',
-        'order_type',
-        'is_paid'
-    ];
-
-    protected $guarded = [];
 }

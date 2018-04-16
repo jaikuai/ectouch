@@ -6,28 +6,23 @@ use think\Model;
 
 /**
  * Class Comment
+ * @package app\models
+ * @property $comment_type
+ * @property $id_value
+ * @property $email
+ * @property $user_name
+ * @property $content
+ * @property $comment_rank
+ * @property $add_time
+ * @property $ip_address
+ * @property $status
+ * @property $parent_id
+ * @property $user_id
  */
 class Comment extends Model
 {
     protected $table = 'comment';
 
-    protected $primaryKey = 'comment_id';
+    protected $pk = 'comment_id';
 
-    public $timestamps = false;
-
-    protected $fillable = [
-        'comment_type',
-        'id_value',
-        'email',
-        'user_name',
-        'content',
-        'comment_rank',
-        'add_time',
-        'ip_address',
-        'status',
-        'parent_id',
-        'user_id'
-    ];
-
-    protected $guarded = [];
 }

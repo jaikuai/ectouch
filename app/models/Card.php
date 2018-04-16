@@ -6,22 +6,17 @@ use think\Model;
 
 /**
  * Class Card
+ * @package app\models
+ * @property $card_name
+ * @property $card_img
+ * @property $card_fee
+ * @property $free_money
+ * @property $card_desc
  */
 class Card extends Model
 {
     protected $table = 'card';
 
-    protected $primaryKey = 'card_id';
+    protected $pk = 'card_id';
 
-    public $timestamps = false;
-
-    protected $fillable = [
-        'card_name',
-        'card_img',
-        'card_fee',
-        'free_money',
-        'card_desc'
-    ];
-
-    protected $guarded = [];
 }

@@ -6,26 +6,21 @@ use think\Model;
 
 /**
  * Class Payment
+ * @package app\models
+ * @property $pay_code
+ * @property $pay_name
+ * @property $pay_fee
+ * @property $pay_desc
+ * @property $pay_order
+ * @property $pay_config
+ * @property $enabled
+ * @property $is_cod
+ * @property $is_online
  */
 class Payment extends Model
 {
     protected $table = 'payment';
 
-    protected $primaryKey = 'pay_id';
+    protected $pk = 'pay_id';
 
-    public $timestamps = false;
-
-    protected $fillable = [
-        'pay_code',
-        'pay_name',
-        'pay_fee',
-        'pay_desc',
-        'pay_order',
-        'pay_config',
-        'enabled',
-        'is_cod',
-        'is_online'
-    ];
-
-    protected $guarded = [];
 }

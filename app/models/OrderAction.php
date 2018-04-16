@@ -6,25 +6,20 @@ use think\Model;
 
 /**
  * Class OrderAction
+ * @package app\models
+ * @property $order_id
+ * @property $action_user
+ * @property $order_status
+ * @property $shipping_status
+ * @property $pay_status
+ * @property $action_place
+ * @property $action_note
+ * @property $log_time
  */
 class OrderAction extends Model
 {
     protected $table = 'order_action';
 
-    protected $primaryKey = 'action_id';
+    protected $pk = 'action_id';
 
-    public $timestamps = false;
-
-    protected $fillable = [
-        'order_id',
-        'action_user',
-        'order_status',
-        'shipping_status',
-        'pay_status',
-        'action_place',
-        'action_note',
-        'log_time'
-    ];
-
-    protected $guarded = [];
 }

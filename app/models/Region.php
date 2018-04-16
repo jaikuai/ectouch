@@ -6,21 +6,16 @@ use think\Model;
 
 /**
  * Class Region
+ * @package app\models
+ * @property $parent_id
+ * @property $region_name
+ * @property $region_type
+ * @property $agency_id
  */
 class Region extends Model
 {
     protected $table = 'region';
 
-    protected $primaryKey = 'region_id';
+    protected $pk = 'region_id';
 
-    public $timestamps = false;
-
-    protected $fillable = [
-        'parent_id',
-        'region_name',
-        'region_type',
-        'agency_id'
-    ];
-
-    protected $guarded = [];
 }

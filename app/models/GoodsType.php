@@ -6,20 +6,15 @@ use think\Model;
 
 /**
  * Class GoodsType
+ * @package app\models
+ * @property $cat_name
+ * @property $enabled
+ * @property $attr_group
  */
 class GoodsType extends Model
 {
     protected $table = 'goods_type';
 
-    protected $primaryKey = 'cat_id';
+    protected $pk = 'cat_id';
 
-    public $timestamps = false;
-
-    protected $fillable = [
-        'cat_name',
-        'enabled',
-        'attr_group'
-    ];
-
-    protected $guarded = [];
 }

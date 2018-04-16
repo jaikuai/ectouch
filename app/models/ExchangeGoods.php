@@ -6,20 +6,15 @@ use think\Model;
 
 /**
  * Class ExchangeGoods
+ * @package app\models
+ * @property $exchange_integral
+ * @property $is_exchange
+ * @property $is_hot
  */
 class ExchangeGoods extends Model
 {
     protected $table = 'exchange_goods';
 
-    protected $primaryKey = 'goods_id';
+    protected $pk = 'goods_id';
 
-    public $timestamps = false;
-
-    protected $fillable = [
-        'exchange_integral',
-        'is_exchange',
-        'is_hot'
-    ];
-
-    protected $guarded = [];
 }

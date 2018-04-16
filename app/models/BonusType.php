@@ -6,27 +6,22 @@ use think\Model;
 
 /**
  * Class BonusType
+ * @package app\models
+ * @property $type_name
+ * @property $type_money
+ * @property $send_type
+ * @property $min_amount
+ * @property $max_amount
+ * @property $send_start_date
+ * @property $send_end_date
+ * @property $use_start_date
+ * @property $use_end_date
+ * @property $min_goods_amount
  */
 class BonusType extends Model
 {
     protected $table = 'bonus_type';
 
-    protected $primaryKey = 'type_id';
+    protected $pk = 'type_id';
 
-    public $timestamps = false;
-
-    protected $fillable = [
-        'type_name',
-        'type_money',
-        'send_type',
-        'min_amount',
-        'max_amount',
-        'send_start_date',
-        'send_end_date',
-        'use_start_date',
-        'use_end_date',
-        'min_goods_amount'
-    ];
-
-    protected $guarded = [];
 }

@@ -6,29 +6,24 @@ use think\Model;
 
 /**
  * Class Feedback
+ * @package app\models
+ * @property $parent_id
+ * @property $user_id
+ * @property $user_name
+ * @property $user_email
+ * @property $msg_title
+ * @property $msg_type
+ * @property $msg_status
+ * @property $msg_content
+ * @property $msg_time
+ * @property $message_img
+ * @property $order_id
+ * @property $msg_area
  */
 class Feedback extends Model
 {
     protected $table = 'feedback';
 
-    protected $primaryKey = 'msg_id';
+    protected $pk = 'msg_id';
 
-    public $timestamps = false;
-
-    protected $fillable = [
-        'parent_id',
-        'user_id',
-        'user_name',
-        'user_email',
-        'msg_title',
-        'msg_type',
-        'msg_status',
-        'msg_content',
-        'msg_time',
-        'message_img',
-        'order_id',
-        'msg_area'
-    ];
-
-    protected $guarded = [];
 }

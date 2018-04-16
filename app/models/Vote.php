@@ -6,22 +6,17 @@ use think\Model;
 
 /**
  * Class Vote
+ * @package app\models
+ * @property $vote_name
+ * @property $start_time
+ * @property $end_time
+ * @property $can_multi
+ * @property $vote_count
  */
 class Vote extends Model
 {
     protected $table = 'vote';
 
-    protected $primaryKey = 'vote_id';
+    protected $pk = 'vote_id';
 
-    public $timestamps = false;
-
-    protected $fillable = [
-        'vote_name',
-        'start_time',
-        'end_time',
-        'can_multi',
-        'vote_count'
-    ];
-
-    protected $guarded = [];
 }

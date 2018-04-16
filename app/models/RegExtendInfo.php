@@ -6,20 +6,15 @@ use think\Model;
 
 /**
  * Class RegExtendInfo
+ * @package app\models
+ * @property $user_id
+ * @property $reg_field_id
+ * @property $content
  */
 class RegExtendInfo extends Model
 {
     protected $table = 'reg_extend_info';
 
-    protected $primaryKey = 'Id';
+    protected $pk = 'Id';
 
-    public $timestamps = false;
-
-    protected $fillable = [
-        'user_id',
-        'reg_field_id',
-        'content'
-    ];
-
-    protected $guarded = [];
 }

@@ -6,22 +6,17 @@ use think\Model;
 
 /**
  * Class AdPosition
+ * @package app\models
+ * @property $position_name
+ * @property $ad_width
+ * @property $ad_height
+ * @property $position_desc
+ * @property $position_style
  */
 class AdPosition extends Model
 {
     protected $table = 'ad_position';
 
-    protected $primaryKey = 'position_id';
+    protected $pk = 'position_id';
 
-    public $timestamps = false;
-
-    protected $fillable = [
-        'position_name',
-        'ad_width',
-        'ad_height',
-        'position_desc',
-        'position_style'
-    ];
-
-    protected $guarded = [];
 }

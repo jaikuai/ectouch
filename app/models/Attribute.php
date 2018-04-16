@@ -6,26 +6,21 @@ use think\Model;
 
 /**
  * Class Attribute
+ * @package app\models
+ * @property $cat_id
+ * @property $attr_name
+ * @property $attr_input_type
+ * @property $attr_type
+ * @property $attr_values
+ * @property $attr_index
+ * @property $sort_order
+ * @property $is_linked
+ * @property $attr_group
  */
 class Attribute extends Model
 {
     protected $table = 'attribute';
 
-    protected $primaryKey = 'attr_id';
+    protected $pk = 'attr_id';
 
-    public $timestamps = false;
-
-    protected $fillable = [
-        'cat_id',
-        'attr_name',
-        'attr_input_type',
-        'attr_type',
-        'attr_values',
-        'attr_index',
-        'sort_order',
-        'is_linked',
-        'attr_group'
-    ];
-
-    protected $guarded = [];
 }

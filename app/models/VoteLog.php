@@ -6,20 +6,15 @@ use think\Model;
 
 /**
  * Class VoteLog
+ * @package app\models
+ * @property $vote_id
+ * @property $ip_address
+ * @property $vote_time
  */
 class VoteLog extends Model
 {
     protected $table = 'vote_log';
 
-    protected $primaryKey = 'log_id';
+    protected $pk = 'log_id';
 
-    public $timestamps = false;
-
-    protected $fillable = [
-        'vote_id',
-        'ip_address',
-        'vote_time'
-    ];
-
-    protected $guarded = [];
 }

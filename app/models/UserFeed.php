@@ -6,22 +6,17 @@ use think\Model;
 
 /**
  * Class UserFeed
+ * @package app\models
+ * @property $user_id
+ * @property $value_id
+ * @property $goods_id
+ * @property $feed_type
+ * @property $is_feed
  */
 class UserFeed extends Model
 {
     protected $table = 'user_feed';
 
-    protected $primaryKey = 'feed_id';
+    protected $pk = 'feed_id';
 
-    public $timestamps = false;
-
-    protected $fillable = [
-        'user_id',
-        'value_id',
-        'goods_id',
-        'feed_type',
-        'is_feed'
-    ];
-
-    protected $guarded = [];
 }

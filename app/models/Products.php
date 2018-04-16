@@ -6,21 +6,16 @@ use think\Model;
 
 /**
  * Class Products
+ * @package app\models
+ * @property $goods_id
+ * @property $goods_attr
+ * @property $product_sn
+ * @property $product_number
  */
 class Products extends Model
 {
     protected $table = 'products';
 
-    protected $primaryKey = 'product_id';
+    protected $pk = 'product_id';
 
-    public $timestamps = false;
-
-    protected $fillable = [
-        'goods_id',
-        'goods_attr',
-        'product_sn',
-        'product_number'
-    ];
-
-    protected $guarded = [];
 }

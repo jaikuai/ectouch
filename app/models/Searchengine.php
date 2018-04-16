@@ -6,18 +6,13 @@ use think\Model;
 
 /**
  * Class Searchengine
+ * @package app\models
+ * @property $date
+ * @property $searchengine
+ * @property $count
  */
 class Searchengine extends Model
 {
     protected $table = 'searchengine';
 
-    public $timestamps = false;
-
-    protected $fillable = [
-        'date',
-        'searchengine',
-        'count'
-    ];
-
-    protected $guarded = [];
 }

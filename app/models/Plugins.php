@@ -6,21 +6,16 @@ use think\Model;
 
 /**
  * Class Plugins
+ * @package app\models
+ * @property $version
+ * @property $library
+ * @property $assign
+ * @property $install_date
  */
 class Plugins extends Model
 {
     protected $table = 'plugins';
 
-    protected $primaryKey = 'code';
+    protected $pk = 'code';
 
-    public $timestamps = false;
-
-    protected $fillable = [
-        'version',
-        'library',
-        'assign',
-        'install_date'
-    ];
-
-    protected $guarded = [];
 }

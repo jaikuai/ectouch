@@ -6,21 +6,16 @@ use think\Model;
 
 /**
  * Class FriendLink
+ * @package app\models
+ * @property $link_name
+ * @property $link_url
+ * @property $link_logo
+ * @property $show_order
  */
 class FriendLink extends Model
 {
     protected $table = 'friend_link';
 
-    protected $primaryKey = 'link_id';
+    protected $pk = 'link_id';
 
-    public $timestamps = false;
-
-    protected $fillable = [
-        'link_name',
-        'link_url',
-        'link_logo',
-        'show_order'
-    ];
-
-    protected $guarded = [];
 }
