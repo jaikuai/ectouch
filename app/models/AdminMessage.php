@@ -5,16 +5,17 @@ namespace app\models;
 use think\Model;
 
 /**
- * Class AdminMessage
- * @package app\models
- * @property $sender_id
- * @property $receiver_id
- * @property $sent_time
- * @property $read_time
- * @property $readed
- * @property $deleted
- * @property $title
- * @property $message
+ * This is the model class for table "{{%admin_message}}".
+ *
+ * @property int $message_id
+ * @property int $sender_id
+ * @property int $receiver_id
+ * @property string $sent_time
+ * @property string $read_time
+ * @property int $readed
+ * @property int $deleted
+ * @property string $title
+ * @property string $message
  */
 class AdminMessage extends Model
 {

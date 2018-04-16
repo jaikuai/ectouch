@@ -7,6 +7,10 @@
  * @homepage https://www.ectouch.cn
  */
 
+if (version_compare(PHP_VERSION, '7.2.4', '<')) {
+    die('require PHP > 7.2.4 !');
+}
+
 /*
 |--------------------------------------------------------------------------
 | 运行环境
@@ -81,30 +85,45 @@ define('API_TIME', '2017-08-02 09:20:18');
 
 /*
 |--------------------------------------------------------------------------
-| Register The Auto Loader
+| Setting Debuger
 |--------------------------------------------------------------------------
-|
-| Composer provides a convenient, automatically generated class loader for
-| our application. We just need to utilize it! We'll simply require it
-| into the script here so that we don't have to worry about manual
-| loading any of our classes later on. It feels great to relax.
 |
 */
 
-require dirname(__DIR__) . '/app/kernel/base.php';
+if (!in_array(@$_SERVER['REMOTE_ADDR'], ['127.0.0.1', '::1'])) {
+    defined('YII_DEBUG') or define('YII_DEBUG', false);
+    defined('YII_ENV') or define('YII_ENV', 'prod');
+} else {
+    defined('YII_DEBUG') or define('YII_DEBUG', true);
+    defined('YII_ENV') or define('YII_ENV', 'dev');
+}
 
 /*
 |--------------------------------------------------------------------------
-| Create The Application
+| Loading Kernel
 |--------------------------------------------------------------------------
-|
-| The first thing we will do is create a new ECTouch application instance
-| which serves as the "glue" for all the components of Laravel, and is
-| the IoC container for the system binding all of the various parts.
 |
 */
 
-$app = think\Container::get('app');
+require(__DIR__ . '/../vendor/yiisoft/yii2/Yii.php');
+
+/*
+|--------------------------------------------------------------------------
+| Loading Bootstrap
+|--------------------------------------------------------------------------
+|
+*/
+
+require(__DIR__ . '/../config/bootstrap.php');
+
+/*
+|--------------------------------------------------------------------------
+| Loading Configuration
+|--------------------------------------------------------------------------
+|
+*/
+
+$config = require(__DIR__ . '/../config/config.php');
 
 /*
 |--------------------------------------------------------------------------
@@ -117,4 +136,4 @@ $app = think\Container::get('app');
 |
 */
 
-return $app;
+return new yii\web\Application($config);

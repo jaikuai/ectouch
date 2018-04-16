@@ -5,18 +5,49 @@ namespace app\models;
 use think\Model;
 
 /**
- * Class Vote
- * @package app\models
- * @property $vote_name
- * @property $start_time
- * @property $end_time
- * @property $can_multi
- * @property $vote_count
+ * This is the model class for table "{{%vote}}".
+ *
+ * @property int $vote_id
+ * @property string $vote_name
+ * @property string $start_time
+ * @property string $end_time
+ * @property int $can_multi
+ * @property string $vote_count
  */
 class Vote extends Model
 {
-    protected $table = 'vote';
+    /**
+     * @inheritdoc
+     */
+    public static function tableName()
+    {
+        return '{{%vote}}';
+    }
 
-    protected $pk = 'vote_id';
+    /**
+     * @inheritdoc
+     */
+    public function rules()
+    {
+        return [
+            [['start_time', 'end_time', 'vote_count'], 'integer'],
+            [['vote_name'], 'string', 'max' => 250],
+            [['can_multi'], 'string', 'max' => 1],
+        ];
+    }
 
+    /**
+     * @inheritdoc
+     */
+    public function attributeLabels()
+    {
+        return [
+            'vote_id' => 'Vote ID',
+            'vote_name' => 'Vote Name',
+            'start_time' => 'Start Time',
+            'end_time' => 'End Time',
+            'can_multi' => 'Can Multi',
+            'vote_count' => 'Vote Count',
+        ];
+    }
 }

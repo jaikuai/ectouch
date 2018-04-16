@@ -5,22 +5,23 @@ namespace app\models;
 use think\Model;
 
 /**
- * Class AdminUser
- * @package app\models
- * @property $user_name
- * @property $email
- * @property $password
- * @property $ec_salt
- * @property $add_time
- * @property $last_login
- * @property $last_ip
- * @property $action_list
- * @property $nav_list
- * @property $lang_type
- * @property $agency_id
- * @property $suppliers_id
- * @property $todolist
- * @property $role_id
+ * This is the model class for table "{{%admin_user}}".
+ *
+ * @property int $user_id
+ * @property string $user_name
+ * @property string $email
+ * @property string $password
+ * @property string $ec_salt
+ * @property int $add_time
+ * @property int $last_login
+ * @property string $last_ip
+ * @property string $action_list
+ * @property string $nav_list
+ * @property string $lang_type
+ * @property int $agency_id
+ * @property int $suppliers_id
+ * @property string $todolist
+ * @property int $role_id
  */
 class AdminUser extends Model
 {

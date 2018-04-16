@@ -5,25 +5,67 @@ namespace app\models;
 use think\Model;
 
 /**
- * Class Feedback
- * @package app\models
- * @property $parent_id
- * @property $user_id
- * @property $user_name
- * @property $user_email
- * @property $msg_title
- * @property $msg_type
- * @property $msg_status
- * @property $msg_content
- * @property $msg_time
- * @property $message_img
- * @property $order_id
- * @property $msg_area
+ * This is the model class for table "{{%feedback}}".
+ *
+ * @property string $msg_id
+ * @property string $parent_id
+ * @property string $user_id
+ * @property string $user_name
+ * @property string $user_email
+ * @property string $msg_title
+ * @property int $msg_type
+ * @property int $msg_status
+ * @property string $msg_content
+ * @property string $msg_time
+ * @property string $message_img
+ * @property string $order_id
+ * @property int $msg_area
  */
 class Feedback extends Model
 {
-    protected $table = 'feedback';
+    /**
+     * @inheritdoc
+     */
+    public static function tableName()
+    {
+        return '{{%feedback}}';
+    }
 
-    protected $pk = 'msg_id';
+    /**
+     * @inheritdoc
+     */
+    public function rules()
+    {
+        return [
+            [['parent_id', 'user_id', 'msg_time', 'order_id'], 'integer'],
+            [['msg_content'], 'required'],
+            [['msg_content'], 'string'],
+            [['user_name', 'user_email'], 'string', 'max' => 60],
+            [['msg_title'], 'string', 'max' => 200],
+            [['msg_type', 'msg_status', 'msg_area'], 'string', 'max' => 1],
+            [['message_img'], 'string', 'max' => 255],
+        ];
+    }
 
+    /**
+     * @inheritdoc
+     */
+    public function attributeLabels()
+    {
+        return [
+            'msg_id' => 'Msg ID',
+            'parent_id' => 'Parent ID',
+            'user_id' => 'User ID',
+            'user_name' => 'User Name',
+            'user_email' => 'User Email',
+            'msg_title' => 'Msg Title',
+            'msg_type' => 'Msg Type',
+            'msg_status' => 'Msg Status',
+            'msg_content' => 'Msg Content',
+            'msg_time' => 'Msg Time',
+            'message_img' => 'Message Img',
+            'order_id' => 'Order ID',
+            'msg_area' => 'Msg Area',
+        ];
+    }
 }

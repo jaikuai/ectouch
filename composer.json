@@ -3,16 +3,18 @@
     "description": "ECTouch E-Commerce Platform for PHP.",
     "keywords": ["ectouch", "B2C", "o2o", "shop", "mall", "wechat"],
     "homepage": "https://www.ectouch.cn/",
-    "license": "GPL-3.0",
     "type": "project",
+    "license": "GPL-3.0",
     "support": {
         "issues": "https://github.com/ectouch/ectouch/issues?state=open",
         "forum": "https://www.ectouch.cn/forum/",
         "wiki": "https://www.ectouch.cn/wiki/",
         "source": "https://github.com/ectouch/ectouch"
     },
+    "minimum-stability": "stable",
     "require": {
-        "php": ">=7.2",
+        "php": ">=7.2.4",
+        "aliyuncs/oss-sdk-php": "^2.2",
         "endroid/qr-code": "^3.2",
         "jellybool/translug": "^2.0",
         "jenssegers/agent": "^2.6",
@@ -23,14 +25,27 @@
         "phpoffice/phpspreadsheet": "^1.2",
         "riverslei/payment": "^4.1",
         "sentry/sentry": "^1.8",
-        "topthink/framework": "5.1.*",
-        "workerman/phpsocket.io": "^1.1"
+        "workerman/phpsocket.io": "^1.1",
+        "yiisoft/yii2": "~2.0.14",
+        "yiisoft/yii2-bootstrap": "~2.0.0",
+        "yiisoft/yii2-httpclient": "~2.0.0",
+        "yiisoft/yii2-swiftmailer": "~2.0.0"
+    },
+    "require-dev": {
+        "bizley/migration": "^2.2",
+        "codeception/base": "^2.2.3",
+        "codeception/verify": "~0.3.1",
+        "codeception/specify": "~0.4.3",
+        "yiisoft/yii2-debug": "~2.0.0",
+        "yiisoft/yii2-gii": "~2.0.0",
+        "yiisoft/yii2-faker": "~2.0.0"
     },
     "autoload": {
         "psr-4": {
             "app\\": "app/"
         },
         "files": [
+            "config/constant.php",
             "app/support/helpers.php"
         ]
     },
@@ -40,6 +55,41 @@
     "config": {
         "preferred-install": "dist",
         "sort-packages": true,
-        "optimize-autoloader": true
-    }
+        "optimize-autoloader": true,
+        "process-timeout": 1800,
+        "fxp-asset": {
+            "enabled": false
+        }
+    },
+    "scripts": {
+        "post-install-cmd": [
+            "yii\\composer\\Installer::postInstall"
+        ],
+        "post-create-project-cmd": [
+            "yii\\composer\\Installer::postCreateProject",
+            "yii\\composer\\Installer::postInstall"
+        ]
+    },
+    "extra": {
+        "yii\\composer\\Installer::postCreateProject": {
+            "setPermission": [
+                {
+                    "storage": "0777",
+                    "public/assets": "0777",
+                    "artisan": "0755"
+                }
+            ]
+        },
+        "yii\\composer\\Installer::postInstall": {
+            "generateCookieValidationKey": [
+                "config/config.php"
+            ]
+        }
+    },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://asset-packagist.org"
+        }
+    ]
 }

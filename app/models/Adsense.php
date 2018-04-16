@@ -5,11 +5,11 @@ namespace app\models;
 use think\Model;
 
 /**
- * Class Adsense
- * @package app\models
- * @property $from_ad
- * @property $referer
- * @property $clicks
+ * This is the model class for table "{{%adsense}}".
+ *
+ * @property int $from_ad
+ * @property string $referer
+ * @property string $clicks
  */
 class Adsense extends Model
 {

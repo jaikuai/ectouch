@@ -5,12 +5,12 @@ namespace app\models;
 use think\Model;
 
 /**
- * Class AdminAction
- * @package app\models
- * @property integer $action_id 自增ID
- * @property integer $parent_id 父级ID
- * @property string $action_code 权限名称
- * @property string $relevance 关联权限
+ * This is the model class for table "{{%admin_action}}".
+ *
+ * @property int $action_id
+ * @property int $parent_id
+ * @property string $action_code
+ * @property string $relevance
  */
 class AdminAction extends Model
 {

@@ -5,25 +5,66 @@ namespace app\models;
 use think\Model;
 
 /**
- * Class FavourableActivity
- * @package app\models
- * @property $act_name
- * @property $start_time
- * @property $end_time
- * @property $user_rank
- * @property $act_range
- * @property $act_range_ext
- * @property $min_amount
- * @property $max_amount
- * @property $act_type
- * @property $act_type_ext
- * @property $gift
- * @property $sort_order
+ * This is the model class for table "{{%favourable_activity}}".
+ *
+ * @property int $act_id
+ * @property string $act_name
+ * @property string $start_time
+ * @property string $end_time
+ * @property string $user_rank
+ * @property int $act_range
+ * @property string $act_range_ext
+ * @property string $min_amount
+ * @property string $max_amount
+ * @property int $act_type
+ * @property string $act_type_ext
+ * @property string $gift
+ * @property int $sort_order
  */
 class FavourableActivity extends Model
 {
-    protected $table = 'favourable_activity';
+    /**
+     * @inheritdoc
+     */
+    public static function tableName()
+    {
+        return '{{%favourable_activity}}';
+    }
 
-    protected $pk = 'act_id';
+    /**
+     * @inheritdoc
+     */
+    public function rules()
+    {
+        return [
+            [['act_name', 'start_time', 'end_time', 'user_rank', 'act_range', 'act_range_ext', 'min_amount', 'max_amount', 'act_type', 'act_type_ext', 'gift'], 'required'],
+            [['start_time', 'end_time'], 'integer'],
+            [['min_amount', 'max_amount', 'act_type_ext'], 'number'],
+            [['gift'], 'string'],
+            [['act_name', 'user_rank', 'act_range_ext'], 'string', 'max' => 255],
+            [['act_range', 'act_type', 'sort_order'], 'string', 'max' => 3],
+        ];
+    }
 
+    /**
+     * @inheritdoc
+     */
+    public function attributeLabels()
+    {
+        return [
+            'act_id' => 'Act ID',
+            'act_name' => 'Act Name',
+            'start_time' => 'Start Time',
+            'end_time' => 'End Time',
+            'user_rank' => 'User Rank',
+            'act_range' => 'Act Range',
+            'act_range_ext' => 'Act Range Ext',
+            'min_amount' => 'Min Amount',
+            'max_amount' => 'Max Amount',
+            'act_type' => 'Act Type',
+            'act_type_ext' => 'Act Type Ext',
+            'gift' => 'Gift',
+            'sort_order' => 'Sort Order',
+        ];
+    }
 }

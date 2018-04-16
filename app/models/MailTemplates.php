@@ -5,20 +5,58 @@ namespace app\models;
 use think\Model;
 
 /**
- * Class MailTemplates
- * @package app\models
- * @property $template_code
- * @property $is_html
- * @property $template_subject
- * @property $template_content
- * @property $last_modify
- * @property $last_send
- * @property $type
+ * This is the model class for table "{{%mail_templates}}".
+ *
+ * @property int $template_id
+ * @property string $template_code
+ * @property int $is_html
+ * @property string $template_subject
+ * @property string $template_content
+ * @property string $last_modify
+ * @property string $last_send
+ * @property string $type
  */
 class MailTemplates extends Model
 {
-    protected $table = 'mail_templates';
+    /**
+     * @inheritdoc
+     */
+    public static function tableName()
+    {
+        return '{{%mail_templates}}';
+    }
 
-    protected $pk = 'template_id';
+    /**
+     * @inheritdoc
+     */
+    public function rules()
+    {
+        return [
+            [['template_content', 'type'], 'required'],
+            [['template_content'], 'string'],
+            [['last_modify', 'last_send'], 'integer'],
+            [['template_code'], 'string', 'max' => 30],
+            [['is_html'], 'string', 'max' => 1],
+            [['template_subject'], 'string', 'max' => 200],
+            [['type'], 'string', 'max' => 10],
+            [['template_code'], 'unique'],
+        ];
+    }
 
+    /**
+     * @inheritdoc
+     */
+    public function attributeLabels()
+    {
+        return [
+            'template_id' => 'Template ID',
+            'template_code' => 'Template Code',
+            'is_html' => 'Is Html',
+            'template_subject' => 'Template Subject',
+            'template_content' => 'Template Content',
+            'last_modify' => 'Last Modify',
+            'last_send' => 'Last Send',
+            'type' => 'Type',
+        ];
+    }
 }

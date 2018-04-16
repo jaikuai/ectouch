@@ -5,16 +5,46 @@ namespace app\models;
 use think\Model;
 
 /**
- * Class ExchangeGoods
- * @package app\models
- * @property $exchange_integral
- * @property $is_exchange
- * @property $is_hot
+ * This is the model class for table "{{%exchange_goods}}".
+ *
+ * @property string $goods_id
+ * @property string $exchange_integral
+ * @property int $is_exchange
+ * @property int $is_hot
  */
 class ExchangeGoods extends Model
 {
-    protected $table = 'exchange_goods';
+    /**
+     * @inheritdoc
+     */
+    public static function tableName()
+    {
+        return '{{%exchange_goods}}';
+    }
 
-    protected $pk = 'goods_id';
+    /**
+     * @inheritdoc
+     */
+    public function rules()
+    {
+        return [
+            [['goods_id'], 'required'],
+            [['goods_id', 'exchange_integral'], 'integer'],
+            [['is_exchange', 'is_hot'], 'string', 'max' => 1],
+            [['goods_id'], 'unique'],
+        ];
+    }
 
+    /**
+     * @inheritdoc
+     */
+    public function attributeLabels()
+    {
+        return [
+            'goods_id' => 'Goods ID',
+            'exchange_integral' => 'Exchange Integral',
+            'is_exchange' => 'Is Exchange',
+            'is_hot' => 'Is Hot',
+        ];
+    }
 }

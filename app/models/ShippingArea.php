@@ -5,16 +5,46 @@ namespace app\models;
 use think\Model;
 
 /**
- * Class ShippingArea
- * @package app\models
- * @property $shipping_area_name
- * @property $shipping_id
- * @property $configure
+ * This is the model class for table "{{%shipping_area}}".
+ *
+ * @property int $shipping_area_id
+ * @property string $shipping_area_name
+ * @property int $shipping_id
+ * @property string $configure
  */
 class ShippingArea extends Model
 {
-    protected $table = 'shipping_area';
+    /**
+     * @inheritdoc
+     */
+    public static function tableName()
+    {
+        return '{{%shipping_area}}';
+    }
 
-    protected $pk = 'shipping_area_id';
+    /**
+     * @inheritdoc
+     */
+    public function rules()
+    {
+        return [
+            [['configure'], 'required'],
+            [['configure'], 'string'],
+            [['shipping_area_name'], 'string', 'max' => 150],
+            [['shipping_id'], 'string', 'max' => 3],
+        ];
+    }
 
+    /**
+     * @inheritdoc
+     */
+    public function attributeLabels()
+    {
+        return [
+            'shipping_area_id' => 'Shipping Area ID',
+            'shipping_area_name' => 'Shipping Area Name',
+            'shipping_id' => 'Shipping ID',
+            'configure' => 'Configure',
+        ];
+    }
 }

@@ -5,16 +5,48 @@ namespace app\models;
 use think\Model;
 
 /**
- * Class PackageGoods
- * @package app\models
- * @property $package_id
- * @property $goods_id
- * @property $product_id
- * @property $goods_number
- * @property $admin_id
+ * This is the model class for table "{{%package_goods}}".
+ *
+ * @property string $package_id
+ * @property string $goods_id
+ * @property string $product_id
+ * @property int $goods_number
+ * @property int $admin_id
  */
 class PackageGoods extends Model
 {
-    protected $table = 'package_goods';
+    /**
+     * @inheritdoc
+     */
+    public static function tableName()
+    {
+        return '{{%package_goods}}';
+    }
 
+    /**
+     * @inheritdoc
+     */
+    public function rules()
+    {
+        return [
+            [['package_id', 'goods_id', 'product_id', 'admin_id'], 'required'],
+            [['package_id', 'goods_id', 'product_id', 'goods_number'], 'integer'],
+            [['admin_id'], 'string', 'max' => 3],
+            [['package_id', 'goods_id', 'product_id', 'admin_id'], 'unique', 'targetAttribute' => ['package_id', 'goods_id', 'product_id', 'admin_id']],
+        ];
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function attributeLabels()
+    {
+        return [
+            'package_id' => 'Package ID',
+            'goods_id' => 'Goods ID',
+            'product_id' => 'Product ID',
+            'goods_number' => 'Goods Number',
+            'admin_id' => 'Admin ID',
+        ];
+    }
 }

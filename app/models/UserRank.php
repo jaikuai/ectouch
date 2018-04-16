@@ -5,19 +5,52 @@ namespace app\models;
 use think\Model;
 
 /**
- * Class UserRank
- * @package app\models
- * @property $rank_name
- * @property $min_points
- * @property $max_points
- * @property $discount
- * @property $show_price
- * @property $special_rank
+ * This is the model class for table "{{%user_rank}}".
+ *
+ * @property int $rank_id
+ * @property string $rank_name
+ * @property string $min_points
+ * @property string $max_points
+ * @property int $discount
+ * @property int $show_price
+ * @property int $special_rank
  */
 class UserRank extends Model
 {
-    protected $table = 'user_rank';
+    /**
+     * @inheritdoc
+     */
+    public static function tableName()
+    {
+        return '{{%user_rank}}';
+    }
 
-    protected $pk = 'rank_id';
+    /**
+     * @inheritdoc
+     */
+    public function rules()
+    {
+        return [
+            [['min_points', 'max_points'], 'integer'],
+            [['rank_name'], 'string', 'max' => 30],
+            [['discount'], 'string', 'max' => 3],
+            [['show_price', 'special_rank'], 'string', 'max' => 1],
+        ];
+    }
 
+    /**
+     * @inheritdoc
+     */
+    public function attributeLabels()
+    {
+        return [
+            'rank_id' => 'Rank ID',
+            'rank_name' => 'Rank Name',
+            'min_points' => 'Min Points',
+            'max_points' => 'Max Points',
+            'discount' => 'Discount',
+            'show_price' => 'Show Price',
+            'special_rank' => 'Special Rank',
+        ];
+    }
 }

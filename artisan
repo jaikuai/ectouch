@@ -1,6 +1,9 @@
 #!/usr/bin/env php
 <?php
 
+defined('YII_DEBUG') or define('YII_DEBUG', true);
+defined('YII_ENV') or define('YII_ENV', 'dev');
+
 /*
 |--------------------------------------------------------------------------
 | Register The Auto Loader
@@ -13,7 +16,8 @@
 |
 */
 
-$app = require_once __DIR__ . '/bootstrap/app.php';
+require __DIR__ . '/vendor/autoload.php';
+require __DIR__ . '/vendor/yiisoft/yii2/Yii.php';
 
 /*
 |--------------------------------------------------------------------------
@@ -26,7 +30,10 @@ $app = require_once __DIR__ . '/bootstrap/app.php';
 |
 */
 
-$app->path(__DIR__ . '/app/')->initialize();
+$config = require __DIR__ . '/config/console.php';
+
+$application = new yii\console\Application($config);
+$exitCode = $application->run();
 
 /*
 |--------------------------------------------------------------------------
@@ -39,4 +46,4 @@ $app->path(__DIR__ . '/app/')->initialize();
 |
 */
 
-think\Console::init();
+exit($exitCode);

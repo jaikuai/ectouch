@@ -5,13 +5,13 @@ namespace app\models;
 use think\Model;
 
 /**
- * Class AdminLog
- * @package app\models
- * @property integer $log_id 自增ID
- * @property integer $log_time 日志时间
- * @property integer $user_id 用户ID
- * @property string $log_info 日志内容
- * @property string $ip_address IP地址
+ * This is the model class for table "{{%admin_log}}".
+ *
+ * @property string $log_id
+ * @property string $log_time
+ * @property int $user_id
+ * @property string $log_info
+ * @property string $ip_address
  */
 class AdminLog extends Model
 {
