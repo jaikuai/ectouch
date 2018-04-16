@@ -2,17 +2,17 @@
 
 namespace app\models;
 
-use think\Model;
+use Yii;
 
 /**
  * This is the model class for table "{{%reg_extend_info}}".
  *
- * @property string $Id
- * @property string $user_id
- * @property string $reg_field_id
+ * @property int $Id
+ * @property int $user_id
+ * @property int $reg_field_id
  * @property string $content
  */
-class RegExtendInfo extends Model
+class RegExtendInfo extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc

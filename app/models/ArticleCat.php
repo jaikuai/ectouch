@@ -2,7 +2,7 @@
 
 namespace app\models;
 
-use think\Model;
+use Yii;
 
 /**
  * This is the model class for table "{{%article_cat}}".
@@ -16,7 +16,7 @@ use think\Model;
  * @property int $show_in_nav
  * @property int $parent_id
  */
-class ArticleCat extends Model
+class ArticleCat extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc

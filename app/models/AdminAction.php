@@ -2,7 +2,7 @@
 
 namespace app\models;
 
-use think\Model;
+use Yii;
 
 /**
  * This is the model class for table "{{%admin_action}}".
@@ -12,10 +12,37 @@ use think\Model;
  * @property string $action_code
  * @property string $relevance
  */
-class AdminAction extends Model
+class AdminAction extends \yii\db\ActiveRecord
 {
-    protected $table = 'admin_action';
+    /**
+     * @inheritdoc
+     */
+    public static function tableName()
+    {
+        return '{{%admin_action}}';
+    }
 
-    protected $pk = 'action_id';
+    /**
+     * @inheritdoc
+     */
+    public function rules()
+    {
+        return [
+            [['parent_id'], 'string', 'max' => 3],
+            [['action_code', 'relevance'], 'string', 'max' => 20],
+        ];
+    }
 
+    /**
+     * @inheritdoc
+     */
+    public function attributeLabels()
+    {
+        return [
+            'action_id' => 'Action ID',
+            'parent_id' => 'Parent ID',
+            'action_code' => 'Action Code',
+            'relevance' => 'Relevance',
+        ];
+    }
 }

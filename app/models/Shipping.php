@@ -2,7 +2,7 @@
 
 namespace app\models;
 
-use think\Model;
+use Yii;
 
 /**
  * This is the model class for table "{{%shipping}}".
@@ -20,7 +20,7 @@ use think\Model;
  * @property int $print_model
  * @property int $shipping_order
  */
-class Shipping extends Model
+class Shipping extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc

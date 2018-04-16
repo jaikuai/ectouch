@@ -2,7 +2,7 @@
 
 namespace app\models;
 
-use think\Model;
+use Yii;
 
 /**
  * This is the model class for table "{{%card}}".
@@ -14,7 +14,7 @@ use think\Model;
  * @property string $free_money
  * @property string $card_desc
  */
-class Card extends Model
+class Card extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc

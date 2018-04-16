@@ -185,19 +185,19 @@ function session($name, $value = '')
  */
 function cookie($name, $value = '', $minutes = 0, $path = null, $domain = null, $secure = false, $httpOnly = true)
 {
-    $cookie = app('request')->cookies;
     if (is_null($name)) {
         // 清除
-        $cookie->removeAll();
+        app('response')->cookies->removeAll();
     } elseif ('' === $value) {
         // 获取
+        $cookie = app('request')->cookies;
         return 0 === strpos($name, '?') ? $cookie->has(substr($name, 1)) : $cookie->getValue($name);
     } elseif (is_null($value)) {
         // 删除
-        return $cookie->remove($name);
+        return app('response')->cookies->remove($name);
     } else {
         // 设置
-        return $cookie->add(new \yii\web\Cookie([
+        return app('response')->cookies->add(new \yii\web\Cookie([
             'name' => $name,
             'value' => $value,
             'expire' => $minutes,

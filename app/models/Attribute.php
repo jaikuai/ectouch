@@ -2,7 +2,7 @@
 
 namespace app\models;
 
-use think\Model;
+use Yii;
 
 /**
  * This is the model class for table "{{%attribute}}".
@@ -18,7 +18,7 @@ use think\Model;
  * @property int $is_linked
  * @property int $attr_group
  */
-class Attribute extends Model
+class Attribute extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc

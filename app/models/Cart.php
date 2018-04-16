@@ -2,17 +2,17 @@
 
 namespace app\models;
 
-use think\Model;
+use Yii;
 
 /**
  * This is the model class for table "{{%cart}}".
  *
- * @property string $rec_id
- * @property string $user_id
+ * @property int $rec_id
+ * @property int $user_id
  * @property string $session_id
- * @property string $goods_id
+ * @property int $goods_id
  * @property string $goods_sn
- * @property string $product_id
+ * @property int $product_id
  * @property string $goods_name
  * @property string $market_price
  * @property string $goods_price
@@ -20,14 +20,14 @@ use think\Model;
  * @property string $goods_attr
  * @property int $is_real
  * @property string $extension_code
- * @property string $parent_id
+ * @property int $parent_id
  * @property int $rec_type
  * @property int $is_gift
  * @property int $is_shipping
  * @property int $can_handsel
  * @property string $goods_attr_id
  */
-class Cart extends Model
+class Cart extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc

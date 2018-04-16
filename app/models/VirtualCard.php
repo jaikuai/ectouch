@@ -2,13 +2,13 @@
 
 namespace app\models;
 
-use think\Model;
+use Yii;
 
 /**
  * This is the model class for table "{{%virtual_card}}".
  *
  * @property int $card_id
- * @property string $goods_id
+ * @property int $goods_id
  * @property string $card_sn
  * @property string $card_password
  * @property int $add_date
@@ -17,7 +17,7 @@ use think\Model;
  * @property string $order_sn
  * @property string $crc32
  */
-class VirtualCard extends Model
+class VirtualCard extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc

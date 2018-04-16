@@ -2,7 +2,7 @@
 
 namespace app\models;
 
-use think\Model;
+use Yii;
 
 /**
  * This is the model class for table "{{%keywords}}".
@@ -10,9 +10,9 @@ use think\Model;
  * @property string $date
  * @property string $searchengine
  * @property string $keyword
- * @property string $count
+ * @property int $count
  */
-class Keywords extends Model
+class Keywords extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc

@@ -2,7 +2,7 @@
 
 namespace app\models;
 
-use think\Model;
+use Yii;
 
 /**
  * This is the model class for table "{{%affiliate_log}}".
@@ -16,7 +16,7 @@ use think\Model;
  * @property int $point
  * @property int $separate_type
  */
-class AffiliateLog extends Model
+class AffiliateLog extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc

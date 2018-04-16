@@ -2,7 +2,7 @@
 
 namespace app\models;
 
-use think\Model;
+use Yii;
 
 /**
  * This is the model class for table "{{%bonus_type}}".
@@ -19,7 +19,7 @@ use think\Model;
  * @property int $use_end_date
  * @property string $min_goods_amount
  */
-class BonusType extends Model
+class BonusType extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc

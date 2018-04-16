@@ -2,7 +2,7 @@
 
 namespace app\models;
 
-use think\Model;
+use Yii;
 
 /**
  * This is the model class for table "{{%plugins}}".
@@ -11,9 +11,9 @@ use think\Model;
  * @property string $version
  * @property string $library
  * @property int $assign
- * @property string $install_date
+ * @property int $install_date
  */
-class Plugins extends Model
+class Plugins extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc

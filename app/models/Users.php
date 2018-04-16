@@ -2,12 +2,12 @@
 
 namespace app\models;
 
-use think\Model;
+use Yii;
 
 /**
  * This is the model class for table "{{%users}}".
  *
- * @property string $user_id
+ * @property int $user_id
  * @property string $email
  * @property string $user_name
  * @property string $password
@@ -17,11 +17,11 @@ use think\Model;
  * @property string $birthday
  * @property string $user_money
  * @property string $frozen_money
- * @property string $pay_points
- * @property string $rank_points
- * @property string $address_id
- * @property string $reg_time
- * @property string $last_login
+ * @property int $pay_points
+ * @property int $rank_points
+ * @property int $address_id
+ * @property int $reg_time
+ * @property int $last_login
  * @property string $last_time
  * @property string $last_ip
  * @property int $visit_count
@@ -42,7 +42,7 @@ use think\Model;
  * @property string $passwd_question
  * @property string $passwd_answer
  */
-class Users extends Model
+class Users extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc

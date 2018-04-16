@@ -2,26 +2,26 @@
 
 namespace app\models;
 
-use think\Model;
+use Yii;
 
 /**
  * This is the model class for table "{{%delivery_goods}}".
  *
- * @property string $rec_id
- * @property string $delivery_id
- * @property string $goods_id
- * @property string $product_id
+ * @property int $rec_id
+ * @property int $delivery_id
+ * @property int $goods_id
+ * @property int $product_id
  * @property string $product_sn
  * @property string $goods_name
  * @property string $brand_name
  * @property string $goods_sn
  * @property int $is_real
  * @property string $extension_code
- * @property string $parent_id
+ * @property int $parent_id
  * @property int $send_number
  * @property string $goods_attr
  */
-class DeliveryGoods extends Model
+class DeliveryGoods extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc

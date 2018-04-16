@@ -2,26 +2,26 @@
 
 namespace app\models;
 
-use think\Model;
+use Yii;
 
 /**
  * This is the model class for table "{{%feedback}}".
  *
- * @property string $msg_id
- * @property string $parent_id
- * @property string $user_id
+ * @property int $msg_id
+ * @property int $parent_id
+ * @property int $user_id
  * @property string $user_name
  * @property string $user_email
  * @property string $msg_title
  * @property int $msg_type
  * @property int $msg_status
  * @property string $msg_content
- * @property string $msg_time
+ * @property int $msg_time
  * @property string $message_img
- * @property string $order_id
+ * @property int $order_id
  * @property int $msg_area
  */
-class Feedback extends Model
+class Feedback extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc

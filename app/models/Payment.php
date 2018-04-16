@@ -2,7 +2,7 @@
 
 namespace app\models;
 
-use think\Model;
+use Yii;
 
 /**
  * This is the model class for table "{{%payment}}".
@@ -18,7 +18,7 @@ use think\Model;
  * @property int $is_cod
  * @property int $is_online
  */
-class Payment extends Model
+class Payment extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc

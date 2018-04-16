@@ -2,17 +2,17 @@
 
 namespace app\models;
 
-use think\Model;
+use Yii;
 
 /**
  * This is the model class for table "{{%volume_price}}".
  *
  * @property int $price_type
- * @property string $goods_id
+ * @property int $goods_id
  * @property int $volume_number
  * @property string $volume_price
  */
-class VolumePrice extends Model
+class VolumePrice extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc

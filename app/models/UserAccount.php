@@ -2,13 +2,13 @@
 
 namespace app\models;
 
-use think\Model;
+use Yii;
 
 /**
  * This is the model class for table "{{%user_account}}".
  *
- * @property string $id
- * @property string $user_id
+ * @property int $id
+ * @property int $user_id
  * @property string $admin_user
  * @property string $amount
  * @property int $add_time
@@ -19,7 +19,7 @@ use think\Model;
  * @property string $payment
  * @property int $is_paid
  */
-class UserAccount extends Model
+class UserAccount extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc

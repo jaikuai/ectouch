@@ -12,4 +12,8 @@ return [
     //'enableSchemaCache' => true,
     //'schemaCacheDuration' => 60,
     //'schemaCache' => 'cache',
+
+    'on afterOpen' => function($event) {
+        $event->sender->createCommand("set session sql_mode='NO_ENGINE_SUBSTITUTION'")->execute();
+    }
 ];

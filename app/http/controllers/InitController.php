@@ -6,6 +6,7 @@ use app\extensions\Shop;
 use app\extensions\Error;
 use app\extensions\Mysql;
 use app\extensions\Template;
+use Yii;
 use yii\web\Controller;
 
 class InitController extends Controller
@@ -17,12 +18,12 @@ class InitController extends Controller
     protected $_CFG;
     protected $user;
 
-    protected function initialize()
+    public function init()
     {
         define('PHP_SELF', basename(substr(basename($_SERVER['REQUEST_URI']), 0, stripos(basename($_SERVER['REQUEST_URI']), '?')), '.php'));
 
-        $_GET = input('get.') + request()->route();
-        $_POST = input('post.');
+        $_GET = app('request')->get();
+        $_POST = app('request')->post();
         $_REQUEST = $_GET + $_POST;
         $_REQUEST['act'] = isset($_REQUEST['act']) ? $_REQUEST['act'] : '';
 
@@ -73,7 +74,7 @@ class InitController extends Controller
             $_SERVER['PHP_SELF'] = htmlspecialchars($_SERVER['PHP_SELF']);
         }
 
-        $app_mode = config('shop.mode');
+        $app_mode = config('app.run_mode');
         if (($app_mode == 0 && is_mobile_device()) || $app_mode == 2) {
             $GLOBALS['_CFG']['template'] .= '/mobile';
         }

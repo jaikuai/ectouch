@@ -2,7 +2,7 @@
 
 namespace app\models;
 
-use think\Model;
+use Yii;
 
 /**
  * This is the model class for table "{{%template}}".
@@ -17,7 +17,7 @@ use think\Model;
  * @property string $theme
  * @property string $remarks
  */
-class Template extends Model
+class Template extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc

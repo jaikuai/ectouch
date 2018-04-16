@@ -2,14 +2,14 @@
 
 namespace app\models;
 
-use think\Model;
+use Yii;
 
 /**
  * This is the model class for table "{{%order_info}}".
  *
- * @property string $order_id
+ * @property int $order_id
  * @property string $order_sn
- * @property string $user_id
+ * @property int $user_id
  * @property int $order_status
  * @property int $shipping_status
  * @property int $pay_status
@@ -45,32 +45,32 @@ use think\Model;
  * @property string $card_fee
  * @property string $money_paid
  * @property string $surplus
- * @property string $integral
+ * @property int $integral
  * @property string $integral_money
  * @property string $bonus
  * @property string $order_amount
  * @property int $from_ad
  * @property string $referer
- * @property string $add_time
- * @property string $confirm_time
- * @property string $pay_time
- * @property string $shipping_time
+ * @property int $add_time
+ * @property int $confirm_time
+ * @property int $pay_time
+ * @property int $shipping_time
  * @property int $pack_id
  * @property int $card_id
- * @property string $bonus_id
+ * @property int $bonus_id
  * @property string $invoice_no
  * @property string $extension_code
- * @property string $extension_id
+ * @property int $extension_id
  * @property string $to_buyer
  * @property string $pay_note
  * @property int $agency_id
  * @property string $inv_type
  * @property string $tax
  * @property int $is_separate
- * @property string $parent_id
+ * @property int $parent_id
  * @property string $discount
  */
-class OrderInfo extends Model
+class OrderInfo extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc

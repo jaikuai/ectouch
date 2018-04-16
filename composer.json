@@ -49,9 +49,6 @@
             "app/support/helpers.php"
         ]
     },
-    "extra": {
-        "think-path": "app/kernel"
-    },
     "config": {
         "preferred-install": "dist",
         "sort-packages": true,

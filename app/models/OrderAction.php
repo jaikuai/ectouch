@@ -2,22 +2,22 @@
 
 namespace app\models;
 
-use think\Model;
+use Yii;
 
 /**
  * This is the model class for table "{{%order_action}}".
  *
- * @property string $action_id
- * @property string $order_id
+ * @property int $action_id
+ * @property int $order_id
  * @property string $action_user
  * @property int $order_status
  * @property int $shipping_status
  * @property int $pay_status
  * @property int $action_place
  * @property string $action_note
- * @property string $log_time
+ * @property int $log_time
  */
-class OrderAction extends Model
+class OrderAction extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc

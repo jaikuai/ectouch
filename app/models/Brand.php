@@ -2,7 +2,7 @@
 
 namespace app\models;
 
-use think\Model;
+use Yii;
 
 /**
  * This is the model class for table "{{%brand}}".
@@ -15,7 +15,7 @@ use think\Model;
  * @property int $sort_order
  * @property int $is_show
  */
-class Brand extends Model
+class Brand extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc

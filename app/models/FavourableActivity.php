@@ -2,15 +2,15 @@
 
 namespace app\models;
 
-use think\Model;
+use Yii;
 
 /**
  * This is the model class for table "{{%favourable_activity}}".
  *
  * @property int $act_id
  * @property string $act_name
- * @property string $start_time
- * @property string $end_time
+ * @property int $start_time
+ * @property int $end_time
  * @property string $user_rank
  * @property int $act_range
  * @property string $act_range_ext
@@ -21,7 +21,7 @@ use think\Model;
  * @property string $gift
  * @property int $sort_order
  */
-class FavourableActivity extends Model
+class FavourableActivity extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc

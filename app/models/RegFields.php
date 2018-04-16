@@ -2,7 +2,7 @@
 
 namespace app\models;
 
-use think\Model;
+use Yii;
 
 /**
  * This is the model class for table "{{%reg_fields}}".
@@ -14,7 +14,7 @@ use think\Model;
  * @property int $type
  * @property int $is_need
  */
-class RegFields extends Model
+class RegFields extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc

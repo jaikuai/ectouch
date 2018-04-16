@@ -2,7 +2,7 @@
 
 namespace app\models;
 
-use think\Model;
+use Yii;
 
 /**
  * This is the model class for table "{{%area_region}}".
@@ -10,7 +10,7 @@ use think\Model;
  * @property int $shipping_area_id
  * @property int $region_id
  */
-class AreaRegion extends Model
+class AreaRegion extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc

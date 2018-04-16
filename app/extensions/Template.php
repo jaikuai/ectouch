@@ -2,6 +2,8 @@
 
 namespace app\extensions;
 
+use yii\helpers\Html;
+
 /**
  * 模版类
  * Class Template
@@ -79,7 +81,7 @@ class Template
         /**
          * 自动返回ajax对象
          */
-        if (!defined('ECS_ADMIN') && (request()->isAjax() || isset($_GET['_ajax']))) {
+        if (!defined('ECS_ADMIN') && (app('request')->getIsAjax() || isset($_GET['_ajax']))) {
             // 过滤语言包
             unset($this->_var['lang']);
             // 过滤敏感配置
@@ -116,9 +118,8 @@ class Template
         error_reporting($this->_errorlevel);
         $this->_seterror--;
 
-        $csrf_token = '<meta name="csrf-token" content="' . request()->token() . '">';
-        $out = preg_replace('/<head>/i', "<head>\n\r" . $csrf_token, $out);
-        $out = preg_replace('/<\/form>/i', token() . "\r\n</form>", $out);
+        $out = preg_replace('/<head>/i', "<head>\n\r" . Html::csrfMetaTags(), $out);
+        $out = preg_replace('/<\/form>/i', csrf_field() . "\r\n</form>", $out);
 
         return $out;
     }

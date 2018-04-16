@@ -2,20 +2,20 @@
 
 namespace app\models;
 
-use think\Model;
+use Yii;
 
 /**
  * This is the model class for table "{{%user_bonus}}".
  *
- * @property string $bonus_id
+ * @property int $bonus_id
  * @property int $bonus_type_id
  * @property string $bonus_sn
- * @property string $user_id
- * @property string $used_time
- * @property string $order_id
+ * @property int $user_id
+ * @property int $used_time
+ * @property int $order_id
  * @property int $emailed
  */
-class UserBonus extends Model
+class UserBonus extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc

@@ -2,7 +2,7 @@
 
 namespace app\models;
 
-use think\Model;
+use Yii;
 
 /**
  * This is the model class for table "{{%email_list}}".
@@ -12,7 +12,7 @@ use think\Model;
  * @property int $stat
  * @property string $hash
  */
-class EmailList extends Model
+class EmailList extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc

@@ -2,7 +2,7 @@
 
 namespace app\models;
 
-use think\Model;
+use Yii;
 
 /**
  * This is the model class for table "{{%nav}}".
@@ -17,7 +17,7 @@ use think\Model;
  * @property string $url
  * @property string $type
  */
-class Nav extends Model
+class Nav extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc

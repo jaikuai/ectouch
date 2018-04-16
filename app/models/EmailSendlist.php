@@ -2,7 +2,7 @@
 
 namespace app\models;
 
-use think\Model;
+use Yii;
 
 /**
  * This is the model class for table "{{%email_sendlist}}".
@@ -15,7 +15,7 @@ use think\Model;
  * @property int $pri
  * @property int $last_send
  */
-class EmailSendlist extends Model
+class EmailSendlist extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc

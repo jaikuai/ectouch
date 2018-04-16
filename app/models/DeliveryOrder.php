@@ -2,20 +2,20 @@
 
 namespace app\models;
 
-use think\Model;
+use Yii;
 
 /**
  * This is the model class for table "{{%delivery_order}}".
  *
- * @property string $delivery_id
+ * @property int $delivery_id
  * @property string $delivery_sn
  * @property string $order_sn
- * @property string $order_id
+ * @property int $order_id
  * @property string $invoice_no
- * @property string $add_time
+ * @property int $add_time
  * @property int $shipping_id
  * @property string $shipping_name
- * @property string $user_id
+ * @property int $user_id
  * @property string $action_user
  * @property string $consignee
  * @property string $address
@@ -33,12 +33,12 @@ use think\Model;
  * @property string $how_oos
  * @property string $insure_fee
  * @property string $shipping_fee
- * @property string $update_time
+ * @property int $update_time
  * @property int $suppliers_id
  * @property int $status
  * @property int $agency_id
  */
-class DeliveryOrder extends Model
+class DeliveryOrder extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc

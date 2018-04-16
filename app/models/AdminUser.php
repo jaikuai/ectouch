@@ -2,7 +2,7 @@
 
 namespace app\models;
 
-use think\Model;
+use Yii;
 
 /**
  * This is the model class for table "{{%admin_user}}".
@@ -23,10 +23,54 @@ use think\Model;
  * @property string $todolist
  * @property int $role_id
  */
-class AdminUser extends Model
+class AdminUser extends \yii\db\ActiveRecord
 {
-    protected $table = 'admin_user';
+    /**
+     * @inheritdoc
+     */
+    public static function tableName()
+    {
+        return '{{%admin_user}}';
+    }
 
-    protected $pk = 'user_id';
+    /**
+     * @inheritdoc
+     */
+    public function rules()
+    {
+        return [
+            [['add_time', 'last_login', 'agency_id', 'suppliers_id', 'role_id'], 'integer'],
+            [['action_list', 'nav_list', 'agency_id'], 'required'],
+            [['action_list', 'nav_list', 'todolist'], 'string'],
+            [['user_name', 'email'], 'string', 'max' => 60],
+            [['password'], 'string', 'max' => 32],
+            [['ec_salt'], 'string', 'max' => 10],
+            [['last_ip'], 'string', 'max' => 15],
+            [['lang_type'], 'string', 'max' => 50],
+        ];
+    }
 
+    /**
+     * @inheritdoc
+     */
+    public function attributeLabels()
+    {
+        return [
+            'user_id' => 'User ID',
+            'user_name' => 'User Name',
+            'email' => 'Email',
+            'password' => 'Password',
+            'ec_salt' => 'Ec Salt',
+            'add_time' => 'Add Time',
+            'last_login' => 'Last Login',
+            'last_ip' => 'Last Ip',
+            'action_list' => 'Action List',
+            'nav_list' => 'Nav List',
+            'lang_type' => 'Lang Type',
+            'agency_id' => 'Agency ID',
+            'suppliers_id' => 'Suppliers ID',
+            'todolist' => 'Todolist',
+            'role_id' => 'Role ID',
+        ];
+    }
 }

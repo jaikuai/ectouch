@@ -2,7 +2,7 @@
 
 namespace app\models;
 
-use think\Model;
+use Yii;
 
 /**
  * This is the model class for table "{{%cat_recommend}}".
@@ -10,7 +10,7 @@ use think\Model;
  * @property int $cat_id
  * @property int $recommend_type
  */
-class CatRecommend extends Model
+class CatRecommend extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc

@@ -2,7 +2,7 @@
 
 namespace app\models;
 
-use think\Model;
+use Yii;
 
 /**
  * This is the model class for table "{{%suppliers}}".
@@ -12,7 +12,7 @@ use think\Model;
  * @property string $suppliers_desc
  * @property int $is_check
  */
-class Suppliers extends Model
+class Suppliers extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc

@@ -2,7 +2,7 @@
 
 namespace app\models;
 
-use think\Model;
+use Yii;
 
 /**
  * This is the model class for table "{{%auto_manage}}".
@@ -12,7 +12,7 @@ use think\Model;
  * @property int $starttime
  * @property int $endtime
  */
-class AutoManage extends Model
+class AutoManage extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc

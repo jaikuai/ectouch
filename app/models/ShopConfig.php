@@ -2,7 +2,7 @@
 
 namespace app\models;
 
-use think\Model;
+use Yii;
 
 /**
  * This is the model class for table "{{%shop_config}}".
@@ -16,7 +16,7 @@ use think\Model;
  * @property string $value
  * @property int $sort_order
  */
-class ShopConfig extends Model
+class ShopConfig extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc

@@ -2,7 +2,7 @@
 
 namespace app\models;
 
-use think\Model;
+use Yii;
 
 /**
  * This is the model class for table "{{%role}}".
@@ -12,7 +12,7 @@ use think\Model;
  * @property string $action_list
  * @property string $role_describe
  */
-class Role extends Model
+class Role extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc

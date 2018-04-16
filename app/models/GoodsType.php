@@ -2,7 +2,7 @@
 
 namespace app\models;
 
-use think\Model;
+use Yii;
 
 /**
  * This is the model class for table "{{%goods_type}}".
@@ -12,7 +12,7 @@ use think\Model;
  * @property int $enabled
  * @property string $attr_group
  */
-class GoodsType extends Model
+class GoodsType extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc

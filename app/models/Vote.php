@@ -2,19 +2,19 @@
 
 namespace app\models;
 
-use think\Model;
+use Yii;
 
 /**
  * This is the model class for table "{{%vote}}".
  *
  * @property int $vote_id
  * @property string $vote_name
- * @property string $start_time
- * @property string $end_time
+ * @property int $start_time
+ * @property int $end_time
  * @property int $can_multi
- * @property string $vote_count
+ * @property int $vote_count
  */
-class Vote extends Model
+class Vote extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc

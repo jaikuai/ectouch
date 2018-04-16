@@ -2,19 +2,19 @@
 
 namespace app\models;
 
-use think\Model;
+use Yii;
 
 /**
  * This is the model class for table "{{%goods_gallery}}".
  *
- * @property string $img_id
- * @property string $goods_id
+ * @property int $img_id
+ * @property int $goods_id
  * @property string $img_url
  * @property string $img_desc
  * @property string $thumb_url
  * @property string $img_original
  */
-class GoodsGallery extends Model
+class GoodsGallery extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc

@@ -2,20 +2,20 @@
 
 namespace app\models;
 
-use think\Model;
+use Yii;
 
 /**
  * This is the model class for table "{{%user_rank}}".
  *
  * @property int $rank_id
  * @property string $rank_name
- * @property string $min_points
- * @property string $max_points
+ * @property int $min_points
+ * @property int $max_points
  * @property int $discount
  * @property int $show_price
  * @property int $special_rank
  */
-class UserRank extends Model
+class UserRank extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc

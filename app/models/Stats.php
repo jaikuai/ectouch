@@ -2,12 +2,12 @@
 
 namespace app\models;
 
-use think\Model;
+use Yii;
 
 /**
  * This is the model class for table "{{%stats}}".
  *
- * @property string $access_time
+ * @property int $access_time
  * @property string $ip_address
  * @property int $visit_times
  * @property string $browser
@@ -18,7 +18,7 @@ use think\Model;
  * @property string $referer_path
  * @property string $access_url
  */
-class Stats extends Model
+class Stats extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc

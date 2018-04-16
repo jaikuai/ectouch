@@ -2,23 +2,57 @@
 
 namespace app\models;
 
-use think\Model;
+use Yii;
 
 /**
  * This is the model class for table "{{%ad_custom}}".
  *
- * @property string $ad_id
+ * @property int $ad_id
  * @property int $ad_type
  * @property string $ad_name
- * @property string $add_time
+ * @property int $add_time
  * @property string $content
  * @property string $url
  * @property int $ad_status
  */
-class AdCustom extends Model
+class AdCustom extends \yii\db\ActiveRecord
 {
-    protected $table = 'ad_custom';
+    /**
+     * @inheritdoc
+     */
+    public static function tableName()
+    {
+        return '{{%ad_custom}}';
+    }
 
-    protected $pk = 'ad_id';
+    /**
+     * @inheritdoc
+     */
+    public function rules()
+    {
+        return [
+            [['add_time'], 'integer'],
+            [['content'], 'string'],
+            [['ad_type'], 'string', 'max' => 1],
+            [['ad_name'], 'string', 'max' => 60],
+            [['url'], 'string', 'max' => 255],
+            [['ad_status'], 'string', 'max' => 3],
+        ];
+    }
 
+    /**
+     * @inheritdoc
+     */
+    public function attributeLabels()
+    {
+        return [
+            'ad_id' => 'Ad ID',
+            'ad_type' => 'Ad Type',
+            'ad_name' => 'Ad Name',
+            'add_time' => 'Add Time',
+            'content' => 'Content',
+            'url' => 'Url',
+            'ad_status' => 'Ad Status',
+        ];
+    }
 }

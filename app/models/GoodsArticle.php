@@ -2,16 +2,16 @@
 
 namespace app\models;
 
-use think\Model;
+use Yii;
 
 /**
  * This is the model class for table "{{%goods_article}}".
  *
- * @property string $goods_id
- * @property string $article_id
+ * @property int $goods_id
+ * @property int $article_id
  * @property int $admin_id
  */
-class GoodsArticle extends Model
+class GoodsArticle extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc

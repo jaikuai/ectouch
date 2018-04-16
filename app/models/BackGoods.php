@@ -2,15 +2,15 @@
 
 namespace app\models;
 
-use think\Model;
+use Yii;
 
 /**
  * This is the model class for table "{{%back_goods}}".
  *
- * @property string $rec_id
- * @property string $back_id
- * @property string $goods_id
- * @property string $product_id
+ * @property int $rec_id
+ * @property int $back_id
+ * @property int $goods_id
+ * @property int $product_id
  * @property string $product_sn
  * @property string $goods_name
  * @property string $brand_name
@@ -19,7 +19,7 @@ use think\Model;
  * @property int $send_number
  * @property string $goods_attr
  */
-class BackGoods extends Model
+class BackGoods extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc

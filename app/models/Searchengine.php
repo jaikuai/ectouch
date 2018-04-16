@@ -2,16 +2,16 @@
 
 namespace app\models;
 
-use think\Model;
+use Yii;
 
 /**
  * This is the model class for table "{{%searchengine}}".
  *
  * @property string $date
  * @property string $searchengine
- * @property string $count
+ * @property int $count
  */
-class Searchengine extends Model
+class Searchengine extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc

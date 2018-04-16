@@ -2,12 +2,12 @@
 
 namespace app\models;
 
-use think\Model;
+use Yii;
 
 /**
  * This is the model class for table "{{%article}}".
  *
- * @property string $article_id
+ * @property int $article_id
  * @property int $cat_id
  * @property string $title
  * @property string $content
@@ -16,13 +16,13 @@ use think\Model;
  * @property string $keywords
  * @property int $article_type
  * @property int $is_open
- * @property string $add_time
+ * @property int $add_time
  * @property string $file_url
  * @property int $open_type
  * @property string $link
  * @property string $description
  */
-class Article extends Model
+class Article extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc

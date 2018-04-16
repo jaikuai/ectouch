@@ -2,7 +2,7 @@
 
 namespace app\models;
 
-use think\Model;
+use Yii;
 
 /**
  * This is the model class for table "{{%category}}".
@@ -21,7 +21,7 @@ use think\Model;
  * @property int $grade
  * @property string $filter_attr
  */
-class Category extends Model
+class Category extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc

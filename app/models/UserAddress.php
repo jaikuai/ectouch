@@ -2,14 +2,14 @@
 
 namespace app\models;
 
-use think\Model;
+use Yii;
 
 /**
  * This is the model class for table "{{%user_address}}".
  *
- * @property string $address_id
+ * @property int $address_id
  * @property string $address_name
- * @property string $user_id
+ * @property int $user_id
  * @property string $consignee
  * @property string $email
  * @property int $country
@@ -23,7 +23,7 @@ use think\Model;
  * @property string $sign_building
  * @property string $best_time
  */
-class UserAddress extends Model
+class UserAddress extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc

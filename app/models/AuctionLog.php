@@ -2,18 +2,18 @@
 
 namespace app\models;
 
-use think\Model;
+use Yii;
 
 /**
  * This is the model class for table "{{%auction_log}}".
  *
- * @property string $log_id
- * @property string $act_id
- * @property string $bid_user
+ * @property int $log_id
+ * @property int $act_id
+ * @property int $bid_user
  * @property string $bid_price
- * @property string $bid_time
+ * @property int $bid_time
  */
-class AuctionLog extends Model
+class AuctionLog extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc

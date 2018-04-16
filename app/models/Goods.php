@@ -2,17 +2,17 @@
 
 namespace app\models;
 
-use think\Model;
+use Yii;
 
 /**
  * This is the model class for table "{{%goods}}".
  *
- * @property string $goods_id
+ * @property int $goods_id
  * @property int $cat_id
  * @property string $goods_sn
  * @property string $goods_name
  * @property string $goods_name_style
- * @property string $click_count
+ * @property int $click_count
  * @property int $brand_id
  * @property string $provider_name
  * @property int $goods_number
@@ -20,8 +20,8 @@ use think\Model;
  * @property string $market_price
  * @property string $shop_price
  * @property string $promote_price
- * @property string $promote_start_date
- * @property string $promote_end_date
+ * @property int $promote_start_date
+ * @property int $promote_end_date
  * @property int $warn_number
  * @property string $keywords
  * @property string $goods_brief
@@ -34,8 +34,8 @@ use think\Model;
  * @property int $is_on_sale
  * @property int $is_alone_sale
  * @property int $is_shipping
- * @property string $integral
- * @property string $add_time
+ * @property int $integral
+ * @property int $add_time
  * @property int $sort_order
  * @property int $is_delete
  * @property int $is_best
@@ -43,7 +43,7 @@ use think\Model;
  * @property int $is_hot
  * @property int $is_promote
  * @property int $bonus_type_id
- * @property string $last_update
+ * @property int $last_update
  * @property int $goods_type
  * @property string $seller_note
  * @property int $give_integral
@@ -51,7 +51,7 @@ use think\Model;
  * @property int $suppliers_id
  * @property int $is_check
  */
-class Goods extends Model
+class Goods extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc

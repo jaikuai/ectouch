@@ -2,7 +2,7 @@
 
 namespace app\models;
 
-use think\Model;
+use Yii;
 
 /**
  * This is the model class for table "{{%friend_link}}".
@@ -13,7 +13,7 @@ use think\Model;
  * @property string $link_logo
  * @property int $show_order
  */
-class FriendLink extends Model
+class FriendLink extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc

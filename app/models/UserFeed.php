@@ -2,19 +2,19 @@
 
 namespace app\models;
 
-use think\Model;
+use Yii;
 
 /**
  * This is the model class for table "{{%user_feed}}".
  *
- * @property string $feed_id
- * @property string $user_id
- * @property string $value_id
- * @property string $goods_id
+ * @property int $feed_id
+ * @property int $user_id
+ * @property int $value_id
+ * @property int $goods_id
  * @property int $feed_type
  * @property int $is_feed
  */
-class UserFeed extends Model
+class UserFeed extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc

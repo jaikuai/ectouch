@@ -2,18 +2,18 @@
 
 namespace app\models;
 
-use think\Model;
+use Yii;
 
 /**
  * This is the model class for table "{{%goods_attr}}".
  *
- * @property string $goods_attr_id
- * @property string $goods_id
+ * @property int $goods_attr_id
+ * @property int $goods_id
  * @property int $attr_id
  * @property string $attr_value
  * @property string $attr_price
  */
-class GoodsAttr extends Model
+class GoodsAttr extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc

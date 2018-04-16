@@ -2,24 +2,24 @@
 
 namespace app\models;
 
-use think\Model;
+use Yii;
 
 /**
  * This is the model class for table "{{%goods_activity}}".
  *
- * @property string $act_id
+ * @property int $act_id
  * @property string $act_name
  * @property string $act_desc
  * @property int $act_type
- * @property string $goods_id
- * @property string $product_id
+ * @property int $goods_id
+ * @property int $product_id
  * @property string $goods_name
- * @property string $start_time
- * @property string $end_time
+ * @property int $start_time
+ * @property int $end_time
  * @property int $is_finished
  * @property string $ext_info
  */
-class GoodsActivity extends Model
+class GoodsActivity extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc

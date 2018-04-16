@@ -2,7 +2,7 @@
 
 namespace app\models;
 
-use think\Model;
+use Yii;
 
 /**
  * This is the model class for table "{{%mail_templates}}".
@@ -12,11 +12,11 @@ use think\Model;
  * @property int $is_html
  * @property string $template_subject
  * @property string $template_content
- * @property string $last_modify
- * @property string $last_send
+ * @property int $last_modify
+ * @property int $last_send
  * @property string $type
  */
-class MailTemplates extends Model
+class MailTemplates extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc

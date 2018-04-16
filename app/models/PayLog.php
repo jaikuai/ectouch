@@ -2,18 +2,18 @@
 
 namespace app\models;
 
-use think\Model;
+use Yii;
 
 /**
  * This is the model class for table "{{%pay_log}}".
  *
- * @property string $log_id
- * @property string $order_id
+ * @property int $log_id
+ * @property int $order_id
  * @property string $order_amount
  * @property int $order_type
  * @property int $is_paid
  */
-class PayLog extends Model
+class PayLog extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc

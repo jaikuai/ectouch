@@ -2,19 +2,19 @@
 
 namespace app\models;
 
-use think\Model;
+use Yii;
 
 /**
  * This is the model class for table "{{%wholesale}}".
  *
- * @property string $act_id
- * @property string $goods_id
+ * @property int $act_id
+ * @property int $goods_id
  * @property string $goods_name
  * @property string $rank_ids
  * @property string $prices
  * @property int $enabled
  */
-class Wholesale extends Model
+class Wholesale extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc

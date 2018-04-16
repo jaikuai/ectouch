@@ -2,17 +2,17 @@
 
 namespace app\models;
 
-use think\Model;
+use Yii;
 
 /**
  * This is the model class for table "{{%order_goods}}".
  *
- * @property string $rec_id
- * @property string $order_id
- * @property string $goods_id
+ * @property int $rec_id
+ * @property int $order_id
+ * @property int $goods_id
  * @property string $goods_name
  * @property string $goods_sn
- * @property string $product_id
+ * @property int $product_id
  * @property int $goods_number
  * @property string $market_price
  * @property string $goods_price
@@ -20,11 +20,11 @@ use think\Model;
  * @property int $send_number
  * @property int $is_real
  * @property string $extension_code
- * @property string $parent_id
+ * @property int $parent_id
  * @property int $is_gift
  * @property string $goods_attr_id
  */
-class OrderGoods extends Model
+class OrderGoods extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc

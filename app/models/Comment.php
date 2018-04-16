@@ -2,25 +2,25 @@
 
 namespace app\models;
 
-use think\Model;
+use Yii;
 
 /**
  * This is the model class for table "{{%comment}}".
  *
- * @property string $comment_id
+ * @property int $comment_id
  * @property int $comment_type
- * @property string $id_value
+ * @property int $id_value
  * @property string $email
  * @property string $user_name
  * @property string $content
  * @property int $comment_rank
- * @property string $add_time
+ * @property int $add_time
  * @property string $ip_address
  * @property int $status
- * @property string $parent_id
- * @property string $user_id
+ * @property int $parent_id
+ * @property int $user_id
  */
-class Comment extends Model
+class Comment extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc
