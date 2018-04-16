@@ -2,7 +2,7 @@
 
 namespace app\dashboard\controller;
 
-use app\libraries\Image;
+use app\extensions\Image;
 
 /**
  * Class IndexController

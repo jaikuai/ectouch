@@ -2,7 +2,7 @@
 
 namespace app\dashboard\controller;
 
-use app\libraries\Exchange;
+use app\extensions\Exchange;
 
 /**
  * 商品分类管理

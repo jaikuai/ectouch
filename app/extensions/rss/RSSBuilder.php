@@ -1,6 +1,6 @@
 <?php
 
-namespace app\libraries\rss;
+namespace app\extensions\rss;
 
 /*-----------------------------------------------------------------------*/
 // Class for creating a RSS file

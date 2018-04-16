@@ -2,7 +2,7 @@
 
 namespace app\dashboard\controller;
 
-use app\libraries\Exchange;
+use app\extensions\Exchange;
 
 /**
  * 配送方式管理

@@ -1,6 +1,6 @@
 <?php
 
-namespace app\libraries;
+namespace app\extensions;
 
 /**
  * 后台对上传文件的处理类(实现图片上传，图片缩小， 增加水印)
@@ -15,7 +15,7 @@ namespace app\libraries;
  *  define('ROOT_PATH',                     '网站根目录')
  *
  * Class Image
- * @package app\libraries
+ * @package app\extensions
  */
 
 class Image

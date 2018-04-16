@@ -1,11 +1,11 @@
 <?php
 
-namespace app\libraries;
+namespace app\extensions;
 
 /**
  * 基础类
  * Class Shop
- * @package app\libraries
+ * @package app\extensions
  */
 class Shop
 {

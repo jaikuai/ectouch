@@ -1,13 +1,13 @@
 <?php
 
-namespace app\libraries;
+namespace app\extensions;
 
 use think\Db as DB;
 
 /**
  * MYSQL 公用类库
  * Class Mysql
- * @package app\libraries
+ * @package app\extensions
  */
 class Mysql
 {

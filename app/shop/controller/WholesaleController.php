@@ -2,7 +2,7 @@
 
 namespace app\shop\controller;
 
-use app\libraries\Sms;
+use app\extensions\Sms;
 
 /**
  * 批发

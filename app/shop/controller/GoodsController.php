@@ -2,7 +2,7 @@
 
 namespace app\shop\controller;
 
-use app\libraries\Json;
+use app\extensions\Json;
 
 /**
  * 商品详情

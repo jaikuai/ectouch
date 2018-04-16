@@ -1,7 +1,7 @@
 <?php
 
 
-use app\libraries\Json;
+use app\extensions\Json;
 
 /**
  * 获得所有模块的名称以及链接地址

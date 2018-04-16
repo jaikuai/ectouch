@@ -2,7 +2,7 @@
 
 namespace app\dashboard\controller;
 
-use app\libraries\Exchange;
+use app\extensions\Exchange;
 
 /**
  * 管理中心办事处管理

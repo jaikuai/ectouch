@@ -2,7 +2,7 @@
 
 namespace app\dashboard\controller;
 
-use app\libraries\Exchange;
+use app\extensions\Exchange;
 
 /**
  * 支付方式管理

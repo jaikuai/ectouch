@@ -1,11 +1,11 @@
 <?php
 
-namespace app\libraries;
+namespace app\extensions;
 
 /**
  * 用户级错误处理类
  * Class Error
- * @package app\libraries
+ * @package app\extensions
  */
 class Error
 {

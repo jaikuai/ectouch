@@ -2,10 +2,10 @@
 
 namespace app\shop\controller;
 
-use app\libraries\Shop;
-use app\libraries\Error;
-use app\libraries\Mysql;
-use app\libraries\Template;
+use app\extensions\Shop;
+use app\extensions\Error;
+use app\extensions\Mysql;
+use app\extensions\Template;
 use think\Controller;
 
 class InitController extends Controller

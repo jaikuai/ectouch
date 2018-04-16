@@ -2,7 +2,7 @@
 
 namespace app\shop\controller;
 
-use app\libraries\sitemap;
+use app\extensions\sitemap;
 
 /**
  * 网站地图

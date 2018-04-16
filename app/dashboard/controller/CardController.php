@@ -2,8 +2,8 @@
 
 namespace app\dashboard\controller;
 
-use app\libraries\Image;
-use app\libraries\Exchange;
+use app\extensions\Image;
+use app\extensions\Exchange;
 
 /**
  * 贺卡管理

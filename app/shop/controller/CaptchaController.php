@@ -2,7 +2,7 @@
 
 namespace app\shop\controller;
 
-use app\libraries\Captcha;
+use app\extensions\Captcha;
 
 /**
  * 生成验证码

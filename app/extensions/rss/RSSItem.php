@@ -1,6 +1,6 @@
 <?php
 
-namespace app\libraries\rss;
+namespace app\extensions\rss;
 
 /*-----------------------------------------------------------------------*/
 // single rss item object

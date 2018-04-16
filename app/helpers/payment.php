@@ -1,6 +1,6 @@
 <?php
 
-use app\libraries\Sms;
+use app\extensions\Sms;
 
 /**
  * 取得返回信息地址

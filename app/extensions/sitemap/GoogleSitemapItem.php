@@ -1,6 +1,6 @@
 <?php
 
-namespace app\libraries\sitemap;
+namespace app\extensions\sitemap;
 
 class GoogleSitemapItem
 {

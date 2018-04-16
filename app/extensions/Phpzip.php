@@ -1,11 +1,11 @@
 <?php
 
-namespace app\libraries;
+namespace app\extensions;
 
 /**
  * ZIP 处理类
  * Class PHPZip
- * @package app\libraries
+ * @package app\extensions
  */
 class Phpzip
 {

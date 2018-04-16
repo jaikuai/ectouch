@@ -2,8 +2,8 @@
 
 namespace app\dashboard\controller;
 
-use app\libraries\Json;
-use app\libraries\Transport;
+use app\extensions\Json;
+use app\extensions\Transport;
 
 /**
  * 云服务接口

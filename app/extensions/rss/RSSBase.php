@@ -1,6 +1,6 @@
 <?php
 
-namespace app\libraries\rss;
+namespace app\extensions\rss;
 
 /*-----------------------------------------------------------------------*/
 // @package RSSBuilder
