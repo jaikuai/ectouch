@@ -9,7 +9,7 @@ namespace app\dashboard\controller;
  */
 class UserAccountController extends InitController
 {
-    public function index()
+    public function actionIndex()
     {
         /**
          * 会员余额记录列表

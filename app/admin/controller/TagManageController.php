@@ -8,7 +8,7 @@ namespace app\dashboard\controller;
  */
 class TagManageController extends InitController
 {
-    public function index()
+    public function actionIndex()
     {
         if ($_REQUEST['act'] == 'list') {
             // 鏉冮檺鍒ゆ柇

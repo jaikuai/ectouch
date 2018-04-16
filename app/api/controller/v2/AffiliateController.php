@@ -11,7 +11,7 @@ class AffiliateController extends Controller
     /**
     * POST ecapi.recommend.affiliate.list
     */
-    public function index()
+    public function actionIndex()
     {
         $rules = [
             'page' => 'required|integer|min:1',

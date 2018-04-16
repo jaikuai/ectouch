@@ -12,7 +12,7 @@ use app\extensions\Exchange;
  */
 class ArticleController extends InitController
 {
-    public function index()
+    public function actionIndex()
     {
         /*初始化数据交换对象 */
         $exc = new Exchange($this->ecs->table("article"), $this->db, 'article_id', 'title');

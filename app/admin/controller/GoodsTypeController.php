@@ -11,7 +11,7 @@ use app\extensions\Exchange;
  */
 class GoodsTypeController extends InitController
 {
-    public function index()
+    public function actionIndex()
     {
         $exc = new Exchange($this->ecs->table("goods_type"), $this->db, 'cat_id', 'cat_name');
 

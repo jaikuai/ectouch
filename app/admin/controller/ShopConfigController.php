@@ -9,7 +9,7 @@ namespace app\dashboard\controller;
  */
 class ShopConfigController extends InitController
 {
-    public function index()
+    public function actionIndex()
     {
         /**
          * 列表编辑 ?act=list_edit

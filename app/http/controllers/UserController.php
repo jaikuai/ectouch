@@ -12,7 +12,7 @@ use app\extensions\Captcha;
  */
 class UserController extends InitController
 {
-    public function index()
+    public function actionIndex()
     {
         /**
          * 载入语言文件

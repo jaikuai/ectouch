@@ -11,7 +11,7 @@ use app\extensions\Image;
  */
 class GoodsBatchController extends InitController
 {
-    public function index()
+    public function actionIndex()
     {
         load_helper('goods', 'admin');
 

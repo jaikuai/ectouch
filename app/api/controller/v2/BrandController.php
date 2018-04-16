@@ -11,7 +11,7 @@ class BrandController extends Controller
     /**
     * POST ecapi.brand.list
     */
-    public function index()
+    public function actionIndex()
     {
         $rules = [
             'page'      => 'required|integer|min:1',

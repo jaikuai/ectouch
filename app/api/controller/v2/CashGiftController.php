@@ -13,7 +13,7 @@ class CashGiftController extends Controller
     /**
     * POST ecapi.cashgift.list
     */
-    public function index()
+    public function actionIndex()
     {
         $rules = [
             'page'      => 'required|integer|min:1',

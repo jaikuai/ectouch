@@ -11,7 +11,7 @@ use app\extensions\Exchange;
  */
 class AgencyController extends InitController
 {
-    public function index()
+    public function actionIndex()
     {
         $exc = new Exchange($this->ecs->table('agency'), $this->db, 'agency_id', 'agency_name');
 

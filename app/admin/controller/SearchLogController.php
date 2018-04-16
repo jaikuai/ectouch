@@ -8,7 +8,7 @@ namespace app\dashboard\controller;
  */
 class SearchLogController extends InitController
 {
-    public function index()
+    public function actionIndex()
     {
         admin_priv('search_log');
         if ($_REQUEST['act'] == 'list') {

@@ -9,7 +9,7 @@ namespace app\http\controllers;
  */
 class ExchangeController extends InitController
 {
-    public function index()
+    public function actionIndex()
     {
         $_REQUEST['act'] = empty($_REQUEST['act']) ? 'list' : $_REQUEST['act'];
 

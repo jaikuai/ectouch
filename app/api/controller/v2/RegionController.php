@@ -7,7 +7,7 @@ use app\api\model\v2\Region;
 
 class RegionController extends Controller
 {
-    public function index()
+    public function actionIndex()
     {
         $response = Region::getList();
         return $this->json($response);

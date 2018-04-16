@@ -9,7 +9,7 @@ namespace app\dashboard\controller;
  */
 class SaleGeneralController extends InitController
 {
-    public function index()
+    public function actionIndex()
     {
         load_lang('statistic', 'admin');
 

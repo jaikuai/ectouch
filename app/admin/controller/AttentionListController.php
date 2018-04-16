@@ -8,7 +8,7 @@ namespace app\dashboard\controller;
  */
 class AttentionListController extends InitController
 {
-    public function index()
+    public function actionIndex()
     {
         admin_priv('attention_list');
 

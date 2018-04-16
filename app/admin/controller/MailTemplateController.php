@@ -9,7 +9,7 @@ namespace app\dashboard\controller;
  */
 class MailTemplateController extends InitController
 {
-    public function index()
+    public function actionIndex()
     {
         admin_priv('mail_template');
 

@@ -8,7 +8,7 @@ namespace app\http\controllers;
  */
 class OAuthController extends InitController
 {
-    public function index()
+    public function actionIndex()
     {
         return 'OAuthController.';
     }

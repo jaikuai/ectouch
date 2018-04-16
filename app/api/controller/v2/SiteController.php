@@ -8,7 +8,7 @@ use app\api\model\v2\ShopConfig;
 class SiteController extends Controller
 {
     //POST  ecapi.site.get
-    public function index()
+    public function actionIndex()
     {
         return $this->json(ShopConfig::getSiteInfo());
     }

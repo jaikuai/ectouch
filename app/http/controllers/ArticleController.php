@@ -9,7 +9,7 @@ namespace app\http\controllers;
  */
 class ArticleController extends InitController
 {
-    public function index()
+    public function actionIndex()
     {
         $_REQUEST['id'] = intval($_GET['id']);
         $article_id = $_REQUEST['id'];

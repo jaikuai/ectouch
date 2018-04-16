@@ -9,7 +9,7 @@ namespace app\http\controllers;
  */
 class PackageController extends InitController
 {
-    public function index()
+    public function actionIndex()
     {
         load_helper(['order', 'transaction']);
         load_lang(['flow', 'user']);

@@ -10,7 +10,7 @@ use app\extensions\Image;
  */
 class IndexController extends InitController
 {
-    public function index()
+    public function actionIndex()
     {
         load_helper('order');
 

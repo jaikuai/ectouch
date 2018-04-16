@@ -11,7 +11,7 @@ use app\extensions\Exchange;
  */
 class SnatchController extends InitController
 {
-    public function index()
+    public function actionIndex()
     {
         $exc = new Exchange($this->ecs->table("goods_activity"), $this->db, 'act_id', 'act_name');
 

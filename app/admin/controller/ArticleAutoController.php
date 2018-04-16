@@ -8,7 +8,7 @@ namespace app\dashboard\controller;
  */
 class ArticleAutoController extends InitController
 {
-    public function index()
+    public function actionIndex()
     {
         admin_priv('article_auto');
         $this->smarty->assign('thisfile', 'article_auto.php');

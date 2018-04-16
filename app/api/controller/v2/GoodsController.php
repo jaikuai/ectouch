@@ -26,7 +26,7 @@ class GoodsController extends Controller
     /**
      * POST /ecapi.product.list
      */
-    public function index()
+    public function actionIndex()
     {
         $rules = [
             'page'            => 'required|integer|min:1',

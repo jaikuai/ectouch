@@ -8,7 +8,7 @@ namespace app\http\controllers;
  */
 class GrouponController extends InitController
 {
-    public function index()
+    public function actionIndex()
     {
         return 'GrouponController.';
     }

@@ -11,7 +11,7 @@ class ShippingController extends Controller
     /**
      * POST ecapi.shipping.vendor.list
      */
-    public function index()
+    public function actionIndex()
     {
         $rules = [
             'shop'       => 'integer|min:1',

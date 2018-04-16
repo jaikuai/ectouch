@@ -11,7 +11,7 @@ use app\extensions\Exchange;
  */
 class PaymentController extends InitController
 {
-    public function index()
+    public function actionIndex()
     {
         $exc = new Exchange($this->ecs->table('payment'), $this->db, 'pay_code', 'pay_name');
 

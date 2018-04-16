@@ -27,7 +27,7 @@ class IndexController extends InitController
      *
      * @return string
      */
-    public function index()
+    public function actionIndex()
     {
         /**
          * 判断是否有ajax请求

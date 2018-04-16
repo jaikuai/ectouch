@@ -9,7 +9,7 @@ namespace app\dashboard\controller;
  */
 class AccountLogController extends InitController
 {
-    public function index()
+    public function actionIndex()
     {
         load_helper('order');
 

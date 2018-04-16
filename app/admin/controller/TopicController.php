@@ -9,7 +9,7 @@ namespace app\dashboard\controller;
  */
 class TopicController extends InitController
 {
-    public function index()
+    public function actionIndex()
     {
         // 配置风格颜色选项
         $topic_style_color = [

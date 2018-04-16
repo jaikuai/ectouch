@@ -9,7 +9,7 @@ namespace app\http\controllers;
  */
 class CycleImageController extends InitController
 {
-    public function index()
+    public function actionIndex()
     {
         header('Content-Type: application/xml; charset=' . CHARSET);
         header('Cache-Control: no-cache, must-revalidate');

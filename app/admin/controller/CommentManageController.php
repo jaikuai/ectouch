@@ -9,7 +9,7 @@ namespace app\dashboard\controller;
  */
 class CommentManageController extends InitController
 {
-    public function index()
+    public function actionIndex()
     {
         /**
          * 获取没有回复的评论列表

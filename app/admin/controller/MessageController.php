@@ -9,7 +9,7 @@ namespace app\dashboard\controller;
  */
 class MessageController extends InitController
 {
-    public function index()
+    public function actionIndex()
     {
         /**
          * 留言列表页面

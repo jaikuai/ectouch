@@ -8,7 +8,7 @@ namespace app\http\controllers;
  */
 class SalesController extends InitController
 {
-    public function index()
+    public function actionIndex()
     {
         return 'SalesController.';
     }

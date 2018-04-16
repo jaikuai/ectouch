@@ -10,7 +10,7 @@ use app\extensions\Json;
  */
 class RegionController extends InitController
 {
-    public function index()
+    public function actionIndex()
     {
         header('Content-type: text/html; charset=' . CHARSET);
 

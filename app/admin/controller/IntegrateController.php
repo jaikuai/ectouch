@@ -11,7 +11,7 @@ use app\extensions\Mysql;
  */
 class IntegrateController extends InitController
 {
-    public function index()
+    public function actionIndex()
     {
         /**
          * 会员数据整合插件列表

@@ -9,7 +9,7 @@ namespace app\http\controllers;
  */
 class QuotationController extends InitController
 {
-    public function index()
+    public function actionIndex()
     {
         $action = empty($_REQUEST['act']) ? 'default' : trim($_REQUEST['act']);
         if ($action == 'print_quotation') {

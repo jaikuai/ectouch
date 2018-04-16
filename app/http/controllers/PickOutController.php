@@ -9,7 +9,7 @@ namespace app\http\controllers;
  */
 class PickOutController extends InitController
 {
-    public function index()
+    public function actionIndex()
     {
         $condition = [];
         $picks = [];

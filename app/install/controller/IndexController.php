@@ -8,7 +8,7 @@ namespace app\install\controller;
  */
 class IndexController
 {
-    public function index()
+    public function actionIndex()
     {
         return 'install';
     }

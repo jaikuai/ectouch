@@ -9,7 +9,7 @@ namespace app\dashboard\controller;
  */
 class TemplateController extends InitController
 {
-    public function index()
+    public function actionIndex()
     {
         load_helper('template', 'admin');
 

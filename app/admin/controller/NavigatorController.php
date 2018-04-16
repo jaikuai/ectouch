@@ -10,7 +10,7 @@ use app\extensions\Exchange;
  */
 class NavigatorController extends InitController
 {
-    public function index()
+    public function actionIndex()
     {
         admin_priv('navigator');
 

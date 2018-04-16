@@ -8,7 +8,7 @@ namespace app\http\controllers;
  */
 class CrowdFundingController extends InitController
 {
-    public function index()
+    public function actionIndex()
     {
         return 'CrowdFundingController.';
     }

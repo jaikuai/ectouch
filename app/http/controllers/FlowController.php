@@ -13,7 +13,7 @@ use app\extensions\Captcha;
  */
 class FlowController extends InitController
 {
-    public function index()
+    public function actionIndex()
     {
         load_helper('order');
         load_lang(['user', 'flow']);

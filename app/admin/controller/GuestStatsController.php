@@ -9,7 +9,7 @@ namespace app\dashboard\controller;
  */
 class GuestStatsController extends InitController
 {
-    public function index()
+    public function actionIndex()
     {
         load_helper('order');
         load_lang('statistic', 'admin');

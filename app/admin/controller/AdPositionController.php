@@ -11,7 +11,7 @@ use app\extensions\Exchange;
  */
 class AdPositionController extends InitController
 {
-    public function index()
+    public function actionIndex()
     {
         load_helper('ads', 'admin');
 

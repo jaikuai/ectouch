@@ -11,7 +11,7 @@ use app\extensions\Mysql;
  */
 class ConvertController extends InitController
 {
-    public function index()
+    public function actionIndex()
     {
         /**
          * 转换程序主页面

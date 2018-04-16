@@ -12,7 +12,7 @@ class OrderController extends Controller
     /**
      * POST /ecapi.order.list
      */
-    public function index()
+    public function actionIndex()
     {
         $rules = [
             'page'            => 'required|integer|min:1',

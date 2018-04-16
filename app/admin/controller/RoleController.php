@@ -11,7 +11,7 @@ use app\extensions\Exchange;
  */
 class RoleController extends InitController
 {
-    public function index()
+    public function actionIndex()
     {
         // act操作项的初始化
         if (empty($_REQUEST['act'])) {

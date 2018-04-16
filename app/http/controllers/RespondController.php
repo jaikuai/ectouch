@@ -8,7 +8,7 @@ namespace app\http\controllers;
  */
 class RespondController extends InitController
 {
-    public function index()
+    public function actionIndex()
     {
         load_helper(['payment', 'order']);
 

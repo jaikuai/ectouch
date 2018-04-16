@@ -13,7 +13,7 @@ class ConsigneeController extends Controller
     /**
     * POST ecapi.consignee.list
     */
-    public function index()
+    public function actionIndex()
     {
         $data = UserAddress::getList($this->validated);
         return $this->json($data);

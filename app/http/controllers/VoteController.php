@@ -9,7 +9,7 @@ namespace app\http\controllers;
  */
 class VoteController extends InitController
 {
-    public function index()
+    public function actionIndex()
     {
         if (!isset($_REQUEST['vote']) || !isset($_REQUEST['options']) || !isset($_REQUEST['type'])) {
             return $this->redirect('/');

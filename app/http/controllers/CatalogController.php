@@ -9,7 +9,7 @@ namespace app\http\controllers;
  */
 class CatalogController extends InitController
 {
-    public function index()
+    public function actionIndex()
     {
         if (!$this->smarty->is_cached('catalog.dwt')) {
             // 取出所有分类

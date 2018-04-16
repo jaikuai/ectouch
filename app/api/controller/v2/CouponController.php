@@ -9,7 +9,7 @@ use app\api\model\v2\Coupon;
 class CouponController extends Controller
 {
     //POST  ecapi.coupon.list
-    public function index()
+    public function actionIndex()
     {
         $rules = [
             'page'          => 'required|integer|min:1',

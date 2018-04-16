@@ -9,7 +9,7 @@ namespace app\dashboard\controller;
  */
 class FilecheckController extends InitController
 {
-    public function index()
+    public function actionIndex()
     {
         // 检查权限
         admin_priv('file_check');

@@ -9,7 +9,7 @@ namespace app\http\controllers;
  */
 class CertiController extends InitController
 {
-    public function index()
+    public function actionIndex()
     {
         $session_id = empty($_POST['session_id']) ? '' : trim($_POST['session_id']);
 

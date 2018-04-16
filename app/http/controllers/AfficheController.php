@@ -9,7 +9,7 @@ namespace app\http\controllers;
  */
 class AfficheController extends InitController
 {
-    public function index()
+    public function actionIndex()
     {
         // 没有指定广告的id及跳转地址
         if (empty($_GET['ad_id'])) {

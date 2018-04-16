@@ -11,7 +11,7 @@ class BannerController extends Controller
     /**
     * POST ecapi.banner.list
     */
-    public function index()
+    public function actionIndex()
     {
         $model = Banner::getList();
 
