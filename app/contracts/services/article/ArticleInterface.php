@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Contracts\Services;
+namespace app\contracts\services\article;
 
 /**
  * Interface ArticleInterface
- * @package App\Contracts\Services
+ * @package app\contracts\services\article
  */
 interface ArticleInterface
 {
