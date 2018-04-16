@@ -156,52 +156,57 @@ function cache()
 
 /**
  * Get / set the specified session value.
- *
- * If an array is passed as the key, we will assume you want to set an array of values.
- *
- * @param  array|string $key
- * @param  mixed $default
+ * @param $name
+ * @param string $value
  * @return mixed
  */
-function session($key = null, $default = null)
+function session($name, $value = '')
 {
-    if (is_null($key)) {
-        return app('session');
+    if (is_null($name)) {
+        // 清除
+        app('session')->destroy();
+    } elseif ('' === $value) {
+        // 判断或获取
+        return 0 === strpos($name, '?') ? app('session')->has(substr($name, 1)) : app('session')->get($name);
+    } elseif (is_null($value)) {
+        // 删除
+        return app('session')->remove($name);
+    } else {
+        // 设置
+        return app('session')->set($name, $value);
     }
-    if (is_array($key)) {
-        return app('session')->set(key($key), reset($key));
-    }
-    return app('session')->get($key, $default);
 }
 
 /**
- * Create a new cookie instance.
- *
- * @param null $name
- * @param null $value
- * @param int $minutes
- * @param null $path
- * @param null $domain
- * @param bool $secure
- * @param bool $httpOnly
+ * Cookie管理
+ * @param string|array  $name cookie名称，如果为数组表示进行cookie设置
+ * @param mixed         $value cookie值
  * @return mixed
  */
-function cookie($name = null, $value = null, $minutes = 0, $path = null, $domain = null, $secure = false, $httpOnly = true)
+function cookie($name, $value = '', $minutes = 0, $path = null, $domain = null, $secure = false, $httpOnly = true)
 {
     $cookie = app('request')->cookies;
     if (is_null($name)) {
-        return $cookie->getValue($name);
+        // 清除
+        $cookie->removeAll();
+    } elseif ('' === $value) {
+        // 获取
+        return 0 === strpos($name, '?') ? $cookie->has(substr($name, 1)) : $cookie->getValue($name);
+    } elseif (is_null($value)) {
+        // 删除
+        return $cookie->remove($name);
+    } else {
+        // 设置
+        return $cookie->add(new \yii\web\Cookie([
+            'name' => $name,
+            'value' => $value,
+            'expire' => $minutes,
+            'path' => $path,
+            'domain' => $domain,
+            'secure' => $secure,
+            'httpOnly' => $httpOnly
+        ]));
     }
-
-    return $cookie->add(new \yii\web\Cookie([
-        'name' => $name,
-        'value' => $value,
-        'expire' => $minutes,
-        'path' => $path,
-        'domain' => $domain,
-        'secure' => $secure,
-        'httpOnly' => $httpOnly
-    ]));
 }
 
 /**
