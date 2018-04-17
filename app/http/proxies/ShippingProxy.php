@@ -2,6 +2,8 @@
 
 namespace app\http\proxies;
 
+use GuzzleHttp\Client;
+
 /**
  * Class ShippingProxy
  * @package app\http\proxies
@@ -36,16 +38,16 @@ class ShippingProxy
         $url = sprintf($this->queryExpressUrl, $com, $num);
         $cache_id = 'express_' . md5($url);
 
-        $result = S($cache_id);
+        $result = cache($cache_id);
         if ($result !== false) {
             return $result;
         }
 
         $respose = $this->http->get($url, 5, $this->defaultHeader());
-        $result = json_decode($respose, true);
+        $result = json_decode($respose->getBody(), true);
 
         if ($result['message'] === 'ok') {
-            S($cache_id, $result, 600);
+            cache($cache_id, $result);
             return $result;
         } else {
             return false;

@@ -100,18 +100,10 @@ function app($component = null)
  * If an array is passed as the key, we will assume you want to set an array of values.
  *
  * @param  array|string $key
- * @param  mixed $default
  * @return mixed
  */
-function config($key = null, $default = null)
+function config($key = null)
 {
-    /*    if (is_null($key)) {
-            return app('config');
-        }
-        if (is_array($key)) {
-            return app('config')->set($key);
-        }
-        return app('config')->get($key, $default);*/
     static $_config = [];
     $item = 'params';
     // 指定参数来源
@@ -125,33 +117,25 @@ function config($key = null, $default = null)
 }
 
 /**
- * Get / set the specified cache value.
- *
- * If an array is passed, we'll assume you want to put to the cache.
- *
- * @param  dynamic  key|key,default|data,expiration|null
+ * 缓存管理
+ * @param mixed $name 缓存名称，如果为数组表示进行缓存设置
+ * @param mixed $value 缓存值
+ * @param mixed $expire 缓存时间
  * @return mixed
- *
- * @throws \Exception
  */
-function cache()
+function cache($name, $value = '', $expire = 3600)
 {
-    $arguments = func_get_args();
-    if (empty($arguments)) {
-        return app('cache');
+    $cache = app('cache');
+    if ('' === $value) {
+        // 获取缓存
+        return 0 === strpos($name, '?') ? $cache->exists(substr($name, 1)) : $cache->get($name);
+    } elseif (is_null($value)) {
+        // 删除缓存
+        return $cache->delete($name);
+    } else {
+        // 缓存数据
+        return $cache->set($name, $value, $expire);
     }
-    if (is_string($arguments[0])) {
-        return app('cache')->get($arguments[0], isset($arguments[1]) ? $arguments[1] : null);
-    }
-    if (!is_array($arguments[0])) {
-        throw new Exception(
-            'When setting a value in the cache, you must pass an array of key / value pairs.'
-        );
-    }
-    if (!isset($arguments[1])) {
-        $arguments[1] = 0;
-    }
-    return app('cache')->set(key($arguments[0]), reset($arguments[0]), $arguments[1]);
 }
 
 /**
@@ -179,8 +163,8 @@ function session($name, $value = '')
 
 /**
  * Cookie管理
- * @param string|array  $name cookie名称，如果为数组表示进行cookie设置
- * @param mixed         $value cookie值
+ * @param string|array $name cookie名称，如果为数组表示进行cookie设置
+ * @param mixed $value cookie值
  * @return mixed
  */
 function cookie($name, $value = '', $minutes = 0, $path = null, $domain = null, $secure = false, $httpOnly = true)
