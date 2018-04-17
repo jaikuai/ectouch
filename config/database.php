@@ -3,8 +3,8 @@
 return [
     'class' => 'yii\db\Connection',
     'dsn' => 'mysql:host=localhost;dbname=ectouch',
-    'username' => 'root',
-    'password' => 'root',
+    'username' => 'homestead',
+    'password' => 'secret',
     'charset' => 'utf8',
     'tablePrefix' => 'ecs_',
 
