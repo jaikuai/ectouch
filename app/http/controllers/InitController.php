@@ -117,8 +117,6 @@ class InitController extends Controller
             session('from_ad', $from_ad); // 用户点击的广告ID
             session('referer', stripslashes($site_name)); // 用户来源
 
-            unset($site_name);
-
             if (!defined('INGORE_VISIT_STATS')) {
                 visit_stats();
             }
