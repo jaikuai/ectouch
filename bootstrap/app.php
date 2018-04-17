@@ -7,8 +7,8 @@
  * @homepage https://www.ectouch.cn
  */
 
-if (version_compare(PHP_VERSION, '7.2.4', '<')) {
-    die('require PHP > 7.2.4 !');
+if (version_compare(PHP_VERSION, '7.1.3', '<')) {
+    die('require PHP > 7.1.3 !');
 }
 
 /*
