@@ -53,17 +53,7 @@ MySQL扩展库
 
 ## 社区交流
 
-* ECTouch官方主站       http://www.ectouch.cn
 * 技术支持论坛          http://bbs.ecmoban.com
-* 上海商创网络科技      http://www.ecmoban.com
-
-## 常见问题整理
-
-http://bbs.ecmoban.com/thread-28767-1-1.html
-
-## 安全&缺陷
-
-如果你发现了一个安全漏洞，请发送邮件到 wanganlin@ecmoban.com。所有的安全漏洞都将及时得到解决。
 
 ## License
 
